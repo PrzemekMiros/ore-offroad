@@ -67,10 +67,10 @@ const getPostUrl = (post) => `/artykuly/${post.categorySlug}/${post.slug}/`;
 ---
 
 <div class="relative pb-20 pt-18">
-  <div class="absolute inset-y-0 left-1/2 w-screen -translate-x-1/2 bg-gray-100 overflow-hidden -z-1" style="perspective: 1000px;"></div>
+  <div class="absolute inset-y-0 left-1/2 w-screen -translate-x-1/2 bg-[#f7f7f7] overflow-hidden -z-1"></div>
 
   <div class="relative flex items-center mb-8 border-b border-gray-400 pb-4">
-  <div class="absolute -left-2 h-10 w-10 rounded-full bg-[var(--accent2)]"></div>
+  <div class="absolute -left-4 h-10 w-10 rounded-sm bg-[var(--accent2)]"></div>
   
     <h2 class="text-2xl font-semibold text-gray-900 uppercase z-9">{TARGET_CATEGORY}</h2>
 </div>
@@ -93,7 +93,7 @@ const getPostUrl = (post) => `/artykuly/${post.categorySlug}/${post.slug}/`;
           )}
           <div class="absolute inset-0 bg-gradient-to-t from-black/80 via-black/20 to-transparent"></div>
           <div class="absolute bottom-0 left-0 p-8 text-white">
-            <span class="bg-sky-500 text-[10px] font-semibold px-2 py-1 uppercase mb-3 inline-block">Najnowszy</span>
+            <span class="bg-[var(--accent2)] text-[10px] font-semibold px-2 py-1 uppercase mb-3 inline-block">Najnowszy</span>
             <h3 class="text-3xl font-semibold leading-tight mb-2 line-clamp-3">{featured.title ?? featured.slug}</h3>
             {featured.description ? (
               <p class="text-sm text-gray-300 opacity-80 group-hover:opacity-100 transition-opacity duration-300 line-clamp-2">
@@ -121,7 +121,7 @@ const getPostUrl = (post) => `/artykuly/${post.categorySlug}/${post.slug}/`;
           <div class="absolute inset-0 bg-black/30 group-hover:bg-black/50 transition-colors"></div>
           <div class="absolute inset-0 flex flex-col justify-center items-center text-white p-4 text-center">
             <h3 class="text-xl font-semibold uppercase tracking-widest line-clamp-3">{wide.title ?? wide.slug}</h3>
-            <div class="w-10 h-1 bg-sky-500 mt-2 transition-all group-hover:w-24"></div>
+            <div class="w-10 h-1 bg-[var(--accent2)] mt-2 transition-all group-hover:w-24"></div>
           </div>
         </a>
       ) : null}

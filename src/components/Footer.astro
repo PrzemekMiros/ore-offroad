@@ -1,77 +1,82 @@
-﻿---
+---
 import logo from "../assets/images/global/ore-offroad-logo.png";
 import cookieModalUrl from "../scripts/cookie-modal.js?url";
 import contactFormUrl from "../scripts/contact-form.js?url";
 const currentYear = new Date().getFullYear();
 ---
 
-<footer class="w-full pt-18 text-gray-500/80">
-  <div class="flex flex-wrap justify-between gap-12 md:gap-6">
-    <div class="max-w-80">
-      <a href="/" aria-label="Ore Offroad">
-        <img src={logo.src} alt="Ore Offroad logo" class="mb-4 h-8 md:h-12 w-auto" />
-      </a>
-      <p class="text-sm">
-        Portal o offroadzie i wyprawach 4x4. Testy, poradniki techniki jazdy oraz aktualnosci z rynku i wydarzen.
-      </p>
-      <div class="flex items-center gap-3 mt-4">
-        <a href="#" aria-label="Instagram" class="hover:text-gray-700 transition-colors">
-          <svg class="w-6 h-6" fill="currentColor" viewBox="0 0 24 24">
-            <path d="M7.75 2A5.75 5.75 0 002 7.75v8.5A5.75 5.75 0 007.75 22h8.5A5.75 5.75 0 0022 16.25v-8.5A5.75 5.75 0 0016.25 2h-8.5zM4.5 7.75A3.25 3.25 0 017.75 4.5h8.5a3.25 3.25 0 013.25 3.25v8.5a3.25 3.25 0 01-3.25 3.25h-8.5a3.25 3.25 0 01-3.25-3.25v-8.5zm9.5 1a4 4 0 11-4 4 4 4 0 014-4zm0 1.5a2.5 2.5 0 102.5 2.5 2.5 2.5 0 00-2.5-2.5zm3.5-.75a.75.75 0 11.75-.75.75.75 0 01-.75.75z"></path>
-          </svg>
-        </a>
-        <a href="#" aria-label="Facebook" class="hover:text-gray-700 transition-colors">
-          <svg class="w-6 h-6" fill="currentColor" viewBox="0 0 24 24">
-            <path d="M13.5 9H15V6.5h-1.5c-1.933 0-3.5 1.567-3.5 3.5v1.5H8v3h2.5V21h3v-7.5H16l.5-3h-3z"></path>
-          </svg>
-        </a>
+<footer class="pt-16 mb-12">
+  <div class="mx-auto max-w-[1420px]">
+    <div class="rounded-sm bg-[#0b0b0b] px-8 py-10 text-white/80 sm:px-10 lg:px-12 lg:py-14">
+      <div class="grid gap-10 lg:grid-cols-[minmax(0,1fr)_4fr] mb-22 mt-8">
+        <div class="flex flex-col gap-6">
+          <a href="/" aria-label="Ore Offroad">
+            <img src={logo.src} alt="Ore Offroad logo" class="h-14 w-auto brightness-0 invert" />
+          </a>
+          <div class="flex gap-2">
+         <svg width="22" viewBox="0 0 16 16" fill="none" xmlns="http://www.w3.org/2000/svg">
+<g clip-path="url(#clip0_2210_84092)">
+<path d="M16 8.04858C16 12.0413 13.0707 15.3512 9.24667 15.9519V10.3766H11.106L11.46 8.06992H9.24667V6.57325C9.24667 5.94192 9.556 5.32725 10.5467 5.32725H11.5527V3.36325C11.5527 3.36325 10.6393 3.20725 9.76667 3.20725C7.944 3.20725 6.75333 4.31192 6.75333 6.31125V8.06925H4.72733V10.3759H6.75333V15.9513C2.93 15.3499 0 12.0406 0 8.04858C0 3.63058 3.582 0.048584 8 0.048584C12.418 0.048584 16 3.62992 16 8.04858Z" fill="currentcolor"></path>
+</g>
+</svg>
+
+<svg width="22" viewBox="0 0 16 16" fill="none" xmlns="http://www.w3.org/2000/svg">
+<g clip-path="url(#clip0_2210_84087)">
+<path d="M8 1.44133C10.136 1.44133 10.3893 1.44933 11.2327 1.488C12.1047 1.528 13.0027 1.72667 13.638 2.362C14.2793 3.00333 14.472 3.89267 14.512 4.76733C14.5507 5.61067 14.5587 5.864 14.5587 8C14.5587 10.136 14.5507 10.3893 14.512 11.2327C14.4727 12.1 14.2693 13.0067 13.638 13.638C12.9967 14.2793 12.108 14.472 11.2327 14.512C10.3893 14.5507 10.136 14.5587 8 14.5587C5.864 14.5587 5.61067 14.5507 4.76733 14.512C3.90667 14.4727 2.988 14.2647 2.362 13.638C1.724 13 1.528 12.102 1.488 11.2327C1.44933 10.3893 1.44133 10.136 1.44133 8C1.44133 5.864 1.44933 5.61067 1.488 4.76733C1.52733 3.90333 1.73267 2.99133 2.362 2.362C3.002 1.722 3.89467 1.528 4.76733 1.488C5.61067 1.44933 5.864 1.44133 8 1.44133ZM8 0C5.82733 0 5.55467 0.00933333 4.70133 0.048C3.46467 0.104667 2.23667 0.448667 1.34267 1.34267C0.445333 2.24 0.104667 3.46533 0.048 4.70133C0.00933333 5.55467 0 5.82733 0 8C0 10.1727 0.00933333 10.4453 0.048 11.2987C0.104667 12.534 0.45 13.7653 1.34267 14.6573C2.23933 15.554 3.46667 15.8953 4.70133 15.952C5.55467 15.9907 5.82733 16 8 16C10.1727 16 10.4453 15.9907 11.2987 15.952C12.5347 15.8953 13.764 15.5507 14.6573 14.6573C15.5553 13.7593 15.8953 12.5347 15.952 11.2987C15.9907 10.4453 16 10.1727 16 8C16 5.82733 15.9907 5.55467 15.952 4.70133C15.8953 3.46467 15.5507 2.236 14.6573 1.34267C13.762 0.447333 12.5313 0.104 11.2987 0.048C10.4453 0.00933333 10.1727 0 8 0Z" fill="currentcolor"></path>
+<path d="M8 3.89209C5.73133 3.89209 3.892 5.73142 3.892 8.00009C3.892 10.2688 5.73133 12.1081 8 12.1081C10.2687 12.1081 12.108 10.2688 12.108 8.00009C12.108 5.73142 10.2687 3.89209 8 3.89209ZM8 10.6668C6.52733 10.6668 5.33333 9.47276 5.33333 8.00009C5.33333 6.52742 6.52733 5.33342 8 5.33342C9.47267 5.33342 10.6667 6.52742 10.6667 8.00009C10.6667 9.47276 9.47267 10.6668 8 10.6668Z" fill="currentcolor"></path>
+<path d="M12.2707 4.68929C12.8009 4.68929 13.2307 4.25948 13.2307 3.72929C13.2307 3.19909 12.8009 2.76929 12.2707 2.76929C11.7405 2.76929 11.3107 3.19909 11.3107 3.72929C11.3107 4.25948 11.7405 4.68929 12.2707 4.68929Z" fill="currentcolor"></path>
+</g>
+</svg>
+          </div>
+        </div>
+
+        <div class="lg:border-l lg:border-white/10 lg:pl-10">
+          <div class="grid gap-8 sm:grid-cols-2 lg:grid-cols-3">
+            <div>
+              <p class="text-[11px] uppercase tracking-[0.2em] text-white/60">Sekcje</p>
+              <ul class="mt-4 space-y-2 text-sm text-white/80">
+                <li><a href="/aktualnosci-i-rynek/" class="transition-colors hover:text-white">Aktualności i rynek</a></li>
+                <li><a href="/samochody-i-testy/" class="transition-colors hover:text-white">Samochody i testy</a></li>
+                <li><a href="/warsztat-i-tuning/" class="transition-colors hover:text-white">Warsztat i tuning</a></li>
+                <li><a href="/poradniki-i-technika-jazdy/" class="transition-colors hover:text-white">Poradniki i technika jazdy</a></li>
+                <li><a href="/turystyka-i-wyprawy/" class="transition-colors hover:text-white">Turystyka i wyprawy</a></li>
+              </ul>
+            </div>
+
+            <div>
+              <p class="text-[11px] uppercase tracking-[0.2em] text-white/60">Wsparcie</p>
+              <ul class="mt-4 space-y-2 text-sm text-white/80">
+                <li><a href="/artykuly/" class="transition-colors hover:text-white">Baza artykułów</a></li>
+                <li><a href="/tags/" class="transition-colors hover:text-white">Tagi</a></li>
+                <li><a href="/polityka/" class="transition-colors hover:text-white">Polityka i cookies</a></li>
+                <li><a href="#" class="transition-colors hover:text-white">Kontakt</a></li>
+                <li><a href="#" class="transition-colors hover:text-white">Dostępność</a></li>
+              </ul>
+            </div>
+
+            <div>
+              <p class="text-[11px] uppercase tracking-[0.2em] text-white/60">Informacje</p>
+              <ul class="mt-4 space-y-2 text-sm text-white/80">
+                <li><a href="/artykuly/" class="transition-colors hover:text-white">Archiwum wpisów</a></li>
+                <li><a href="/polityka/" class="transition-colors hover:text-white">Polityka prywatności</a></li>
+                <li><a href="/" class="transition-colors hover:text-white">Mapa strony</a></li>
+                <li><a href="#" class="transition-colors hover:text-white">Współpraca</a></li>
+                <li><a href="#" class="transition-colors hover:text-white">Reklama</a></li>
+              </ul>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="mt-12 flex flex-col gap-3 border-t border-white/10 pt-12 text-[11px] text-white/60 md:flex-row md:items-center md:justify-between">
+        <p class="text-white/40">&copy; {currentYear} Offroad</p>
+        <div class="flex flex-wrap items-center gap-4">
+          <a href="/polityka/" class="transition-colors hover:text-white">Polityka prywatności</a>
+          <a href="/" class="transition-colors hover:text-white">Mapa strony</a>
+          <a href="#" class="transition-colors hover:text-white">Regulamin</a>
+        </div>
       </div>
     </div>
-
-    <div>
-      <p class="text-lg text-gray-800">SEKCJE</p>
-      <ul class="mt-3 flex flex-col gap-2 text-sm">
-        <li><a href="/aktualnosci-i-rynek/" class="hover:text-gray-700 transition-colors">Aktualnosci i rynek</a></li>
-        <li><a href="/samochody-i-testy/" class="hover:text-gray-700 transition-colors">Samochody i testy</a></li>
-        <li><a href="/warsztat-i-tuning/" class="hover:text-gray-700 transition-colors">Warsztat i tuning</a></li>
-        <li><a href="/poradniki-i-technika-jazdy/" class="hover:text-gray-700 transition-colors">Poradniki i technika jazdy</a></li>
-        <li><a href="/turystyka-i-wyprawy/" class="hover:text-gray-700 transition-colors">Turystyka i wyprawy</a></li>
-      </ul>
-    </div>
-
-    <div>
-      <p class="text-lg text-gray-800">WSPARCIE</p>
-      <ul class="mt-3 flex flex-col gap-2 text-sm">
-        <li><a href="/artykuly/" class="hover:text-gray-700 transition-colors">Baza artykulow</a></li>
-        <li><a href="/tags/" class="hover:text-gray-700 transition-colors">Tagi</a></li>
-        <li><a href="/polityka/" class="hover:text-gray-700 transition-colors">Polityka i cookies</a></li>
-        <li><a href="#" class="hover:text-gray-700 transition-colors">Kontakt</a></li>
-        <li><a href="#" class="hover:text-gray-700 transition-colors">Dostepnosc</a></li>
-      </ul>
-    </div>
-
-    <div class="max-w-80">
-      <p class="text-lg text-gray-800">BADZ NA BIEZACO</p>
-      <p class="mt-3 text-sm">
-        Zapisz sie do newslettera, aby dostawac nowe poradniki oraz rekomendacje tras.
-      </p>
-      <div class="flex items-center mt-4">
-        <input type="email" class="bg-white rounded-l border border-gray-300 h-9 px-3 outline-none w-full" placeholder="Twoj e-mail" />
-        <button class="flex items-center justify-center bg-black h-9 w-9 aspect-square rounded-r">
-          <svg class="w-4 h-4 text-white" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" width="24" height="24" fill="none" viewBox="0 0 24 24">
-            <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 12H5m14 0-4 4m4-4-4-4"></path>
-          </svg>
-        </button>
-      </div>
-    </div>
-  </div>
-  <hr class="border-gray-300 mt-16" />
-  <div class="flex flex-col md:flex-row gap-2 items-center text-xs justify-between py-5">
-    <p>© {currentYear} <a href="/" class="hover:text-gray-700 transition-colors">Offroad</a>. All rights reserved.</p>
-    <ul class="flex items-center gap-4">
-      <li><a href="/polityka/" class="hover:text-gray-700 transition-colors">Polityka prywatności</a></li>
-      <li><a href="/" class="hover:text-gray-700 transition-colors">Mapa strony</a></li>
-    </ul>
   </div>
 </footer>
                                             
@@ -88,7 +93,7 @@ const currentYear = new Date().getFullYear();
   <div class="bg-white rounded-lg shadow-2xl max-w-[600px] w-full overflow-hidden border border-gray-200">
     <div class="p-6 flex border-b border-gray-300">
       <div class="flex flex-col">
-        <span id="cookieconsent-title" class="text-sm font-semibold text-gray-900 leading-tight">Strona uĹĽywa plikĂłw cookie</span>
+        <span id="cookieconsent-title" class="text-sm font-semibold text-gray-900 leading-tight">Strona używa plików cookie</span>
       </div>
     </div>
 
@@ -97,7 +102,7 @@ const currentYear = new Date().getFullYear();
         Zgoda
       </button>
       <button class="flex-1 py-3 text-gray-800 font-semibold text-[11px] uppercase tracking-wider hover:bg-gray-50 transition-colors cursor-pointer" type="button" data-cookie-tab="details" role="tab" id="cookie-tab-details" aria-controls="cookie-panel-details" aria-selected="false">
-        SzczegĂłĹ‚y
+        Szczegóły
       </button>
       <button class="flex-1 py-3 text-gray-800 font-semibold text-[11px] uppercase tracking-wider hover:bg-gray-50 transition-colors cursor-pointer" type="button" data-cookie-tab="about" role="tab" id="cookie-tab-about" aria-controls="cookie-panel-about" aria-selected="false">
         Info
@@ -106,20 +111,20 @@ const currentYear = new Date().getFullYear();
 
     <div class="p-6 md:p-8" data-cookie-panel="consent" role="tabpanel" id="cookie-panel-consent" aria-labelledby="cookie-tab-consent">
       <p class="text-gray-600 text-[12px] leading-[1.6]">
-        UĹĽywamy plikĂłw cookie, aby personalizowaÄ‡ treĹ›ci i reklamy, udostÄ™pniaÄ‡ funkcje mediĂłw spoĹ‚ecznoĹ›ciowych i analizowaÄ‡ nasz ruch. UdostÄ™pniamy rĂłwnieĹĽ informacje o tym, jak korzystasz z naszej witryny, naszym partnerom spoĹ‚ecznoĹ›ciowym, reklamowym i analitycznym.
+        Używamy plików cookie, aby personalizować treści i reklamy, udostępniać funkcje mediów społecznościowych i analizować nasz ruch. Udostępniamy również informacje o tym, jak korzystasz z naszej witryny, naszym partnerom społecznościowym, reklamowym i analitycznym.
       </p>
     </div>
 
     <div class="p-6 md:p-8 hidden" data-cookie-panel="details" role="tabpanel" id="cookie-panel-details" aria-labelledby="cookie-tab-details">
       <p class="text-gray-600 text-[12px] leading-[1.6] mb-4">
-        Wybierz, na jakie kategorie plikĂłw cookie wyraĹĽasz zgodÄ™. NiezbÄ™dne sÄ… zawsze aktywne.
+        Wybierz, na jakie kategorie plików cookie wyrażasz zgodę. Niezbędne są zawsze aktywne.
       </p>
       <div class="space-y-3 text-[12px] text-gray-700">
         <label class="flex items-center justify-between rounded border border-gray-200 px-3 py-2">
-          <span>NiezbÄ™dne</span>
+          <span>Niezbędne</span>
           <span class="flex items-center gap-2">
             <span class="text-[10px] uppercase tracking-wider text-gray-400">Zawsze aktywne</span>
-            <input type="checkbox" checked disabled data-cookie-category="necessary" aria-label="NiezbÄ™dne" />
+            <input type="checkbox" checked disabled data-cookie-category="necessary" aria-label="Niezbędne" />
           </span>
         </label>
         <label class="flex items-center justify-between rounded border border-gray-200 px-3 py-2">
@@ -144,14 +149,14 @@ const currentYear = new Date().getFullYear();
 
     <div class="p-6 md:p-8 hidden" data-cookie-panel="about" role="tabpanel" id="cookie-panel-about" aria-labelledby="cookie-tab-about">
       <p class="text-gray-600 text-[12px] leading-[1.6]">
-        Pliki cookie to niewielkie informacje zapisywane w Twojej przeglÄ…darce. PomagajÄ… dziaĹ‚aÄ‡ stronie,
-        zapamiÄ™tywaÄ‡ ustawienia oraz mierzyÄ‡ ruch. MoĹĽesz zmieniÄ‡ zgodÄ™ w kaĹĽdej chwili w ustawieniach.
+        Pliki cookie to niewielkie informacje zapisywane w Twojej przeglądarce. Pomagają działać stronie,
+        zapamiętywać ustawienia oraz mierzyć ruch. Możesz zmienić zgodę w każdej chwili w ustawieniach.
       </p>
     </div>
 
     <div class="p-6 pt-0 flex flex-col md:flex-row gap-2">
       <button class="cursor-pointer flex-1 bg-[#00a3ff] hover:bg-[#008bdb] text-white font-semibold py-3 px-4 rounded transition-colors text-[11px] uppercase tracking-wide" type="button" data-cookie-deny>
-        OdmĂłw
+        Odmów
       </button>
       <button class="cursor-pointer flex-1 bg-[#00a3ff] hover:bg-[#008bdb] text-white font-semibold py-3 px-4 rounded transition-colors text-[11px] uppercase tracking-wide flex items-center justify-center gap-1" type="button" data-cookie-customize>
         Dostosuj
@@ -160,7 +165,7 @@ const currentYear = new Date().getFullYear();
         </svg>
       </button>
       <button class="cursor-pointer flex-1 bg-[#00a3ff] hover:bg-[#008bdb] text-white font-semibold py-3 px-4 rounded transition-colors text-[11px] uppercase tracking-wide" type="button" data-cookie-accept>
-        ZezwĂłl
+        Zezwól
       </button>
     </div>
   </div>

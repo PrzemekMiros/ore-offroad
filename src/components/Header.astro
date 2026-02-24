@@ -313,7 +313,7 @@ const linkClass = (href) =>
             return (
               <div class="mega-item" data-mega-item>
                 <a
-                  class={`${linkClass(item.href)} mega-link text-[11px] uppercase font-semibold tracking-[1px] transition-colors hover:text-black`}
+                  class={`${linkClass(item.href)} mega-link text-[12px] uppercase font-semibold tracking-[0.05em] transition-colors hover:text-black`}
                   href={item.href}
                   aria-current={isActive(item.href) ? "page" : undefined}
                   data-mega-trigger
@@ -334,7 +334,7 @@ const linkClass = (href) =>
                                 column.links.map((link) => (
                                   <li>
                                     <a href={link.href}>
-                                      <span class="mega-link-label text-[11px] font-semibold">{link.label}</span>
+                                      <span class="mega-link-label text-[12px] font-semibold">{link.label}</span>
                                       <span class="mega-link-meta">{link.meta}</span>
                                     </a>
                                   </li>

@@ -1,4 +1,4 @@
-﻿---
+---
 import { Image } from "astro:assets";
 import heroImage from "../../assets/images/sections/blog-responsive.jpg";
 const { title, lead, meta } = Astro.props;
@@ -9,7 +9,7 @@ const { title, lead, meta } = Astro.props;
   <div class="grid grid-cols-1 md:grid-cols-[minmax(0,1.66fr)_minmax(0,1fr)] min-h-[320px] relative">
     <div class="relative flex flex-col justify-center pb-8 pt-28 md:pb-16 md:pt-32 z-10">
       <div class="text-[8px] md:text-[10px] uppercase tracking-[0.1em] text-gray-400 mb-3 md:mb-6 font-semibold">
-        <span>GĹ‚Ăłwna</span>
+        <span>Główna</span>
         <span class="text-[var(--accent)]"> > </span>
         <span class="text-white">{title}</span>
       </div>
@@ -39,12 +39,12 @@ const { title, lead, meta } = Astro.props;
       <p class="text-xs font-semibold uppercase tracking-[0.2em] text-[var(--accent)]">{meta}</p>
     ) : (
       <div class="flex flex-wrap items-center gap-x-6 gap-y-2 md:mb-0">
-        <span class="text-[10px] mt-1 md:mt-0 text-gray-400 uppercase font-semibold tracking-tighter">Ĺšrednia opinia w </span>
+        <span class="text-[10px] mt-1 md:mt-0 text-gray-400 uppercase font-semibold tracking-tighter">Średnia opinia w </span>
         
         <div class="flex items-center gap-3">
           <span class="text-xl font-black text-[#002B49] tracking-tighter">Google</span>
           <div class="flex items-center gap-1">
-            <div class="flex text-orange-400 text-xs">â…â…â…â…â…</div>
+            <div class="flex text-orange-400 text-xs">★★★★★</div>
             <span class="text-gray-900 font-semibold text-xs ml-1">5.0</span>
           </div>
         </div>

@@ -1,7 +1,7 @@
-﻿---
+---
 import { Image } from "astro:assets";
 import heroImage from "../../assets/images/sections/hero-page.png";
-const { title, lead, meta } = Astro.props;
+const { title } = Astro.props;
 const { site, url } = Astro;
 const baseUrl = site ? site.toString().replace(/\/$/, "") : "";
 const homeUrl = baseUrl ? `${baseUrl}/` : "/";
@@ -33,7 +33,7 @@ const currentUrl = baseUrl ? new URL(url.pathname, baseUrl).toString() : url.pat
       >
         <span itemprop="itemListElement" itemscope itemtype="https://schema.org/ListItem">
           <a href={homeUrl} itemprop="item" class="hover:text-white">
-            <span itemprop="name">GĹ‚Ăłwna</span>
+            <span itemprop="name">Główna</span>
           </a>
           <meta itemprop="position" content="1" />
         </span>
@@ -53,26 +53,4 @@ const currentUrl = baseUrl ? new URL(url.pathname, baseUrl).toString() : url.pat
   </div>
 </section>
 
-  <section class="relative py-5 border-b border-gray-200">
-    {meta ? (
-      <p class="text-xs font-semibold uppercase tracking-[0.2em] text-[var(--accent)]">{meta}</p>
-    ) : (
-      <div class="flex flex-wrap items-center gap-x-6 gap-y-2 md:mb-0">
-        <span class="text-[10px] mt-1 md:mt-0 text-gray-400 uppercase font-semibold tracking-tighter">Ĺšrednia opinia w </span>
-        
-        <div class="flex items-center gap-3">
-          <span class="text-xl font-black text-[#002B49] tracking-tighter">Google</span>
-          <div class="flex items-center gap-1">
-            <div class="flex text-orange-400 text-xs">â…â…â…â…â…</div>
-            <span class="text-gray-900 font-semibold text-xs ml-1">5.0</span>
-          </div>
-        </div>
-
-        <span class="text-[11px] text-gray-500 font-medium hidden sm:block">
-          w tworzeniu stron www
-        </span>
-      </div>
-    )}
-
-  </section>
 

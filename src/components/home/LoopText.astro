@@ -44,14 +44,14 @@ const news = Object.entries(entries)
 const getPostUrl = (post) => `/artykuly/${post.categorySlug}/${post.slug}/`;
 ---
 
-<div class="relative flex overflow-x-hidden bg-[var(--accent)] font-sans text-sm font-semibold mt-18 md:mt-36 py-2 group">
+<div class="relative flex overflow-x-hidden bg-[var(--accent2)] font-sans text-sm font-semibold mt-18 md:mt-36 py-2 group">
   <div class="animate-marquee whitespace-nowrap flex items-center group-hover:[animation-play-state:paused] cursor-pointer">
     {Array(2).fill(0).map(() => (
       <>
         {news.map((item) => {
           const dateLabel = item.date ? formatDate(item.date) : null;
           return (
-            <div class="flex items-center pt-0 pb-0 text-white">
+            <div class="flex items-center pt-0 pb-0 text-black/80">
               <span class="text-xl mr-3">•</span>
               <span class="mr-2 opacity-80">{dateLabel}</span>
               <a href={getPostUrl(item)} class="font-sm hover:underline underline-offset-2">

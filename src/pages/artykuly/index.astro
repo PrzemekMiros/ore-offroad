@@ -1,4 +1,4 @@
-﻿---
+---
 import { Image } from "astro:assets";
 import BaseLayout from "../../layouts/BaseLayout.astro";
 import { slugifyTitle } from "../../lib/slugifyTitle";
@@ -55,7 +55,7 @@ const items = Object.entries(entries)
   });
 
 const articlesCount = items.length;
-const articlesLabel = articlesCount === 1 ? "artykuĹ‚" : "artykuĹ‚Ăłw";
+const articlesLabel = articlesCount === 1 ? "artykuł" : "artykułów";
 const heroMeta = `${articlesCount} ${articlesLabel}`;
 
 const { site, url } = Astro;
@@ -80,7 +80,7 @@ const categories = Array.from(
 ---
 
 <BaseLayout
-  title="ArtykuĹ‚y"
+  title="Artykuły"
   description="Praktyczne porady, trendy i ciekawostki o stronach, SEO i marketingu."
   heroMeta={heroMeta}
 >
@@ -128,7 +128,7 @@ const categories = Array.from(
                     itemprop="image"
                   />
                 ) : (
-                  <div class="absolute inset-0 grid place-items-center text-[10px] uppercase tracking-widest text-neutral-500">Brak zdjÄ™cia</div>
+                  <div class="absolute inset-0 grid place-items-center text-[10px] uppercase tracking-widest text-neutral-500">Brak zdjęcia</div>
                 )}
                 <div class="absolute inset-0 rounded-2xl ring-1 ring-inset ring-white/10"></div>
               </div>
