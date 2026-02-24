@@ -4,7 +4,7 @@ description: Analiza trwałości i możliwości Toyoty Land Cruiser 150 po inten
 author: Przemek
 date: 2026-02-24T14:20:23.104Z
 category:
- - Samochody i testy
+ - Warsztat i tuning
 thumbnail: /content/artykuly/img/toyota-land-cruiser-150-po-200-tysiacach-kilometrow-w-terenie.png
 ---
 Toyota Land Cruiser 150 od lat uchodzi za jeden z ostatnich „prawdziwych” samochodów terenowych dostępnych na europejskim rynku. Rama, reduktor, blokady, solidny diesel i miejsce dla rodziny – brzmi jak przepis na auto idealne do wypraw i pracy w ciężkich warunkach. Ale jak ten model znosi próbę czasu i intensywną jazdę poza asfaltem?

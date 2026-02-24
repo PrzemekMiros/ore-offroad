@@ -1,6 +1,7 @@
 ﻿---
 import logo from "../assets/images/global/ore-offroad-logo.png";
 import Search from "astro-pagefind/components/Search";
+import { slugifyTitle } from "../lib/slugifyTitle";
 const { settings } = Astro.props;
 const pathname = Astro.url?.pathname ?? "";
 const isActive = (href) =>
@@ -183,6 +184,68 @@ const navItems = [
   },
 ];
 
+const imageEntries = import.meta.glob("/src/content/artykuly/img/**/*", { eager: true });
+const resolveArticleImage = (path) => {
+  if (!path) return null;
+  let normalized = path;
+  if (normalized.startsWith("/content/posts/img/")) {
+    const relativePath = normalized.slice("/content/posts/img/".length);
+    normalized = `/src/content/artykuly/img/${relativePath}`;
+  } else if (normalized.startsWith("/content/")) {
+    normalized = `/src${normalized}`;
+  }
+  const entry = imageEntries[normalized];
+  return entry?.default ?? null;
+};
+const coerceImageSrc = (image) => (typeof image === "string" ? image : image?.src ?? null);
+
+const entries = import.meta.glob("/src/content/artykuly/**/*.md", { eager: true });
+const getSlugFromFile = (file) =>
+  file.replace(/^.*content\/artykuly\//, "").replace(/\.md$/, "");
+const toCategorySlug = (item, slugPath) => {
+  const parts = slugPath.split("/");
+  if (parts.length > 1) return parts[0];
+  const categoryValue = Array.isArray(item?.category) ? item.category[0] : item?.category ?? null;
+  return categoryValue ? slugifyTitle(categoryValue) : "artykuly";
+};
+const toArticleSlug = (slugPath) => {
+  const parts = slugPath.split("/");
+  return parts.length > 1 ? parts.slice(1).join("/") : slugPath;
+};
+const toCategoryLabel = (item) =>
+  Array.isArray(item?.category) ? item.category[0] : item?.category ?? null;
+
+const posts = Object.entries(entries)
+  .map(([file, entry]) => {
+    const slugPath = getSlugFromFile(file);
+    return {
+      slugPath,
+      slug: toArticleSlug(slugPath),
+      categorySlug: toCategorySlug(entry.frontmatter ?? {}, slugPath),
+      ...entry.frontmatter,
+    };
+  })
+  .map((item) => ({
+    ...item,
+    _date: item.date ? new Date(item.date) : null,
+  }))
+  .sort((a, b) => {
+    const aTime = a._date ? a._date.getTime() : 0;
+    const bTime = b._date ? b._date.getTime() : 0;
+    return bTime - aTime;
+  });
+
+const latestByCategory = posts.reduce((acc, post) => {
+  if (!post?.categorySlug) return acc;
+  if (!acc[post.categorySlug]) acc[post.categorySlug] = post;
+  return acc;
+}, {});
+
+const getCategorySlugFromHref = (href) => href.replace(/^\/|\/$/g, "");
+const getLatestForItem = (item) => latestByCategory[getCategorySlugFromHref(item.href)] ?? null;
+
+const megaDefaultImage = "/content/media/596544842_4121024138044289_7913730695831938647_n.jpg";
+
 const linkClass = (href) =>
   isActive(href)
     ? "px-1 py-2.5 text-black no-underline transition"
@@ -232,55 +295,77 @@ const linkClass = (href) =>
     <nav class="relative flex items-center justify-end md:justify-between gap-4 border-y border-black/20">
       <div class="hidden items-center justify-center gap-5 md:flex">
         {
-          navItems.map((item) => (
-            <div class="mega-item" data-mega-item>
-              <a
-                class={`${linkClass(item.href)} mega-link text-[11px] uppercase font-semibold tracking-[1px] transition-colors hover:text-black`}
-                href={item.href}
-                aria-current={isActive(item.href) ? "page" : undefined}
-                data-mega-trigger
-              >
-                <span>{item.label}</span>
-                <span class="mega-arrow" aria-hidden="true">+</span>
-              </a>
+          navItems.map((item) => {
+            const featuredPost = getLatestForItem(item);
+            const featuredEyebrow = toCategoryLabel(featuredPost) ?? item.featured.eyebrow ?? item.label;
+            const featuredTitle = featuredPost?.title ?? item.featured.title;
+            const featuredHref = featuredPost
+              ? `/artykuly/${featuredPost.categorySlug}/${featuredPost.slug}/`
+              : item.featured.href;
+            const featuredCta = featuredPost ? "Czytaj artykul" : item.featured.cta;
+            const featuredImage = coerceImageSrc(
+              resolveArticleImage(featuredPost?.tileImage ?? featuredPost?.thumbnail)
+            );
+            const featuredImageSrc =
+              featuredImage ?? coerceImageSrc(item.featured.image) ?? megaDefaultImage;
+            const featuredAlt = featuredPost?.title ?? item.featured.title ?? "";
 
-              <div class="mega-panel" data-mega-panel>
-                <div class="mega-panel-inner">
-                  <div class="mega-topline">
-                    <p>{item.description}</p>
-                  </div>
-                  <div class="mega-grid">
-                    {
-                      item.columns.map((column) => (
-                        <section>
-                          <ul>
-                            {
-                              column.links.map((link) => (
-                                <li>
-                                  <a href={link.href}>
-                                    <span class="mega-link-label">{link.label}</span>
-                                    <span class="mega-link-meta">{link.meta}</span>
-                                  </a>
-                                </li>
-                              ))
-                            }
-                          </ul>
-                        </section>
-                      ))
-                    }
-                    <aside class="mega-featured">
-                      <p class="mega-featured-eyebrow">{item.featured.eyebrow}</p>
-                      <p class="mega-featured-title">{item.featured.title}</p>
-                      <p class="mega-featured-text">{item.featured.text}</p>
-                      <a href={item.featured.href} class="mega-featured-cta">
-                        {item.featured.cta}
-                      </a>
-                    </aside>
+            return (
+              <div class="mega-item" data-mega-item>
+                <a
+                  class={`${linkClass(item.href)} mega-link text-[11px] uppercase font-semibold tracking-[1px] transition-colors hover:text-black`}
+                  href={item.href}
+                  aria-current={isActive(item.href) ? "page" : undefined}
+                  data-mega-trigger
+                >
+                  <span>{item.label}</span>
+                  <span class="mega-arrow" aria-hidden="true">+</span>
+                </a>
+
+                <div class="mega-panel" data-mega-panel>
+                  <div class="mega-panel-inner">
+                    <div class="mega-grid">
+                      {
+                        item.columns.map((column) => (
+                          <section>
+                            <p class="mega-col-title">{column.title}</p>
+                            <ul>
+                              {
+                                column.links.map((link) => (
+                                  <li>
+                                    <a href={link.href}>
+                                      <span class="mega-link-label text-[11px] font-semibold">{link.label}</span>
+                                      <span class="mega-link-meta">{link.meta}</span>
+                                    </a>
+                                  </li>
+                                ))
+                              }
+                            </ul>
+                          </section>
+                        ))
+                      }
+                      <aside class="mega-featured">
+                        <img
+                          src={featuredImageSrc}
+                          alt={featuredAlt}
+                          class="mega-featured-image"
+                          loading="lazy"
+                          decoding="async"
+                        />
+                        <div class="mega-featured-content">
+                          <p class="mega-featured-eyebrow">{featuredEyebrow}</p>
+                          <p class="mega-featured-title">{featuredTitle}</p>
+                          <a href={featuredHref} class="mega-featured-cta">
+                            {featuredCta}
+                          </a>
+                        </div>
+                      </aside>
+                    </div>
                   </div>
                 </div>
               </div>
-            </div>
-          ))
+            );
+          })
         }
       </div>
     </nav>
@@ -377,41 +462,49 @@ const linkClass = (href) =>
 
   .mega-panel-inner {
     border: 1px solid rgba(15, 23, 42, 0.12);
-    border-radius: 5px;
-    background:
-      radial-gradient(circle at 8% 0%, rgba(56, 155, 189, 0.18), transparent 40%),
-      radial-gradient(circle at 94% 100%, rgba(212, 127, 112, 0.12), transparent 46%),
-      #ffffff;
-    padding: 1.1rem;
+    border-radius: 3px;
+    background: #ffffff;
+    padding: 1.6rem 1.8rem;
+    box-shadow: 0 26px 60px -40px rgba(15, 23, 42, 0.45);
   }
 
   .mega-topline {
-    border-bottom: 1px solid rgba(15, 23, 42, 0.08);
-    margin-bottom: 0.95rem;
-    padding-bottom: 0.8rem;
+    border-bottom: none;
+    margin-bottom: 1.2rem;
+    padding-bottom: 0;
   }
 
   .mega-topline p {
     margin: 0;
-    color: rgba(15, 23, 42, 0.72);
-    font-size: 0.72rem;
+    color: rgba(15, 23, 42, 0.45);
+    font-size: 0.62rem;
     text-transform: uppercase;
-    letter-spacing: 0.14em;
+    letter-spacing: 0.18em;
     font-weight: 700;
   }
 
   .mega-grid {
     display: grid;
-    grid-template-columns: repeat(3, minmax(0, 1fr));
-    gap: 0.85rem;
+    grid-template-columns: repeat(2, minmax(0, 1fr)) minmax(280px, 1.35fr);
+    gap: 1.8rem;
+    align-items: stretch;
   }
 
   .mega-grid section {
-    background: rgba(255, 255, 255, 0.6);
-    border: 1px solid rgba(15, 23, 42, 0.08);
-    border-radius: 14px;
-    padding: 0.8rem;
-    min-height: 220px;
+    background: transparent;
+    border: none;
+    border-radius: 0;
+    padding: 0;
+    min-height: auto;
+  }
+
+  .mega-col-title {
+    margin: 0 0 0.75rem;
+    color: rgba(15, 23, 42, 0.45);
+    font-size: 0.6rem;
+    letter-spacing: 0.18em;
+    text-transform: uppercase;
+    font-weight: 700;
   }
 
   .mega-grid ul {
@@ -420,51 +513,77 @@ const linkClass = (href) =>
     padding: 0;
     display: flex;
     flex-direction: column;
-    gap: 0.5rem;
+    gap: 0.75rem;
   }
 
   .mega-grid li a {
     display: block;
-    padding: 0.52rem 0.55rem;
-    border-radius: 10px;
-    border: 1px solid transparent;
+    padding: 0;
+    border-radius: 0;
+    border: none;
     text-decoration: none;
-    transition: border-color 180ms ease, background-color 180ms ease, transform 180ms ease;
+    transition: color 180ms ease, transform 180ms ease;
   }
 
   .mega-grid li a:hover,
   .mega-grid li a:focus-visible {
-    border-color: rgba(21, 106, 134, 0.35);
-    background: rgba(21, 106, 134, 0.08);
-    transform: translateX(2px);
+    background: transparent;
+    transform: translateX(0);
     outline: none;
+  }
+
+  .mega-grid li a:hover .mega-link-label,
+  .mega-grid li a:focus-visible .mega-link-label {
+    color: #0f172a;
+    text-decoration: underline;
+    text-underline-offset: 4px;
   }
 
   .mega-link-label {
     display: block;
-    color: #0f172a;
-    font-size: 0.83rem;
-    font-weight: 700;
+    text-transform: uppercase;
     line-height: 1.3;
+    letter-spacing: 1px;
   }
 
   .mega-link-meta {
     display: block;
-    margin-top: 0.2rem;
-    color: rgba(15, 23, 42, 0.67);
-    font-size: 0.7rem;
+    margin-top: 0.28rem;
+    color: rgba(15, 23, 42, 0.55);
+    font-size: 0.68rem;
     line-height: 1.3;
   }
 
   .mega-featured {
-    border-radius: 14px;
-    padding: 0.9rem;
-    border: 1px solid rgba(15, 23, 42, 0.08);
-    background: linear-gradient(150deg, rgba(15, 23, 42, 0.95), rgba(21, 106, 134, 0.88));
-    color: #fff;
-    min-height: 220px;
+    position: relative;
+    border-radius: 18px;
+    overflow: hidden;
+    min-height: 260px;
+    background: #f1f5f9;
+    display: flex;
+    align-items: stretch;
+  }
+
+  .mega-featured-image {
+    position: absolute;
+    inset: 0;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    object-position: center;
+  }
+
+  .mega-featured-content {
+    position: relative;
+    z-index: 1;
+    margin-top: auto;
+    width: 100%;
+    padding: 1.1rem 1.2rem;
     display: flex;
     flex-direction: column;
+    gap: 0.35rem;
+    background: linear-gradient(180deg, rgba(15, 23, 42, 0) 0%, rgba(15, 23, 42, 0.7) 100%);
+    color: #fff;
   }
 
   .mega-featured-eyebrow {
@@ -472,27 +591,27 @@ const linkClass = (href) =>
     font-size: 0.62rem;
     letter-spacing: 0.18em;
     text-transform: uppercase;
-    color: rgba(255, 255, 255, 0.75);
+    color: rgba(255, 255, 255, 0.7);
     font-weight: 800;
   }
 
   .mega-featured-title {
-    margin: 0.6rem 0 0.5rem;
-    font-size: 1.2rem;
-    line-height: 1;
+    margin: 0.35rem 0 0.35rem;
+    font-size: 1.15rem;
+    line-height: 1.1;
     font-family: "Teko", "Zalando Sans SemiExpanded", "Segoe UI", sans-serif;
     letter-spacing: 0.03em;
   }
 
   .mega-featured-text {
-    margin: 0 0 auto;
-    font-size: 0.75rem;
+    margin: 0;
+    font-size: 0.72rem;
     line-height: 1.5;
-    color: rgba(255, 255, 255, 0.86);
+    color: rgba(255, 255, 255, 0.85);
   }
 
   .mega-featured-cta {
-    margin-top: 0.8rem;
+    margin-top: 0.65rem;
     display: inline-flex;
     width: fit-content;
     align-items: center;
