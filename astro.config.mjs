@@ -7,7 +7,7 @@ import sitemap from 'astro-sitemap';
 import pagefind from 'astro-pagefind';
 
 export default defineConfig({
-  site: 'https://zdrowiebezpaniki.pl/',
+  site: 'https://ore-offroad.netlify.app/',
   output: 'static',
   adapter: netlify(),
   integrations: [
@@ -17,7 +17,7 @@ export default defineConfig({
       policy: [
         { userAgent: '*', allow: '/' }
       ],
-      sitemap: 'https://zdrowiebezpaniki.pl/sitemap-index.xml'
+      sitemap: 'https://ore-offroad.netlify.app/sitemap-index.xml'
     }),
     pagefind()
   ],
