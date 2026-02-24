@@ -1,0 +1,238 @@
+---
+import { Image } from "astro:assets";
+import BaseLayout from "../../layouts/BaseLayout.astro";
+import { slugifyTitle } from "../../lib/slugifyTitle";
+
+const entries = import.meta.glob("../../content/artykuly/**/*.md", { eager: true });
+
+const getSlugPathFromFile = (file) =>
+  file.replace(/^.*content\/artykuly\//, "").replace(/\.md$/, "");
+const getCategorySlug = (frontmatter, slugPath) => {
+  const parts = slugPath.split("/");
+  if (parts.length > 1) return parts[0];
+  const categoryValue = Array.isArray(frontmatter?.category)
+    ? frontmatter.category[0]
+    : frontmatter?.category;
+  return categoryValue ? slugifyTitle(categoryValue) : "artykuly";
+};
+const getArticleSlug = (slugPath) => {
+  const parts = slugPath.split("/");
+  return parts.length > 1 ? parts.slice(1).join("/") : slugPath;
+};
+
+const articles = Object.entries(entries)
+  .map(([file, entry]) => {
+    const slugPath = getSlugPathFromFile(file);
+    const categorySlug = getCategorySlug(entry.frontmatter ?? {}, slugPath);
+    const slug = getArticleSlug(slugPath);
+    return { slug, categorySlug, ...entry.frontmatter };
+  })
+  .map((art) => ({
+    ...art,
+    date: art.date ? new Date(art.date) : null,
+  }))
+  .sort((a, b) => {
+    const dateA = a.date ? a.date.getTime() : 0;
+    const dateB = b.date ? b.date.getTime() : 0;
+    return dateB - dateA;
+  });
+
+const categoryMap = new Map();
+articles.forEach((article) => {
+  const categories = Array.isArray(article.category)
+    ? article.category
+    : article.category
+    ? [article.category]
+    : [];
+  categories.forEach((category) => {
+    if (!category?.trim()) return;
+    const slug = slugifyTitle(category);
+    categoryMap.set(slug, category.trim());
+  });
+});
+
+export function getStaticPaths() {
+  const entries = import.meta.glob("../../content/artykuly/**/*.md", { eager: true });
+  const slugSet = new Set();
+  Object.values(entries).forEach((entry) => {
+    const categories = Array.isArray(entry.frontmatter?.category)
+      ? entry.frontmatter.category
+      : entry.frontmatter?.category
+      ? [entry.frontmatter.category]
+      : [];
+    categories.forEach((category) => {
+      if (!category?.trim()) return;
+      slugSet.add(slugifyTitle(category));
+    });
+  });
+  return Array.from(slugSet).map((slug) => ({
+    params: { category: slug },
+  }));
+}
+
+const sortedCategories = Array.from(categoryMap.entries())
+  .map(([slug, label]) => ({ slug, label }))
+  .sort((a, b) => a.label.localeCompare(b.label, "pl-PL"));
+
+const currentSlug = Astro.params.category;
+const currentCategoryLabel = categoryMap.get(currentSlug) ?? currentSlug;
+const filteredArticles = articles.filter((article) => {
+  const categories = Array.isArray(article.category)
+    ? article.category
+    : article.category
+    ? [article.category]
+    : [];
+  if (categories.length) {
+    return categories.some((category) => slugifyTitle(category) === currentSlug);
+  }
+  return article.categorySlug === currentSlug;
+});
+
+const filteredCount = filteredArticles.length;
+const filteredLabel =
+  filteredCount === 1 ? "artykuł" : filteredCount >= 2 && filteredCount <= 4 ? "artykuły" : "artykułów";
+const heroMeta = `${filteredCount} ${filteredLabel}`;
+
+const imageEntries = import.meta.glob("/src/content/artykuly/img/**/*", { eager: true });
+const resolveArticleImage = (path) => {
+  if (!path) return null;
+  let normalized = path;
+  if (normalized.startsWith("/content/posts/img/")) {
+    const relativePath = normalized.slice("/content/posts/img/".length);
+    normalized = `/src/content/artykuly/img/${relativePath}`;
+  } else if (normalized.startsWith("/content/")) {
+    normalized = `/src${normalized}`;
+  }
+  const entry = imageEntries[normalized];
+  return entry?.default ?? null;
+};
+
+const formatDate = (value) =>
+  value
+    ? value.toLocaleDateString("pl-PL", {
+        day: "2-digit",
+        month: "short",
+        year: "numeric",
+      })
+    : null;
+
+export const prerender = true;
+---
+
+<BaseLayout
+  title={currentCategoryLabel}
+  description={`Lista wszystkich artykułów w kategorii ${currentSlug}.`}
+  heroMeta={heroMeta}
+>
+  <section class="mb-16 mt-12 md:mb-24 md:mt-16">
+    <div class="grid gap-16 lg:grid-cols-[minmax(0,1fr)_300px]">
+      <div class="space-y-16">
+        {filteredArticles.length ? (
+          filteredArticles.map((artykul) => {
+            const image = resolveArticleImage(artykul.tileImage ?? artykul.thumbnail);
+            const displayDate = artykul.date ? formatDate(artykul.date) : null;
+            const category = Array.isArray(artykul.category)
+              ? artykul.category[0]
+              : artykul.category;
+            const author = artykul.author ?? "Redakcja";
+            const initials = author
+              .split(" ")
+              .filter(Boolean)
+              .slice(0, 2)
+              .map((part) => part[0])
+              .join("")
+              .toUpperCase();
+
+            return (
+              <article class="relative isolate flex flex-col gap-8 md:flex-row group">
+                <div class="relative aspect-[16/9] sm:aspect-[2/1] md:w-80 md:shrink-0 overflow-hidden rounded-xl">
+                  {image ? (
+                    <Image
+                      class="absolute inset-0 h-full w-full object-cover transition-all duration-700 ease-in-out group-hover:scale-105 group-hover:opacity-100"
+                      src={image}
+                      alt={artykul.title ?? artykul.slug}
+                      widths={[320, 480]}
+                      sizes="320px"
+                      loading="lazy"
+                    />
+                  ) : (
+                    <div class="absolute inset-0 grid place-items-center text-[10px] uppercase tracking-widest text-neutral-500">
+                      Brak zdj�cia
+                    </div>
+                  )}
+                  <div class="absolute inset-0 rounded-2xl ring-1 ring-inset ring-white/10"></div>
+                </div>
+
+                <div class="flex flex-col justify-center">
+                  <div class="flex items-center gap-x-4 text-[11px] uppercase tracking-wider">
+                    {category ? <span class="font-semibold text-[var(--accent)]">{category}</span> : null}
+                    {displayDate ? (
+                      <time datetime={artykul.date?.toISOString()} class="text-neutral-500">
+                        {displayDate}
+                      </time>
+                    ) : null}
+                  </div>
+
+                  <div class="relative max-w-xl">
+                    <h2 class="mt-3 text-xl md:text-2xl font-semibold leading-tight">
+                      <a href={`/artykuly/${artykul.categorySlug}/${artykul.slug}/`}>
+                        <span class="absolute inset-0"></span>
+                        {artykul.title ?? artykul.slug}
+                      </a>
+                    </h2>
+                    {artykul.description ? (
+                      <p class="mt-4 text-sm leading-relaxed text-neutral-500 line-clamp-2">{artykul.description}</p>
+                    ) : null}
+                  </div>
+
+                  <div class="mt-6 flex items-center gap-x-3 text-xs">
+                    <div class="flex h-8 w-8 items-center justify-center rounded-full bg-neutral-800 border border-white/10 text-[10px] font-semibold text-white">
+                      {initials}
+                    </div>
+                    <span class="text-neutral-500">{author}</span>
+                  </div>
+                </div>
+              </article>
+            );
+          })
+        ) : (
+          <div class="rounded-2xl border border-dashed border-[var(--border)] bg-white/70 p-6 text-center text-sm text-[var(--muted)]">
+            Nie znaleziono artykułów w tej kategorii. Wróc do pełnej listy{" "}
+            <a href="/artykuly/" class="font-semibold text-[var(--accent)] underline">
+              artykułów
+            </a>
+            .
+          </div>
+        )}
+      </div>
+
+      <aside class="sticky top-34 self-start space-y-8">
+        <div>
+          <h3 class="text-xs font-semibold uppercase tracking-[0.2em] mb-6 border-l-2 border-[var(--accent)] pl-4">Kategorie</h3>
+          {sortedCategories.length ? (
+            <ul class="space-y-2">
+              {sortedCategories.map((category) => {
+                const isActive = category.slug === currentSlug;
+                const linkClass = [
+                  "block rounded-xl border px-4 py-3 text-sm transition-all",
+                  isActive
+                    ? "bg-blue-50 border-blue-500/40 text-[var(--accent)]"
+                    : "bg-gray-100 border-white/5 text-neutral-600 hover:border-[var(--accent)] hover:text-[var(--accent)]",
+                ].join(" ");
+                return (
+                  <li key={category.slug}>
+                    <a href={`/${category.slug}/`} class={linkClass} aria-current={isActive ? "page" : undefined}>
+                      {category.label}
+                    </a>
+                  </li>
+                );
+              })}
+            </ul>
+          ) : (
+            <p class="text-sm text-neutral-500">Brak kategorii</p>
+          )}
+        </div>
+      </aside>
+    </div>
+  </section>
+</BaseLayout>

@@ -1,0 +1,214 @@
+@import "tailwindcss";
+
+@font-face {
+  font-family: "Zalando Sans";
+  src: url("/src/assets/fonts/Zalando_Sans/ZalandoSans-VariableFont_wdth,wght.ttf") format("truetype");
+  font-style: normal;
+  font-weight: 100 900;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: "Zalando Sans";
+  src: url("/src/assets/fonts/Zalando_Sans/ZalandoSans-Italic-VariableFont_wdth,wght.ttf") format("truetype");
+  font-style: italic;
+  font-weight: 100 900;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: "Zalando Sans SemiExpanded";
+  src: url("/src/assets/fonts/Zalando_Sans_SemiExpanded/ZalandoSansSemiExpanded-VariableFont_wght.ttf") format("truetype");
+  font-style: normal;
+  font-weight: 100 900;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: "Zalando Sans SemiExpanded";
+  src: url("/src/assets/fonts/Zalando_Sans_SemiExpanded/ZalandoSansSemiExpanded-Italic-VariableFont_wght.ttf") format("truetype");
+  font-style: italic;
+  font-weight: 100 900;
+  font-display: swap;
+}
+
+@theme {
+  --font-sans: "Zalando Sans SemiExpanded", "Segoe UI", sans-serif;
+}
+
+:root {
+  --accent: #156a86;
+  --accent2: #cc2306;
+  --surface: #ffffff;
+  --surface-muted: #f7f5f2;
+  --bg: #ffffff;
+  --text: #575b63;
+  --muted: #4b5563;
+  --border: rgba(15, 23, 42, 0.12);
+}
+
+@media (prefers-color-scheme: dark) {
+  :root {
+    --surface: #ffffff;
+    --surface-muted: #f7f5f2;
+    --bg: #ffffff;
+    --text: #111827;
+    --muted: #4b5563;
+    --border: rgba(15, 23, 42, 0.12);
+  }
+}
+
+body {
+  overflow-x: hidden;
+}
+
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+  font-family: "Teco", "Zalando Sans SemiExpanded", "Segoe UI", sans-serif;
+}
+
+#article-content ul,
+#article-content ol {
+  margin: 1rem 0;
+  padding-left: 1rem;
+  list-style-position: outside;
+}
+
+#article-content li {
+  margin: 0.4rem 0;
+  padding-left: 0.25rem;
+}
+
+#article-content ul {
+  list-style-type: disc;
+}
+
+#article-content ol {
+  list-style-type: decimal;
+}
+
+#article-content ul ul {
+  list-style-type: circle;
+  margin-top: 0.4rem;
+}
+
+#article-content ol ol {
+  list-style-type: lower-alpha;
+  margin-top: 0.4rem;
+}
+
+#article-content li::marker {
+  color: var(--accent);
+  font-weight: 600;
+}
+
+#article-content li > p {
+  margin: 0.35rem 0;
+}
+
+#article-content li > ul,
+#article-content li > ol {
+  margin-top: 0.4rem;
+}
+
+pre.astro-code {
+  padding: 1rem 1.25rem;
+  border-radius: 12px;
+  font-size: 0.875rem;
+  line-height: 1.6;
+}
+
+.pagefind-ui--header {
+  --pagefind-ui-primary: #0f172a;
+  --pagefind-ui-text: #0f172a;
+  --pagefind-ui-background: rgba(255, 255, 255, 0.85);
+  --pagefind-ui-border: rgba(15, 23, 42, 0.2);
+  --pagefind-ui-border-radius: 9999px;
+  --pagefind-ui-scale: .65
+}
+
+.pagefind-ui--header .pagefind-ui__form {
+  align-items: center;
+}
+
+.pagefind-ui--header .pagefind-ui__form::before {
+  order: 2;
+  margin-left: 0.5rem;
+  margin-right: 0;
+  right: 1em!important;
+  left: auto !important;
+}
+
+.pagefind-ui--header .pagefind-ui__search-input {
+  order: 1;
+}
+
+.pagefind-ui--header .pagefind-ui__search-input {
+  padding: 0.35rem 1rem !important;
+  background: rgba(255, 255, 255, 0.75);
+}
+
+
+.pagefind-ui__form {
+  position: relative;
+}
+
+.pagefind-ui__drawer {
+  position: absolute;
+  top: 52px;
+  padding: 2em;
+  background: #fff;
+  border-radius: 15px;
+  overflow-y: scroll;
+  height: 740px;
+}
+
+
+.circle-container {
+  background: transparent;
+  position: fixed;
+  right: 40px;
+  bottom: 40px;
+  height: 46px;
+  width: 46px;
+  cursor: pointer;
+  display: block;
+  border-radius: 50px;
+  box-shadow: inset 0 0 0 2px rgba(0, 0, 0, 0.2);
+  z-index: 10000;
+  opacity: 0;
+  visibility: hidden;
+  transform: translateY(15px);
+  -webkit-transition: all 200ms linear;
+  transition: all 200ms linear;
+}
+.circle-container svg path {
+  fill: none;
+}
+.circle-container svg.circle-progress path {
+  stroke: var(--accent2);
+  stroke-width: 4;
+  box-sizing: border-box;
+  transition: stroke-dashoffset 100ms linear !important;
+}
+@media(min-width:767px) {
+  .circle-container.active {
+  opacity: 1;
+  visibility: visible;
+  transform: translateY(0);
+}
+}
+
+
+@theme {
+  --animate-marquee: marquee 30s linear infinite;
+
+  @keyframes marquee {
+    from { transform: translateX(0); }
+    to { transform: translateX(-50%); }
+  }
+}

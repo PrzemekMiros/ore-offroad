@@ -1,0 +1,229 @@
+﻿---
+import { Image } from "astro:assets";
+import BaseLayout from "../../layouts/BaseLayout.astro";
+import { slugifyTitle } from "../../lib/slugifyTitle";
+import settings from "../../content/ustawienia.json";
+
+const imageEntries = import.meta.glob("/src/content/artykuly/img/**/*", { eager: true });
+const resolveArticleImage = (path) => {
+  if (!path) return null;
+  let normalized = path;
+  if (normalized.startsWith("/content/posts/img/")) {
+    const relativePath = normalized.slice("/content/posts/img/".length);
+    normalized = `/src/content/artykuly/img/${relativePath}`;
+  } else if (normalized.startsWith("/content/")) {
+    normalized = `/src${normalized}`;
+  }
+  const entry = imageEntries[normalized];
+  return entry?.default ?? null;
+};
+
+const entries = import.meta.glob('../../content/artykuly/**/*.md', { eager: true });
+const getSlugFromFile = (file) =>
+  file.replace(/^.*content\/artykuly\//, "").replace(/\.md$/, "");
+const toCategorySlug = (item, slugPath) => {
+  const parts = slugPath.split("/");
+  if (parts.length > 1) {
+    return parts[0];
+  }
+  const categoryValue = Array.isArray(item.category)
+    ? item.category[0]
+    : item.category
+    ? item.category
+    : null;
+  return categoryValue ? slugifyTitle(categoryValue) : "artykuly";
+};
+const toArticleSlug = (slugPath) => {
+  const parts = slugPath.split("/");
+  return parts.length > 1 ? parts.slice(1).join("/") : slugPath;
+};
+
+const items = Object.entries(entries)
+  .map(([file, entry]) => {
+    const slugPath = getSlugFromFile(file);
+    return {
+      slugPath,
+      slug: toArticleSlug(slugPath),
+      categorySlug: toCategorySlug(entry.frontmatter ?? {}, slugPath),
+      ...entry.frontmatter,
+    };
+  })
+  .sort((a, b) => {
+    const dateA = a.date ? new Date(a.date).getTime() : 0;
+    const dateB = b.date ? new Date(b.date).getTime() : 0;
+    return dateB - dateA;
+  });
+
+const articlesCount = items.length;
+const articlesLabel = articlesCount === 1 ? "artykuĹ‚" : "artykuĹ‚Ăłw";
+const heroMeta = `${articlesCount} ${articlesLabel}`;
+
+const { site, url } = Astro;
+const baseUrl = site ? site.toString().replace(/\/$/, "") : "";
+const pageUrl = baseUrl ? new URL(url.pathname, baseUrl).toString() : url.pathname;
+const siteName = settings.siteTitle ?? "Strona";
+const siteLogo = settings.logo ? (baseUrl ? `${baseUrl}${settings.logo}` : settings.logo) : "";
+
+const categories = Array.from(
+  items.reduce((set, item) => {
+    const categoryValues = Array.isArray(item.category)
+      ? item.category
+      : item.category
+      ? [item.category]
+      : [];
+    categoryValues.forEach((category) => set.add(category));
+    return set;
+  }, new Set())
+)
+  .map((label) => ({ label, slug: slugifyTitle(label) }))
+  .sort((a, b) => a.label.localeCompare(b.label, "pl-PL"));
+---
+
+<BaseLayout
+  title="ArtykuĹ‚y"
+  description="Praktyczne porady, trendy i ciekawostki o stronach, SEO i marketingu."
+  heroMeta={heroMeta}
+>
+<section class="mb-16 mt-12 md:mb-24 md:mt-16" itemscope itemtype="https://schema.org/CollectionPage">
+  <meta itemprop="name" content="Porady i ciekawostki" />
+  <meta itemprop="url" content={pageUrl} />
+  <div class="grid gap-16 lg:grid-cols-[minmax(0,1fr)_300px]">
+    <div class="space-y-16" itemprop="mainEntity" itemscope itemtype="https://schema.org/ItemList">
+      <meta itemprop="itemListOrder" content="https://schema.org/ItemListOrderDescending" />
+      <meta itemprop="numberOfItems" content={String(items.length)} />
+      {items.map((artykul, index) => {
+        const image = resolveArticleImage(artykul.tileImage ?? artykul.thumbnail);
+        const date = artykul.date ? new Date(artykul.date) : null;
+        const formattedDate = date ? date.toLocaleDateString("pl-PL", { day: "2-digit", month: "short", year: "numeric" }) : null;
+        const updatedDate = artykul.updated ? new Date(artykul.updated) : date;
+        const categoryLabel = Array.isArray(artykul.category) ? artykul.category[0] : artykul.category;
+        const tag = Array.isArray(artykul.tags) ? artykul.tags[0] : artykul.tags;
+        const author = artykul.author ?? "Redakcja";
+        const initials = author.split(" ").filter(Boolean).slice(0, 2).map((part) => part[0]).join("").toUpperCase();
+        const articleUrl = baseUrl
+          ? `${baseUrl}/artykuly/${artykul.categorySlug}/${artykul.slug}/`
+          : `/artykuly/${artykul.categorySlug}/${artykul.slug}/`;
+
+        return (
+          <article
+            class="relative isolate flex flex-col gap-8 md:flex-row group"
+            itemprop="itemListElement"
+            itemscope
+            itemtype="https://schema.org/ListItem"
+          >
+            <meta itemprop="position" content={String(index + 1)} />
+            <div class="contents" itemprop="item" itemscope itemtype="https://schema.org/BlogPosting">
+              <meta itemprop="url" content={articleUrl} />
+              {updatedDate ? <meta itemprop="dateModified" content={updatedDate.toISOString()} /> : null}
+              {/* Kontener obrazka z hoverem jak na Twojej stronie */}
+              <div class="relative aspect-[16/9] sm:aspect-[2/1] md:w-80 md:shrink-0 overflow-hidden rounded-xl">
+                {image ? (
+                  <Image
+                    class="absolute inset-0 h-full w-full object-cover transition-all duration-700 ease-in-out group-hover:scale-105 group-hover:opacity-100"
+                    src={image}
+                    alt={artykul.title ?? artykul.slug}
+                    widths={[320, 480]}
+                    sizes="320px"
+                    loading="lazy"
+                    itemprop="image"
+                  />
+                ) : (
+                  <div class="absolute inset-0 grid place-items-center text-[10px] uppercase tracking-widest text-neutral-500">Brak zdjÄ™cia</div>
+                )}
+                <div class="absolute inset-0 rounded-2xl ring-1 ring-inset ring-white/10"></div>
+              </div>
+
+              <div class="flex flex-col justify-center">
+                <div class="flex items-center gap-x-4 text-[11px] uppercase tracking-wider">
+                  {categoryLabel ? (
+                    <span class="font-semibold text-[var(--accent)]">
+                      {categoryLabel}
+                    </span>
+                  ) : tag ? (
+                    <span class="font-semibold text-[var(--accent)]">
+                      {tag}
+                    </span>
+                  ) : null}
+                  {date ? (
+                    <time datetime={date.toISOString()} class="text-neutral-500" itemprop="datePublished">
+                      {formattedDate}
+                    </time>
+                  ) : null}
+                </div>
+                
+                <div class="relative max-w-xl">
+                  <h2 class="mt-3 text-xl md:text-2xl font-semibold leading-tight" itemprop="headline">
+                    <a href={`/artykuly/${artykul.categorySlug}/${artykul.slug}/`} itemprop="url">
+                      <span class="absolute inset-0"></span>
+                      {artykul.title ?? artykul.slug}
+                    </a>
+                  </h2>
+                  {artykul.description ? (
+                    <p class="mt-4 text-sm leading-relaxed text-neutral-500 line-clamp-2" itemprop="description">
+                      {artykul.description}
+                    </p>
+                  ) : null}
+                </div>
+
+                {/* Autor w stylu minimalistycznym */}
+                <div class="mt-6 flex items-center gap-x-3 text-xs" itemprop="author" itemscope itemtype="https://schema.org/Person">
+                  <div class="flex h-8 w-8 items-center justify-center rounded-full bg-neutral-800 border border-white/10 text-[10px] font-semibold text-white" aria-hidden="true">
+                    {initials}
+                  </div>
+                  <span class="text-neutral-500" itemprop="name">{author}</span>
+                </div>
+                <div itemprop="publisher" itemscope itemtype="https://schema.org/Organization">
+                  <meta itemprop="name" content={siteName} />
+                  {siteLogo ? (
+                    <meta itemprop="logo" content={siteLogo} />
+                  ) : null}
+                </div>
+              </div>
+            </div>
+          </article>
+        );
+      })}
+    </div>
+
+    {/* Sidebar dopasowany do mrocznego stylu */}
+    <aside
+      class="sticky top-34 self-start space-y-8"
+      itemscope
+      itemtype="https://schema.org/ItemList"
+      itemprop="mainEntity"
+    >
+      <meta itemprop="name" content="Kategorie" />
+      <meta itemprop="itemListOrder" content="https://schema.org/ItemListOrderAscending" />
+      <meta itemprop="numberOfItems" content={String(categories.length)} />
+      <div>
+        <h3 class="text-xs font-semibold uppercase tracking-[0.2em] mb-6 border-l-2 border-[var(--accent)] pl-4">Kategorie</h3>
+        {categories.length ? (
+          <ul class="space-y-2">
+            {categories.map((category, index) => (
+              <li
+                key={category.slug}
+                itemprop="itemListElement"
+                itemscope
+                itemtype="https://schema.org/ListItem"
+              >
+                <meta itemprop="position" content={String(index + 1)} />
+                <a
+                  href={`/${category.slug}/`}
+                  itemprop="item"
+                  class="block rounded-xl border px-4 py-3 text-sm transition-all bg-gray-100 border-white/5 text-neutral-600 hover:border-[var(--accent)] hover:text-[var(--accent)]"
+                >
+                  <span itemprop="name">{category.label}</span>
+                </a>
+              </li>
+            ))}
+          </ul>
+        ) : (
+          <p class="text-sm text-neutral-500">Brak kategorii</p>
+        )}
+      </div>
+      
+    </aside>
+  </div>
+</section>
+</BaseLayout>
+

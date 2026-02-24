@@ -1,0 +1,30 @@
+---
+import { slugifyTitle } from "../../lib/slugifyTitle";
+
+export const prerender = true;
+
+export function getStaticPaths() {
+  const entries = import.meta.glob("../../content/artykuly/**/*.md", { eager: true });
+  const slugs = new Set();
+  Object.values(entries).forEach((entry) => {
+    const categories = Array.isArray(entry.frontmatter?.category)
+      ? entry.frontmatter.category
+      : entry.frontmatter?.category
+      ? [entry.frontmatter.category]
+      : [];
+    categories.forEach((category) => {
+      if (!category?.trim()) return;
+      slugs.add(slugifyTitle(category));
+    });
+  });
+  return Array.from(slugs).map((slug) => ({ params: { tag: slug } }));
+}
+
+const { tag } = Astro.params;
+
+if (!tag) {
+  return Astro.redirect("/artykuly/");
+}
+
+return Astro.redirect(`/${tag}/`);
+---

@@ -1,0 +1,264 @@
+﻿---
+import { Image } from "astro:assets";
+import { slugifyTitle } from "../../lib/slugifyTitle";
+
+const imageEntries = import.meta.glob("/src/content/artykuly/img/**/*", { eager: true });
+const resolveArticleImage = (path) => {
+  if (!path) return null;
+  let normalized = path;
+  if (normalized.startsWith("/content/posts/img/")) {
+    const relativePath = normalized.slice("/content/posts/img/".length);
+    normalized = `/src/content/artykuly/img/${relativePath}`;
+  } else if (normalized.startsWith("/content/")) {
+    normalized = `/src${normalized}`;
+  }
+  const entry = imageEntries[normalized];
+  return entry?.default ?? null;
+};
+
+const entries = import.meta.glob("../../content/artykuly/**/*.md", { eager: true });
+const getSlugFromFile = (file) =>
+  file.replace(/^.*content\/artykuly\//, "").replace(/\.md$/, "");
+const toCategorySlug = (item, slugPath) => {
+  const parts = slugPath.split("/");
+  if (parts.length > 1) return parts[0];
+  const categoryValue = Array.isArray(item.category)
+    ? item.category[0]
+    : item.category
+    ? item.category
+    : null;
+  return categoryValue ? slugifyTitle(categoryValue) : "artykuly";
+};
+const toArticleSlug = (slugPath) => {
+  const parts = slugPath.split("/");
+  return parts.length > 1 ? parts.slice(1).join("/") : slugPath;
+};
+
+const items = Object.entries(entries).map(([file, entry]) => {
+  const slugPath = getSlugFromFile(file);
+  return {
+    slugPath,
+    slug: toArticleSlug(slugPath),
+    categorySlug: toCategorySlug(entry.frontmatter ?? {}, slugPath),
+    ...entry.frontmatter,
+  };
+});
+
+const articles = items
+  .map((item) => ({
+    ...item,
+    _date: item.date ? new Date(item.date) : null,
+  }))
+  .sort((a, b) => {
+    const aTime = a._date ? a._date.getTime() : 0;
+    const bTime = b._date ? b._date.getTime() : 0;
+    return bTime - aTime;
+  })
+  .slice(0, 3);
+
+const [first, second, third] = articles;
+const getTag = (article) => {
+  const tag = Array.isArray(article?.tags) ? article.tags[0] : article?.tags;
+  return tag ?? "Artykul";
+};
+const getImage = (article) => resolveArticleImage(article?.tileImage ?? article?.thumbnail);
+
+const { site } = Astro;
+const baseUrl = site ? site.toString().replace(/\/$/, "") : "";
+---
+
+<section class="relative pt-20 pb-22 md:pb-24">
+  <div class="relative">
+    <div class="mb-12 space-y-3 max-w-4xl">
+      <p class="text-[12px] font-semibold uppercase tracking-[0.1em] text-[var(--accent)]">Porady i ciekawostki</p>
+      <h2 class="text-2xl sm:text-3xl md:text-4xl font-semibold text-black">Porady na temat stron www, pozycjonowania i marketingu online <span class="text-black/50"> oparte na praktyce i realnych wdroĹĽeniach</span></h2>
+    </div>
+
+    <div
+      class="grid grid-cols-1 gap-6 md:grid-cols-3"
+      itemscope
+      itemtype="https://schema.org/ItemList"
+    >
+      <meta itemprop="name" content="Porady i ciekawostki" />
+      <meta itemprop="itemListOrder" content="https://schema.org/ItemListOrderDescending" />
+      <meta itemprop="numberOfItems" content={String(articles.length)} />
+      {first ? (
+        <article
+          class="flex"
+          itemprop="itemListElement"
+          itemscope
+          itemtype="https://schema.org/ListItem"
+        >
+          <meta itemprop="position" content="1" />
+          <div itemprop="item" itemscope itemtype="https://schema.org/BlogPosting">
+            <meta itemprop="url" content={baseUrl ? `${baseUrl}/artykuly/${first.categorySlug}/${first.slug}/` : `/artykuly/${first.categorySlug}/${first.slug}/`} />
+            <meta itemprop="headline" content={first.title ?? first.slug} />
+            {first.description ? <meta itemprop="description" content={first.description} /> : null}
+            {first.date ? <meta itemprop="datePublished" content={new Date(first.date).toISOString()} /> : null}
+          </div>
+          <a
+            href={`/artykuly/${first.categorySlug}/${first.slug}/`}
+            aria-label={`Zobacz artykul: ${first.title ?? first.slug}`}
+            class="group flex h-full w-full flex-col rounded-2xl bg-[#FF6B52] px-5 py-10 md:px-6 transition-transform hover:scale-[1.02]"
+          >
+          <div class="mb-8 flex items-start justify-between">
+            <span class="flex items-center gap-2 rounded-full bg-black px-3 py-1.5 text-[10px] font-semibold uppercase text-white">
+              <span class="flex h-3 w-3 items-center justify-center rounded-sm bg-white text-[8px] text-black">II</span>
+              {getTag(first)}
+            </span>
+            <div class="rounded-full bg-black p-2">
+              <svg class="h-4 w-4 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M14 5l7 7m0 0l-7 7m7-7H3"></path>
+              </svg>
+            </div>
+          </div>
+
+          <div class="mb-8">
+            {getImage(first) ? (
+              <Image
+                src={getImage(first)}
+                alt={first.title ?? first.slug}
+                class="w-full h-[185px] rounded-2xl border border-white/10 object-cover"
+                widths={[320, 480, 768]}
+                sizes="(max-width: 768px) 100vw, 33vw"
+                loading="lazy"
+                itemprop="image"
+              />
+            ) : (
+              <div class="grid h-[185px] w-full place-items-center rounded-2xl border border-white/10 bg-black/20 text-xs uppercase tracking-widest text-white">
+                Brak zdjecia
+              </div>
+            )}
+          </div>
+
+          <div class="">
+            <h3 class="mb-3 text-xl text-black font-semibold line-clamp-2">{first.title ?? first.slug}</h3>
+            {first.description ? (
+              <p class="text-sm leading-relaxed text-black line-clamp-3">{first.description}</p>
+            ) : null}
+          </div>
+          </a>
+        </article>
+      ) : null}
+
+      {second ? (
+        <article
+          class="flex"
+          itemprop="itemListElement"
+          itemscope
+          itemtype="https://schema.org/ListItem"
+        >
+          <meta itemprop="position" content="2" />
+          <div itemprop="item" itemscope itemtype="https://schema.org/BlogPosting">
+            <meta itemprop="url" content={baseUrl ? `${baseUrl}/artykuly/${second.categorySlug}/${second.slug}/` : `/artykuly/${second.categorySlug}/${second.slug}/`} />
+            <meta itemprop="headline" content={second.title ?? second.slug} />
+            {second.description ? <meta itemprop="description" content={second.description} /> : null}
+            {second.date ? <meta itemprop="datePublished" content={new Date(second.date).toISOString()} /> : null}
+          </div>
+          <a
+            href={`/artykuly/${second.categorySlug}/${second.slug}/`}
+            aria-label={`Zobacz artykul: ${second.title ?? second.slug}`}
+            class="flex h-full w-full flex-col rounded-2xl bg-[#7C4DFF] px-5 py-10 md:px-6 text-white transition-transform hover:scale-[1.02]"
+          >
+          <div class="mb-8 flex items-start justify-between">
+            <span class="flex items-center gap-2 rounded-full bg-black px-3 py-1.5 text-[10px] font-semibold uppercase text-white">
+              <span class="flex h-3 w-3 items-center justify-center rounded-sm bg-white text-[8px] text-black">AA</span>
+              {getTag(second)}
+            </span>
+            <div class="rounded-full bg-black p-2">
+              <svg class="h-4 w-4 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M14 5l7 7m0 0l-7 7m7-7H3"></path>
+              </svg>
+            </div>
+          </div>
+
+          <div class="mb-8">
+            {getImage(second) ? (
+              <Image
+                src={getImage(second)}
+                alt={second.title ?? second.slug}
+                class="w-full h-[185px] rounded-2xl border border-white/10 object-cover"
+                widths={[320, 480, 768]}
+                sizes="(max-width: 768px) 100vw, 33vw"
+                loading="lazy"
+                itemprop="image"
+              />
+            ) : (
+              <div class="grid h-[185px] w-full place-items-center rounded-2xl border border-white/10 bg-black/20 text-xs uppercase tracking-widest text-white">
+                Brak zdjecia
+              </div>
+            )}
+          </div>
+
+          <div class="">
+            <h3 class="mb-3 text-xl font-semibold line-clamp-2">{second.title ?? second.slug}</h3>
+            {second.description ? (
+              <p class="text-sm leading-relaxed text-purple-100 line-clamp-3">{second.description}</p>
+            ) : null}
+          </div>
+          </a>
+        </article>
+      ) : null}
+
+      {third ? (
+        <article
+          class="flex"
+          itemprop="itemListElement"
+          itemscope
+          itemtype="https://schema.org/ListItem"
+        >
+          <meta itemprop="position" content="3" />
+          <div itemprop="item" itemscope itemtype="https://schema.org/BlogPosting">
+            <meta itemprop="url" content={baseUrl ? `${baseUrl}/artykuly/${third.categorySlug}/${third.slug}/` : `/artykuly/${third.categorySlug}/${third.slug}/`} />
+            <meta itemprop="headline" content={third.title ?? third.slug} />
+            {third.description ? <meta itemprop="description" content={third.description} /> : null}
+            {third.date ? <meta itemprop="datePublished" content={new Date(third.date).toISOString()} /> : null}
+          </div>
+          <a
+            href={`/artykuly/${third.categorySlug}/${third.slug}/`}
+            aria-label={`Zobacz artykul: ${third.title ?? third.slug}`}
+            class="flex h-full w-full flex-col rounded-2xl bg-black px-5 py-10 md:px-6 text-white transition-transform hover:scale-[1.02]"
+          >
+          <div class="mb-8 flex items-start justify-between">
+            <span class="flex items-center gap-2 rounded-full bg-white px-3 py-1.5 text-[10px] font-semibold uppercase text-black">
+              <span class="flex h-3 w-3 items-center justify-center rounded-sm bg-black text-[8px] text-white">AA</span>
+              {getTag(third)}
+            </span>
+            <div class="rounded-full bg-white p-2">
+              <svg class="h-4 w-4 text-black" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M14 5l7 7m0 0l-7 7m7-7H3"></path>
+              </svg>
+            </div>
+          </div>
+
+          <div class="mb-8">
+            {getImage(third) ? (
+              <Image
+                src={getImage(third)}
+                alt={third.title ?? third.slug}
+                class="w-full h-[185px] rounded-2xl border border-white/10 object-cover"
+                widths={[320, 480, 768]}
+                sizes="(max-width: 768px) 100vw, 33vw"
+                loading="lazy"
+                itemprop="image"
+              />
+            ) : (
+              <div class="grid h-[185px] w-full place-items-center rounded-2xl border border-white/10 bg-black/20 text-xs uppercase tracking-widest text-white">
+                Brak zdjecia
+              </div>
+            )}
+          </div>
+
+          <div class="">
+            <h3 class="mb-3 text-xl font-semibold line-clamp-2">{third.title ?? third.slug}</h3>
+            {third.description ? (
+              <p class="text-sm leading-relaxed text-white/70 line-clamp-3">{third.description}</p>
+            ) : null}
+          </div>
+          </a>
+        </article>
+      ) : null}
+    </div>
+  </div>
+</section>
+

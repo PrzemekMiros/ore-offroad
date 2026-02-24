@@ -1,0 +1,52 @@
+---
+import BaseLayout from "../layouts/BaseLayout.astro";
+import GridOne from "../components/home/gridOne.astro";
+import GridTwo from "../components/home/GridTwo.astro";
+import GridThree from "../components/home/GridThree.astro";
+import GridFour from "../components/home/GridFour.astro";
+import GridFive from "../components/home/GridFive.astro";
+import GridSix from "../components/home/GridSix.astro";
+import LoopText from "../components/home/LoopText.astro";
+import BanerOne from "../components/home/BanerOne.astro";
+import BanerTwo from "../components/home/BanerTwo.astro";
+import BanerThree from "../components/home/BanerThree.astro";
+import BanerFour from "../components/home/BanerFour.astro";
+import BanerFive from "../components/home/BanerFive.astro";
+import BanerSix from "../components/home/BanerSix.astro";
+import settings from "../content/ustawienia.json";
+
+const { site } = Astro;
+const baseUrl = site ? site.toString().replace(/\/$/, "") : "";
+const siteUrl = baseUrl ? `${baseUrl}/` : "/";
+const siteLogo = settings.logo ? (baseUrl ? `${baseUrl}${settings.logo}` : settings.logo) : "";
+---
+
+<BaseLayout
+  title="Wszystko o offroadzie"
+  description="Praktyczne porady i informacje o jeździe w terenie"
+  showHero={false}
+>
+  <div itemscope itemtype="https://schema.org/WebSite">
+    <meta itemprop="name" content={settings.siteTitle} />
+    <meta itemprop="url" content={siteUrl} />
+    <div itemprop="publisher" itemscope itemtype="https://schema.org/Organization">
+      <meta itemprop="name" content={settings.siteTitle} />
+      {siteLogo ? <meta itemprop="logo" content={siteLogo} /> : null}
+    </div>
+  </div>
+
+  <LoopText />
+  <GridOne />
+  <BanerOne />
+  <GridTwo />
+  <BanerTwo />
+  <GridThree />
+  <BanerThree />
+  <GridFour />
+  <BanerFour />
+  <GridFive />
+  <BanerFive />
+  <GridSix />
+  <BanerSix />
+
+</BaseLayout>

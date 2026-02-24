@@ -1,0 +1,110 @@
+---
+import settings from "../content/ustawienia.json";
+import { ClientRouter, ViewTransitions } from "astro:transitions";
+import LoadingIndicator from "astro-loading-indicator/component";
+import Header from "../components/Header.astro";
+import Footer from "../components/Footer.astro";
+import PageHero from "./heroes/PageHero.astro";
+import "../styles/global.css";
+import { getImage } from "astro:assets";
+import ogImage from "../assets/images/opengraph/opengraph.png";
+import faviconSvg from "../assets/images/global/favicon.svg";
+import faviconPng from "../assets/images/global/favicon.png";
+
+const assets = import.meta.glob("/src/assets/**/*", { eager: true });
+const resolveAsset = (path) => {
+  if (!path) return null;
+  const entry = assets[`/src${path}`];
+  return entry?.default ?? null;
+};
+
+const { title, description, showHero = true, robots, heroMeta } = Astro.props;
+const { site, url } = Astro;
+const pageTitle = title ? ` ${title} - ${settings.siteTitle}` : settings.siteTitle;
+const metaDescription = description ?? settings.metaDescription;
+const logoAsset = resolveAsset(settings.logo);
+const processedOgImage = await getImage({ src: ogImage, format: 'png' });
+const ogImageUrl = site ? new URL(processedOgImage.src, site).toString() : processedOgImage.src;
+---
+
+<html lang="pl">
+  <head>
+    <meta charset="utf-8" />
+    <link rel="icon" type="image/svg+xml" href={faviconSvg.src} />
+    <link rel="icon" type="image/png" href={faviconPng.src} />
+    <meta name="viewport" content="width=device-width" />
+    <meta name="generator" content={Astro.generator} />
+    <meta name="robots" content={robots === 'noindex' ? 'noindex' : 'index'} />
+    
+    <title>{pageTitle}</title>
+    <meta name="description" content={metaDescription} />
+    <meta property="og:title" content={pageTitle} />
+    <meta property="og:description" content={metaDescription} />
+    <meta property="og:type" content="website" />
+    <meta property="og:image" content={ogImageUrl} />
+    {site ? <meta property="og:url" content={new URL(url.pathname, site).toString()} /> : null}
+    {site ? <link rel="canonical" href={new URL(url.pathname, site).toString()} /> : null}
+    <meta name="twitter:card" content="summary_large_image" />
+    <meta name="twitter:title" content={pageTitle} />
+    <meta name="twitter:description" content={metaDescription} />
+    <meta name="twitter:image" content={ogImageUrl} />
+    <meta name="google-site-verification" content="QhZ2FG2hBGy2zIvrpEYtMmUOyhqBERrl12_TmvNrNCs" />
+
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Montserrat:ital,wght@0,100..900;1,100..900&family=Teko:wght@300..700&display=swap" rel="stylesheet">
+    <ClientRouter />
+    <ViewTransitions />
+    <LoadingIndicator color="var(--accent)" height="3px" animationDuration={400} threshold={200} />
+    <style is:inline>
+      ::view-transition-old(root) {
+        animation: fade-out 160ms ease;
+      }
+      ::view-transition-new(root) {
+        animation: fade-in 160ms ease;
+      }
+      @keyframes fade-in {
+        from { opacity: 0; }
+        to { opacity: 1; }
+      }
+      @keyframes fade-out {
+        from { opacity: 1; }
+        to { opacity: 0; }
+      }
+    </style>
+  </head>
+  <body class="min-h-screen bg-[var(--bg)] font-sans text-[var(--text)]">
+    <main class="mx-auto flex min-h-screen w-full max-w-[1420px] flex-col px-4 sm:px-10 lg:px-12">
+      <Header settings={settings} logoAsset={logoAsset} />
+      {showHero && title ? <PageHero title={title} lead={description} meta={heroMeta} /> : null}
+      <slot />
+      <Footer/>
+    </main>
+    <script is:inline>
+      const applyBlurLazy = () => {
+        document.querySelectorAll("main img").forEach((img) => {
+          if (img.dataset.blurLazy === "true") return;
+          img.dataset.blurLazy = "true";
+          img.setAttribute("loading", "lazy");
+          img.setAttribute("decoding", "async");
+          img.classList.add("blur-sm", "transition-[filter]", "duration-500");
+          const clearBlur = () => img.classList.remove("blur-sm");
+          if (img.complete) {
+            clearBlur();
+          } else {
+            img.addEventListener("load", clearBlur, { once: true });
+            img.addEventListener("error", clearBlur, { once: true });
+          }
+        });
+      };
+
+      if (document.readyState === "loading") {
+        document.addEventListener("DOMContentLoaded", applyBlurLazy);
+      } else {
+        applyBlurLazy();
+      }
+      document.addEventListener("astro:page-load", applyBlurLazy);
+      document.addEventListener("astro:after-swap", applyBlurLazy);
+    </script>
+  </body>
+</html>

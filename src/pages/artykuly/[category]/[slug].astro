@@ -1,0 +1,385 @@
+---
+import { Image } from "astro:assets";
+import BaseLayout from "../../../layouts/BaseLayout.astro";
+import ArticlesHero from "../../../layouts/heroes/ArticlesHero.astro";
+import settings from "../../../content/ustawienia.json";
+import { slugifyTitle } from "../../../lib/slugifyTitle";
+
+export const prerender = true;
+
+const imageEntries = import.meta.glob("/src/content/artykuly/img/**/*", { eager: true });
+const resolveArticleImage = (path) => {
+  if (!path) return null;
+  let normalized = path;
+  if (normalized.startsWith("/content/posts/img/")) {
+    const relativePath = normalized.slice("/content/posts/img/".length);
+    normalized = `/src/content/artykuly/img/${relativePath}`;
+  } else if (normalized.startsWith("/content/")) {
+    normalized = `/src${normalized}`;
+  }
+  const entry = imageEntries[normalized];
+  return entry?.default ?? null;
+};
+
+function getSlugPathFromFile(file) {
+  return file.replace(/^.*content\/artykuly\//, "").replace(/\.md$/, "");
+}
+function getCategorySlug(frontmatter, slugPath) {
+  const parts = slugPath.split("/");
+  if (parts.length > 1) return parts[0];
+  const categoryValue = Array.isArray(frontmatter?.category)
+    ? frontmatter.category[0]
+    : frontmatter?.category;
+  return categoryValue ? slugifyTitle(categoryValue) : "artykuly";
+}
+function getArticleSlug(slugPath) {
+  const parts = slugPath.split("/");
+  return parts.length > 1 ? parts.slice(1).join("/") : slugPath;
+}
+
+export async function getStaticPaths() {
+  const getSlugPathFromFileLocal = (file) =>
+    file.replace(/^.*content\/artykuly\//, "").replace(/\.md$/, "");
+  const getCategorySlugLocal = (frontmatter, slugPath) => {
+    const parts = slugPath.split("/");
+    if (parts.length > 1) return parts[0];
+    const categoryValue = Array.isArray(frontmatter?.category)
+      ? frontmatter.category[0]
+      : frontmatter?.category;
+    return categoryValue ? slugifyTitle(categoryValue) : "artykuly";
+  };
+  const getArticleSlugLocal = (slugPath) => {
+    const parts = slugPath.split("/");
+    return parts.length > 1 ? parts.slice(1).join("/") : slugPath;
+  };
+  const entries = import.meta.glob("../../../content/artykuly/**/*.md", { eager: true });
+  const paths = await Promise.all(
+    Object.entries(entries).map(async ([file, entry]) => {
+      const slugPath = getSlugPathFromFileLocal(file);
+      const categorySlug = getCategorySlugLocal(entry.frontmatter ?? {}, slugPath);
+      const slug = getArticleSlugLocal(slugPath);
+      const entryHeadings = typeof entry.getHeadings === "function"
+        ? await entry.getHeadings()
+        : entry.headings ?? [];
+      return {
+        params: { category: categorySlug, slug },
+        props: {
+          artykul: { slug, categorySlug, ...entry.frontmatter },
+          Content: entry.Content,
+          headings: entryHeadings,
+        },
+      };
+    })
+  );
+  return paths;
+}
+
+const { artykul, Content, headings } = Astro.props;
+const allArticleEntries = import.meta.glob("../../../content/artykuly/**/*.md", { eager: true });
+const allArticles = Object.entries(allArticleEntries).map(([file, entry]) => {
+  const slugPath = getSlugPathFromFile(file);
+  const categorySlug = getCategorySlug(entry.frontmatter ?? {}, slugPath);
+  const slug = getArticleSlug(slugPath);
+  return {
+    slug,
+    categorySlug,
+    ...entry.frontmatter,
+  };
+});
+const categories = Array.from(
+  allArticles.reduce((set, article) => {
+    const categoryValues = Array.isArray(article?.category)
+      ? article.category
+      : article?.category
+      ? [article.category]
+      : [];
+    categoryValues.forEach((category) => {
+      if (!category?.trim()) return;
+      set.add(category.trim());
+    });
+    return set;
+  }, new Set())
+)
+  .map((label) => ({ label, slug: slugifyTitle(label) }))
+  .sort((a, b) => a.label.localeCompare(b.label, "pl-PL"));
+const getTag = (article) => {
+  const tag = Array.isArray(article?.tags) ? article.tags[0] : article?.tags;
+  return tag ?? "Artykul";
+};
+allArticles.sort((a, b) => {
+  const aDate = a?.date ? new Date(a.date).getTime() : 0;
+  const bDate = b?.date ? new Date(b.date).getTime() : 0;
+  return bDate - aDate;
+});
+const currentIndex = allArticles.findIndex((item) => item.slug === artykul?.slug);
+const relatedArticles = [];
+if (allArticles.length > 1) {
+  const startIndex = currentIndex >= 0 ? currentIndex : 0;
+  for (let offset = 1; offset <= allArticles.length && relatedArticles.length < 3; offset += 1) {
+    const candidate = allArticles[(startIndex + offset) % allArticles.length];
+    if (candidate?.slug && candidate.slug !== artykul?.slug) {
+      relatedArticles.push(candidate);
+    }
+  }
+}
+const inlineLinkArticle = relatedArticles[0] ?? null;
+const headerImage = resolveArticleImage(artykul?.tileImage ?? artykul?.thumbnail);
+const headerImageUrl = headerImage?.src ?? headerImage;
+const { site } = Astro;
+const baseUrl = site ? site.toString().replace(/\/$/, "") : "";
+const articleUrl = baseUrl
+  ? `${baseUrl}/artykuly/${artykul?.categorySlug ?? ""}/${artykul?.slug ?? ""}/`
+  : `/artykuly/${artykul?.categorySlug ?? ""}/${artykul?.slug ?? ""}/`;
+const siteName = settings.siteTitle ?? "Strona";
+const siteLogo = settings.logo ? (baseUrl ? `${baseUrl}${settings.logo}` : settings.logo) : "";
+const authorName = artykul?.author ?? "Redakcja";
+const datePublished = artykul?.date ? new Date(artykul.date) : null;
+const dateModified = artykul?.updated ? new Date(artykul.updated) : datePublished;
+
+if (!artykul) {
+  return Astro.redirect('/artykuly');
+}
+---
+
+<BaseLayout
+  title={artykul.title ?? artykul.slug} 
+  description={artykul.description}
+  showHero={false}
+  robots={artykul.robots}
+>
+  <ArticlesHero 
+    title={artykul.title ?? artykul.slug} 
+    lead={artykul.description}
+    tags={artykul.tags}
+    date={artykul.date}
+    headerImage={headerImage}
+  />
+  <article
+    class="mb-18 pt-20 z-50"
+    itemscope
+    itemtype="https://schema.org/BlogPosting"
+  >
+    <meta itemprop="mainEntityOfPage" content={articleUrl} />
+    <meta itemprop="url" content={articleUrl} />
+    <meta itemprop="headline" content={artykul.title ?? artykul.slug} />
+    {artykul.description ? <meta itemprop="description" content={artykul.description} /> : null}
+    {datePublished ? <meta itemprop="datePublished" content={datePublished.toISOString()} /> : null}
+    {dateModified ? <meta itemprop="dateModified" content={dateModified.toISOString()} /> : null}
+    {headerImageUrl ? <meta itemprop="image" content={headerImageUrl} /> : null}
+    <div itemprop="author" itemscope itemtype="https://schema.org/Person">
+      <meta itemprop="name" content={authorName} />
+    </div>
+    <div itemprop="publisher" itemscope itemtype="https://schema.org/Organization">
+      <meta itemprop="name" content={siteName} />
+      {siteLogo ? <meta itemprop="logo" content={siteLogo} /> : null}
+    </div>
+    <div class="grid gap-10 grid-cols-1 lg:grid-cols-[250px_minmax(0,1fr)_280px]">
+      <aside class="hidden lg:block mt-2">
+        <div class="sticky top-38 space-y-4">
+          <h3 class="text-xs font-semibold uppercase tracking-[0.2em] mb-6 border-l-2 border-[var(--accent)] pl-4">Spis treści</h3>
+          {headings?.length ? (
+            <ol class="space-y-2 text-sm text-[var(--muted)]" data-toc>
+              {headings
+                .filter((h) => h.depth === 2)
+                .map((heading) => (
+                  <li>
+                    <a
+                      class="transition-colors"
+                      href={`#${heading.slug}`}
+                      data-toc-link
+                      data-toc-target={heading.slug}
+                    >
+                      {heading.text}
+                    </a>
+                  </li>
+                ))}
+            </ol>
+          ) : (
+            <p class="text-xs text-[var(--muted)]">Brak spisu treści</p>
+          )}
+        </div>
+      </aside>
+
+      <div class="space-y-12">
+        {Content ? (
+  <section
+    id="article-content"
+    class="space-y-6 text-[16px] leading-relaxed text-[var(--text)] sm:text-[17px] sm:leading-relaxed 
+    [&>a]:underline [&>a]:decoration-[var(--accent)] [&>a]:underline-offset-4 [&>a]:font-medium hover:[&>a]:text-[var(--accent)]
+    [&>blockquote]:border-l-4 [&>blockquote]:border-[var(--accent)] [&>blockquote]:pl-6 [&>blockquote]:italic [&>blockquote]:text-[var(--muted)] 
+    [&>h2]:mt-10 [&>h2]:mb-4 [&>h2]:text-2xl [&>h2]:font-semibold [&>h2]:tracking-tight [&>h2]:text-[var(--text)] [&>h2]:scroll-mt-[144px]
+    [&>h3]:mt-7 [&>h3]:mb-3 [&>h3]:text-xl [&>h3]:font-semibold [&>h3]:text-[var(--text)] 
+    [&>hr]:my-8 [&>hr]:border-[var(--border)] 
+    [&>p]:mb-5 [&>p]:last:mb-0"
+  >
+    <Content />
+  </section>
+        ) : null}
+
+        {inlineLinkArticle ? (
+          <p class="text-[15px] leading-relaxed text-[var(--text)]">
+            Jeśli chcesz pogłębić wątek, zobacz także{" "}
+            <a
+              class="underline decoration-[var(--accent)] underline-offset-4 font-medium hover:text-[var(--accent)]"
+              href={`/artykuly/${inlineLinkArticle?.categorySlug ?? ""}/${inlineLinkArticle?.slug ?? ""}/`}
+            >
+              {inlineLinkArticle?.title ?? inlineLinkArticle?.slug}
+            </a>
+            .
+          </p>
+        ) : null}
+
+        {relatedArticles.length ? (
+          <section class="mx-auto max-w-2xl pt-6">
+            <div class="flex items-center justify-between">
+              <h2 class="text-lg font-semibold text-[var(--text)]">Podobne wpisy</h2>
+              <a href="/artykuly/" class="text-[11px] uppercase tracking-widest text-[var(--accent)] hover:text-[var(--accent)]">Wszystkie</a>
+            </div>
+            <div class="mt-5 grid gap-4">
+              {relatedArticles.map((item) => {
+                const itemImage = resolveArticleImage(item?.tileImage ?? item?.thumbnail);
+                const itemUrl = baseUrl
+                  ? `${baseUrl}/artykuly/${item?.categorySlug ?? ""}/${item?.slug ?? ""}/`
+                  : `/artykuly/${item?.categorySlug ?? ""}/${item?.slug ?? ""}/`;
+                return (
+                  <a class="group grid grid-cols-1 md:grid-cols-2 gap-3 rounded-xl border border-[var(--border)] bg-white/80 p-3 hover:shadow-sm" href={itemUrl}>
+                    <div class="shrink-0 overflow-hidden rounded-lg border border-black/10">
+                      {itemImage ? (
+                        <Image
+                          class="h-full w-full object-cover"
+                          src={itemImage}
+                          alt={item?.title ?? item?.slug}
+                          widths={[560, 340]}
+                          sizes="80px"
+                          loading="lazy"
+                          placeholder="blur"
+                        />
+                      ) : (
+                        <div class="h-full w-full bg-black/5"></div>
+                      )}
+                    </div>
+                    <div class="flex flex-col gap-1">
+                      <span class="text-[10px] uppercase tracking-wide text-[var(--accent)]">{getTag(item)}</span>
+                      <span class="text-lg font-semibold leading-snug text-black line-clamp-2">
+                        {item?.title ?? item?.slug}
+                      </span>
+                    </div>
+                  </a>
+                );
+              })}
+            </div>
+          </section>
+        ) : null}
+      </div>
+
+      <aside class="space-y-6 mt-2">
+        <div class="sticky top-38 space-y-5">
+          <div class="flex items-center justify-between mb-6">
+            <h3 class="text-xs font-semibold uppercase tracking-[0.2em] border-l-2 border-[var(--accent)] pl-4">Kategorie</h3>
+            <a href="/artykuly/" class="text-[11px] uppercase tracking-widest text-[var(--accent)] hover:text-[var(--accent)]">Wszystkie</a>
+          </div>
+          {categories.length ? (
+            <ul class="space-y-2">
+              {categories.map((category) => (
+                <li>
+                  <a
+                    class="block rounded-xl border border-[var(--border)] bg-white/80 px-4 py-3 text-sm text-[var(--muted)] transition-all hover:border-[var(--accent)] hover:text-[var(--text)]"
+                    href={`/${category.slug}/`}
+                  >
+                    {category.label}
+                  </a>
+                </li>
+              ))}
+            </ul>
+          ) : (
+            <p class="text-sm text-[var(--muted)]">Brak kategorii</p>
+          )}
+        </div>
+      </aside>
+    </div>
+  </article>
+  <script>
+    const initToc = () => {
+      const tocLinks = Array.from(document.querySelectorAll("[data-toc-link]"));
+      const headings = tocLinks
+        .map((link) => document.getElementById(link.dataset.tocTarget))
+        .filter(Boolean);
+
+      if (!tocLinks.length || !headings.length) return () => {};
+
+      const offset = 144;
+      const setActive = (id) => {
+        tocLinks.forEach((link) => {
+          const isActive = link.dataset.tocTarget === id;
+          link.classList.toggle("text-[var(--accent)]", isActive);
+        });
+      };
+
+      const updateActive = () => {
+        const scrollPos = window.scrollY + offset + 1;
+        let current = headings[0];
+        for (const heading of headings) {
+          const top = heading.offsetTop;
+          if (top <= scrollPos) {
+            current = heading;
+          } else {
+            break;
+          }
+        }
+        if (current) setActive(current.id);
+      };
+
+      let ticking = false;
+      const onScroll = () => {
+        if (ticking) return;
+        ticking = true;
+        requestAnimationFrame(() => {
+          updateActive();
+          ticking = false;
+        });
+      };
+
+      const clickHandlers = new Map();
+      tocLinks.forEach((link) => {
+        const handler = (event) => {
+          event.preventDefault();
+          const target = document.getElementById(link.dataset.tocTarget);
+          if (target) {
+            const top = target.getBoundingClientRect().top + window.scrollY - offset;
+            window.scrollTo({ top, behavior: "smooth" });
+            setActive(target.id);
+            history.replaceState(null, "", `#${target.id}`);
+            setTimeout(updateActive, 0);
+          }
+        };
+        clickHandlers.set(link, handler);
+        link.addEventListener("click", handler);
+      });
+
+      window.addEventListener("scroll", onScroll, { passive: true });
+      window.addEventListener("resize", onScroll);
+
+      updateActive();
+
+      return () => {
+        window.removeEventListener("scroll", onScroll);
+        window.removeEventListener("resize", onScroll);
+        clickHandlers.forEach((handler, link) => {
+          link.removeEventListener("click", handler);
+        });
+      };
+    };
+
+    const runTocInit = () => {
+      if (window.__tocCleanup) {
+        window.__tocCleanup();
+        window.__tocCleanup = null;
+      }
+      window.__tocCleanup = initToc();
+    };
+
+    runTocInit();
+    document.addEventListener("astro:page-load", runTocInit);
+    document.addEventListener("astro:after-swap", runTocInit);
+  </script>
+</BaseLayout>

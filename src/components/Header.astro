@@ -1,0 +1,574 @@
+﻿---
+import logo from "../assets/images/global/ore-offroad-logo.png";
+import Search from "astro-pagefind/components/Search";
+const { settings } = Astro.props;
+const pathname = Astro.url?.pathname ?? "";
+const isActive = (href) =>
+  href === "/" ? pathname === "/" : pathname.startsWith(href);
+
+const navItems = [
+  {
+    href: "/aktualnosci-i-rynek/",
+    label: "Aktualnosci i rynek",
+    description: "Nowosci z branzy 4x4 i offroad.",
+    columns: [
+      {
+        title: "Co sledzic",
+        links: [
+          { href: "/aktualnosci-i-rynek/", label: "Wiadomosci", meta: "Premiery i trendy" },
+          { href: "/artykuly/", label: "Najnowsze artykuly", meta: "Pelna lista wpisow" },
+          { href: "/tags/", label: "Tagi", meta: "Szybkie filtrowanie tematow" },
+        ],
+      },
+      {
+        title: "Dla czytelnikow",
+        links: [
+          { href: "/polityka/", label: "Polityka i zasady", meta: "Wazne informacje o serwisie" },
+          { href: "/", label: "Strona glowna", meta: "Najwazniejsze sekcje" },
+        ],
+      },
+    ],
+    featured: {
+      eyebrow: "Brief dnia",
+      title: "Raport 4x4",
+      text: "Szybki przeglad tego, co dzieje sie na rynku i szlakach.",
+      href: "/aktualnosci-i-rynek/",
+      cta: "Przejdz do dzialu",
+    },
+  },
+  {
+    href: "/samochody-i-testy/",
+    label: "Samochody i testy",
+    description: "Testy aut, porownania i realne wnioski.",
+    columns: [
+      {
+        title: "Najwazniejsze",
+        links: [
+          { href: "/samochody-i-testy/", label: "Testy terenowe", meta: "Ocena w prawdziwym terenie" },
+          { href: "/artykuly/", label: "Porownania modeli", meta: "Co wybrac i dlaczego" },
+          { href: "/tags/", label: "Tagi techniczne", meta: "Silnik, naped, zawieszenie" },
+        ],
+      },
+      {
+        title: "Szybkie wejscia",
+        links: [
+          { href: "/", label: "Polecane tresci", meta: "Top artykuly redakcji" },
+          { href: "/polityka/", label: "Informacje serwisowe", meta: "Regulacje i transparentnosc" },
+        ],
+      },
+    ],
+    featured: {
+      eyebrow: "W tym tygodniu",
+      title: "Porownanie 3 aut",
+      text: "Praktyczne zestawienie SUV-ow i klasycznych aut 4x4.",
+      href: "/samochody-i-testy/",
+      cta: "Zobacz testy",
+    },
+  },
+  {
+    href: "/warsztat-i-tuning/",
+    label: "Warsztat i tuning",
+    description: "Modyfikacje, setup i serwis terenowy.",
+    columns: [
+      {
+        title: "Baza wiedzy",
+        links: [
+          { href: "/warsztat-i-tuning/", label: "Modyfikacje 4x4", meta: "Od podstaw po zaawansowane setupy" },
+          { href: "/artykuly/", label: "Checklisty warsztatowe", meta: "Kroki przed i po sezonie" },
+          { href: "/tags/", label: "Tagi narzedziowe", meta: "Zawieszenie, opony, osprzet" },
+        ],
+      },
+      {
+        title: "Nawigacja",
+        links: [
+          { href: "/", label: "Start", meta: "Przeglad najnowszych tematow" },
+          { href: "/polityka/", label: "Zasady publikacji", meta: "Jak pracuje redakcja" },
+        ],
+      },
+    ],
+    featured: {
+      eyebrow: "Praktycznie",
+      title: "Setup pod wyprawe",
+      text: "Lista rzeczy, ktore warto ustawic przed wyjazdem.",
+      href: "/warsztat-i-tuning/",
+      cta: "Sprawdz poradniki",
+    },
+  },
+  {
+    href: "/poradniki-i-technika-jazdy/",
+    label: "Poradniki i technika jazdy",
+    description: "Technika, bezpieczenstwo i planowanie trasy.",
+    columns: [
+      {
+        title: "Jazda w terenie",
+        links: [
+          { href: "/poradniki-i-technika-jazdy/", label: "Technika prowadzenia", meta: "Bloto, piach i podjazdy" },
+          { href: "/artykuly/", label: "Praktyczne poradniki", meta: "Checklisty krok po kroku" },
+          { href: "/tags/", label: "Tagi szkoleniowe", meta: "Szybkie wejscia tematyczne" },
+        ],
+      },
+      {
+        title: "Dodatkowe",
+        links: [
+          { href: "/", label: "Najczesciej czytane", meta: "Top tresci spolecznosci" },
+          { href: "/polityka/", label: "Polityka serwisu", meta: "Wazne informacje" },
+        ],
+      },
+    ],
+    featured: {
+      eyebrow: "Bezpiecznie",
+      title: "Nawyki kierowcy 4x4",
+      text: "Najwazniejsze zasady jazdy, ktore realnie obnizaja ryzyko.",
+      href: "/poradniki-i-technika-jazdy/",
+      cta: "Przejdz do poradnikow",
+    },
+  },
+  {
+    href: "/turystyka-i-wyprawy/",
+    label: "Turystyka i wyprawy",
+    description: "Planowanie tras i wypraw offroad.",
+    columns: [
+      {
+        title: "Planowanie",
+        links: [
+          { href: "/turystyka-i-wyprawy/", label: "Trasy i inspiracje", meta: "Pomysly na kolejne wyjazdy" },
+          { href: "/artykuly/", label: "Logistyka wyprawy", meta: "Wyposazenie i przygotowanie" },
+          { href: "/tags/", label: "Tagi podroznicze", meta: "Nawigacja i biwak" },
+        ],
+      },
+      {
+        title: "Na skroty",
+        links: [
+          { href: "/", label: "Najpopularniejsze wpisy", meta: "Sprawdzone przez czytelnikow" },
+          { href: "/polityka/", label: "Informacje prawne", meta: "Korzystanie z serwisu" },
+        ],
+      },
+    ],
+    featured: {
+      eyebrow: "Wyprawa",
+      title: "Weekend 4x4",
+      text: "Szkic trasy, sprzetu i planu awaryjnego.",
+      href: "/turystyka-i-wyprawy/",
+      cta: "Zobacz inspiracje",
+    },
+  },
+  {
+    href: "/sport-i-wydarzenia/",
+    label: "Sport i wydarzenia",
+    description: "Relacje z eventow i motorsportu terenowego.",
+    columns: [
+      {
+        title: "Na biezaco",
+        links: [
+          { href: "/sport-i-wydarzenia/", label: "Relacje i wyniki", meta: "Najwazniejsze wydarzenia" },
+          { href: "/artykuly/", label: "Analizy i komentarze", meta: "Szerszy kontekst startow" },
+          { href: "/tags/", label: "Tagi sportowe", meta: "Serie, rundy i zespoly" },
+        ],
+      },
+      {
+        title: "Pozostale",
+        links: [
+          { href: "/", label: "Start", meta: "Powrot do strony glownej" },
+          { href: "/polityka/", label: "Polityka serwisu", meta: "Zasady publikacji" },
+        ],
+      },
+    ],
+    featured: {
+      eyebrow: "Eventy",
+      title: "Kalendarz sezonu",
+      text: "Szybki podglad wydarzen i tego, co warto obserwowac.",
+      href: "/sport-i-wydarzenia/",
+      cta: "Przejdz do wydarzen",
+    },
+  },
+];
+
+const linkClass = (href) =>
+  isActive(href)
+    ? "px-1 py-2.5 text-black no-underline transition"
+    : "px-1 py-2.5 text-black/70 no-underline transition hover:text-black";
+---
+
+<header class="fixed left-0 right-0 top-0 z-500 bg-white/95">
+  <div class="mx-auto max-w-[1420px] px-12">
+    <div class="grid grid-cols-2 md:grid-cols-3 gap-4 space-between items-center py-2">
+      <div>
+        <a href="/" class="text-xl font-semibold tracking-tighter text-black no-underline" aria-label="Logo">
+          <img src={logo.src} class="w-24" width="294" height="190" alt="Logo Offroad" />
+        </a>
+      </div>
+      <div class="hidden md:flex items-center">
+        <div class="w-full max-w-[420px]">
+          <Search
+            id="site-search"
+            className="pagefind-ui pagefind-ui--header"
+            uiOptions={{ showImages: false, showDates: true, showCategories: true }}
+          />
+        </div>
+      </div>
+      <div class="hidden md:flex justify-end">
+        <svg width="36" height="36" viewBox="0 0 96 96" fill="none" xmlns="http://www.w3.org/2000/svg">
+          <g clip-path="url(#clip0_169_43)">
+            <path d="M67 41.2353H56.1429V25H39.8571V41.2353H29L48 60.1765L67 41.2353ZM29 65.5882V71H67V65.5882H29Z" fill="black"></path>
+          </g>
+          <rect x="1" y="1" width="94" height="94" rx="47" stroke="black" stroke-width="2"></rect>
+          <defs>
+            <clipPath id="clip0_169_43">
+              <rect width="96" height="96" rx="48" fill="white"></rect>
+            </clipPath>
+          </defs>
+        </svg>
+      </div>
+
+      <button
+        class="w-22 border border-white/10 text-[10px] mr-0 ml-auto font-semibold uppercase tracking-[0.2em] text-black transition hover:bg-white/10 md:hidden"
+        type="button"
+        data-mobile-toggle
+      >
+        Menu
+      </button>
+    </div>
+
+    <nav class="relative flex items-center justify-end md:justify-between gap-4 border-y border-black/20">
+      <div class="hidden items-center justify-center gap-5 md:flex">
+        {
+          navItems.map((item) => (
+            <div class="mega-item" data-mega-item>
+              <a
+                class={`${linkClass(item.href)} mega-link text-[11px] uppercase font-semibold tracking-[1px] transition-colors hover:text-black`}
+                href={item.href}
+                aria-current={isActive(item.href) ? "page" : undefined}
+                data-mega-trigger
+              >
+                <span>{item.label}</span>
+                <span class="mega-arrow" aria-hidden="true">+</span>
+              </a>
+
+              <div class="mega-panel" data-mega-panel>
+                <div class="mega-panel-inner">
+                  <div class="mega-topline">
+                    <p>{item.description}</p>
+                  </div>
+                  <div class="mega-grid">
+                    {
+                      item.columns.map((column) => (
+                        <section>
+                          <ul>
+                            {
+                              column.links.map((link) => (
+                                <li>
+                                  <a href={link.href}>
+                                    <span class="mega-link-label">{link.label}</span>
+                                    <span class="mega-link-meta">{link.meta}</span>
+                                  </a>
+                                </li>
+                              ))
+                            }
+                          </ul>
+                        </section>
+                      ))
+                    }
+                    <aside class="mega-featured">
+                      <p class="mega-featured-eyebrow">{item.featured.eyebrow}</p>
+                      <p class="mega-featured-title">{item.featured.title}</p>
+                      <p class="mega-featured-text">{item.featured.text}</p>
+                      <a href={item.featured.href} class="mega-featured-cta">
+                        {item.featured.cta}
+                      </a>
+                    </aside>
+                  </div>
+                </div>
+              </div>
+            </div>
+          ))
+        }
+      </div>
+    </nav>
+
+    <div
+      class="fixed inset-x-0 top-0 z-[60] h-screen flex flex-col gap-6 overflow-hidden bg-[#0a0a0a] p-8 text-white transition-all duration-300 pointer-events-none opacity-0 md:hidden"
+      id="mobile-menu"
+      data-mobile-menu
+    >
+      <div class="flex items-center justify-between">
+        <span class="text-xs font-semibold uppercase tracking-widest text-gray-500">Nawigacja</span>
+        <button
+          class="text-[10px] font-semibold uppercase tracking-widest text-orange-500"
+          type="button"
+          data-mobile-close
+        >
+          Zamknij
+        </button>
+      </div>
+
+      <div class="flex flex-col gap-6 pt-12">
+        {
+          navItems.map((item) => (
+            <div class="flex flex-col gap-3">
+              <a class="text-md font-semibold text-white no-underline" href={item.href} data-mobile-link>
+                {item.label}
+              </a>
+              <div class="flex flex-wrap gap-2">
+                {
+                  item.columns
+                    .flatMap((column) => column.links)
+                    .slice(0, 3)
+                    .map((link) => (
+                      <a
+                        href={link.href}
+                        class="rounded-full border border-white/20 px-3 py-1 text-[10px] uppercase tracking-wider text-white/80 no-underline"
+                        data-mobile-link
+                      >
+                        {link.label}
+                      </a>
+                    ))
+                }
+              </div>
+              <div class="border border-b border-white/10"></div>
+            </div>
+          ))
+        }
+      </div>
+    </div>
+  </div>
+</header>
+
+<style>
+  #mobile-menu.is-open {
+    opacity: 1;
+    transform: translateY(0);
+    pointer-events: auto;
+  }
+
+  .mega-item {
+    position: static;
+  }
+
+  .mega-link {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.35rem;
+  }
+
+  .mega-arrow {
+    display: inline-block;
+    font-size: 0.65rem;
+    line-height: 1;
+    transition: transform 220ms ease;
+    opacity: 0.7;
+  }
+
+  .mega-panel {
+    position: absolute;
+    left: 0;
+    right: 0;
+    top: calc(100% + 0.6rem);
+    width: 100%;
+    transform: translateY(14px);
+    opacity: 0;
+    pointer-events: none;
+    transition: opacity 220ms ease, transform 220ms ease;
+    z-index: 70;
+  }
+
+  .mega-panel[data-astro-cid-3ef6ksr2] {
+    top: 37px;
+  }
+
+  .mega-panel-inner {
+    border: 1px solid rgba(15, 23, 42, 0.12);
+    border-radius: 5px;
+    background:
+      radial-gradient(circle at 8% 0%, rgba(56, 155, 189, 0.18), transparent 40%),
+      radial-gradient(circle at 94% 100%, rgba(212, 127, 112, 0.12), transparent 46%),
+      #ffffff;
+    padding: 1.1rem;
+  }
+
+  .mega-topline {
+    border-bottom: 1px solid rgba(15, 23, 42, 0.08);
+    margin-bottom: 0.95rem;
+    padding-bottom: 0.8rem;
+  }
+
+  .mega-topline p {
+    margin: 0;
+    color: rgba(15, 23, 42, 0.72);
+    font-size: 0.72rem;
+    text-transform: uppercase;
+    letter-spacing: 0.14em;
+    font-weight: 700;
+  }
+
+  .mega-grid {
+    display: grid;
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+    gap: 0.85rem;
+  }
+
+  .mega-grid section {
+    background: rgba(255, 255, 255, 0.6);
+    border: 1px solid rgba(15, 23, 42, 0.08);
+    border-radius: 14px;
+    padding: 0.8rem;
+    min-height: 220px;
+  }
+
+  .mega-grid ul {
+    list-style: none;
+    margin: 0;
+    padding: 0;
+    display: flex;
+    flex-direction: column;
+    gap: 0.5rem;
+  }
+
+  .mega-grid li a {
+    display: block;
+    padding: 0.52rem 0.55rem;
+    border-radius: 10px;
+    border: 1px solid transparent;
+    text-decoration: none;
+    transition: border-color 180ms ease, background-color 180ms ease, transform 180ms ease;
+  }
+
+  .mega-grid li a:hover,
+  .mega-grid li a:focus-visible {
+    border-color: rgba(21, 106, 134, 0.35);
+    background: rgba(21, 106, 134, 0.08);
+    transform: translateX(2px);
+    outline: none;
+  }
+
+  .mega-link-label {
+    display: block;
+    color: #0f172a;
+    font-size: 0.83rem;
+    font-weight: 700;
+    line-height: 1.3;
+  }
+
+  .mega-link-meta {
+    display: block;
+    margin-top: 0.2rem;
+    color: rgba(15, 23, 42, 0.67);
+    font-size: 0.7rem;
+    line-height: 1.3;
+  }
+
+  .mega-featured {
+    border-radius: 14px;
+    padding: 0.9rem;
+    border: 1px solid rgba(15, 23, 42, 0.08);
+    background: linear-gradient(150deg, rgba(15, 23, 42, 0.95), rgba(21, 106, 134, 0.88));
+    color: #fff;
+    min-height: 220px;
+    display: flex;
+    flex-direction: column;
+  }
+
+  .mega-featured-eyebrow {
+    margin: 0;
+    font-size: 0.62rem;
+    letter-spacing: 0.18em;
+    text-transform: uppercase;
+    color: rgba(255, 255, 255, 0.75);
+    font-weight: 800;
+  }
+
+  .mega-featured-title {
+    margin: 0.6rem 0 0.5rem;
+    font-size: 1.2rem;
+    line-height: 1;
+    font-family: "Teko", "Zalando Sans SemiExpanded", "Segoe UI", sans-serif;
+    letter-spacing: 0.03em;
+  }
+
+  .mega-featured-text {
+    margin: 0 0 auto;
+    font-size: 0.75rem;
+    line-height: 1.5;
+    color: rgba(255, 255, 255, 0.86);
+  }
+
+  .mega-featured-cta {
+    margin-top: 0.8rem;
+    display: inline-flex;
+    width: fit-content;
+    align-items: center;
+    justify-content: center;
+    border-radius: 999px;
+    padding: 0.4rem 0.78rem;
+    text-transform: uppercase;
+    letter-spacing: 0.1em;
+    font-size: 0.62rem;
+    font-weight: 700;
+    text-decoration: none;
+    color: #0f172a;
+    background: #ffffff;
+  }
+
+  .mega-item:hover .mega-panel,
+  .mega-item:focus-within .mega-panel,
+  .mega-item.is-open .mega-panel {
+    opacity: 1;
+    transform: translateY(0);
+    pointer-events: auto;
+  }
+
+  .mega-item:hover .mega-arrow,
+  .mega-item:focus-within .mega-arrow,
+  .mega-item.is-open .mega-arrow {
+    transform: rotate(45deg);
+  }
+
+  @media (max-width: 767px) {
+    .mega-panel {
+      display: none;
+    }
+  }
+</style>
+
+<script>
+  document.addEventListener("astro:page-load", () => {
+    const toggle = document.querySelector("[data-mobile-toggle]");
+    const menu = document.querySelector("[data-mobile-menu]");
+    const closeBtn = document.querySelector("[data-mobile-close]");
+    const links = document.querySelectorAll("[data-mobile-link]");
+    const megaItems = Array.from(document.querySelectorAll("[data-mega-item]"));
+    const megaTriggers = Array.from(document.querySelectorAll("[data-mega-trigger]"));
+
+    if (toggle && menu) {
+      const setOpen = (isOpen) => {
+        menu.classList.toggle("is-open", isOpen);
+        document.body.style.overflow = isOpen ? "hidden" : "";
+      };
+
+      toggle.addEventListener("click", () => setOpen(true));
+      closeBtn?.addEventListener("click", () => setOpen(false));
+      links.forEach((link) => {
+        link.addEventListener("click", () => setOpen(false));
+      });
+    }
+
+    if (megaItems.length && megaTriggers.length) {
+      const closeAllMega = () => megaItems.forEach((item) => item.classList.remove("is-open"));
+
+      megaTriggers.forEach((trigger) => {
+        trigger.addEventListener("keydown", (event) => {
+          if (event.key === "Escape") {
+            closeAllMega();
+            trigger.blur();
+          }
+        });
+      });
+
+      document.addEventListener("click", (event) => {
+        if (!event.target.closest("[data-mega-item]")) {
+          closeAllMega();
+        }
+      });
+    }
+  });
+</script>
+

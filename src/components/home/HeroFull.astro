@@ -1,0 +1,83 @@
+﻿---
+import { Image } from "astro:assets";
+import heroImage from "../../assets/images/sections/hero.png";
+const ctaPrimary = { label: "Zobacz realizacje", href: "/realizacje/" };
+
+const entries = import.meta.glob("../../content/opinie/*.md", { eager: true });
+const imageEntries = import.meta.glob("/src/content/opinie/img/**/*", { eager: true });
+const reviewImageEntries = import.meta.glob("/src/content/reviews/img/**/*", { eager: true });
+const resolveOpinionImage = (path) => {
+  if (!path) return null;
+  let normalized = path.startsWith("/src/") ? path : `/src${path}`;
+  normalized = normalized.replace("/src/content/reviews/img/", "/src/content/opinie/img/");
+  const entry = imageEntries[normalized] ?? reviewImageEntries[normalized];
+  return entry?.default ?? null;
+};
+
+const avatars = Object.values(entries)
+  .map((mod) => mod.frontmatter?.avatar)
+  .map((path) => resolveOpinionImage(path))
+  .filter(Boolean)
+  .slice(0, 4);
+---
+
+<section class="relative">
+  <div class="absolute inset-y-0 left-1/2 w-screen -translate-x-1/2 bg-black overflow-hidden z-0" style="perspective: 1000px;">
+    <div class="hidden md:block absolute inset-0 opacity-50" style="
+         background-image: radial-gradient(circle, #ffffff34 1px, transparent 1px);
+         background-size: 10px 10px;
+         transform: rotateX(0deg) translateY(-10%) scale(2);
+         transform-origin: top;
+         /* Maska: biaĹ‚y (widoczne) do przezroczystego (niewidoczne) */
+         -webkit-mask-image: linear-gradient(to bottom, white 20%, transparent 90%);
+         mask-image: linear-gradient(to bottom, white 20%, transparent 90%);
+       ">
+    </div>
+    <div class="absolute inset-0 bg-gradient-to-t from-black via-transparent to-transparent"></div>
+    <div class="hidden md:block absolute inset-0 left-4/7 group">
+      <Image src={ heroImage } alt="Proces projektowy" class="size-full object-cover grayscale" widths={[520, 780, 1200]} sizes="(max-width: 1024px) 100vw, 820px" />
+      <div class="lg:hidden absolute left-[21vw] top-0 w-18 h-18 bg-[var(--accent)] z-20"></div>
+      <div class="hidden lg:block absolute left-0 bottom-30 w-30 h-30 bg-[var(--accent)] z-20"></div>
+      <div class="hidden lg:block absolute -left-30 bottom-0 w-30 h-30 bg-white z-20"></div>
+    </div>
+  </div>
+  <div class="relative grid grid-cols-1 md:grid-cols-[minmax(0,1.3fr)_minmax(0,1fr)] pb-8 pt-44 md:pb-34 md:pt-50">
+      <div class="space-y-6 max-w-xl">
+        <div class="flex items-center space-x-3 mb-6">
+          <div class="flex items-center bg-[#1a1a1a] border border-gray-800 rounded-full px-4 py-1">
+            <div class="flex text-orange-500 text-[14px] mr-2"> â…â…â…â…â… </div>
+            <span class="text-[9px] text-gray-300 font-semibold tracking-wide uppercase"> Ocena 5/5 <span class="text-gray-400 font-normal ml-1">15+ opinii</span>
+            </span>
+          </div>
+        </div>
+        <h1 class="text-4xl md:text-5xl text-white font-semibold tracking-tight leading-[1.1] mb-8"> TworzÄ™ strony www skupione <span class="text-white/50"> na wynikach biznesowych</span>
+        </h1>
+        <p class="max-w-2xl text-md text-gray-300 mb-10"> Kompleksowo prowadzÄ…c od strategii, przez design, po wdroĹĽenie i wsparcie. Sprawnie, solidnie i z myĹ›lÄ… o wynikach. </p>
+        <div class="flex flex-col md:flex-row items-start md:items-center gap-8">
+          <a class="inline-flex rounded-full bg-[var(--accent)] px-6 py-3 text-base font-semibold text-white transition hover:brightness-95" href={ctaPrimary.href} title={ctaPrimary.label}> {ctaPrimary.label} </a>
+          <div class="flex items-center">
+            <div class="flex -space-x-3 mr-4">
+              {avatars.map((avatar, index) => (
+                <Image
+                  src={avatar}
+                  alt={`Avatar klienta ${index + 1}`}
+                  class="w-10 h-10 rounded-full border-2 border-black object-cover"
+                  widths={[80]}
+                  sizes="40px"
+                  loading="lazy"
+                />
+              ))}
+            </div>
+            <p class="text-xs text-gray-400 leading-tight">
+              <span class="text-white font-semibold text-sm">40+</span> zadowolonych <br>klientĂłw
+            </p>
+          </div>
+        </div>
+      </div>
+  </div>
+</section>
+<section class="relative py-5">
+  <div class="absolute inset-y-0 left-1/2 w-screen -translate-x-1/2 bg-black overflow-hidden border-t border-gray-800 -z-1"></div>
+     <p class="my-2 text-gray-400 text-sm">StaĹ‚a komunikacja, jasne etapy i pelna opieka od briefu po wsparcie po wdroĹĽeniu.</p>
+</section>
+

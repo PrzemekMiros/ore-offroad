@@ -1,0 +1,121 @@
+﻿---
+import { Image } from "astro:assets";
+import { slugifyTitle } from "../../lib/slugifyTitle";
+
+const imageEntries = import.meta.glob("/src/content/artykuly/img/**/*", { eager: true });
+const resolveArticleImage = (path) => {
+  if (!path) return null;
+  let normalized = path;
+  if (normalized.startsWith("/content/posts/img/")) {
+    const relativePath = normalized.slice("/content/posts/img/".length);
+    normalized = `/src/content/artykuly/img/${relativePath}`;
+  } else if (normalized.startsWith("/content/")) {
+    normalized = `/src${normalized}`;
+  }
+  const entry = imageEntries[normalized];
+  return entry?.default ?? null;
+};
+
+const entries = import.meta.glob("../../content/artykuly/**/*.md", { eager: true });
+const getSlugPathFromFile = (file) =>
+  file.replace(/^.*content\/artykuly\//, "").replace(/\.md$/, "");
+const getCategorySlug = (frontmatter, slugPath) => {
+  const parts = slugPath.split("/");
+  if (parts.length > 1) return parts[0];
+  const categoryValue = Array.isArray(frontmatter?.category)
+    ? frontmatter.category[0]
+    : frontmatter?.category;
+  return categoryValue ? slugifyTitle(categoryValue) : "artykuly";
+};
+const getArticleSlug = (slugPath) => {
+  const parts = slugPath.split("/");
+  return parts.length > 1 ? parts.slice(1).join("/") : slugPath;
+};
+const normalizeCategories = (category) =>
+  Array.isArray(category) ? category : category ? [category] : [];
+const TARGET_CATEGORY = "Turystyka i wyprawy";
+const TARGET_CATEGORY_SLUGS = ["turystyka-i-wyprawy"];
+
+const posts = Object.entries(entries)
+  .map(([file, entry]) => {
+    const slugPath = getSlugPathFromFile(file);
+    const categorySlug = getCategorySlug(entry.frontmatter ?? {}, slugPath);
+    const slug = getArticleSlug(slugPath);
+    const date = entry.frontmatter?.date ? new Date(entry.frontmatter.date) : null;
+    return {
+      slug,
+      categorySlug,
+      ...entry.frontmatter,
+      date,
+    };
+  })
+  .filter((post) =>
+    normalizeCategories(post.category).some(
+      (category) => TARGET_CATEGORY_SLUGS.includes(slugifyTitle(category))
+    )
+  )
+  .sort((a, b) => {
+    const aTime = a.date ? a.date.getTime() : 0;
+    const bTime = b.date ? b.date.getTime() : 0;
+    return bTime - aTime;
+  })
+  .slice(0, 12);
+
+const formatDate = (value) =>
+  value
+    ? value.toLocaleDateString("pl-PL", { day: "2-digit", month: "long", year: "numeric" })
+    : null;
+const getPostUrl = (post) => `/artykuly/${post.categorySlug}/${post.slug}/`;
+---
+
+<div class="relative pb-20 pt-18 bg-gray-100">
+  <div class="absolute inset-y-0 left-1/2 w-screen -translate-x-1/2 bg-gray-100 overflow-hidden -z-1">
+</div>
+  <div class="relative flex items-center mb-8 border-b border-gray-400 pb-4">
+  <div class="absolute -left-2 h-10 w-10 rounded-full bg-[var(--accent2)]"></div>
+  
+    <h2 class="text-2xl font-semibold text-gray-900 uppercase z-9">{TARGET_CATEGORY}</h2>
+</div>
+  <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">
+    {posts.map((post) => {
+      const image = resolveArticleImage(post.tileImage ?? post.thumbnail);
+      const dateLabel = post.date ? formatDate(post.date) : null;
+      return (
+        <a
+          class="flex border border-gray-100 p-4 gap-4 items-center bg-white group cursor-pointer hover:shadow-sm transition-shadow"
+          href={getPostUrl(post)}
+        >
+          <div class="w-1/3 shrink-0 overflow-hidden rounded-sm">
+            {image ? (
+              <Image
+                src={image}
+                alt={post.title ?? post.slug}
+                class="w-full h-24 object-cover transition-transform duration-500 group-hover:scale-110"
+                widths={[240, 360]}
+                sizes="120px"
+                loading="lazy"
+              />
+            ) : (
+              <div class="w-full h-24 bg-neutral-200"></div>
+            )}
+          </div>
+          <div class="w-2/3 flex flex-col justify-between h-full">
+            <h3 class="font-semibold text-gray-900 leading-snug group-hover:text-[var(--accent)] transition-colors line-clamp-2">
+              {post.title ?? post.slug}
+            </h3>
+            <div class="flex justify-between items-center mt-3 text-[11px] text-gray-400 font-medium">
+              {dateLabel ? (
+                <span>
+                  {dateLabel}
+                </span>
+              ) : (
+                <span></span>
+              )}
+            </div>
+          </div>
+        </a>
+      );
+    })}
+  </div>
+</div>
+

@@ -1,0 +1,220 @@
+﻿---
+import logo from "../assets/images/global/ore-offroad-logo.png";
+import cookieModalUrl from "../scripts/cookie-modal.js?url";
+import contactFormUrl from "../scripts/contact-form.js?url";
+const currentYear = new Date().getFullYear();
+---
+
+<footer class="w-full pt-18 text-gray-500/80">
+  <div class="flex flex-wrap justify-between gap-12 md:gap-6">
+    <div class="max-w-80">
+      <a href="/" aria-label="Ore Offroad">
+        <img src={logo.src} alt="Ore Offroad logo" class="mb-4 h-8 md:h-12 w-auto" />
+      </a>
+      <p class="text-sm">
+        Portal o offroadzie i wyprawach 4x4. Testy, poradniki techniki jazdy oraz aktualnosci z rynku i wydarzen.
+      </p>
+      <div class="flex items-center gap-3 mt-4">
+        <a href="#" aria-label="Instagram" class="hover:text-gray-700 transition-colors">
+          <svg class="w-6 h-6" fill="currentColor" viewBox="0 0 24 24">
+            <path d="M7.75 2A5.75 5.75 0 002 7.75v8.5A5.75 5.75 0 007.75 22h8.5A5.75 5.75 0 0022 16.25v-8.5A5.75 5.75 0 0016.25 2h-8.5zM4.5 7.75A3.25 3.25 0 017.75 4.5h8.5a3.25 3.25 0 013.25 3.25v8.5a3.25 3.25 0 01-3.25 3.25h-8.5a3.25 3.25 0 01-3.25-3.25v-8.5zm9.5 1a4 4 0 11-4 4 4 4 0 014-4zm0 1.5a2.5 2.5 0 102.5 2.5 2.5 2.5 0 00-2.5-2.5zm3.5-.75a.75.75 0 11.75-.75.75.75 0 01-.75.75z"></path>
+          </svg>
+        </a>
+        <a href="#" aria-label="Facebook" class="hover:text-gray-700 transition-colors">
+          <svg class="w-6 h-6" fill="currentColor" viewBox="0 0 24 24">
+            <path d="M13.5 9H15V6.5h-1.5c-1.933 0-3.5 1.567-3.5 3.5v1.5H8v3h2.5V21h3v-7.5H16l.5-3h-3z"></path>
+          </svg>
+        </a>
+      </div>
+    </div>
+
+    <div>
+      <p class="text-lg text-gray-800">SEKCJE</p>
+      <ul class="mt-3 flex flex-col gap-2 text-sm">
+        <li><a href="/aktualnosci-i-rynek/" class="hover:text-gray-700 transition-colors">Aktualnosci i rynek</a></li>
+        <li><a href="/samochody-i-testy/" class="hover:text-gray-700 transition-colors">Samochody i testy</a></li>
+        <li><a href="/warsztat-i-tuning/" class="hover:text-gray-700 transition-colors">Warsztat i tuning</a></li>
+        <li><a href="/poradniki-i-technika-jazdy/" class="hover:text-gray-700 transition-colors">Poradniki i technika jazdy</a></li>
+        <li><a href="/turystyka-i-wyprawy/" class="hover:text-gray-700 transition-colors">Turystyka i wyprawy</a></li>
+      </ul>
+    </div>
+
+    <div>
+      <p class="text-lg text-gray-800">WSPARCIE</p>
+      <ul class="mt-3 flex flex-col gap-2 text-sm">
+        <li><a href="/artykuly/" class="hover:text-gray-700 transition-colors">Baza artykulow</a></li>
+        <li><a href="/tags/" class="hover:text-gray-700 transition-colors">Tagi</a></li>
+        <li><a href="/polityka/" class="hover:text-gray-700 transition-colors">Polityka i cookies</a></li>
+        <li><a href="#" class="hover:text-gray-700 transition-colors">Kontakt</a></li>
+        <li><a href="#" class="hover:text-gray-700 transition-colors">Dostepnosc</a></li>
+      </ul>
+    </div>
+
+    <div class="max-w-80">
+      <p class="text-lg text-gray-800">BADZ NA BIEZACO</p>
+      <p class="mt-3 text-sm">
+        Zapisz sie do newslettera, aby dostawac nowe poradniki oraz rekomendacje tras.
+      </p>
+      <div class="flex items-center mt-4">
+        <input type="email" class="bg-white rounded-l border border-gray-300 h-9 px-3 outline-none w-full" placeholder="Twoj e-mail" />
+        <button class="flex items-center justify-center bg-black h-9 w-9 aspect-square rounded-r">
+          <svg class="w-4 h-4 text-white" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" width="24" height="24" fill="none" viewBox="0 0 24 24">
+            <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 12H5m14 0-4 4m4-4-4-4"></path>
+          </svg>
+        </button>
+      </div>
+    </div>
+  </div>
+  <hr class="border-gray-300 mt-16" />
+  <div class="flex flex-col md:flex-row gap-2 items-center text-xs justify-between py-5">
+    <p>© {currentYear} <a href="/" class="hover:text-gray-700 transition-colors">Offroad</a>. All rights reserved.</p>
+    <ul class="flex items-center gap-4">
+      <li><a href="/polityka/" class="hover:text-gray-700 transition-colors">Polityka prywatności</a></li>
+      <li><a href="/" class="hover:text-gray-700 transition-colors">Mapa strony</a></li>
+    </ul>
+  </div>
+</footer>
+                                            
+
+<div
+  class="fixed inset-0 hidden bg-black/10 flex items-center justify-center z-[9999] p-4 font-sans text-left"
+  data-cookie-modal
+  aria-hidden="true"
+  role="dialog"
+  aria-modal="true"
+  aria-labelledby="cookieconsent-title"
+  tabindex="-1"
+>
+  <div class="bg-white rounded-lg shadow-2xl max-w-[600px] w-full overflow-hidden border border-gray-200">
+    <div class="p-6 flex border-b border-gray-300">
+      <div class="flex flex-col">
+        <span id="cookieconsent-title" class="text-sm font-semibold text-gray-900 leading-tight">Strona uĹĽywa plikĂłw cookie</span>
+      </div>
+    </div>
+
+    <div class="flex border-b border-gray-300" role="tablist" aria-label="Cookie consent">
+      <button class="flex-1 py-3 text-[#00a3ff] font-semibold text-[11px] uppercase tracking-wider border-b-2 border-[#00a3ff] cursor-pointer" type="button" data-cookie-tab="consent" role="tab" id="cookie-tab-consent" aria-controls="cookie-panel-consent" aria-selected="true">
+        Zgoda
+      </button>
+      <button class="flex-1 py-3 text-gray-800 font-semibold text-[11px] uppercase tracking-wider hover:bg-gray-50 transition-colors cursor-pointer" type="button" data-cookie-tab="details" role="tab" id="cookie-tab-details" aria-controls="cookie-panel-details" aria-selected="false">
+        SzczegĂłĹ‚y
+      </button>
+      <button class="flex-1 py-3 text-gray-800 font-semibold text-[11px] uppercase tracking-wider hover:bg-gray-50 transition-colors cursor-pointer" type="button" data-cookie-tab="about" role="tab" id="cookie-tab-about" aria-controls="cookie-panel-about" aria-selected="false">
+        Info
+      </button>
+    </div>
+
+    <div class="p-6 md:p-8" data-cookie-panel="consent" role="tabpanel" id="cookie-panel-consent" aria-labelledby="cookie-tab-consent">
+      <p class="text-gray-600 text-[12px] leading-[1.6]">
+        UĹĽywamy plikĂłw cookie, aby personalizowaÄ‡ treĹ›ci i reklamy, udostÄ™pniaÄ‡ funkcje mediĂłw spoĹ‚ecznoĹ›ciowych i analizowaÄ‡ nasz ruch. UdostÄ™pniamy rĂłwnieĹĽ informacje o tym, jak korzystasz z naszej witryny, naszym partnerom spoĹ‚ecznoĹ›ciowym, reklamowym i analitycznym.
+      </p>
+    </div>
+
+    <div class="p-6 md:p-8 hidden" data-cookie-panel="details" role="tabpanel" id="cookie-panel-details" aria-labelledby="cookie-tab-details">
+      <p class="text-gray-600 text-[12px] leading-[1.6] mb-4">
+        Wybierz, na jakie kategorie plikĂłw cookie wyraĹĽasz zgodÄ™. NiezbÄ™dne sÄ… zawsze aktywne.
+      </p>
+      <div class="space-y-3 text-[12px] text-gray-700">
+        <label class="flex items-center justify-between rounded border border-gray-200 px-3 py-2">
+          <span>NiezbÄ™dne</span>
+          <span class="flex items-center gap-2">
+            <span class="text-[10px] uppercase tracking-wider text-gray-400">Zawsze aktywne</span>
+            <input type="checkbox" checked disabled data-cookie-category="necessary" aria-label="NiezbÄ™dne" />
+          </span>
+        </label>
+        <label class="flex items-center justify-between rounded border border-gray-200 px-3 py-2">
+          <span>Funkcjonalne</span>
+          <input type="checkbox" data-cookie-category="functional" aria-label="Funkcjonalne" />
+        </label>
+        <label class="flex items-center justify-between rounded border border-gray-200 px-3 py-2">
+          <span>Analityczne</span>
+          <input type="checkbox" data-cookie-category="analytics" aria-label="Analityczne" />
+        </label>
+        <label class="flex items-center justify-between rounded border border-gray-200 px-3 py-2">
+          <span>Marketingowe</span>
+          <input type="checkbox" data-cookie-category="marketing" aria-label="Marketingowe" />
+        </label>
+      </div>
+      <div class="mt-5">
+        <button class="cursor-pointer w-full bg-[#00a3ff] hover:bg-[#008bdb] text-white font-semibold py-3 px-4 rounded transition-colors text-[11px] uppercase tracking-wide" type="button" data-cookie-save>
+          Zapisz ustawienia
+        </button>
+      </div>
+    </div>
+
+    <div class="p-6 md:p-8 hidden" data-cookie-panel="about" role="tabpanel" id="cookie-panel-about" aria-labelledby="cookie-tab-about">
+      <p class="text-gray-600 text-[12px] leading-[1.6]">
+        Pliki cookie to niewielkie informacje zapisywane w Twojej przeglÄ…darce. PomagajÄ… dziaĹ‚aÄ‡ stronie,
+        zapamiÄ™tywaÄ‡ ustawienia oraz mierzyÄ‡ ruch. MoĹĽesz zmieniÄ‡ zgodÄ™ w kaĹĽdej chwili w ustawieniach.
+      </p>
+    </div>
+
+    <div class="p-6 pt-0 flex flex-col md:flex-row gap-2">
+      <button class="cursor-pointer flex-1 bg-[#00a3ff] hover:bg-[#008bdb] text-white font-semibold py-3 px-4 rounded transition-colors text-[11px] uppercase tracking-wide" type="button" data-cookie-deny>
+        OdmĂłw
+      </button>
+      <button class="cursor-pointer flex-1 bg-[#00a3ff] hover:bg-[#008bdb] text-white font-semibold py-3 px-4 rounded transition-colors text-[11px] uppercase tracking-wide flex items-center justify-center gap-1" type="button" data-cookie-customize>
+        Dostosuj
+        <svg class="w-3 h-3" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+          <path stroke-linecap="round" stroke-linejoin="round" stroke-width="3" d="M9 5l7 7-7 7"></path>
+        </svg>
+      </button>
+      <button class="cursor-pointer flex-1 bg-[#00a3ff] hover:bg-[#008bdb] text-white font-semibold py-3 px-4 rounded transition-colors text-[11px] uppercase tracking-wide" type="button" data-cookie-accept>
+        ZezwĂłl
+      </button>
+    </div>
+  </div>
+</div>
+
+<div class="circle-container hidden md:flex items-center justify-center relative">
+		<svg class="circle-progress svg-content" width="100%" height="100%" viewBox="-1 -1 102 102">
+			<path d="M50,1 a49,49 0 0,1 0,98 a49,49 0 0,1 0,-98"/>
+		</svg>
+    <svg class="h-4 w-4 text-white absolute top-4 left-4" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="2" stroke="var(--accent2)">
+      <path stroke-linecap="round" stroke-linejoin="round" d="M4.5 15.75l7.5-7.5 7.5 7.5" />
+    </svg>
+</div>
+
+<script>
+document.addEventListener("astro:page-load", function(event) {
+    let circleContainer = document.querySelector(".circle-container");
+    if (!circleContainer) return;
+        
+		let offset = 50;
+		let circlePath = document.querySelector('.circle-container path');
+		let pathLength = circlePath.getTotalLength();
+		circlePath.style.transition = circlePath.style.WebkitTransition = 'none';
+		circlePath.style.strokeDasharray = pathLength;
+		circlePath.style.strokeDashoffset = pathLength;
+		circlePath.getBoundingClientRect();
+		circlePath.style.transition = circlePath.style.WebkitTransition = 'stroke-dashoffset 10ms linear';
+
+		let updateLoader = () => {
+
+			let scrollTop = window.scrollY;
+			let docHeight = document.body.offsetHeight;
+			let winHeight = window.innerHeight;
+			let height = docHeight - winHeight;
+			let progress = pathLength - (scrollTop * pathLength / height);
+			circlePath.style.strokeDashoffset = progress;
+
+			if (scrollTop > offset) {
+				circleContainer.classList.add("active");
+			} else {
+				circleContainer.classList.remove("active");
+			}         
+		}
+	circleContainer.onclick = function(){
+		window.scrollTo({ top: 0, behavior: 'smooth'});
+	}
+	window.onscroll = () => {
+		updateLoader();
+	}
+	updateLoader();
+});
+</script>
+
+<script src={cookieModalUrl} defer></script>
+<script src={contactFormUrl} defer></script>
+
+

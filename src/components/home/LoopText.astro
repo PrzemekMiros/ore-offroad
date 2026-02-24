@@ -1,0 +1,66 @@
+---
+import { slugifyTitle } from "../../lib/slugifyTitle";
+
+const entries = import.meta.glob("../../content/artykuly/**/*.md", { eager: true });
+const getSlugPathFromFile = (file) =>
+  file.replace(/^.*content\/artykuly\//, "").replace(/\.md$/, "");
+const getCategorySlug = (frontmatter, slugPath) => {
+  const parts = slugPath.split("/");
+  if (parts.length > 1) return parts[0];
+  const categoryValue = Array.isArray(frontmatter?.category)
+    ? frontmatter.category[0]
+    : frontmatter?.category;
+  return categoryValue ? slugifyTitle(categoryValue) : "artykuly";
+};
+const getArticleSlug = (slugPath) => {
+  const parts = slugPath.split("/");
+  return parts.length > 1 ? parts.slice(1).join("/") : slugPath;
+};
+const formatDate = (value) =>
+  value
+    ? value.toLocaleDateString("pl-PL", { day: "2-digit", month: "2-digit", year: "numeric" })
+    : null;
+
+const news = Object.entries(entries)
+  .map(([file, entry]) => {
+    const slugPath = getSlugPathFromFile(file);
+    const categorySlug = getCategorySlug(entry.frontmatter ?? {}, slugPath);
+    const slug = getArticleSlug(slugPath);
+    const date = entry.frontmatter?.date ? new Date(entry.frontmatter.date) : null;
+    return {
+      slug,
+      categorySlug,
+      title: entry.frontmatter?.title ?? slug,
+      date,
+    };
+  })
+  .sort((a, b) => {
+    const aTime = a.date ? a.date.getTime() : 0;
+    const bTime = b.date ? b.date.getTime() : 0;
+    return bTime - aTime;
+  })
+  .slice(0, 3);
+
+const getPostUrl = (post) => `/artykuly/${post.categorySlug}/${post.slug}/`;
+---
+
+<div class="relative flex overflow-x-hidden bg-[var(--accent)] font-sans text-sm font-semibold mt-18 md:mt-36 py-2 group">
+  <div class="animate-marquee whitespace-nowrap flex items-center group-hover:[animation-play-state:paused] cursor-pointer">
+    {Array(2).fill(0).map(() => (
+      <>
+        {news.map((item) => {
+          const dateLabel = item.date ? formatDate(item.date) : null;
+          return (
+            <div class="flex items-center pt-0 pb-0 text-white">
+              <span class="text-xl mr-3">•</span>
+              <span class="mr-2 opacity-80">{dateLabel}</span>
+              <a href={getPostUrl(item)} class="font-sm hover:underline underline-offset-2">
+                {item.title}
+              </a>
+            </div>
+          );
+        })}
+      </>
+    ))}
+  </div>
+</div>
