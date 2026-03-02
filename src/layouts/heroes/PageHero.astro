@@ -1,8 +1,8 @@
 ﻿---
 const { title, lead, meta } = Astro.props;
 const { site, url } = Astro;
-import { Image } from "astro:assets";
-import BanerPage from "../../components/home/BanerPage.astro";
+// import { Image } from "astro:assets";
+// import BanerPage from "../../components/home/BanerPage.astro";
 const baseUrl = site ? site.toString().replace(/\/$/, "") : "";
 const homeUrl = baseUrl ? `${baseUrl}/` : "/";
 const currentUrl = baseUrl ? new URL(url.pathname, baseUrl).toString() : url.pathname;
