@@ -7,6 +7,8 @@ import BaseLayout from "../../../layouts/BaseLayout.astro";
 import ArticlesHero from "../../../layouts/heroes/ArticlesHero.astro";
 import settings from "../../../content/ustawienia.json";
 import { slugifyTitle } from "../../../lib/slugifyTitle";
+import adVerticalJusn from "../../../assets/images/advertise/ad-vertical-jusn.png";
+import adToughVertical from "../../../assets/images/advertise/ad-tough-vertical.png";
 
 export const prerender = true;
 
@@ -194,18 +196,29 @@ allArticles.sort((a, b) => {
   const bDate = b?.date ? new Date(b.date).getTime() : 0;
   return bDate - aDate;
 });
-const currentIndex = allArticles.findIndex((item) => item.slug === artykul?.slug);
-const relatedArticles = [];
-if (allArticles.length > 1) {
-  const startIndex = currentIndex >= 0 ? currentIndex : 0;
-  for (let offset = 1; offset <= allArticles.length && relatedArticles.length < 6; offset += 1) {
-    const candidate = allArticles[(startIndex + offset) % allArticles.length];
-    if (candidate?.slug && candidate.slug !== artykul?.slug) {
-      relatedArticles.push(candidate);
-    }
-  }
-}
+const currentCategorySlug = artykul?.categorySlug ?? null;
+const relatedArticles = currentCategorySlug
+  ? allArticles
+      .filter((item) => item?.categorySlug === currentCategorySlug && item?.slug !== artykul?.slug)
+      .slice(0, 6)
+  : [];
 const inlineLinkArticle = relatedArticles[0] ?? null;
+const shuffle = (items) => {
+  const array = [...items];
+  for (let i = array.length - 1; i > 0; i -= 1) {
+    const j = Math.floor(Math.random() * (i + 1));
+    [array[i], array[j]] = [array[j], array[i]];
+  }
+  return array;
+};
+const crossCategoryArticles = shuffle(
+  allArticles.filter(
+    (item) =>
+      item?.slug !== artykul?.slug &&
+      item?.categorySlug &&
+      item?.categorySlug !== currentCategorySlug
+  )
+).slice(0, 6);
 const headerImage = resolveArticleImage(artykul?.tileImage ?? artykul?.thumbnail);
 const headerImageUrl = headerImage?.src ?? headerImage;
 const { site } = Astro;
@@ -282,7 +295,15 @@ if (!artykul) {
             <p class="text-xs text-[var(--muted)]">Brak spisu treści</p>
           )}
           <div class="advise-wrap mt-8">
-              <img src="/src/assets/images/advertise/ad-vertical-jusn.png">
+              <Image
+                src={adVerticalJusn}
+                alt="Reklama"
+                class="w-full h-auto transition-[filter] duration-500"
+                widths={[300, 600]}
+                sizes="(max-width: 1024px) 100vw, 300px"
+                loading="lazy"
+                decoding="async"
+              />
           </div>
         </div>
       </aside>
@@ -384,12 +405,20 @@ if (!artykul) {
           )}
         </div>
           <div class="advise-wrap mt-8">
-              <img src="/src/assets/images/advertise/ad-tough-vertical.png">
+              <Image
+                src={adToughVertical}
+                alt="Reklama"
+                class="w-full h-auto transition-[filter] duration-500"
+                widths={[300, 600]}
+                sizes="(max-width: 1024px) 100vw, 300px"
+                loading="lazy"
+                decoding="async"
+              />
           </div>
         </div>
       </aside>
     </div>
-      {relatedArticles.length ? (
+      {crossCategoryArticles.length ? (
       <section class="mx-auto max-w-7xl space-y-6 pt-6 mt-16 border-t border-black/10">
         <div class="flex items-center justify-between">
           <h2 class="text-lg font-semibold text-[var(--text)]">Przeczytaj też</h2>
@@ -399,9 +428,11 @@ if (!artykul) {
           </a>
         </div>
         <div class="grid gap-5 md:grid-cols-3">
-          {relatedArticles.map((item) => {
+          {crossCategoryArticles.map((item) => {
             const itemImage = resolveArticleImage(item?.tileImage ?? item?.thumbnail);
-            const itemUrl = baseUrl ? `${baseUrl}/artykuly/${item?.slug ?? ""}/` : `/artykuly/${item?.slug ?? ""}/`;
+            const itemUrl = baseUrl
+              ? `${baseUrl}/artykuly/${item?.categorySlug ?? ""}/${item?.slug ?? ""}/`
+              : `/artykuly/${item?.categorySlug ?? ""}/${item?.slug ?? ""}/`;
             return (
               <a
                 class="group flex h-full w-full flex-col rounded-2xl border border-[var(--border)] bg-white px-5 pb-8 pt-6 md:px-6 transition-transform hover:scale-[1.02]"

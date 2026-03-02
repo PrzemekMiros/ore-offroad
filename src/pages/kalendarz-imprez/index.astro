@@ -60,16 +60,16 @@ const statusClass = {
         Brak imprez. Dodaj pierwszy wpis w `src/content/imprezy/`.
       </div>
     ) : (
-      <div class="grid gap-10 lg:grid-cols-[260px_minmax(0,1fr)]">
-        <aside class="lg:sticky lg:top-34 lg:self-start">
-          <div class="rounded-2xl border border-black/10 bg-white px-5 py-8">
+      <div class="grid gap-8 lg:grid-cols-[260px_minmax(0,1fr)]">
+        <aside class="lg:sticky lg:top-36 lg:self-start">
+          <div class="rounded-2xl border border-black/10 bg-gray-50 px-5 py-9">
             <p class="mb-4 text-[11px] font-semibold uppercase tracking-[0.2em] text-black/60">Wybierz miesiąc</p>
             <ul class="space-y-2">
               {monthSections.map((section) => (
                 <li>
                   <a
                     href={`#${section.key}`}
-                    class="group flex items-center justify-between rounded-xl border border-gray-300 px-3 py-2 text-sm text-black/70 transition-colors hover:border-black/10 hover:bg-black/[0.03] hover:text-black"
+                    class="group flex items-center justify-between rounded-xl border border-gray-300 px-3 py-2 text-sm text-black/70 bg-white transition-colors hover:border-black/10 hover:bg-black/[0.03] hover:text-black"
                   >
                     <span class="capitalize">{section.monthName}</span>
                     <span class="rounded-full bg-black/5 px-2 py-0.5 text-[10px] text-black/60">{section.events.length}</span>
@@ -82,40 +82,35 @@ const statusClass = {
 
         <div class="space-y-8">
           {monthSections.map((section) => (
-            <section id={section.key} class="scroll-mt-36 rounded-3xl border border-black/10 bg-white p-5 md:p-7">
+            <section id={section.key} class="scroll-mt-36 rounded-2xl border border-black/10 bg-gray-50 px-5 md:p-7 md:pb-0">
               <div class="mb-6 flex items-center justify-between gap-4 border-b border-black/10 pb-4">
-                <h2 class="text-2xl font-semibold capitalize text-black md:text-3xl">{section.monthName}</h2>
-                <p class="text-[11px] uppercase tracking-[0.2em] text-black/55">{section.year}</p>
+                <h2 class="text-xl font-semibold capitalize text-black">{section.monthName}</h2>
+                <p class="text-[11px] uppercase font-semibold tracking-[0.1em] text-black/55">{section.year}</p>
               </div>
 
               <div class="grid">
                 {section.events.map((event) => {
                   const image = resolveEventImage(event.tileImage ?? event.thumbnail);
                   return (
-                    <article class="group rounded-2xl border border-black/10 bg-gradient-to-b from-white to-slate-50 p-4 transition-all hover:shadow-[0_10px_25px_rgba(15,23,42,0.05)] md:p-5 mb-8">
+                    <article class="group rounded-2xl border border-black/10 bg-white p-4 transition-all hover:shadow-[0_10px_25px_rgba(15,23,42,0.05)] md:p-6 mb-8">
                       <div class="grid gap-4 md:grid-cols-[minmax(450px,1fr)_minmax(0,1fr)] md:items-start">
 
                         <div>
-                          <div class="flex items-start justify-between gap-3">
-                            <div class="rounded-xl border border-black/10 bg-white px-3 py-2 text-center">
-                              <p class="text-lg font-semibold leading-none text-black">
+                          <div class="flex">
+                            <div class="rounded-xl border border-black/10 bg-white px-3 pb-1 text-center">
+                              <span class="mr-1 text-[10px] font-semibold leading-none text-black">
                                 {event.dateStart.toLocaleDateString("pl-PL", { day: "2-digit" })}
-                              </p>
-                              <p class="text-[10px] uppercase tracking-[0.16em] text-black/60">
-                                {event.dateStart.toLocaleDateString("pl-PL", { month: "short" })}
-                              </p>
-                            </div>
-                            {event.status ? (
-                              <span class={`inline-flex rounded-full border px-2.5 py-1 text-[10px] font-semibold uppercase tracking-wide ${statusClass[event.status] ?? "bg-neutral-100 text-neutral-700 border-neutral-300/70"}`}>
-                                {event.status}
                               </span>
-                            ) : null}
+                              <span class="text-[10px] uppercase tracking-[0.16em] leading-none text-black/60">
+                                {event.dateStart.toLocaleDateString("pl-PL", { month: "short" })}
+                              </span>
+                            </div>
                           </div>
 
-                          <h3 class="mt-4 text-lg font-semibold leading-snug text-black">{event.title}</h3>
+                          <h3 class="mt-3 text-2xl font-semibold leading-snug text-black">{event.title}</h3>
                           {event.description ? <p class="mt-2 text-sm text-black/65 line-clamp-2">{event.description}</p> : null}
 
-                          <div class="mt-4 grid grid-cols-2 gap-2 text-xs">
+                          <div class="mt-6 grid grid-cols-2 gap-2 text-xs">
                             <div class="rounded-lg border border-black/10 bg-white px-2.5 py-2 text-black/70">
                               <p class="mb-2 text-[10px] uppercase tracking-[0.05em] text-[var(--accent)]">Lokalizacja</p>
                               <p class="font-medium text-black/85">{event.location}</p>
@@ -126,19 +121,19 @@ const statusClass = {
                             </div>
                           </div>
 
-                          <div class="mt-4 flex items-center justify-between gap-3">
+                          <div class="mt-6 flex items-center justify-between gap-3">
+                            <a
+                              href={`/kalendarz-imprez/${event.slug}/`}
+                              class="inline-flex items-center gap-2 text-[11px] font-semibold uppercase tracking-[0.14em] text-[var(--accent)] transition-colors hover:text-black"
+                            >
+                              Szczegóły
+                              <span class="text-[var(--accent)]" aria-hidden="true">+</span>
+                            </a>
                             <p class="text-xs text-black/55">
                               {dayFormatter.format(event.dateStart)}
                               {" - "}
                               {dayFormatter.format(event.dateEnd ?? event.dateStart)}
                             </p>
-                            <a
-                              href={`/kalendarz-imprez/${event.slug}/`}
-                              class="inline-flex items-center gap-2 text-[11px] font-semibold uppercase tracking-[0.14em] text-[var(--accent)] transition-colors hover:text-black"
-                            >
-                              Szczegoly
-                              <span class="text-[var(--accent)]" aria-hidden="true">+</span>
-                            </a>
                           </div>
                         </div>
 
@@ -147,7 +142,7 @@ const statusClass = {
                             <Image
                               src={image}
                               alt={event.title}
-                              class="h-44 w-full object-cover transition-transform duration-500 group-hover:scale-105 md:h-66"
+                              class="h-44 w-full object-cover transition-transform duration-500 group-hover:scale-105 md:h-72"
                               widths={[450, 700, 960]}
                               sizes="(max-width: 900px) 100vw, 450px"
                               loading="lazy"

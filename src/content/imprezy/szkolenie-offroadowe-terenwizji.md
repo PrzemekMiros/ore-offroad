@@ -14,6 +14,6 @@ tileImage: "/content/imprezy/img/szkolenie-offroadowe-terenwizji.jpg"
 
 Zapraszamy na naukę jazdy w terenie!Dla kogo?Szkolenie przeznaczone jest dla każdego posiadacza auta z napędem 4x4.Można
 
-## Zrodlo
+## Źródło
 
 [Zobacz ogloszenie](https://kalendarz4x4.pl/wydarzenie/szkolenie-offroadowe-terenwizji)

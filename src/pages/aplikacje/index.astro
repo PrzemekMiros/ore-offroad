@@ -6,7 +6,7 @@ import BaseLayout from "../../layouts/BaseLayout.astro";
   title="Przydatne aplikacje"
   description="Zestaw praktycznych narzedzi dla offroadu."
 >
-  <section class="pb-20 pt-12">
+  <section class="pt-12">
     <div class="mb-8">
       <p class="mt-3 max-w-2xl text-sm text-[var(--muted)] md:text-base">
         Narzedzia, ktore ulatwiaja planowanie modyfikacji i przygotowanie auta do terenu.
@@ -16,23 +16,56 @@ import BaseLayout from "../../layouts/BaseLayout.astro";
     <div class="grid gap-5 sm:grid-cols-2 lg:grid-cols-3">
       <a
         href="/aplikacje/przelicznik-opon/"
-        class="group rounded-2xl border border-black/10 bg-gradient-to-br from-white via-white to-orange-50 p-5 transition-all hover:-translate-y-0.5 hover:border-[var(--accent)]/40 hover:shadow-[0_12px_28px_rgba(15,23,42,0.08)]"
+        class="group relative overflow-hidden rounded-2xl border border-black/10 bg-white transition-all hover:-translate-y-0.5 hover:border-[var(--accent)]/40 hover:shadow-[0_12px_28px_rgba(15,23,42,0.12)]"
       >
-        <p class="mb-2 text-[10px] font-semibold uppercase tracking-[0.2em] text-[var(--accent)]">Aplikacja 01</p>
-        <h2 class="text-xl font-semibold text-[var(--text)]">Przelicznik opon</h2>
-        <p class="mt-2 text-sm text-[var(--muted)]">Szybkie przeliczenie rozmiaru calowego i metrycznego.</p>
+        <div class="relative h-24 bg-[#d83a35]">
+          <div class="absolute inset-0 bg-[linear-gradient(135deg,rgba(255,255,255,0.2)_0%,rgba(255,255,255,0.2)_25%,transparent_25%,transparent_50%,rgba(255,255,255,0.2)_50%,rgba(255,255,255,0.2)_75%,transparent_75%,transparent_100%)] [background-size:60px_60px] opacity-60"></div>
+        </div>
+        <div class="-mt-6 px-5 pb-6">
+          <div class="relative mb-4 inline-flex h-12 w-12 items-center justify-center rounded-xl bg-white shadow-[0_8px_18px_rgba(15,23,42,0.18)]">
+            <svg viewBox="0 0 24 24" class="h-6 w-6 text-[var(--accent)]" fill="currentColor" aria-hidden="true">
+              <path d="M4 12l7-7 2.1 2.1L8.2 12l4.9 4.9L11 19z" />
+              <path d="M11 12l7-7 2.1 2.1L15.2 12l4.9 4.9L18 19z" />
+            </svg>
+          </div>
+          <p class="text-[10px] font-semibold uppercase tracking-[0.2em] text-[var(--accent)]">Aplikacja 01</p>
+          <h2 class="mt-2 text-xl font-semibold text-[var(--text)]">Przelicznik opon</h2>
+          <p class="mt-2 text-sm text-[var(--muted)]">Szybkie przeliczenie rozmiaru calowego i metrycznego.</p>
+        </div>
       </a>
 
-      <div class="rounded-2xl border border-dashed border-black/20 bg-white/70 p-5">
-        <p class="mb-2 text-[10px] font-semibold uppercase tracking-[0.2em] text-black/50">Wkrotce</p>
-        <h2 class="text-xl font-semibold text-[var(--text)]">Kalkulator przelozen</h2>
-        <p class="mt-2 text-sm text-[var(--muted)]">Planowane narzedzie do porownywania przelozen napedu.</p>
+      <div class="relative overflow-hidden rounded-2xl border border-dashed border-black/20 bg-white">
+        <div class="relative h-24 bg-slate-200">
+          <div class="absolute inset-0 bg-[linear-gradient(135deg,rgba(255,255,255,0.5)_0%,rgba(255,255,255,0.5)_25%,transparent_25%,transparent_50%,rgba(255,255,255,0.5)_50%,rgba(255,255,255,0.5)_75%,transparent_75%,transparent_100%)] [background-size:60px_60px] opacity-70"></div>
+        </div>
+        <div class="-mt-6 px-5 pb-6">
+          <div class="relative mb-4 inline-flex h-12 w-12 items-center justify-center rounded-xl bg-white shadow-[0_6px_14px_rgba(15,23,42,0.1)]">
+            <svg viewBox="0 0 24 24" class="h-6 w-6 text-black/40" fill="currentColor" aria-hidden="true">
+              <path d="M4 12l7-7 2.1 2.1L8.2 12l4.9 4.9L11 19z" />
+              <path d="M11 12l7-7 2.1 2.1L15.2 12l4.9 4.9L18 19z" />
+            </svg>
+          </div>
+          <p class="text-[10px] font-semibold uppercase tracking-[0.2em] text-black/50">Wkrótce</p>
+          <h2 class="mt-2 text-xl font-semibold text-[var(--text)]">Kalkulator przełożen</h2>
+          <p class="mt-2 text-sm text-[var(--muted)]">Planowane narzędzie do porownywania przelozen napedu.</p>
+        </div>
       </div>
 
-      <div class="rounded-2xl border border-dashed border-black/20 bg-white/70 p-5">
-        <p class="mb-2 text-[10px] font-semibold uppercase tracking-[0.2em] text-black/50">Wkrotce</p>
-        <h2 class="text-xl font-semibold text-[var(--text)]">Kalkulator spalania</h2>
-        <p class="mt-2 text-sm text-[var(--muted)]">Planowane narzedzie do analizy spalania na trasie i w terenie.</p>
+      <div class="relative overflow-hidden rounded-2xl border border-dashed border-black/20 bg-white">
+        <div class="relative h-24 bg-slate-200">
+          <div class="absolute inset-0 bg-[linear-gradient(135deg,rgba(255,255,255,0.5)_0%,rgba(255,255,255,0.5)_25%,transparent_25%,transparent_50%,rgba(255,255,255,0.5)_50%,rgba(255,255,255,0.5)_75%,transparent_75%,transparent_100%)] [background-size:60px_60px] opacity-70"></div>
+        </div>
+        <div class="-mt-6 px-5 pb-6">
+          <div class="relative mb-4 inline-flex h-12 w-12 items-center justify-center rounded-xl bg-white shadow-[0_6px_14px_rgba(15,23,42,0.1)]">
+            <svg viewBox="0 0 24 24" class="h-6 w-6 text-black/40" fill="currentColor" aria-hidden="true">
+              <path d="M4 12l7-7 2.1 2.1L8.2 12l4.9 4.9L11 19z" />
+              <path d="M11 12l7-7 2.1 2.1L15.2 12l4.9 4.9L18 19z" />
+            </svg>
+          </div>
+          <p class="text-[10px] font-semibold uppercase tracking-[0.2em] text-black/50">Wkrótce</p>
+          <h2 class="mt-2 text-xl font-semibold text-[var(--text)]">Kalkulator spalania</h2>
+          <p class="mt-2 text-sm text-[var(--muted)]">Planowane narzedzie do analizy spalania na trasie i w terenie.</p>
+        </div>
       </div>
     </div>
   </section>

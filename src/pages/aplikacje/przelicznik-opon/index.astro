@@ -1,6 +1,5 @@
 ---
 import BaseLayout from "../../../layouts/BaseLayout.astro";
-import logo from "../../../assets/images/global/logo.png";
 ---
 
 <BaseLayout
@@ -12,14 +11,13 @@ import logo from "../../../assets/images/global/logo.png";
     <div class="">
       <div class="rounded-2xl border border-black/10 bg-gradient-to-br from-slate-50 via-white to-orange-50 p-5 md:p-8">
         <header class="mb-6 rounded-xl border border-black/10 bg-white/80 p-5 md:p-7">
-          <img src={logo.src} alt="ORE4x4" class="mb-3 h-10 w-auto" />
-          <h1 class="text-2xl font-semibold text-[var(--text)] md:text-3xl">Kalkulator wymiarow opon</h1>
+          <h1 class="text-2xl font-semibold text-[var(--text)] md:text-3xl">Kalkulator wymiarów opon</h1>
           <p class="mt-3 text-sm text-[var(--muted)]">
-            Wybierz wartosci w polach szerokosci, profilu, srednicy lub obwodu. Kalkulator synchronizuje oba formaty.
+            Wybierz wartości w polach szerokosci, profilu, średnicy lub obwodu. Kalkulator synchronizuje oba formaty.
           </p>
         </header>
 
-        <div class="grid gap-5 md:grid-cols-2">
+        <div class="grid gap-5 md:grid-cols-3">
           <fieldset class="rounded-xl border border-black/10 bg-white/80 p-4 md:p-6">
             <legend class="rounded-lg border border-black/10 bg-white px-3 py-1 text-sm font-semibold">Opona calowa</legend>
 
@@ -71,6 +69,7 @@ import logo from "../../../assets/images/global/logo.png";
           </fieldset>
         </div>
 
+        <div class="grid gap-5 md:grid-cols-3">
         <div class="mt-6 rounded-xl border border-black/10 bg-white/80 p-4 md:p-6">
           <table class="w-full border-collapse text-sm">
             <tbody>
@@ -92,6 +91,7 @@ import logo from "../../../assets/images/global/logo.png";
               </tr>
             </tbody>
           </table>
+        </div>
         </div>
       </div>
     </div>

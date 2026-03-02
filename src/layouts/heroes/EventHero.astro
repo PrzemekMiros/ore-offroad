@@ -32,7 +32,7 @@ const currentUrl = baseUrl ? new URL(url.pathname, baseUrl).toString() : url.pat
           <meta itemprop="position" content="2" />
         </span>
       </nav>
-      <h1 class="text-3xl text-black sm:text-3xl md:text-4xl lg:text-5xl font-semibold leading-[1.1] tracking-tight max-w-3xl">
+      <h1 class="text-3xl text-black sm:text-3xl md:text-4xl lg:text-5xl font-semibold leading-[1.1] tracking-tight max-w-5xl">
         {title}
       </h1>
     </div>
@@ -41,7 +41,7 @@ const currentUrl = baseUrl ? new URL(url.pathname, baseUrl).toString() : url.pat
 
   <section class="relative py-5 border-b border-gray-200">
     {meta ? (
-      <p class="text-xs font-semibold uppercase tracking-[0.2em] text-[var(--accent)]">{meta}</p>
+      <p class="text-[10px] font-semibold uppercase tracking-[0.2em] text-[var(--accent)]">{meta}</p>
     ) : (
       <div class="flex flex-wrap items-center gap-x-6 gap-y-2 md:mb-0">
         <span class="text-[10px] mt-1 md:mt-0 text-gray-400 uppercase font-semibold tracking-tighter">Średnia opinia w </span>
