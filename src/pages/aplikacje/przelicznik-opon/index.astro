@@ -1,0 +1,259 @@
+---
+import BaseLayout from "../../../layouts/BaseLayout.astro";
+import logo from "../../../assets/images/global/logo.png";
+---
+
+<BaseLayout
+  title="Przelicznik opon"
+  description="Kalkulator wymiarow opon calowych i metrycznych."
+  showHero={false}
+>
+  <section class="pt-12 mt-24">
+    <div class="">
+      <div class="rounded-2xl border border-black/10 bg-gradient-to-br from-slate-50 via-white to-orange-50 p-5 md:p-8">
+        <header class="mb-6 rounded-xl border border-black/10 bg-white/80 p-5 md:p-7">
+          <img src={logo.src} alt="ORE4x4" class="mb-3 h-10 w-auto" />
+          <h1 class="text-2xl font-semibold text-[var(--text)] md:text-3xl">Kalkulator wymiarow opon</h1>
+          <p class="mt-3 text-sm text-[var(--muted)]">
+            Wybierz wartosci w polach szerokosci, profilu, srednicy lub obwodu. Kalkulator synchronizuje oba formaty.
+          </p>
+        </header>
+
+        <div class="grid gap-5 md:grid-cols-2">
+          <fieldset class="rounded-xl border border-black/10 bg-white/80 p-4 md:p-6">
+            <legend class="rounded-lg border border-black/10 bg-white px-3 py-1 text-sm font-semibold">Opona calowa</legend>
+
+            <label class="mb-1 mt-4 block text-xs font-semibold uppercase tracking-[0.12em] text-black/70" for="height-in">Wysokosc opony [cale]</label>
+            <div class="number-input">
+              <button type="button" onclick="stepInput('height-in', -0.5)">-</button>
+              <input id="height-in" type="number" value="30" step="0.5" min="24" max="45" />
+              <button type="button" onclick="stepInput('height-in', 0.5)">+</button>
+            </div>
+
+            <label class="mb-1 mt-4 block text-xs font-semibold uppercase tracking-[0.12em] text-black/70" for="width-in">Szerokosc opony [cale]</label>
+            <div class="number-input">
+              <button type="button" onclick="stepInput('width-in', -0.5)">-</button>
+              <input id="width-in" type="number" value="12.5" step="0.5" min="5" max="16" />
+              <button type="button" onclick="stepInput('width-in', 0.5)">+</button>
+            </div>
+
+            <label class="mb-1 mt-4 block text-xs font-semibold uppercase tracking-[0.12em] text-black/70" for="rim-in">Srednica osadzenia [cale]</label>
+            <div class="number-input">
+              <button type="button" onclick="stepInput('rim-in', -0.5)">-</button>
+              <input id="rim-in" type="number" value="15" step="0.5" min="12" max="45" />
+              <button type="button" onclick="stepInput('rim-in', 0.5)">+</button>
+            </div>
+          </fieldset>
+
+          <fieldset class="rounded-xl border border-black/10 bg-white/80 p-4 md:p-6">
+            <legend class="rounded-lg border border-black/10 bg-white px-3 py-1 text-sm font-semibold">Opona metryczna</legend>
+
+            <label class="mb-1 mt-4 block text-xs font-semibold uppercase tracking-[0.12em] text-black/70" for="width-mm">Szerokosc opony [mm]</label>
+            <div class="number-input">
+              <button type="button" onclick="stepInput('width-mm', -5)">-</button>
+              <input id="width-mm" type="number" value="315" step="5" min="150" max="365" />
+              <button type="button" onclick="stepInput('width-mm', 5)">+</button>
+            </div>
+
+            <label class="mb-1 mt-4 block text-xs font-semibold uppercase tracking-[0.12em] text-black/70" for="aspect-mm">Profil opony [%]</label>
+            <div class="number-input">
+              <button type="button" onclick="stepInput('aspect-mm', -1)">-</button>
+              <input id="aspect-mm" type="number" value="75" step="1" min="30" max="100" />
+              <button type="button" onclick="stepInput('aspect-mm', 1)">+</button>
+            </div>
+
+            <label class="mb-1 mt-4 block text-xs font-semibold uppercase tracking-[0.12em] text-black/70" for="rim-mm">Srednica osadzenia [cale]</label>
+            <div class="number-input">
+              <button type="button" onclick="stepInput('rim-mm', -0.5)">-</button>
+              <input id="rim-mm" type="number" value="15" step="0.5" min="12" max="44" />
+              <button type="button" onclick="stepInput('rim-mm', 0.5)">+</button>
+            </div>
+          </fieldset>
+        </div>
+
+        <div class="mt-6 rounded-xl border border-black/10 bg-white/80 p-4 md:p-6">
+          <table class="w-full border-collapse text-sm">
+            <tbody>
+              <tr class="border-b border-black/10">
+                <td class="py-2 font-semibold text-[var(--text)]">Szerokosc opony [mm]</td>
+                <td class="py-2 text-right"><input type="text" id="out-width" readonly class="result-input" /></td>
+              </tr>
+              <tr class="border-b border-black/10">
+                <td class="py-2 font-semibold text-[var(--text)]">Wysokosc profilu [mm]</td>
+                <td class="py-2 text-right"><input type="text" id="out-profile" readonly class="result-input" /></td>
+              </tr>
+              <tr class="border-b border-black/10">
+                <td class="py-2 font-semibold text-[var(--text)]">Srednica zewnetrzna [mm]</td>
+                <td class="py-2 text-right"><input type="text" id="out-diameter" readonly class="result-input" /></td>
+              </tr>
+              <tr>
+                <td class="py-2 font-semibold text-[var(--text)]">Obwod opony [mm]</td>
+                <td class="py-2 text-right"><input type="text" id="out-circumference" readonly class="result-input" /></td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <style>
+    .number-input {
+      display: inline-flex;
+      align-items: center;
+      overflow: hidden;
+      border: 1px solid rgba(15, 23, 42, 0.2);
+      border-radius: 8px;
+      background: #fff;
+    }
+    .number-input input[type="number"] {
+      width: 84px;
+      border: 0;
+      outline: none;
+      text-align: center;
+      padding: 8px 0;
+      font-size: 14px;
+      appearance: textfield;
+      background: #fff;
+    }
+    .number-input input::-webkit-outer-spin-button,
+    .number-input input::-webkit-inner-spin-button {
+      -webkit-appearance: none;
+      margin: 0;
+    }
+    .number-input button {
+      width: 32px;
+      height: 34px;
+      border: 0;
+      cursor: pointer;
+      color: #fff;
+      background: #0f172a;
+      transition: background 0.2s;
+    }
+    .number-input button:hover {
+      background: var(--accent);
+    }
+    .result-input {
+      width: 108px;
+      border: 1px solid rgba(15, 23, 42, 0.2);
+      border-radius: 6px;
+      background: #fff;
+      padding: 7px 8px;
+      text-align: center;
+      font-weight: 600;
+      color: #0f172a;
+    }
+  </style>
+
+  <script>
+    let blockSync = false;
+
+    function roundToStep(value, step) {
+      return Math.round(value / step) * step;
+    }
+
+    function updateInchCalc(triggerSync = true) {
+      const heightIn = parseFloat(document.getElementById("height-in").value);
+      const widthIn = parseFloat(document.getElementById("width-in").value);
+      const rimIn = parseFloat(document.getElementById("rim-in").value);
+
+      if (triggerSync && !blockSync) {
+        blockSync = true;
+        syncFromInches(heightIn, widthIn, rimIn);
+        blockSync = false;
+      }
+    }
+
+    function updateMetricCalc(triggerSync = true) {
+      const widthMM = parseFloat(document.getElementById("width-mm").value);
+      const aspect = parseFloat(document.getElementById("aspect-mm").value);
+      const rimIn = parseFloat(document.getElementById("rim-mm").value);
+
+      const sidewallMM = widthMM * (aspect / 100);
+      const diameterMM = rimIn * 25.4 + 2 * sidewallMM;
+      const circumferenceMM = diameterMM * Math.PI;
+
+      document.getElementById("out-width").value = widthMM.toFixed(0);
+      document.getElementById("out-profile").value = sidewallMM.toFixed(0);
+      document.getElementById("out-diameter").value = diameterMM.toFixed(0);
+      document.getElementById("out-circumference").value = circumferenceMM.toFixed(0);
+
+      if (triggerSync && !blockSync) {
+        blockSync = true;
+        syncFromMetric(widthMM, aspect, rimIn);
+        blockSync = false;
+      }
+    }
+
+    function syncFromInches(heightIn, widthIn, rimIn) {
+      const totalSidewallIn = (heightIn - rimIn) / 2;
+      let widthMM = widthIn * 25.4;
+      let aspect = (totalSidewallIn * 25.4) / widthMM * 100;
+
+      const widthField = document.getElementById("width-mm");
+      const aspectField = document.getElementById("aspect-mm");
+      const rimField = document.getElementById("rim-mm");
+
+      widthMM = roundToStep(widthMM, parseFloat(widthField.step));
+      aspect = roundToStep(aspect, parseFloat(aspectField.step));
+      rimIn = roundToStep(rimIn, parseFloat(rimField.step));
+
+      widthField.value = widthMM.toFixed(0);
+      aspectField.value = aspect.toFixed(0);
+      rimField.value = rimIn.toFixed(2);
+
+      updateMetricCalc(false);
+    }
+
+    function syncFromMetric(widthMM, aspect, rimIn) {
+      const sidewallMM = widthMM * (aspect / 100);
+      const heightMM = 2 * sidewallMM + rimIn * 25.4;
+      let heightIn = heightMM / 25.4;
+      let widthIn = widthMM / 25.4;
+
+      const heightField = document.getElementById("height-in");
+      const widthField = document.getElementById("width-in");
+      const rimField = document.getElementById("rim-in");
+
+      heightIn = roundToStep(heightIn, parseFloat(heightField.step));
+      widthIn = roundToStep(widthIn, parseFloat(widthField.step));
+      rimIn = roundToStep(rimIn, parseFloat(rimField.step));
+
+      heightField.value = heightIn.toFixed(2);
+      widthField.value = widthIn.toFixed(2);
+      rimField.value = rimIn.toFixed(2);
+
+      updateResultsFromMM(widthMM, aspect, rimIn);
+    }
+
+    function updateResultsFromMM(widthMM, aspect, rimIn) {
+      const sidewallMM = widthMM * (aspect / 100);
+      const diameterMM = rimIn * 25.4 + 2 * sidewallMM;
+      const circumferenceMM = diameterMM * Math.PI;
+
+      document.getElementById("out-width").value = widthMM.toFixed(0);
+      document.getElementById("out-profile").value = sidewallMM.toFixed(0);
+      document.getElementById("out-diameter").value = diameterMM.toFixed(0);
+      document.getElementById("out-circumference").value = circumferenceMM.toFixed(0);
+    }
+
+    function stepInput(id, step) {
+      const input = document.getElementById(id);
+      const value = parseFloat(input.value) || 0;
+      const newValue = value + step;
+      input.value = newValue.toFixed(2).replace(/\.00$/, "");
+      input.dispatchEvent(new Event("input"));
+    }
+
+    ["height-in", "width-in", "rim-in"].forEach((id) =>
+      document.getElementById(id).addEventListener("input", () => updateInchCalc())
+    );
+
+    ["width-mm", "aspect-mm", "rim-mm"].forEach((id) =>
+      document.getElementById(id).addEventListener("input", () => updateMetricCalc())
+    );
+
+    updateInchCalc();
+    updateMetricCalc();
+  </script>
+</BaseLayout>

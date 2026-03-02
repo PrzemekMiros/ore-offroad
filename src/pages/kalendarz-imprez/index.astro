@@ -1,0 +1,198 @@
+---
+import { Image } from "astro:assets";
+import { getCollection } from "astro:content";
+import BaseLayout from "../../layouts/BaseLayout.astro";
+
+const imageEntries = import.meta.glob("/src/content/imprezy/img/**/*", { eager: true });
+const resolveEventImage = (file) => {
+  if (!file) return null;
+  let normalized = file;
+  if (normalized.startsWith("/content/")) {
+    normalized = `/src${normalized}`;
+  }
+  const entry = imageEntries[normalized];
+  return entry?.default ?? null;
+};
+
+const events = (await getCollection("imprezy"))
+  .map((entry) => ({
+    slug: entry.slug,
+    ...entry.data,
+  }))
+  .sort((a, b) => a.dateStart.getTime() - b.dateStart.getTime());
+
+const monthFormatter = new Intl.DateTimeFormat("pl-PL", { month: "long" });
+const dayFormatter = new Intl.DateTimeFormat("pl-PL", { day: "2-digit", month: "short" });
+
+const grouped = events.reduce((acc, event) => {
+  const key = `${event.dateStart.getFullYear()}-${String(event.dateStart.getMonth() + 1).padStart(2, "0")}`;
+  if (!acc[key]) acc[key] = [];
+  acc[key].push(event);
+  return acc;
+}, {});
+
+const monthSections = Object.entries(grouped)
+  .sort(([a], [b]) => a.localeCompare(b))
+  .map(([key, monthEvents]) => {
+    const [year, month] = key.split("-");
+    const monthName = monthFormatter.format(new Date(`${year}-${month}-01`));
+    return { key, monthName, year, events: monthEvents };
+  });
+
+const statusClass = {
+  "zapisy otwarte": "bg-emerald-50 text-emerald-700 border-emerald-300/60",
+  "ostatnie miejsca": "bg-amber-50 text-amber-700 border-amber-300/60",
+  potwierdzony: "bg-sky-50 text-sky-700 border-sky-300/60",
+  "w przygotowaniu": "bg-neutral-100 text-neutral-700 border-neutral-300/70",
+  wkrotce: "bg-orange-50 text-orange-700 border-orange-300/60",
+};
+---
+
+<BaseLayout
+  title="Kalendarz imprez"
+  description="Terminy wydarzen off-roadowych i motorsportowych."
+  heroMeta={events.length ? `${events.length} imprez` : "Brak imprez"}
+>
+
+  <section class="py-12 md:pb-24">
+    {!events.length ? (
+      <div class="rounded-2xl border border-dashed border-black/20 bg-white p-7 text-sm text-black/70">
+        Brak imprez. Dodaj pierwszy wpis w `src/content/imprezy/`.
+      </div>
+    ) : (
+      <div class="grid gap-10 lg:grid-cols-[260px_minmax(0,1fr)]">
+        <aside class="lg:sticky lg:top-34 lg:self-start">
+          <div class="rounded-2xl border border-black/10 bg-white px-5 py-8">
+            <p class="mb-4 text-[11px] font-semibold uppercase tracking-[0.2em] text-black/60">Wybierz miesiąc</p>
+            <ul class="space-y-2">
+              {monthSections.map((section) => (
+                <li>
+                  <a
+                    href={`#${section.key}`}
+                    class="group flex items-center justify-between rounded-xl border border-gray-300 px-3 py-2 text-sm text-black/70 transition-colors hover:border-black/10 hover:bg-black/[0.03] hover:text-black"
+                  >
+                    <span class="capitalize">{section.monthName}</span>
+                    <span class="rounded-full bg-black/5 px-2 py-0.5 text-[10px] text-black/60">{section.events.length}</span>
+                  </a>
+                </li>
+              ))}
+            </ul>
+          </div>
+        </aside>
+
+        <div class="space-y-8">
+          {monthSections.map((section) => (
+            <section id={section.key} class="scroll-mt-36 rounded-3xl border border-black/10 bg-white p-5 md:p-7">
+              <div class="mb-6 flex items-center justify-between gap-4 border-b border-black/10 pb-4">
+                <h2 class="text-2xl font-semibold capitalize text-black md:text-3xl">{section.monthName}</h2>
+                <p class="text-[11px] uppercase tracking-[0.2em] text-black/55">{section.year}</p>
+              </div>
+
+              <div class="grid">
+                {section.events.map((event) => {
+                  const image = resolveEventImage(event.tileImage ?? event.thumbnail);
+                  return (
+                    <article class="group rounded-2xl border border-black/10 bg-gradient-to-b from-white to-slate-50 p-4 transition-all hover:shadow-[0_10px_25px_rgba(15,23,42,0.05)] md:p-5 mb-8">
+                      <div class="grid gap-4 md:grid-cols-[minmax(450px,1fr)_minmax(0,1fr)] md:items-start">
+
+                        <div>
+                          <div class="flex items-start justify-between gap-3">
+                            <div class="rounded-xl border border-black/10 bg-white px-3 py-2 text-center">
+                              <p class="text-lg font-semibold leading-none text-black">
+                                {event.dateStart.toLocaleDateString("pl-PL", { day: "2-digit" })}
+                              </p>
+                              <p class="text-[10px] uppercase tracking-[0.16em] text-black/60">
+                                {event.dateStart.toLocaleDateString("pl-PL", { month: "short" })}
+                              </p>
+                            </div>
+                            {event.status ? (
+                              <span class={`inline-flex rounded-full border px-2.5 py-1 text-[10px] font-semibold uppercase tracking-wide ${statusClass[event.status] ?? "bg-neutral-100 text-neutral-700 border-neutral-300/70"}`}>
+                                {event.status}
+                              </span>
+                            ) : null}
+                          </div>
+
+                          <h3 class="mt-4 text-lg font-semibold leading-snug text-black">{event.title}</h3>
+                          {event.description ? <p class="mt-2 text-sm text-black/65 line-clamp-2">{event.description}</p> : null}
+
+                          <div class="mt-4 grid grid-cols-2 gap-2 text-xs">
+                            <div class="rounded-lg border border-black/10 bg-white px-2.5 py-2 text-black/70">
+                              <p class="mb-2 text-[10px] uppercase tracking-[0.05em] text-[var(--accent)]">Lokalizacja</p>
+                              <p class="font-medium text-black/85">{event.location}</p>
+                            </div>
+                            <div class="rounded-lg border border-black/10 bg-white px-2.5 py-2 text-black/70">
+                              <p class="mb-2 text-[10px] uppercase tracking-[0.05em] text-[var(--accent)]">Typ</p>
+                              <p class="font-medium text-black/85">{event.type ?? "impreza"}</p>
+                            </div>
+                          </div>
+
+                          <div class="mt-4 flex items-center justify-between gap-3">
+                            <p class="text-xs text-black/55">
+                              {dayFormatter.format(event.dateStart)}
+                              {" - "}
+                              {dayFormatter.format(event.dateEnd ?? event.dateStart)}
+                            </p>
+                            <a
+                              href={`/kalendarz-imprez/${event.slug}/`}
+                              class="inline-flex items-center gap-2 text-[11px] font-semibold uppercase tracking-[0.14em] text-[var(--accent)] transition-colors hover:text-black"
+                            >
+                              Szczegoly
+                              <span class="text-[var(--accent)]" aria-hidden="true">+</span>
+                            </a>
+                          </div>
+                        </div>
+
+                        <div class="overflow-hidden rounded-xl border border-black/10 bg-white">
+                          {image ? (
+                            <Image
+                              src={image}
+                              alt={event.title}
+                              class="h-44 w-full object-cover transition-transform duration-500 group-hover:scale-105 md:h-66"
+                              widths={[450, 700, 960]}
+                              sizes="(max-width: 900px) 100vw, 450px"
+                              loading="lazy"
+                            />
+                          ) : (
+                            <div class="grid h-44 w-full place-items-center text-[10px] uppercase tracking-[0.16em] text-black/45 md:h-full">
+                              Brak zdjecia
+                            </div>
+                          )}
+                        </div>
+
+                      </div>
+                    </article>
+                  );
+                })}
+              </div>
+            </section>
+          ))}
+        </div>
+      </div>
+    )}
+  </section>
+  <script>
+    const initSmoothAnchors = () => {
+      if (window.__kalendarzSmoothScrollInit) return;
+      window.__kalendarzSmoothScrollInit = true;
+
+      document.addEventListener("click", (event) => {
+        const link = event.target.closest('a[href^="#"]');
+        if (!link) return;
+
+        const targetId = link.getAttribute("href");
+        if (!targetId || targetId === "#") return;
+        const target = document.querySelector(targetId);
+        if (!target) return;
+
+        const prefersReducedMotion = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
+        event.preventDefault();
+        target.scrollIntoView({ behavior: prefersReducedMotion ? "auto" : "smooth", block: "start" });
+        history.replaceState(null, "", targetId);
+      });
+    };
+
+    initSmoothAnchors();
+    document.addEventListener("astro:page-load", initSmoothAnchors);
+    document.addEventListener("astro:after-swap", initSmoothAnchors);
+  </script>
+</BaseLayout>

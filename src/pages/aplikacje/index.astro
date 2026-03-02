@@ -1,0 +1,39 @@
+---
+import BaseLayout from "../../layouts/BaseLayout.astro";
+---
+
+<BaseLayout
+  title="Przydatne aplikacje"
+  description="Zestaw praktycznych narzedzi dla offroadu."
+>
+  <section class="pb-20 pt-12">
+    <div class="mb-8">
+      <p class="mt-3 max-w-2xl text-sm text-[var(--muted)] md:text-base">
+        Narzedzia, ktore ulatwiaja planowanie modyfikacji i przygotowanie auta do terenu.
+      </p>
+    </div>
+
+    <div class="grid gap-5 sm:grid-cols-2 lg:grid-cols-3">
+      <a
+        href="/aplikacje/przelicznik-opon/"
+        class="group rounded-2xl border border-black/10 bg-gradient-to-br from-white via-white to-orange-50 p-5 transition-all hover:-translate-y-0.5 hover:border-[var(--accent)]/40 hover:shadow-[0_12px_28px_rgba(15,23,42,0.08)]"
+      >
+        <p class="mb-2 text-[10px] font-semibold uppercase tracking-[0.2em] text-[var(--accent)]">Aplikacja 01</p>
+        <h2 class="text-xl font-semibold text-[var(--text)]">Przelicznik opon</h2>
+        <p class="mt-2 text-sm text-[var(--muted)]">Szybkie przeliczenie rozmiaru calowego i metrycznego.</p>
+      </a>
+
+      <div class="rounded-2xl border border-dashed border-black/20 bg-white/70 p-5">
+        <p class="mb-2 text-[10px] font-semibold uppercase tracking-[0.2em] text-black/50">Wkrotce</p>
+        <h2 class="text-xl font-semibold text-[var(--text)]">Kalkulator przelozen</h2>
+        <p class="mt-2 text-sm text-[var(--muted)]">Planowane narzedzie do porownywania przelozen napedu.</p>
+      </div>
+
+      <div class="rounded-2xl border border-dashed border-black/20 bg-white/70 p-5">
+        <p class="mb-2 text-[10px] font-semibold uppercase tracking-[0.2em] text-black/50">Wkrotce</p>
+        <h2 class="text-xl font-semibold text-[var(--text)]">Kalkulator spalania</h2>
+        <p class="mt-2 text-sm text-[var(--muted)]">Planowane narzedzie do analizy spalania na trasie i w terenie.</p>
+      </div>
+    </div>
+  </section>
+</BaseLayout>

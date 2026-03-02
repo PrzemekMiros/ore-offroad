@@ -1,0 +1,17 @@
+---
+import { Image } from "astro:assets";
+import baner from "../../assets/images/advertise/ad-desert.png";
+---
+
+<div class="hidden md:block">
+  <div class="relative overflow-hidden rounded-md">
+  <Image
+    src={baner}
+    alt="Baner strony"
+    class="w-full h-auto"
+    widths={[640, 960, 1280, 1600]}
+    sizes="(max-width: 1280px) 100vw, 1280px"
+    loading="lazy"
+  />
+  </div>
+</div>

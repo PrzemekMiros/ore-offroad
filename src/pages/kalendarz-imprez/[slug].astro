@@ -1,0 +1,116 @@
+---
+import { Image } from "astro:assets";
+import { getCollection, render } from "astro:content";
+import BaseLayout from "../../layouts/BaseLayout.astro";
+import EventHero from "../../layouts/heroes/EventHero.astro";
+
+export const prerender = true;
+
+export async function getStaticPaths() {
+  const events = await getCollection("imprezy");
+  return events.map((event) => ({
+    params: { slug: event.slug },
+    props: { event },
+  }));
+}
+
+const imageEntries = import.meta.glob("/src/content/imprezy/img/**/*", { eager: true });
+const resolveEventImage = (file) => {
+  if (!file) return null;
+  let normalized = file;
+  if (normalized.startsWith("/content/")) {
+    normalized = `/src${normalized}`;
+  }
+  const entry = imageEntries[normalized];
+  return entry?.default ?? null;
+};
+
+const { event } = Astro.props;
+const { Content } = await render(event);
+const data = event.data;
+const coverImage = resolveEventImage(data.tileImage ?? data.thumbnail);
+
+const formatDate = (date) =>
+  date.toLocaleDateString("pl-PL", {
+    day: "2-digit",
+    month: "long",
+    year: "numeric",
+  });
+const eventMeta = `${formatDate(data.dateStart)} - ${formatDate(data.dateEnd ?? data.dateStart)} | ${data.location}`;
+---
+
+<BaseLayout
+  title={data.title}
+  description={data.description}
+  showHero={false}
+  robots={data.robots}
+>
+  <EventHero title={data.title} lead={data.description} meta={eventMeta} />
+
+  <section class="pb-8 pt-12">
+
+    <div class="rounded-3xl border border-black/10 bg-gradient-to-br from-orange-50 via-white to-slate-50 p-6 md:p-10">
+      <div class="flex flex-wrap items-center gap-2">
+        {data.status ? (
+          <span class="rounded-full border border-black/20 bg-white px-3 py-1 text-[10px] font-semibold uppercase tracking-wide text-black">
+            {data.status}
+          </span>
+        ) : null}
+        {data.type ? (
+          <span class="rounded-full border border-black/20 bg-white px-3 py-1 text-[10px] font-semibold uppercase tracking-wide text-black">
+            {data.type}
+          </span>
+        ) : null}
+      </div>
+
+      <div class="mt-2 grid gap-3 sm:grid-cols-2 lg:grid-cols-4">
+        <div class="rounded-2xl border border-black/10 bg-white px-4 py-3">
+          <p class="text-[10px] uppercase tracking-[0.15em] text-black/45">Data startu</p>
+          <p class="mt-1 text-sm font-semibold text-black">{formatDate(data.dateStart)}</p>
+        </div>
+        <div class="rounded-2xl border border-black/10 bg-white px-4 py-3">
+          <p class="text-[10px] uppercase tracking-[0.15em] text-black/45">Data zakonczenia</p>
+          <p class="mt-1 text-sm font-semibold text-black">{formatDate(data.dateEnd ?? data.dateStart)}</p>
+        </div>
+        <div class="rounded-2xl border border-black/10 bg-white px-4 py-3">
+          <p class="text-[10px] uppercase tracking-[0.15em] text-black/45">Lokalizacja</p>
+          <p class="mt-1 text-sm font-semibold text-black">{data.location}</p>
+        </div>
+        <div class="rounded-2xl border border-black/10 bg-white px-4 py-3">
+          <p class="text-[10px] uppercase tracking-[0.15em] text-black/45">Organizator</p>
+          <p class="mt-1 text-sm font-semibold text-black">{data.organizer ?? "Do uzupelnienia"}</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <article class="grid gap-6 md:grid-cols-2 pb-12">
+
+    <div
+      class="space-y-6 text-[16px] leading-relaxed text-[var(--text)] sm:text-[17px] sm:leading-relaxed 
+    [&>a]:underline [&>a]:decoration-[var(--accent)] [&>a]:underline-offset-4 [&>a]:font-medium hover:[&>a]:text-[var(--accent)]
+    [&>blockquote]:border-l-4 [&>blockquote]:border-[var(--accent)] [&>blockquote]:pl-6 [&>blockquote]:italic [&>blockquote]:text-[var(--muted)] 
+    [&>h2]:mt-10 [&>h2]:mb-4 [&>h2]:text-2xl [&>h2]:font-semibold [&>h2]:tracking-tight [&>h2]:text-[var(--text)] [&>h2]:scroll-mt-[144px]
+    [&>h3]:mt-7 [&>h3]:mb-3 [&>h3]:text-xl [&>h3]:font-semibold [&>h3]:text-[var(--text)] 
+    [&>hr]:my-8 [&>hr]:border-[var(--border)] 
+    [&>p]:mb-5 [&>p]:last:mb-0"
+    >
+      <Content />
+    </div>
+    <div>
+    {coverImage ? (
+      <div class="sticky top-38 mb-8 mt-10 overflow-hidden rounded-2xl border border-black/10">
+        <Image
+          src={coverImage}
+          alt={data.title}
+          class="h-[260px] w-full object-cover md:h-[420px]"
+          widths={[800, 1200, 1600]}
+          sizes="100vw"
+          loading="eager"
+        />
+      </div>
+    ) : null}
+    </div>
+
+  </article>
+</BaseLayout>

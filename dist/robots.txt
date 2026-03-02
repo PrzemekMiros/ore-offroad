@@ -1,0 +1,3 @@
+User-agent: *
+Allow: /
+Sitemap: https://zdrowiebezpaniki.pl/sitemap-index.xml

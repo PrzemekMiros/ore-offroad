@@ -1,0 +1,181 @@
+﻿﻿---
+import { Image } from "astro:assets";
+import adImage from "../../assets/images/advertise/ad-2.jpg";
+import { slugifyTitle } from "../../lib/slugifyTitle";
+
+const TARGET_CATEGORY = "poradniki i technika jazdy";
+const TARGET_CATEGORY_SLUGS = ["poradniki-i-technika-jazdy"];
+const imageEntries = import.meta.glob("/src/content/artykuly/img/**/*", { eager: true });
+
+const resolveArticleImage = (path) => {
+  if (!path) return null;
+  let normalized = path;
+  if (normalized.startsWith("/content/posts/img/")) {
+    const relativePath = normalized.slice("/content/posts/img/".length);
+    normalized = `/src/content/artykuly/img/${relativePath}`;
+  } else if (normalized.startsWith("/content/")) {
+    normalized = `/src${normalized}`;
+  }
+  const entry = imageEntries[normalized];
+  return entry?.default ?? null;
+};
+
+const entries = import.meta.glob("../../content/artykuly/**/*.md", { eager: true });
+const normalizeCategories = (category) =>
+  Array.isArray(category) ? category : category ? [category] : [];
+const getSlugPathFromFile = (file) =>
+  file.replace(/^.*content\/artykuly\//, "").replace(/\.md$/, "");
+const getCategorySlug = (frontmatter, slugPath) => {
+  const parts = slugPath.split("/");
+  if (parts.length > 1) return parts[0];
+  const categoryValue = Array.isArray(frontmatter?.category)
+    ? frontmatter.category[0]
+    : frontmatter?.category;
+  return categoryValue ? slugifyTitle(categoryValue) : "artykuly";
+};
+const getArticleSlug = (slugPath) => {
+  const parts = slugPath.split("/");
+  return parts.length > 1 ? parts.slice(1).join("/") : slugPath;
+};
+
+const posts = Object.entries(entries)
+  .map(([file, entry]) => {
+    const slugPath = getSlugPathFromFile(file);
+    const categorySlug = getCategorySlug(entry.frontmatter ?? {}, slugPath);
+    const slug = getArticleSlug(slugPath);
+    const date = entry.frontmatter?.date ? new Date(entry.frontmatter.date) : null;
+    return {
+      slug,
+      categorySlug,
+      ...entry.frontmatter,
+      date,
+    };
+  })
+  .filter((post) =>
+    normalizeCategories(post.category).some(
+      (category) => TARGET_CATEGORY_SLUGS.includes(slugifyTitle(category))
+    )
+  )
+  .sort((a, b) => {
+    const aTime = a.date ? a.date.getTime() : 0;
+    const bTime = b.date ? b.date.getTime() : 0;
+    return bTime - aTime;
+  })
+  .slice(0, 9);
+
+const featured = posts[0];
+const topGrid = posts.slice(1, 3);
+const bottomRow = posts.slice(3, 5);
+const getPostUrl = (post) => `/artykuly/${post.categorySlug}/${post.slug}/`;
+---
+
+<div class="relative pb-20 pt-18">
+  <div class="absolute inset-y-0 left-1/2 w-screen -translate-x-1/2 overflow-hidden -z-1 bg-[var(--surface-muted)]"></div>
+
+  <div class="relative mb-8 flex items-center border-b border-black/20 pb-4 dark:border-white/20">
+  <div class="absolute -left-4 h-10 w-10 rounded-sm bg-[var(--accent)]"></div>
+  
+    <h2 class="z-9 text-2xl font-semibold uppercase text-[var(--text)]">{TARGET_CATEGORY}</h2>
+</div>
+
+  <div class="flex flex-col lg:flex-row gap-6">
+    <div class="flex-1">
+      {posts.length ? (
+        <div class="flex flex-col gap-6">
+          <div class="grid grid-cols-1 lg:grid-cols-4 gap-6">
+            {featured ? (
+              <a class="lg:col-span-2 relative group min-h-[260px] cursor-pointer overflow-hidden rounded-md ring-1 ring-black/10 dark:ring-white/10" href={getPostUrl(featured)}>
+                {resolveArticleImage(featured.tileImage ?? featured.thumbnail) ? (
+                  <Image
+                    src={resolveArticleImage(featured.tileImage ?? featured.thumbnail)}
+                    alt={featured.title ?? featured.slug}
+                    class="w-full h-full object-cover transition-transform duration-700 group-hover:scale-110"
+                    widths={[480, 768, 960, 1280]}
+                    sizes="(max-width: 768px) 100vw, 50vw"
+                    loading="lazy"
+                  />
+                ) : (
+                  <div class="h-full w-full bg-neutral-300 dark:bg-neutral-700"></div>
+                )}
+                <div class="absolute inset-0 bg-gradient-to-t from-black/85 via-black/25 to-transparent dark:from-black/90 dark:via-black/35"></div>
+                <div class="absolute bottom-0 left-0 p-8 text-white">
+                  <span class="mb-3 inline-block bg-[var(--accent)] px-2 py-1 text-[10px] font-semibold uppercase text-white">Najnowszy</span>
+                  <h3 class="text-3xl font-semibold leading-tight mb-2 line-clamp-3">{featured.title ?? featured.slug}</h3>
+                  {featured.description ? (
+                    <p class="text-sm text-gray-300 opacity-80 group-hover:opacity-100 transition-opacity duration-300 line-clamp-2">
+                      {featured.description}
+                    </p>
+                  ) : null}
+                </div>
+              </a>
+            ) : null}
+
+            <div class="grid grid-cols-1 gap-6 lg:col-span-2">
+              {topGrid.map((post) => (
+                <a class="relative group h-[200px] cursor-pointer overflow-hidden rounded-md ring-1 ring-black/10 dark:ring-white/10" href={getPostUrl(post)}>
+                  {resolveArticleImage(post.tileImage ?? post.thumbnail) ? (
+                    <Image
+                      src={resolveArticleImage(post.tileImage ?? post.thumbnail)}
+                      alt={post.title ?? post.slug}
+                      class="w-full h-full object-cover transition-transform duration-700 group-hover:scale-110"
+                      widths={[320, 480]}
+                      sizes="(max-width: 768px) 100vw, 25vw"
+                      loading="lazy"
+                    />
+                  ) : (
+                    <div class="h-full w-full bg-neutral-300 dark:bg-neutral-700"></div>
+                  )}
+                  <div class="absolute inset-0 bg-gradient-to-t from-black/80 to-transparent dark:from-black/90"></div>
+                  <div class="absolute bottom-0 left-0 p-8 text-white">
+                    <h3 class="font-semibold text-md line-clamp-3">{post.title ?? post.slug}</h3>
+                  </div>
+                </a>
+              ))}
+            </div>
+          </div>
+
+          {bottomRow.length ? (
+            <div class="grid grid-cols-1 sm:grid-cols-2 gap-6">
+              {bottomRow.map((post) => (
+                <a class="relative group h-[220px] cursor-pointer overflow-hidden rounded-md ring-1 ring-black/10 dark:ring-white/10" href={getPostUrl(post)}>
+                  {resolveArticleImage(post.tileImage ?? post.thumbnail) ? (
+                    <Image
+                      src={resolveArticleImage(post.tileImage ?? post.thumbnail)}
+                      alt={post.title ?? post.slug}
+                      class="w-full h-full object-cover transition-transform duration-700 group-hover:scale-110"
+                      widths={[320, 480]}
+                      sizes="(max-width: 768px) 100vw, 25vw"
+                      loading="lazy"
+                    />
+                  ) : (
+                    <div class="h-full w-full bg-neutral-300 dark:bg-neutral-700"></div>
+                  )}
+                  <div class="absolute inset-0 bg-gradient-to-t from-black/80 to-transparent dark:from-black/90"></div>
+                  <div class="absolute bottom-0 left-0 p-8 text-white">
+                    <h3 class="font-semibold text-md line-clamp-3">{post.title ?? post.slug}</h3>
+                  </div>
+                </a>
+              ))}
+            </div>
+          ) : null}
+        </div>
+      ) : (
+        <p class="rounded-md border border-dashed border-black/20 bg-white/70 p-6 text-sm text-gray-600 dark:border-white/20 dark:bg-white/5 dark:text-gray-300">
+          Brak wpisow w {TARGET_CATEGORY}
+        </p>
+      )}
+    </div>
+
+    <aside class="lg:w-72 xl:w-80 shrink-0">
+      <div class="sticky top-6">
+        <Image
+          src={adImage}
+          alt="Reklama"
+          class="h-auto w-full rounded-sm border border-black/10 shadow-sm dark:border-white/10"
+          sizes="(min-width: 1024px) 20rem, 100vw"
+          loading="lazy"
+        />
+      </div>
+    </aside>
+  </div>
+</div>

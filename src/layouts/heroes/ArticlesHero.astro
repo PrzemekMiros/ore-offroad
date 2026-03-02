@@ -1,0 +1,122 @@
+﻿---
+
+import { Image } from "astro:assets";
+
+const { title, lead, tags, date, headerImage, readingTime } = Astro.props;
+const isHeaderAsset = !!headerImage && typeof headerImage === "object" && "src" in headerImage;
+const headerSrc = !isHeaderAsset ? headerImage : null;
+const shareUrl = Astro.site
+  ? new URL(Astro.url?.pathname ?? "/", Astro.site).href
+  : Astro.url?.href ?? "";
+const encodedShareUrl = encodeURIComponent(shareUrl);
+const encodedShareTitle = encodeURIComponent(title ?? "");
+const mailShareBody = encodeURIComponent(`${title ?? ""}\n${shareUrl}`.trim());
+const facebookShareUrl = `https://www.facebook.com/sharer/sharer.php?u=${encodedShareUrl}`;
+const xShareUrl = `https://twitter.com/intent/tweet?url=${encodedShareUrl}&text=${encodedShareTitle}`;
+const mailShareUrl = `mailto:?subject=${encodedShareTitle}&body=${mailShareBody}`;
+const formattedDate = date ? new Date(date).toLocaleDateString('pl-PL', {
+  year: 'numeric',
+  month: '2-digit',
+  day: '2-digit'
+}) : null;
+---
+
+  
+<section class="relative pt-28 pb-12 md:pt-32 md:pb-8 border-b border-gray-300">
+  
+  <div class="relative grid gap-10">
+      {headerImage ? (
+    isHeaderAsset ? (
+      <Image
+        src={headerImage}
+        alt=""
+        class="aspect-[8/2] w-full object-cover rounded-sm"
+        sizes="100vw"
+        widths={[640, 960, 1280, 1600, 1920]}
+        loading="lazy"
+        decoding="async"
+        aria-hidden="true"
+      />
+    ) : (
+      <img
+        class="h-full w-full"
+        src={headerSrc}
+        sizes="100vw"
+        loading="lazy"
+        decoding="async"
+        alt=""
+        aria-hidden="true"
+      />
+    )
+  ) : null}
+    <div class="space-y-2">
+
+    <div class="grid gap-4 grid-cols-[1fr_40px] gap-24 justify-between">
+      <div>
+        <div class="text-[8px] md:text-[10px] uppercase tracking-[0.1em] text-black/70 mb-3 md:mb-6 font-semibold">
+        <span>Główna</span>
+        <span class="text-[var(--accent)]"> > </span>
+        <span class="textblack/90"> {title}</span>
+      </div>
+      <h1 class="text-2xl sm:text-3xl md:text-4xl text-black lg:text-5xl font-semibold" data-pagefind-body>
+        {title}
+      </h1>
+        <div class="flex flex-wrap gap-x-8 gap-y-2 mt-8 font-semibold text-[8px] md:text-[10px] tracking-[0.15em] uppercase text-black/70">
+    {tags && tags.length > 0 && (
+      <div>
+        Kategoria <span class="text-[var(--accent)]"> > </span> <span class="text-black/90">{tags[0]}</span>
+      </div>
+    )}
+    {formattedDate && (
+      <div class="">
+        Opublikowano <span class="text-[var(--accent)]"> > </span> <span class="text-black/90">{formattedDate}</span>
+      </div>
+    )}
+
+    {readingTime ? (
+      <div class="text-gray-400">
+        {readingTime}
+      </div>
+    ) : null}
+
+  </div>
+      </div>
+      <div class="space-y-1 text-black/70">
+        <a
+          href={facebookShareUrl}
+          target="_blank"
+          rel="noopener noreferrer"
+          aria-label="Udostępnij na Facebooku"
+          class="inline-block transition hover:text-[var(--accent)] rounded-full border border-gray-500 p-2"
+        >
+          <svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true">
+            <path d="M13.5 8.5V7c0-1.1.9-2 2-2h2V2h-3c-2.8 0-5 2.2-5 5v1.5H7v3h2.5V22h3v-10.5h3l.5-3h-3.5z" />
+          </svg>
+        </a>
+        <a
+          href={xShareUrl}
+          target="_blank"
+          rel="noopener noreferrer"
+          aria-label="Udostępnij na X"
+          class="inline-block transition hover:text-[var(--accent)] rounded-full border border-gray-500 p-2"
+        >
+          <svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true">
+            <path d="M18.9 2H22l-6.8 7.8L23 22h-6.4l-4.8-6.1L6.2 22H3l7.3-8.5L1 2h6.6l4.3 5.5L18.9 2z" />
+          </svg>
+        </a>
+        <a
+          href={mailShareUrl}
+          aria-label="Wyslij link mailem"
+          class="inline-block transition hover:text-black rounded-full border border-gray-500 p-2"
+        >
+          <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+            <rect x="3" y="5" width="18" height="14" rx="2" />
+            <path d="M3 7l9 6 9-6" />
+          </svg>
+        </a>
+      </div>
+    </div>
+
+    </div>
+  </div>
+</section>
