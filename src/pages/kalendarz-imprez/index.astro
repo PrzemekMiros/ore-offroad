@@ -56,23 +56,23 @@ const statusClass = {
 
   <section class="py-12 md:pb-24">
     {!events.length ? (
-      <div class="rounded-2xl border border-dashed border-black/20 bg-white p-7 text-sm text-black/70">
+      <div class="rounded-2xl border border-dashed border-[var(--border)] bg-[var(--surface)] p-7 text-sm text-[var(--muted)]">
         Brak imprez. Dodaj pierwszy wpis w `src/content/imprezy/`.
       </div>
     ) : (
       <div class="grid gap-8 lg:grid-cols-[260px_minmax(0,1fr)]">
         <aside class="lg:sticky lg:top-36 lg:self-start">
-          <div class="rounded-2xl border border-black/10 bg-gray-50 px-5 py-9">
-            <p class="mb-4 text-[11px] font-semibold uppercase tracking-[0.2em] text-black/60">Wybierz miesiąc</p>
+          <div class="rounded-2xl border border-[var(--border)] bg-[var(--surface-muted)] px-5 py-9">
+            <p class="mb-4 text-[11px] font-semibold uppercase tracking-[0.2em] text-[var(--muted)]">Wybierz miesiąc</p>
             <ul class="space-y-2">
               {monthSections.map((section) => (
                 <li>
                   <a
                     href={`#${section.key}`}
-                    class="group flex items-center justify-between rounded-xl border border-gray-300 px-3 py-2 text-sm text-black/70 bg-white transition-colors hover:border-black/10 hover:bg-black/[0.03] hover:text-black"
+                    class="group flex items-center justify-between rounded-xl border border-[var(--border)] px-3 py-2 text-sm text-[var(--muted)] bg-[var(--surface)] transition-colors hover:border-[var(--border)] hover:bg-[var(--surface-muted)] hover:text-[var(--text)]"
                   >
                     <span class="capitalize">{section.monthName}</span>
-                    <span class="rounded-full bg-black/5 px-2 py-0.5 text-[10px] text-black/60">{section.events.length}</span>
+                    <span class="rounded-full bg-[var(--surface-muted)] px-2 py-0.5 text-[10px] text-[var(--muted)]">{section.events.length}</span>
                   </a>
                 </li>
               ))}
@@ -82,54 +82,54 @@ const statusClass = {
 
         <div class="space-y-8">
           {monthSections.map((section) => (
-            <section id={section.key} class="scroll-mt-36 rounded-2xl border border-black/10 bg-gray-50 px-5 md:p-7 md:pb-0">
-              <div class="mb-6 flex items-center justify-between gap-4 border-b border-black/10 pb-4">
-                <h2 class="text-xl font-semibold capitalize text-black">{section.monthName}</h2>
-                <p class="text-[11px] uppercase font-semibold tracking-[0.1em] text-black/55">{section.year}</p>
+            <section id={section.key} class="scroll-mt-36 rounded-2xl border border-[var(--border)] bg-[var(--surface-muted)] px-5 md:p-7 md:pb-0">
+              <div class="mb-6 flex items-center justify-between gap-4 border-b border-[var(--border)] pb-4">
+                <h2 class="text-xl font-semibold capitalize text-[var(--text)]">{section.monthName}</h2>
+                <p class="text-[11px] uppercase font-semibold tracking-[0.1em] text-[var(--muted)]">{section.year}</p>
               </div>
 
               <div class="grid">
                 {section.events.map((event) => {
                   const image = resolveEventImage(event.tileImage ?? event.thumbnail);
                   return (
-                    <article class="group rounded-2xl border border-black/10 bg-white p-4 transition-all hover:shadow-[0_10px_25px_rgba(15,23,42,0.05)] md:p-6 mb-8">
+                    <article class="group rounded-2xl border border-[var(--border)] bg-[var(--surface)] p-4 transition-all hover:shadow-[0_10px_25px_rgba(15,23,42,0.05)] md:p-6 mb-8">
                       <div class="grid gap-4 md:grid-cols-[minmax(450px,1fr)_minmax(0,1fr)] md:items-start">
 
                         <div>
                           <div class="flex">
-                            <div class="rounded-xl border border-black/10 bg-white px-3 pb-1 text-center">
-                              <span class="mr-1 text-[10px] font-semibold leading-none text-black">
+                            <div class="rounded-xl border border-[var(--border)] bg-[var(--surface)] px-3 pb-1 text-center">
+                              <span class="mr-1 text-[10px] font-semibold leading-none text-[var(--text)]">
                                 {event.dateStart.toLocaleDateString("pl-PL", { day: "2-digit" })}
                               </span>
-                              <span class="text-[10px] uppercase tracking-[0.16em] leading-none text-black/60">
+                              <span class="text-[10px] uppercase tracking-[0.16em] leading-none text-[var(--muted)]">
                                 {event.dateStart.toLocaleDateString("pl-PL", { month: "short" })}
                               </span>
                             </div>
                           </div>
 
-                          <h3 class="mt-3 text-2xl font-semibold leading-snug text-black">{event.title}</h3>
-                          {event.description ? <p class="mt-2 text-sm text-black/65 line-clamp-2">{event.description}</p> : null}
+                          <h3 class="mt-3 text-2xl font-semibold leading-snug text-[var(--text)]">{event.title}</h3>
+                          {event.description ? <p class="mt-2 text-sm text-[var(--muted)] line-clamp-2">{event.description}</p> : null}
 
                           <div class="mt-6 grid grid-cols-2 gap-2 text-xs">
-                            <div class="rounded-lg border border-black/10 bg-white px-2.5 py-2 text-black/70">
+                            <div class="rounded-lg border border-[var(--border)] bg-[var(--surface)] px-2.5 py-2 text-[var(--muted)]">
                               <p class="mb-2 text-[10px] uppercase tracking-[0.05em] text-[var(--accent)]">Lokalizacja</p>
-                              <p class="font-medium text-black/85">{event.location}</p>
+                              <p class="font-medium text-[var(--text)]">{event.location}</p>
                             </div>
-                            <div class="rounded-lg border border-black/10 bg-white px-2.5 py-2 text-black/70">
+                            <div class="rounded-lg border border-[var(--border)] bg-[var(--surface)] px-2.5 py-2 text-[var(--muted)]">
                               <p class="mb-2 text-[10px] uppercase tracking-[0.05em] text-[var(--accent)]">Typ</p>
-                              <p class="font-medium text-black/85">{event.type ?? "impreza"}</p>
+                              <p class="font-medium text-[var(--text)]">{event.type ?? "impreza"}</p>
                             </div>
                           </div>
 
                           <div class="mt-6 flex items-center justify-between gap-3">
                             <a
                               href={`/kalendarz-imprez/${event.slug}/`}
-                              class="inline-flex items-center gap-2 text-[11px] font-semibold uppercase tracking-[0.14em] text-[var(--accent)] transition-colors hover:text-black"
+                              class="inline-flex items-center gap-2 text-[11px] font-semibold uppercase tracking-[0.14em] text-[var(--accent)] transition-colors hover:text-[var(--text)]"
                             >
                               Szczegóły
                               <span class="text-[var(--accent)]" aria-hidden="true">+</span>
                             </a>
-                            <p class="text-xs text-black/55">
+                            <p class="text-xs text-[var(--muted)]">
                               {dayFormatter.format(event.dateStart)}
                               {" - "}
                               {dayFormatter.format(event.dateEnd ?? event.dateStart)}
@@ -137,7 +137,7 @@ const statusClass = {
                           </div>
                         </div>
 
-                        <div class="overflow-hidden rounded-xl border border-black/10 bg-white">
+                        <div class="overflow-hidden rounded-xl border border-[var(--border)] bg-[var(--surface)]">
                           {image ? (
                             <Image
                               src={image}
@@ -148,7 +148,7 @@ const statusClass = {
                               loading="lazy"
                             />
                           ) : (
-                            <div class="grid h-44 w-full place-items-center text-[10px] uppercase tracking-[0.16em] text-black/45 md:h-full">
+                            <div class="grid h-44 w-full place-items-center text-[10px] uppercase tracking-[0.16em] text-[var(--muted)] md:h-full">
                               Brak zdjecia
                             </div>
                           )}

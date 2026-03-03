@@ -150,8 +150,8 @@ const getPostUrl = (post) => `/artykuly/${post.categorySlug}/${post.slug}/`;
                     <div class="h-full w-full bg-neutral-300 dark:bg-neutral-700"></div>
                   )}
                   <div class="absolute inset-0 bg-gradient-to-t from-black/80 to-transparent dark:from-black/90"></div>
-                  <div class="absolute bottom-0 left-0 p-8 text-white">
-                    <h3 class="font-semibold text-md line-clamp-3">{post.title ?? post.slug}</h3>
+                  <div class="absolute bottom-0 left-0 p-8">
+                    <h3 class="font-semibold text-md !text-white line-clamp-3">{post.title ?? post.slug}</h3>
                   </div>
                 </a>
               ))}

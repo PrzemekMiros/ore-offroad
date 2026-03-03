@@ -143,6 +143,13 @@ body.page-kalendarz-imprez {
   background-attachment: fixed;
 }
 
+html[data-theme="dark"] body.page-kalendarz-imprez {
+  background-image:
+    linear-gradient(180deg, rgba(11, 18, 32, 0.85), rgba(11, 18, 32, 0.85)),
+    url("/src/assets/images/sections/hamer.jpg");
+  background-blend-mode: multiply;
+}
+
 body.page-kalendarz-imprez main {
   background: var(--bg);
 }
