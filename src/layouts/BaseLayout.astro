@@ -26,6 +26,10 @@ const metaDescription = description ?? settings.metaDescription;
 const logoAsset = resolveAsset(settings.logo);
 const processedOgImage = await getImage({ src: ogImage, format: 'png' });
 const ogImageUrl = site ? new URL(processedOgImage.src, site).toString() : processedOgImage.src;
+const normalizedPath = url.pathname.replace(/^\/|\/$/g, "");
+const pathClass = normalizedPath
+  ? `page-${normalizedPath.replace(/\/+/g, "-").replace(/[^a-zA-Z0-9-_]/g, "-").toLowerCase()}`
+  : "page-home";
 ---
 
 <html lang="pl">
@@ -75,8 +79,8 @@ const ogImageUrl = site ? new URL(processedOgImage.src, site).toString() : proce
       }
     </style>
   </head>
-  <body class="min-h-screen bg-[var(--bg)] font-sans text-[var(--text)]">
-    <main class="mx-auto flex min-h-screen w-full max-w-[1420px] flex-col px-4 sm:px-10 lg:px-12">
+  <body class={`min-h-screen bg-[var(--bg)] font-sans text-[var(--text)] ${pathClass}`}>
+    <main class="mx-auto flex min-h-screen w-full max-w-[1320px] flex-col px-4 sm:px-10 lg:px-12">
       <Header settings={settings} logoAsset={logoAsset} />
       {showHero && title ? <PageHero title={title} lead={description} meta={heroMeta} /> : null}
       <slot />

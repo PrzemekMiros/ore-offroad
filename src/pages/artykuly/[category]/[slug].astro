@@ -252,7 +252,7 @@ if (!artykul) {
     readingTime={readingTime}
   />
   <article
-    class="pt-8 z-50"
+    class="pt-8 pb-20 z-50"
     itemscope
     itemtype="https://schema.org/BlogPosting"
   >
@@ -270,7 +270,7 @@ if (!artykul) {
       <meta itemprop="name" content={siteName} />
       {siteLogo ? <meta itemprop="logo" content={siteLogo} /> : null}
     </div>
-    <div class="grid gap-12 grid-cols-1 lg:grid-cols-[300px_minmax(0,1fr)_300px]">
+    <div class="grid gap-12 grid-cols-1 lg:grid-cols-[260px_minmax(0,1fr)_260px]">
       <aside class="hidden lg:block mt-2">
         <div class="sticky top-38 space-y-4">
           <h3 class="text-xs font-semibold uppercase tracking-[0.2em] mb-6 border-l-2 border-[var(--accent)] pl-4">Spis treści</h3>
@@ -354,7 +354,7 @@ if (!artykul) {
                     <div class="shrink-0 overflow-hidden rounded-lg border border-black/10">
                       {itemImage ? (
                         <Image
-                          class="h-full w-full object-cover"
+                          class="h-40 w-full object-cover"
                           src={itemImage}
                           alt={item?.title ?? item?.slug}
                           widths={[560, 340]}
@@ -367,10 +367,12 @@ if (!artykul) {
                       )}
                     </div>
                     <div class="flex flex-col gap-1">
-                      <span class="text-[10px] uppercase tracking-wide text-[var(--accent)]">{getTag(item)}</span>
                       <span class="text-lg font-semibold leading-snug text-black line-clamp-2">
                         {item?.title ?? item?.slug}
                       </span>
+                      {item?.description ? (
+                        <p class="text-sm leading-relaxed text-black/70 line-clamp-2">{item.description}</p>
+                      ) : null}
                     </div>
                   </a>
                 );
@@ -473,7 +475,7 @@ if (!artykul) {
                     {item?.title ?? item?.slug}
                   </h3>
                   {item?.description ? (
-                    <p class="text-sm leading-relaxed text-black/70 line-clamp-3">{item.description}</p>
+                    <p class="text-sm leading-relaxed text-black/70 line-clamp-2">{item.description}</p>
                   ) : null}
                 </div>
               </a>

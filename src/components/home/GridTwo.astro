@@ -35,8 +35,8 @@ const getArticleSlug = (slugPath) => {
 };
 const normalizeCategories = (category) =>
   Array.isArray(category) ? category : category ? [category] : [];
-const TARGET_CATEGORY = "Samochody i testy";
-const TARGET_CATEGORY_SLUGS = ["samochody-i-testy", "problemy-trawienne"];
+const TARGET_CATEGORY = "Aktualności i rynek";
+const TARGET_CATEGORY_SLUGS = ["aktualnosci-i-rynek"];
 
 const posts = Object.entries(entries)
   .map(([file, entry]) => {

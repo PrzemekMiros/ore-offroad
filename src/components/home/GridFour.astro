@@ -3,8 +3,8 @@ import { Image } from "astro:assets";
 import adImage from "../../assets/images/advertise/ad-2.jpg";
 import { slugifyTitle } from "../../lib/slugifyTitle";
 
-const TARGET_CATEGORY = "poradniki i technika jazdy";
-const TARGET_CATEGORY_SLUGS = ["poradniki-i-technika-jazdy"];
+const TARGET_CATEGORY = "Turystyka i wyprawy";
+const TARGET_CATEGORY_SLUGS = ["turystyka-i-wyprawy"];
 const imageEntries = import.meta.glob("/src/content/artykuly/img/**/*", { eager: true });
 
 const resolveArticleImage = (path) => {
@@ -73,8 +73,7 @@ const getPostUrl = (post) => `/artykuly/${post.categorySlug}/${post.slug}/`;
   <div class="absolute inset-y-0 left-1/2 w-screen -translate-x-1/2 overflow-hidden -z-1 bg-[var(--surface-muted)]"></div>
 
   <div class="relative mb-8 flex items-center border-b border-black/20 pb-4 dark:border-white/20">
-  <div class="absolute -left-4 h-10 w-10 rounded-sm bg-[var(--accent)]"></div>
-  
+    <div class="absolute -left-2 h-10 w-10 rounded-full bg-[var(--accent2)]"></div>
     <h2 class="z-9 text-2xl font-semibold uppercase text-[var(--text)]">{TARGET_CATEGORY}</h2>
 </div>
 
@@ -100,7 +99,7 @@ const getPostUrl = (post) => `/artykuly/${post.categorySlug}/${post.slug}/`;
                 <div class="absolute inset-0 bg-gradient-to-t from-black/85 via-black/25 to-transparent dark:from-black/90 dark:via-black/35"></div>
                 <div class="absolute bottom-0 left-0 p-8 text-white">
                   <span class="mb-3 inline-block bg-[var(--accent)] px-2 py-1 text-[10px] font-semibold uppercase text-white">Najnowszy</span>
-                  <h3 class="text-3xl font-semibold leading-tight mb-2 line-clamp-3">{featured.title ?? featured.slug}</h3>
+                  <h3 class="text-3xl font-semibold !text-white leading-tight mb-2 line-clamp-3">{featured.title ?? featured.slug}</h3>
                   {featured.description ? (
                     <p class="text-sm text-gray-300 opacity-80 group-hover:opacity-100 transition-opacity duration-300 line-clamp-2">
                       {featured.description}
@@ -127,7 +126,7 @@ const getPostUrl = (post) => `/artykuly/${post.categorySlug}/${post.slug}/`;
                   )}
                   <div class="absolute inset-0 bg-gradient-to-t from-black/80 to-transparent dark:from-black/90"></div>
                   <div class="absolute bottom-0 left-0 p-8 text-white">
-                    <h3 class="font-semibold text-md line-clamp-3">{post.title ?? post.slug}</h3>
+                    <h3 class="font-semibold !text-white text-md line-clamp-3">{post.title ?? post.slug}</h3>
                   </div>
                 </a>
               ))}

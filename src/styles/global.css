@@ -136,6 +136,17 @@ body {
   overflow-x: hidden;
 }
 
+body.page-kalendarz-imprez {
+  background: url("/src/assets/images/sections/hamer.jpg");
+  background-size: cover;
+  background-position: bottom;
+  background-attachment: fixed;
+}
+
+body.page-kalendarz-imprez main {
+  background: var(--bg);
+}
+
 h1,
 h2,
 h3,

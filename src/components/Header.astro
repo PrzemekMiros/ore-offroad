@@ -37,35 +37,6 @@ const navItems = [
     },
   },
   {
-    href: "/samochody-i-testy/",
-    label: "Samochody i testy",
-    description: "Testy aut, porownania i realne wnioski.",
-    columns: [
-      {
-        title: "Najwazniejsze",
-        links: [
-          { href: "/samochody-i-testy/", label: "Testy terenowe", meta: "Ocena w prawdziwym terenie" },
-          { href: "/artykuly/", label: "Porownania modeli", meta: "Co wybrac i dlaczego" },
-          { href: "/tags/", label: "Tagi techniczne", meta: "Silnik, naped, zawieszenie" },
-        ],
-      },
-      {
-        title: "Szybkie wejscia",
-        links: [
-          { href: "/", label: "Polecane tresci", meta: "Top artykuly redakcji" },
-          { href: "/polityka/", label: "Informacje serwisowe", meta: "Regulacje i transparentnosc" },
-        ],
-      },
-    ],
-    featured: {
-      eyebrow: "W tym tygodniu",
-      title: "Porownanie 3 aut",
-      text: "Praktyczne zestawienie SUV-ow i klasycznych aut 4x4.",
-      href: "/samochody-i-testy/",
-      cta: "Zobacz testy",
-    },
-  },
-  {
     href: "/poradniki-i-technika-jazdy/",
     label: "Poradniki i technika jazdy",
     description: "Technika, bezpieczenstwo i planowanie trasy.",
@@ -121,6 +92,35 @@ const navItems = [
       text: "Szkic trasy, sprzetu i planu awaryjnego.",
       href: "/turystyka-i-wyprawy/",
       cta: "Zobacz inspiracje",
+    },
+  },
+  {
+    href: "/samochody-i-testy/",
+    label: "Samochody i testy",
+    description: "Testy aut, porownania i realne wnioski.",
+    columns: [
+      {
+        title: "Najwazniejsze",
+        links: [
+          { href: "/samochody-i-testy/", label: "Testy terenowe", meta: "Ocena w prawdziwym terenie" },
+          { href: "/artykuly/", label: "Porownania modeli", meta: "Co wybrac i dlaczego" },
+          { href: "/tags/", label: "Tagi techniczne", meta: "Silnik, naped, zawieszenie" },
+        ],
+      },
+      {
+        title: "Szybkie wejscia",
+        links: [
+          { href: "/", label: "Polecane tresci", meta: "Top artykuly redakcji" },
+          { href: "/polityka/", label: "Informacje serwisowe", meta: "Regulacje i transparentnosc" },
+        ],
+      },
+    ],
+    featured: {
+      eyebrow: "W tym tygodniu",
+      title: "Porownanie 3 aut",
+      text: "Praktyczne zestawienie SUV-ow i klasycznych aut 4x4.",
+      href: "/samochody-i-testy/",
+      cta: "Zobacz testy",
     },
   },
   {
@@ -189,8 +189,8 @@ const linkClass = (href) =>
     : "px-1 py-2.5 text-black/70 no-underline transition hover:text-black";
 ---
 
-<header class="fixed left-0 right-0 top-0 z-500 bg-white/95">
-  <div class="mx-auto max-w-[1420px] px-12">
+<header class="fixed left-0 right-0 top-0 z-500 bg-white">
+  <div class="mx-auto max-w-[1320px] px-12">
     <div class="grid grid-cols-2 md:grid-cols-3 gap-4 space-between items-center py-2">
       <div>
         <a href="/" class="text-xl font-semibold tracking-tighter text-black no-underline" aria-label="Logo">

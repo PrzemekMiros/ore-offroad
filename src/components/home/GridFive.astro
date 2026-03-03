@@ -35,8 +35,8 @@ const getArticleSlug = (slugPath) => {
 };
 const normalizeCategories = (category) =>
   Array.isArray(category) ? category : category ? [category] : [];
-const TARGET_CATEGORY = "Producenci";
-const TARGET_CATEGORY_SLUGS = ["poradniki-i-technika-jazdy"];
+const TARGET_CATEGORY = "Samochody i testy";
+const TARGET_CATEGORY_SLUGS = ["samochody-i-testy"];
 
 const posts = Object.entries(entries)
   .map(([file, entry]) => {
@@ -70,9 +70,9 @@ const formatDate = (value) =>
 const getPostUrl = (post) => `/artykuly/${post.categorySlug}/${post.slug}/`;
 ---
 
-<div class="pb-4 pt-18 bg-white">
+<div class="pb-20 pt-18 bg-white">
   <div class="relative flex items-center mb-8 border-b border-gray-400 pb-4">
-  <div class="absolute -left-4 h-10 w-10 rounded-sm bg-[var(--accent2)]"></div>
+    <div class="absolute -left-2 h-10 w-10 rounded-full bg-[var(--accent2)]"></div>
   
     <h2 class="text-2xl font-semibold text-gray-900 uppercase z-9">{TARGET_CATEGORY}</h2>
 </div>

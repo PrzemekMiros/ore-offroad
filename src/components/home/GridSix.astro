@@ -33,8 +33,8 @@ const getArticleSlug = (slugPath) => {
 };
 const normalizeCategories = (category) =>
   Array.isArray(category) ? category : category ? [category] : [];
-const TARGET_CATEGORY = "Turystyka i wyprawy";
-const TARGET_CATEGORY_SLUGS = ["turystyka-i-wyprawy"];
+const TARGET_CATEGORY = "Sport i wydarzenia";
+const TARGET_CATEGORY_SLUGS = ["sport-i-wydarzenia"];
 
 const posts = Object.entries(entries)
   .map(([file, entry]) => {
@@ -68,8 +68,8 @@ const formatDate = (value) =>
 const getPostUrl = (post) => `/artykuly/${post.categorySlug}/${post.slug}/`;
 ---
 
-<div class="relative pb-20 pt-18 bg-gray-100">
-  <div class="absolute inset-y-0 left-1/2 w-screen -translate-x-1/2 bg-gray-100 overflow-hidden -z-1">
+<div class="relative pb-20 pt-18">
+  <div class="absolute inset-y-0 left-1/2 w-screen -translate-x-1/2 bg-[var(--surface-muted)] overflow-hidden -z-1">
 </div>
   <div class="relative flex items-center mb-8 border-b border-gray-400 pb-4">
   <div class="absolute -left-2 h-10 w-10 rounded-full bg-[var(--accent2)]"></div>
