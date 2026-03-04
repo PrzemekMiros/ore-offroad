@@ -80,8 +80,8 @@ const getPostUrl = (post) => `/artykuly/${post.categorySlug}/${post.slug}/`;
   <div class="flex flex-col lg:flex-row gap-6">
     <div class="flex-1">
       {posts.length ? (
-        <div class="flex flex-col gap-6">
-          <div class="grid grid-cols-1 lg:grid-cols-4 gap-6">
+        <div class="flex flex-col gap-4">
+          <div class="grid grid-cols-1 lg:grid-cols-4 gap-4">
             {featured ? (
               <a class="lg:col-span-2 relative group min-h-[260px] cursor-pointer overflow-hidden rounded-md ring-1 ring-black/10 dark:ring-white/10" href={getPostUrl(featured)}>
                 {resolveArticleImage(featured.tileImage ?? featured.thumbnail) ? (
@@ -109,7 +109,7 @@ const getPostUrl = (post) => `/artykuly/${post.categorySlug}/${post.slug}/`;
               </a>
             ) : null}
 
-            <div class="grid grid-cols-1 gap-6 lg:col-span-2">
+            <div class="grid grid-cols-1 gap-4 lg:col-span-2">
               {topGrid.map((post) => (
                 <a class="relative group h-[200px] cursor-pointer overflow-hidden rounded-md ring-1 ring-black/10 dark:ring-white/10" href={getPostUrl(post)}>
                   {resolveArticleImage(post.tileImage ?? post.thumbnail) ? (
@@ -134,7 +134,7 @@ const getPostUrl = (post) => `/artykuly/${post.categorySlug}/${post.slug}/`;
           </div>
 
           {bottomRow.length ? (
-            <div class="grid grid-cols-1 sm:grid-cols-2 gap-6">
+            <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
               {bottomRow.map((post) => (
                 <a class="relative group h-[220px] cursor-pointer overflow-hidden rounded-md ring-1 ring-black/10 dark:ring-white/10" href={getPostUrl(post)}>
                   {resolveArticleImage(post.tileImage ?? post.thumbnail) ? (
