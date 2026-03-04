@@ -5,7 +5,7 @@ author: Przemek
 date: 2026-03-04T16:39:46.209Z
 category:
  - Samochody i testy
-thumbnail: /content/artykuly/img/terenowy-pick-up-po-100-tys-km-co-naprawde-wytrzymuje-probe-blota-i-kamieni.png
+thumbnail: /content/artykuly/img/terenowy-pick-up.png
 ---
 Pick-up 4x4 to dla wielu kierowców synonim uniwersalności. W tygodniu narzędzie pracy, w weekend – samochód wyprawowy. Producenci kuszą hasłami o legendarnej trwałości i „niezniszczalnej” konstrukcji ramowej. Ale jak wygląda rzeczywistość po 100 tysiącach kilometrów, z czego znaczną część stanowi jazda w terenie – błoto, kamienie, brody wodne i odcinki z pełnym obciążeniem?
 
