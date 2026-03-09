@@ -26,6 +26,13 @@ jobs:
       - name: Build Eleventy site
         run: npm run build
 
+      - name: Verify image URLs are static
+        run: |
+          if grep -R "\.netlify/images" dist; then
+            echo "Found Netlify image URLs in dist. Build is still Netlify-dependent."
+            exit 1
+          fi
+
       - name: Deploy to FTP (attempt 1)
         id: ftp_deploy_attempt_1
         continue-on-error: true

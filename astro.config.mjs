@@ -10,6 +10,11 @@ const siteUrl = process.env.SITE_URL || 'https://ore-offroad.pl';
 export default defineConfig({
   site: siteUrl,
   output: 'static',
+  image: {
+    service: {
+      entrypoint: 'astro/assets/services/sharp',
+    },
+  },
   integrations: [
     react(),
     sitemap(),
