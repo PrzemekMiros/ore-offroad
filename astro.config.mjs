@@ -5,7 +5,7 @@ import robots from 'astro-robots-txt';
 import sitemap from 'astro-sitemap';
 import pagefind from 'astro-pagefind';
 
-const siteUrl = process.env.SITE_URL || 'https://ore-offroad.pl';
+const siteUrl = process.env.SITE_URL || 'https://offroadnews.pl';
 
 export default defineConfig({
   site: siteUrl,
