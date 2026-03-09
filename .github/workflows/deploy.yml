@@ -27,7 +27,7 @@ jobs:
       - name: Deploy to FTP (attempt 1)
         id: ftp_deploy_attempt_1
         continue-on-error: true
-        uses: SamKirkland/FTP-Deploy-Action@v4
+        uses: SamKirkland/FTP-Deploy-Action@v4.3.5
         with:
           server: ${{ secrets.FTP_SERVER }}
           username: ${{ secrets.FTP_USERNAME }}
@@ -44,7 +44,7 @@ jobs:
 
       - name: Deploy to FTP (attempt 2)
         if: steps.ftp_deploy_attempt_1.outcome == 'failure'
-        uses: SamKirkland/FTP-Deploy-Action@v4
+        uses: SamKirkland/FTP-Deploy-Action@v4.3.5
         with:
           server: ${{ secrets.FTP_SERVER }}
           username: ${{ secrets.FTP_USERNAME }}
