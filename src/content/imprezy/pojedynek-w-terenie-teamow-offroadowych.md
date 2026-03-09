@@ -39,7 +39,7 @@ W tym jest legalny teren, posiłek (śniadanie i kolacja) i nagrody.
 
 Zaczynamy od 9 rano, pewnie do 18.
 Baza rajdu w okolicy Płocka/ Drobin
-Pytania i zgłoszenia: [[email protected]](/cdn-cgi/l/email-protection#22564750474c554b5848434346434f62454f434b4e0c414d4f)
+Pytania i zgłoszenia: [[email protected]](/cdn-cgi/l/email-protection#691d0c1b0c071e00130308080d0804290e04080005470a0604)
 
 ## Zrodlo
 

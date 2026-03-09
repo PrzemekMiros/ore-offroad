@@ -22,7 +22,7 @@ Rajd odbędzie się 11.04.2026 r.
 Wydarzenie będzie mieć formę Rajdu Turystycznego z elementami rywalizacji w celu wyłonienia najlepszych załóg w danej klasie.
 Impreza odbędzie się w miejscowości Kuźnica Czarnkowska.
 Kontakt telefoniczny do organizatora: 784-188-693
-Zapisy są przyjmowane na e-mail: [[email protected]](/cdn-cgi/l/email-protection#523335333e3b21636a12353f333b3e7c313d3f)
+Zapisy są przyjmowane na e-mail: [[email protected]](/cdn-cgi/l/email-protection#85e4e2e4e9ecf6b4bdc5e2e8e4ece9abe6eae8)
 Lub telefonicznie po przez SMS : 693-782-724
 Koszt udziału:
 Auto - 450
@@ -34,7 +34,7 @@ Limit załóg: 80.
 Minimalny limit załóg:20
 1.Termin: 11.04.2026 r., zapisy do
 05.04.2026 r.
-2. Warunkiem uczestnictwa jest wysłanie zgłoszenia na e-mail: [[email protected]](/cdn-cgi/l/email-protection#45242224292c36747d052228242c296b262a28) lub sms i wpłacenie zaliczki.
+2. Warunkiem uczestnictwa jest wysłanie zgłoszenia na e-mail: [[email protected]](/cdn-cgi/l/email-protection#ccadabada0a5bffdf48caba1ada5a0e2afa3a1) lub sms i wpłacenie zaliczki.
 3. W tytule przelewu należy wpisać hasło:
 „ODWILŻ 2026r Rozpoczęcie SEZONU!!” oraz klasę, imię, nazwisko kierowcy i pilota oraz pesele. PESELE SĄ POTRZEBNE DO UBEZPIECZENIA NA RAJDZIE.
 Wpisowe w całości zostanie przeznaczone na organizację imprezy, gorący posiłek, zdjęcia, filmy.

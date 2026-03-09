@@ -2,11 +2,12 @@ import fs from "node:fs/promises";
 import path from "node:path";
 import { fileURLToPath } from "node:url";
 
-const SOURCE_URL = "https://kalendarz4x4.pl/zawody";
+const SOURCE_URL = "https://kalendarz4x4.pl/nadchodzace";
 const SOURCE_ORIGIN = "https://kalendarz4x4.pl";
 const projectRoot = path.resolve(path.dirname(fileURLToPath(import.meta.url)), "..");
 const eventsDir = path.join(projectRoot, "src", "content", "imprezy");
 const imagesDir = path.join(eventsDir, "img");
+const CURRENT_YEAR = new Date().getFullYear();
 
 const decodeHtml = (value = "") =>
   value
@@ -78,6 +79,13 @@ const toIso = (ddmmyyyy) => {
   if (!match) return null;
   const [, dd, mm, yyyy] = match;
   return `${yyyy}-${mm}-${dd}`;
+};
+
+const extractYear = (value) => {
+  if (!value) return null;
+  const match = String(value).match(/^(\d{4})-\d{2}-\d{2}$/);
+  if (!match) return null;
+  return Number(match[1]);
 };
 
 const parseDates = (rawText = "") => {
@@ -221,6 +229,59 @@ const writeEventFile = async (event, localImagePath) => {
   await fs.writeFile(filePath, fm, "utf-8");
 };
 
+const extractFrontmatterYear = (content = "") => {
+  const match = content.match(/^dateStart:\s*(\d{4})-\d{2}-\d{2}/m);
+  return match ? Number(match[1]) : null;
+};
+
+const extractFrontmatterImages = (content = "") => {
+  const images = new Set();
+  const regex = /^(?:tileImage|thumbnail):\s*"([^"]+)"/gm;
+  let match;
+  while ((match = regex.exec(content))) {
+    const value = match[1];
+    const fileMatch =
+      value.match(/\/content\/imprezy\/img\/([^"/]+)$/) ??
+      value.match(/\/src\/content\/imprezy\/img\/([^"/]+)$/);
+    if (fileMatch?.[1]) images.add(fileMatch[1]);
+  }
+  return images;
+};
+
+const pruneOldEvents = async () => {
+  const entries = await fs.readdir(eventsDir, { withFileTypes: true });
+  const eventFiles = entries
+    .filter((entry) => entry.isFile() && entry.name.endsWith(".md"))
+    .map((entry) => path.join(eventsDir, entry.name));
+
+  const keepImages = new Set();
+  const removeFiles = [];
+
+  for (const filePath of eventFiles) {
+    const content = await fs.readFile(filePath, "utf-8");
+    const year = extractFrontmatterYear(content);
+    const images = extractFrontmatterImages(content);
+    if (year === CURRENT_YEAR || year === null) {
+      images.forEach((img) => keepImages.add(img));
+      continue;
+    }
+    removeFiles.push(filePath);
+  }
+
+  for (const filePath of removeFiles) {
+    await fs.unlink(filePath);
+  }
+
+  const imageEntries = await fs.readdir(imagesDir, { withFileTypes: true });
+  for (const entry of imageEntries) {
+    if (!entry.isFile()) continue;
+    if (keepImages.has(entry.name)) continue;
+    await fs.unlink(path.join(imagesDir, entry.name));
+  }
+
+  return { removed: removeFiles.length };
+};
+
 const run = async () => {
   await ensureDirs();
   const response = await fetch(SOURCE_URL);
@@ -229,10 +290,11 @@ const run = async () => {
   }
 
   const html = await response.text();
-  const events = parseCards(html);
-  if (!events.length) {
+  const allEvents = parseCards(html);
+  if (!allEvents.length) {
     throw new Error("Nie znaleziono wydarzen na stronie zrodlowej.");
   }
+  const events = allEvents.filter((event) => extractYear(event.dateStart) === CURRENT_YEAR);
 
   let created = 0;
   for (const event of events) {
@@ -243,7 +305,10 @@ const run = async () => {
     created += 1;
   }
 
-  console.log(`Zaimportowano/odswiezono ${created} wydarzen do src/content/imprezy.`);
+  const pruneResult = await pruneOldEvents();
+  console.log(
+    `Zaimportowano/odswiezono ${created} wydarzen do src/content/imprezy. Usunieto ${pruneResult.removed} starszych wpisow.`
+  );
 };
 
 run().catch((error) => {

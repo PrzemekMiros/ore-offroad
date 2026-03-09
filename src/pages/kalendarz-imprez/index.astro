@@ -14,11 +14,13 @@ const resolveEventImage = (file) => {
   return entry?.default ?? null;
 };
 
+const currentYear = new Date().getFullYear();
 const events = (await getCollection("imprezy"))
   .map((entry) => ({
     slug: entry.slug,
     ...entry.data,
   }))
+  .filter((event) => event.dateStart.getFullYear() === currentYear)
   .sort((a, b) => a.dateStart.getTime() - b.dateStart.getTime());
 
 const monthFormatter = new Intl.DateTimeFormat("pl-PL", { month: "long" });
