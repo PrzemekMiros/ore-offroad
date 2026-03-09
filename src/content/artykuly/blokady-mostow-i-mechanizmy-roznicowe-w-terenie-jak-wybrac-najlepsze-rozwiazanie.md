@@ -1,7 +1,7 @@
 ---
 title: Blokady mostów i mechanizmy różnicowe w terenie jak wybrać najlepsze rozwiązanie
 description: Mechanizmy różnicowe i blokady mostów decydują o skuteczności napędu 4x4. Wyjaśniamy różnice, typy konstrukcji oraz to, jak dobrać rozwiązanie do stylu jazdy terenowej.
-author: Przemek
+author: Redakcja Offroad News
 date: 2026-03-03T18:40:58.458Z
 category:
  - Warsztat i tuning

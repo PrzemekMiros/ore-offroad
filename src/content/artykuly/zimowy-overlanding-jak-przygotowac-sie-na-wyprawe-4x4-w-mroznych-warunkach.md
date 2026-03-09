@@ -1,7 +1,7 @@
 ---
 title: Zimowy overlanding jak przygotować się na wyprawę 4x4 w mroźnych warunkach
 description: Kompleksowy przewodnik po zimowych wyprawach 4x4. Sprzęt, przygotowanie auta, technika jazdy i bezpieczeństwo podczas overlandingu w niskich temperaturach.
-author: Przemek
+author: Redakcja Offroad News
 date: 2026-02-24T11:33:43.280Z
 category:
  - Turystyka i wyprawy

@@ -6,7 +6,7 @@ const realizacje = defineCollection({
     title: z.string(),
     order: z.number().default(0), 
     description: z.string().optional(),
-    author: z.string().default('Przemek Miros'),
+    author: z.string().default('Redakcja Offroad News'),
     date: z.coerce.date(), 
     tags: z.array(z.string()).optional(),
     category: z.union([z.string(), z.array(z.string())]).optional(),
@@ -25,7 +25,7 @@ const artykuly = defineCollection({
   schema: z.object({
     title: z.string(),
     description: z.string().optional(),
-    author: z.string().optional().default('Przemek Miros'),
+    author: z.string().optional().default('Redakcja Offroad News'),
     date: z.coerce.date(),
     tags: z.array(z.string()).optional(),
     thumbnail: z.string().optional(),
