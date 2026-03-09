@@ -34,7 +34,7 @@ jobs:
           password: ${{ secrets.FTP_PASSWORD }}
           protocol: ftp
           port: 21
-          local-dir: public/
+          local-dir: dist/
           server-dir: public_html/
           exclude: |
             **/.git*
@@ -51,7 +51,7 @@ jobs:
           password: ${{ secrets.FTP_PASSWORD }}
           protocol: ftp
           port: 21
-          local-dir: public/
+          local-dir: dist/
           server-dir: public_html/
           exclude: |
             **/.git*
