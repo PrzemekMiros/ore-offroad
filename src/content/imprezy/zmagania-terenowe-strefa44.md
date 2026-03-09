@@ -52,7 +52,7 @@ Maksymalnie 1 osoba w załodze.
 Dopuszczalne wyciągarki elektryczne, wymagana klatka bezpieczeństwa. Maksymalnie 2 osoby w załodze.
  Klasa Extreme Mechanik - auta dowolnej konstrukcji. Dopuszczalne wyciągarki mechaniczne oraz elektryczne, wymagana klatka bezpieczeństwa. Maksymalnie 2 osoby w załodze.
  Zapisy:
-1. wiadomość mailowa: [[email protected]](/cdn-cgi/l/email-protection#f7848385929196c38fc3989191b7909a969e9bd994989a)
+1. wiadomość mailowa: [[email protected]](/cdn-cgi/l/email-protection#413235332427207539752e272701262c20282d6f222e2c)
 Lub
 2. wiadomość na FB „strefa 4x4”.
 Zgłoszenie musi zawierać:
