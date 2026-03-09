@@ -1,5 +1,4 @@
 ---
-import { Image } from "astro:assets";
 import { getCollection, render } from "astro:content";
 import BaseLayout from "../../layouts/BaseLayout.astro";
 import EventHero from "../../layouts/heroes/EventHero.astro";
@@ -100,13 +99,14 @@ const eventMeta = `${formatDate(data.dateStart)} - ${formatDate(data.dateEnd ?? 
     <div>
     {coverImage ? (
       <div class="sticky top-38 mb-8 mt-10 overflow-hidden rounded-2xl border border-black/10">
-        <Image
-          src={coverImage}
+        <img
+          src={coverImage.src}
           alt={data.title}
+          width={coverImage.width}
+          height={coverImage.height}
           class="h-[260px] w-full object-cover md:h-[420px]"
-          widths={[800, 1200, 1600]}
-          sizes="100vw"
           loading="eager"
+          decoding="async"
         />
       </div>
     ) : null}
