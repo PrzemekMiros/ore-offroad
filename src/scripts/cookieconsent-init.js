@@ -69,7 +69,7 @@ CookieConsent.run({
                         },
                         {
                             title: "Więcej informacji",
-                            description: "W przypadku jakichkolwiek pytań związanych z polityką dotyczącą plików cookie, prosimy o <a class=\"cc__link\" href=\"/kontakt\" title=\"Kontakt\">kontakt</a>."
+                            description: "W przypadku jakichkolwiek pytań związanych z polityką dotyczącą plików cookie, prosimy o kontakt."
                         }
                     ]
                 }

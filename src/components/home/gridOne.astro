@@ -80,7 +80,7 @@ const getPostUrl = (post) => `/artykuly/${post.categorySlug}/${post.slug}/`;
     <div class="lg:col-span-2 flex flex-col gap-6">
       {mainPost ? (
         <a class="relative group overflow-hidden rounded-sm cursor-pointer" href={getPostUrl(mainPost)}>
-          <div class="aspect-video lg:aspect-[16/10] relative">
+          <div class="aspect-video lg:aspect-[16/9] relative">
             {resolveArticleImage(mainPost.tileImage ?? mainPost.thumbnail) ? (
               <Image
                 src={resolveArticleImage(mainPost.tileImage ?? mainPost.thumbnail)}

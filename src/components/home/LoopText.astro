@@ -51,9 +51,9 @@ const getPostUrl = (post) => `/artykuly/${post.categorySlug}/${post.slug}/`;
         {news.map((item) => {
           const dateLabel = item.date ? formatDate(item.date) : null;
           return (
-            <div class="flex items-center pt-0 pb-0">
-              <span class="text-xl mr-3">•</span>
-              <span class="mr-2 opacity-80">{dateLabel}</span>
+            <div class="flex items-center pt-0 pb-0 text-black/90">
+              <span class="text-xl mx-2"> •</span>
+              <span class="mr-2">{dateLabel}</span>
               <a href={getPostUrl(item)} class="font-sm hover:underline underline-offset-2">
                 {item.title}
               </a>
