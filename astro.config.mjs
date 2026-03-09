@@ -1,15 +1,15 @@
 import { defineConfig } from 'astro/config';
 import react from '@astrojs/react';
-import netlify from '@astrojs/netlify';
 import tailwindcss from '@tailwindcss/vite';
 import robots from 'astro-robots-txt';
 import sitemap from 'astro-sitemap';
 import pagefind from 'astro-pagefind';
 
+const siteUrl = process.env.SITE_URL || 'https://ore-offroad.pl';
+
 export default defineConfig({
-  site: 'https://ore-offroad.netlify.app',
+  site: siteUrl,
   output: 'static',
-  adapter: netlify(),
   integrations: [
     react(),
     sitemap(),
@@ -17,7 +17,7 @@ export default defineConfig({
       policy: [
         { userAgent: '*', allow: '/' }
       ],
-      sitemap: 'https://ore-offroad.netlify.app/sitemap-index.xml'
+      sitemap: `${siteUrl}/sitemap-index.xml`
     }),
     pagefind()
   ],
