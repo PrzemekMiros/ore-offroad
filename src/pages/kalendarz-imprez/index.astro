@@ -64,12 +64,12 @@ const statusClass = {
 
   <section class="py-12 md:pb-24">
     {!events.length ? (
-      <div class="rounded-2xl border border-dashed border-[var(--border)] bg-[var(--surface)] p-7 text-sm text-[var(--muted)]">
+      <div class="rounded-2xl border border-dashed border-[var(--accent)] bg-[var(--surface)] p-7 text-sm text-[var(--muted)]">
         Brak imprez.
       </div>
     ) : (
       <div class="grid gap-8 lg:grid-cols-[260px_minmax(0,1fr)]">
-        <aside class="lg:sticky lg:top-36 lg:self-start">
+        <aside class="lg:sticky lg:top-38 lg:self-start">
           <div class="rounded-2xl border border-[var(--border)] bg-[var(--surface-muted)] px-5 py-9">
             <p class="mb-4 text-[11px] font-semibold uppercase tracking-[0.2em] text-[var(--muted)]">Wybierz miesiąc</p>
             <ul class="space-y-2">
@@ -77,7 +77,7 @@ const statusClass = {
                 <li>
                   <a
                     href={`#${section.key}`}
-                    class="month-link group flex items-center justify-between rounded-xl border border-[var(--border)] bg-[var(--surface)] px-3 py-2 text-sm text-[var(--muted)] transition-colors hover:border-[var(--border)] hover:bg-[var(--surface-muted)] hover:text-[var(--text)]"
+                    class="month-link group flex items-center justify-between rounded-xl border border-[var(--border)] bg-[var(--surface)] px-3 py-2 text-sm text-[var(--muted)] transition-colors hover:border-[var(--border)] hover:bg-[var(--surface-muted)] hover:text-[var(--accent)]"
                     data-month-link
                   >
                     <span class="capitalize">{section.monthName}</span>
@@ -91,7 +91,7 @@ const statusClass = {
 
         <div class="space-y-8">
           {monthSections.map((section) => (
-            <section id={section.key} class="scroll-mt-36 rounded-2xl border border-[var(--border)] bg-[var(--surface-muted)] px-5 md:p-7 md:pb-0">
+            <section id={section.key} class="scroll-mt-38 rounded-2xl border border-[var(--border)] bg-[var(--surface-muted)] px-5 md:p-7 md:pb-0">
               <div class="mb-6 flex items-center justify-between gap-4 border-b border-[var(--border)] pb-4">
                 <h2 class="text-xl font-semibold capitalize text-[var(--text)]">{section.monthName}</h2>
                 <p class="text-md uppercase font-semibold tracking-[0.05em] text-[var(--accent)]">{section.year}</p>

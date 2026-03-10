@@ -187,7 +187,7 @@ const categories = Array.from(
 
     {/* Sidebar dopasowany do mrocznego stylu */}
     <aside
-      class="sticky top-34 self-start space-y-8"
+      class="sticky top-38 self-start space-y-8"
       itemscope
       itemtype="https://schema.org/ItemList"
       itemprop="mainEntity"
@@ -202,7 +202,7 @@ const categories = Array.from(
             {categories.map((category, index) => (
               <li
                 key={category.slug}
-                itemprop="itemListElement"
+                itemprop="itemListElement" 
                 itemscope
                 itemtype="https://schema.org/ListItem"
               >
@@ -210,7 +210,7 @@ const categories = Array.from(
                 <a
                   href={`/${category.slug}/`}
                   itemprop="item"
-                  class="block rounded-xl border px-4 py-3 text-sm transition-all bg-gray-100 border-white/5 text-neutral-600 hover:border-[var(--accent)] hover:text-[var(--accent)]"
+                  class="block rounded-xl border border-[var(--border)] bg-white/80 px-4 py-3 text-sm text-[var(--muted)] transition-all hover:border-[var(--accent)] hover:text-[var(--accent)]"
                 >
                   <span itemprop="name">{category.label}</span>
                 </a>
