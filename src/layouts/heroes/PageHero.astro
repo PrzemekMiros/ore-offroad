@@ -15,7 +15,7 @@ const currentUrl = baseUrl ? new URL(url.pathname, baseUrl).toString() : url.pat
 <div class="hero-raid">
   <section class="relative">
     <div class="hero-raid__inner grid grid-cols-1 relative">
-      <div class="relative flex flex-col justify-center pb-2 pt-34 md:pt-46 z-10">
+      <div class="relative flex flex-col justify-center pb-2 pt-34 md:pt-48 z-10">
         <nav
           class="text-[8px] md:text-[10px] uppercase tracking-[0.1em] text-gray-600 mb-3 md:mb-4 font-semibold"
           aria-label="Breadcrumb"
@@ -47,7 +47,7 @@ const currentUrl = baseUrl ? new URL(url.pathname, baseUrl).toString() : url.pat
   <section class="relative pb-12 pt-5 border-b border-gray-200">
     <div class="hero-raid__inner">
       {meta ? (
-        <p class="text-[10px] font-semibold uppercase tracking-[0.2em] text-[var(--accent)]">{meta}</p>
+        <p class="text-[10px] font-semibold uppercase tracking-[0.2em] text-white">{meta}</p>
       ) : null}
     </div>
   </section>
@@ -92,8 +92,8 @@ const currentUrl = baseUrl ? new URL(url.pathname, baseUrl).toString() : url.pat
     background-image: url("/src/assets/images/sections/off-bg4.webp");
     background-size: cover;
     background-position: top;
-    background-color: rgba(45, 41, 32, 0.765);
-    background-blend-mode: overlay;
+    background-color: rgba(219, 81, 1, 0.853);
+    background-blend-mode: multiply;
     z-index: 0;
   }
 

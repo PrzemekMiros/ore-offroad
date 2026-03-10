@@ -137,17 +137,20 @@ body {
 }
 
 body.page-kalendarz-imprez {
-  background: url("/src/assets/images/sections/hamer.jpg");
-  background-size: cover;
-  background-position: bottom;
-  background-attachment: fixed;
+    background-image: url("/src/assets/images/sections/off-bg4.webp");
+    background-size: cover;
+    background-position: top;
+    background-color: rgba(219, 81, 1, 0.853);
+    background-blend-mode: multiply;
+    background-attachment: fixed;
 }
 
 html[data-theme="dark"] body.page-kalendarz-imprez {
-  background-image:
-    linear-gradient(180deg, rgba(11, 18, 32, 0.85), rgba(11, 18, 32, 0.85)),
-    url("/src/assets/images/sections/hamer.jpg");
-  background-blend-mode: multiply;
+    background-image: url("/src/assets/images/sections/off-bg4.webp");
+    background-size: cover;
+    background-position: top;
+    background-color: rgba(219, 81, 1, 0.853);
+    background-blend-mode: multiply;
 }
 
 body.page-kalendarz-imprez main {
