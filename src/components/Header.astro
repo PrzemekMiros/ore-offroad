@@ -189,9 +189,12 @@ const linkClass = (href) =>
     : "px-1 py-2.5 text-black/70 no-underline transition hover:text-black";
 ---
 
-<header class="fixed left-0 right-0 top-0 z-500 bg-white">
+<header class="fixed left-0 right-0 top-0 z-500 bg-white" data-site-header>
+  <div class="top-nav relative h-6">
+
+  </div>
   <div class="mx-auto max-w-[1420px] px-4 sm:px-10 lg:px-12">
-    <div class="flex md:grid md:grid-cols-3 gap-4 space-between items-center py-2">
+    <div class="flex md:grid md:grid-cols-3 gap-4 space-between items-center border-b border-black/20 pb-1 pt-2">
       <div>
         <a href="/" class="text-xl font-semibold tracking-tighter text-black no-underline" aria-label="Logo">
           <img src={logo.src} class="w-24" width="294" height="190" alt="Logo Offroad" />
@@ -239,7 +242,7 @@ const linkClass = (href) =>
       </button>
     </div>
 
-    <nav class="relative flex items-center justify-end md:justify-between gap-4 border-y border-black/20">
+    <nav class="site-nav relative flex items-center justify-end md:justify-between gap-4 border-b border-black/20" data-site-nav>
       <div class="hidden items-center justify-center gap-5 md:flex">
         {
           navItems.map((item) => (
@@ -328,6 +331,45 @@ const linkClass = (href) =>
 </header>
 
 <script is:inline>
+  const setupHeaderScroll = () => {
+    const nav = document.querySelector("[data-site-nav]");
+    if (!nav || nav.dataset.scrollReady === "true") return;
+    nav.dataset.scrollReady = "true";
+
+    let lastY = window.scrollY;
+    let ticking = false;
+    const offset = 80;
+    const minDelta = 12;
+
+    const update = () => {
+      const currentY = window.scrollY;
+      const delta = currentY - lastY;
+      const mobileMenu = document.querySelector("[data-mobile-menu]");
+      const isMenuOpen = mobileMenu?.classList.contains("is-open");
+
+      if (isMenuOpen || currentY <= offset) {
+        nav.classList.remove("is-hidden");
+      } else if (delta > minDelta) {
+        nav.classList.add("is-hidden");
+      } else if (delta < -minDelta) {
+        nav.classList.remove("is-hidden");
+      }
+
+      lastY = currentY;
+      ticking = false;
+    };
+
+    const onScroll = () => {
+      if (!ticking) {
+        window.requestAnimationFrame(update);
+        ticking = true;
+      }
+    };
+
+    window.addEventListener("scroll", onScroll, { passive: true });
+    update();
+  };
+
   const syncThemeToggleState = () => {
     const html = document.documentElement;
     const isDark = html.dataset.theme === "dark";
@@ -355,17 +397,43 @@ const linkClass = (href) =>
 
   if (document.readyState === "loading") {
     document.addEventListener("DOMContentLoaded", setupThemeToggle, { once: true });
+    document.addEventListener("DOMContentLoaded", setupHeaderScroll, { once: true });
   } else {
     setupThemeToggle();
+    setupHeaderScroll();
   }
   document.addEventListener("astro:page-load", setupThemeToggle);
+  document.addEventListener("astro:page-load", setupHeaderScroll);
 </script>
 
 <style>
+  .top-nav::before {
+    content: "";
+    position: absolute;
+    inset: -25% -10% -10% -10%;
+    background-color: var(--accent);
+    z-index: 0;
+  }
+
   #mobile-menu.is-open {
     opacity: 1;
     transform: translateY(0);
     pointer-events: auto;
+  }
+
+  .site-nav {
+    max-height: 120px;
+    transition: max-height 260ms ease, opacity 220ms ease, transform 220ms ease, border-color 220ms ease;
+    will-change: max-height, opacity, transform;
+    overflow: visible;
+  }
+
+  .site-nav.is-hidden {
+    max-height: 0;
+    opacity: 0;
+    transform: translateY(-8px);
+    pointer-events: none;
+    border-color: transparent;
   }
 
   .mega-item {

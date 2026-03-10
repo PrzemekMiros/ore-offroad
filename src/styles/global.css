@@ -38,7 +38,7 @@
 
 :root {
   --accent: #FF5A00;
-  --accent2: #35FF00;
+  --accent2: #ff8c62;
   --surface: #ffffff;
   --surface-muted: #f7f5f2;
   --bg: #ffffff;
@@ -160,7 +160,7 @@ h3,
 h4,
 h5,
 h6 {
-  font-family: "Zalando Sans SemiExpanded", "Segoe UI", sans-serif;
+  font-family: "Gilroy", "Zalando Sans SemiExpanded", "Segoe UI", sans-serif;
 }
 
 html:not([data-theme="dark"]) h1,
@@ -172,10 +172,15 @@ html:not([data-theme="dark"]) h6 {
   color: #0e1011;
 }
 
-#article-content ul,
-#article-content ol {
+#article-content ul {
   margin: 1rem 0;
   padding-left: 1rem;
+  list-style-position: outside;
+}
+
+#article-content ol {
+  margin: 1rem 0;
+  padding-left: 2rem;
   list-style-position: outside;
 }
 

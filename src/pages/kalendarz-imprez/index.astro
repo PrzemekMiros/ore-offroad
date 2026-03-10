@@ -1,6 +1,7 @@
 ---
 import { getCollection } from "astro:content";
 import BaseLayout from "../../layouts/BaseLayout.astro";
+import ArchiveHero from "../../layouts/heroes/ArchiveHero.astro";
 
 const imageEntries = import.meta.glob("/src/content/imprezy/img/**/*", { eager: true });
 const resolveEventImage = (file) => {
@@ -52,8 +53,14 @@ const statusClass = {
 <BaseLayout
   title="Kalendarz imprez"
   description="Terminy wydarzen off-roadowych i motorsportowych."
-  heroMeta={events.length ? `${events.length} imprez` : "Brak imprez"}
+  showHero={false}
 >
+
+  <ArchiveHero
+    title="Kalendarz imprez"
+    lead="Terminy wydarzen off-roadowych i motorsportowych."
+    meta={events.length ? `${events.length} imprez` : "Brak imprez"}
+  />
 
   <section class="py-12 md:pb-24">
     {!events.length ? (

@@ -12,41 +12,125 @@ const currentUrl = baseUrl ? new URL(url.pathname, baseUrl).toString() : url.pat
 <BanerPage />
 -->
 
-<section class="relative">
-  <div class="grid grid-cols-1 relative">
-    <div class="relative flex flex-col justify-center pb-4 pt-40 z-10">
-      <nav
-        class="text-[8px] md:text-[10px] uppercase tracking-[0.1em] text-gray-600 mb-3 md:mb-4 font-semibold"
-        aria-label="Breadcrumb"
-        itemscope
-        itemtype="https://schema.org/BreadcrumbList"
-      >
-        <span itemprop="itemListElement" itemscope itemtype="https://schema.org/ListItem">
-          <a href={homeUrl} itemprop="item" class="hover:text-white">
-            <span itemprop="name">Główna</span>
-          </a>
-          <meta itemprop="position" content="1" />
-        </span>
-        <span class="text-[var(--accent)]"> > </span>
-        <span itemprop="itemListElement" itemscope itemtype="https://schema.org/ListItem">
-          <meta itemprop="item" content={currentUrl} />
-          <span itemprop="name">
-            {title}
+<div class="hero-raid">
+  <section class="relative">
+    <div class="hero-raid__inner grid grid-cols-1 relative">
+      <div class="relative flex flex-col justify-center pb-2 pt-34 md:pt-46 z-10">
+        <nav
+          class="text-[8px] md:text-[10px] uppercase tracking-[0.1em] text-gray-600 mb-3 md:mb-4 font-semibold"
+          aria-label="Breadcrumb"
+          itemscope
+          itemtype="https://schema.org/BreadcrumbList"
+        >
+          <span itemprop="itemListElement" itemscope itemtype="https://schema.org/ListItem">
+            <a href={homeUrl} itemprop="item" class="text-white hover:text-white">
+              <span itemprop="name">Główna</span>
+            </a>
+            <meta itemprop="position" content="1" />
           </span>
-          <meta itemprop="position" content="2" />
-        </span>
-      </nav>
-      <h1 class="text-3xl text-black sm:text-3xl md:text-4xl lg:text-5xl font-semibold leading-[1.1] tracking-tight max-w-3xl">
-        {title}
-      </h1>
+          <span class="text-[var(--accent)]"> > </span>
+          <span itemprop="itemListElement" itemscope itemtype="https://schema.org/ListItem">
+            <meta itemprop="item" content={currentUrl} />
+            <span itemprop="name" class="text-white">
+              {title}
+            </span>
+            <meta itemprop="position" content="2" />
+          </span>
+        </nav>
+        <h1 class="text-3xl !text-white sm:text-3xl md:text-4xl lg:text-5xl font-semibold leading-[1.1] tracking-tight max-w-3xl">
+          {title}
+        </h1>
+      </div>
     </div>
-  </div>
-</section>
-
-  <section class="relative py-5 border-b border-gray-200">
-    {meta ? (
-      <p class="text-[10px] font-semibold uppercase tracking-[0.2em] text-[var(--accent)]">{meta}</p>
-    ) : null}
-
   </section>
 
+  <section class="relative pb-12 pt-5 border-b border-gray-200">
+    <div class="hero-raid__inner">
+      {meta ? (
+        <p class="text-[10px] font-semibold uppercase tracking-[0.2em] text-[var(--accent)]">{meta}</p>
+      ) : null}
+    </div>
+  </section>
+</div>
+
+<style>
+  .hero-raid {
+    position: relative;
+    isolation: isolate;
+    overflow: hidden;
+    width: 100vw;
+    margin-left: calc(50% - 50vw);
+    margin-right: calc(50% - 50vw);
+  }
+
+  .hero-raid__inner {
+    max-width: 1420px;
+    margin-left: auto;
+    margin-right: auto;
+    padding-left: 1rem;
+    padding-right: 1rem;
+  }
+
+  @media (min-width: 640px) {
+    .hero-raid__inner {
+      padding-left: 2.5rem;
+      padding-right: 2.5rem;
+    }
+  }
+
+  @media (min-width: 1024px) {
+    .hero-raid__inner {
+      padding-left: 3rem;
+      padding-right: 3rem;
+    }
+  }
+
+  .hero-raid::before {
+    content: "";
+    position: absolute;
+    inset: -25% -10% -10% -10%;
+    background-image: url("/src/assets/images/sections/off-bg4.webp");
+    background-size: cover;
+    background-position: top;
+    background-color: rgba(45, 41, 32, 0.765);
+    background-blend-mode: overlay;
+    z-index: 0;
+  }
+
+  .hero-raid::after {
+    content: "";
+    position: absolute;
+    inset: 0;
+    background-image:
+      linear-gradient(rgba(255, 145, 0, 0.18) 3px, transparent 3px),
+      linear-gradient(90deg, rgba(255, 145, 0, 0.18) 3px, transparent 3px),
+      linear-gradient(160deg, rgba(255, 89, 0, 0.16), rgba(251, 146, 17, 0) 55%);
+    background-size: 18px 18px, 18px 18px, auto;
+    background-position: top left, top left, center;
+    opacity: 0.45;
+    z-index: 0;
+  }
+
+  .hero-raid > * {
+    position: relative;
+    z-index: 1;
+  }
+
+  html[data-theme="dark"] .hero-raid::before {
+    background:
+      radial-gradient(150% 140% at 6% -25%, rgba(255, 90, 0, 0.4), transparent 60%),
+      radial-gradient(120% 120% at 98% 0%, rgba(0, 200, 255, 0.28), transparent 55%),
+      radial-gradient(100% 100% at 72% 120%, rgba(255, 214, 0, 0.2), transparent 60%),
+      linear-gradient(120deg, rgba(2, 6, 23, 0.92), rgba(17, 24, 39, 0.9));
+  }
+
+  html[data-theme="dark"] .hero-raid::after {
+    background-image:
+      linear-gradient(rgba(255, 255, 255, 0.14) 1px, transparent 1px),
+      linear-gradient(90deg, rgba(255, 255, 255, 0.14) 1px, transparent 1px),
+      linear-gradient(160deg, rgba(255, 90, 0, 0.22), rgba(0, 0, 0, 0) 55%);
+    background-size: 28px 28px, 28px 28px, auto;
+    background-position: top left, top left, center;
+    opacity: 0.4;
+  }
+</style>
