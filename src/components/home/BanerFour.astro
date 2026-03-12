@@ -1,12 +1,10 @@
 ---
 import { Image } from "astro:assets";
-import baner from "../../assets/images/sections/baner-1.png";
+import baner from "../../assets/images/advertise/ad-desert-vertical.png";
 ---
 
-<div class="relative hidden md:block pb-20">
-    <div class="absolute inset-y-0 left-1/2 w-screen -translate-x-1/2 bg-gray-100 overflow-hidden -z-1">
-    </div>
-  <div class="relative overflow-hidden rounded-md">
+<div class="pb-20">
+  <a href="https://desert-king.eu/" class="relative overflow-hidden rounded-md" target="_blank">
   <Image
     src={baner}
     alt="Baner strony"
@@ -15,4 +13,5 @@ import baner from "../../assets/images/sections/baner-1.png";
     sizes="(max-width: 1280px) 100vw, 1280px"
     loading="lazy"
   />
+  </a>
 </div>

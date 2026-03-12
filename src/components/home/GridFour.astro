@@ -1,6 +1,6 @@
 ﻿﻿---
 import { Image } from "astro:assets";
-import adImage from "../../assets/images/advertise/ad-desert-vertical.png";
+import BanerFour from "./BanerFour.astro";
 import { slugifyTitle } from "../../lib/slugifyTitle";
 
 const TARGET_CATEGORY = "Turystyka i wyprawy";
@@ -167,13 +167,7 @@ const getPostUrl = (post) => `/artykuly/${post.categorySlug}/${post.slug}/`;
 
     <aside class="lg:w-72 xl:w-80 shrink-0">
       <div class="sticky top-38">
-        <Image
-          src={adImage}
-          alt="Reklama"
-          class="h-auto w-full rounded-sm border border-black/10 shadow-sm dark:border-white/10"
-          sizes="(min-width: 1024px) 20rem, 100vw"
-          loading="lazy"
-        />
+        <BanerFour />
       </div>
     </aside>
   </div>
