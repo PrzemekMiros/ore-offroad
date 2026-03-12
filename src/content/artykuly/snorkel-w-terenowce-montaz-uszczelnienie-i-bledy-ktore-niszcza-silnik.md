@@ -1,5 +1,5 @@
 ---
-title: Snorkel w terenówce montaż uszczelnienie i błędy które niszczą silnik
+title: Snorkel w terenówce - montaż uszczelnienie i błędy które niszczą silnik
 description: Montaż snorkela to coś więcej niż wycięcie otworu w błotniku. Sprawdź, jak poprawnie uszczelnić układ dolotowy, uniknąć hydrolocka i przygotować auto 4x4 na głęboką wodę.
 author: Przemek
 date: 2026-03-11T10:02:00.238Z

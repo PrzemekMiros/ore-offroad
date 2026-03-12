@@ -1,5 +1,5 @@
 ---
-title: Blokady mostów w terenówkach które rozwiązania naprawdę działają w terenie
+title: Blokady mostów w terenówkach - które rozwiązania naprawdę działają w terenie
 description: Porównanie fabrycznych i aftermarketowych blokad mostów w autach 4x4. Sprawdzamy skuteczność, trwałość i realne zastosowanie w wymagającym terenie.
 author: Przemek
 date: 2026-03-04T16:59:41.863Z

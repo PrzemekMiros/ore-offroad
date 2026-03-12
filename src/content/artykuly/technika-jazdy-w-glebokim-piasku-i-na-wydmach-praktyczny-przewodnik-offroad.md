@@ -1,5 +1,5 @@
 ---
-title: Technika jazdy w głębokim piasku i na wydmach praktyczny przewodnik offroad
+title: Technika jazdy w głębokim piasku i na wydmach - praktyczny przewodnik offroad
 description: Jak skutecznie i bezpiecznie jeździć w głębokim piasku? Kompleksowy przewodnik po technice jazdy, pracy gazem, doborze ciśnienia i odzyskiwaniu pojazdu w terenie pustynnym.
 author: Przemek
 date: 2026-03-10T17:24:45.336Z

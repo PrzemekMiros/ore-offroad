@@ -1,5 +1,5 @@
 ---
-title: Toyota Land Cruiser 120 po latach czy to nadal król bezdroży
+title: Toyota Land Cruiser 120 po latach - czy to nadal król bezdroży
 description: Sprawdzamy Toyotę Land Cruiser 120 z perspektywy lat użytkowania. Analiza napędu 4x4, trwałości, kosztów serwisu i realnych możliwości terenowych.
 author: Przemek
 date: 2026-02-24T14:05:19.756Z

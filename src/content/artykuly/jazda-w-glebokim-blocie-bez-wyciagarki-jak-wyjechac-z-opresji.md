@@ -1,5 +1,5 @@
 ---
-title: Jazda w głębokim błocie bez wyciągarki jak wyjechać z opresji
+title: Jazda w głębokim błocie bez wyciągarki - jak wyjechać z opresji
 description: Jak skutecznie jechać i wyjechać z głębokiego błota bez użycia wyciągarki. Technika, praca gazem i wybór toru jazdy w praktyce offroadowca.
 author: Przemek
 date: 2026-03-04T18:19:45.010Z

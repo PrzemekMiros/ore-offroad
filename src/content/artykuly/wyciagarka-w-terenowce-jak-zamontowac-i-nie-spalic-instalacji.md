@@ -1,5 +1,5 @@
 ---
-title: Wyciągarka w terenówce jak zamontować i nie spalić instalacji
+title: Wyciągarka w terenówce - jak zamontować i nie spalić instalacji
 description: Montaż wyciągarki 4x4 to coś więcej niż przykręcenie jej do zderzaka. Sprawdź, jak dobrać model, zabezpieczyć instalację i uniknąć kosztownych błędów.
 author: Przemek
 date: 2026-03-04T17:59:48.219Z

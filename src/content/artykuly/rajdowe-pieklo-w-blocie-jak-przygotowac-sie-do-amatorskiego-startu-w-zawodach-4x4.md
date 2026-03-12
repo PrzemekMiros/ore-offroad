@@ -1,5 +1,5 @@
 ---
-title: Rajdowe piekło w błocie jak przygotować się do amatorskiego startu w zawodach 4x4
+title: Rajdowe piekło w błocie - jak przygotować się do amatorskiego startu w zawodach 4x4
 description: Kompleksowy przewodnik dla kierowców planujących pierwszy start w zawodach offroadowych. Sprawdź wymagania techniczne, przygotowanie auta i strategię jazdy w terenie.
 author: Przemek
 date: 2026-03-04T14:52:28.995Z

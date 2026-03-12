@@ -1,5 +1,5 @@
 ---
-title: Rajd terenowy to nie wycieczka jak przygotować się do sezonu 2026
+title: Rajd terenowy to nie wycieczka - zobacz jak przygotować się do sezonu 2026
 description: Jak profesjonalnie przygotować siebie i samochód 4x4 do sezonu rajdowego 2026? Sprzęt, logistyka, regulaminy i strategia startowa w sportach terenowych.
 author: Przemek
 date: 2026-03-11T07:45:31.681Z

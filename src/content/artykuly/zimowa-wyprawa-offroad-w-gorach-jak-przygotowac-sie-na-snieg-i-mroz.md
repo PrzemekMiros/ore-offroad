@@ -1,5 +1,5 @@
 ---
-title: Zimowa wyprawa offroad w górach jak przygotować się na śnieg i mróz
+title: Zimowa wyprawa offroad w górach - jak przygotować się na śnieg i mróz
 description: Kompleksowy przewodnik po organizacji zimowej wyprawy offroadowej w górach. Sprzęt, technika jazdy, bezpieczeństwo i logistyka w ekstremalnych warunkach.
 author: Przemek
 date: 2026-02-24T11:28:30.683Z

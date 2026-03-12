@@ -1,5 +1,5 @@
 ---
-title: Sezon rajdów przeprawowych startuje kulisy rywalizacji w terenie 4x4
+title: Sezon rajdów przeprawowych - startuje kulisy rywalizacji w terenie 4x4
 description: Jak wygląda prawdziwa rywalizacja w rajdach przeprawowych 4x4? Sprawdzamy przygotowania zawodników, wymagania techniczne i taktykę jazdy w sezonie 2026.
 author: Przemek
 date: 2026-03-10T20:30:29.291Z

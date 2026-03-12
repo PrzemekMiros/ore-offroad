@@ -1,5 +1,5 @@
 ---
-title: Rajd terenowy od kulis prawdziwa rywalizacja w błocie i piachu
+title: Rajd terenowy od kulis - prawdziwa rywalizacja w błocie i piachu
 description: Jak naprawdę wygląda rajd terenowy od strony zawodników i organizatorów? Analiza przygotowań, sprzętu, regulaminów i realiów rywalizacji w offroadzie.
 author: Przemek
 date: 2026-02-24T12:20:21.926Z

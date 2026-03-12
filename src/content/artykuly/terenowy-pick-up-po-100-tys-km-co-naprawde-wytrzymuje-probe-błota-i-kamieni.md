@@ -1,5 +1,5 @@
 ---
-title: Terenowy pick-up po 100 tys. km co naprawdę wytrzymuje próbę błota i kamieni
+title: Terenowy pick-up po 100 tys. km - co naprawdę wytrzymuje próbę błota i kamieni
 description: Długodystansowy test pick-upa 4x4 po 100 tys. km w terenie. Sprawdzamy napęd, zawieszenie, ramę, elektronikę i realne koszty eksploatacji w offroadzie.
 author: Przemek
 date: 2026-03-04T16:39:46.209Z

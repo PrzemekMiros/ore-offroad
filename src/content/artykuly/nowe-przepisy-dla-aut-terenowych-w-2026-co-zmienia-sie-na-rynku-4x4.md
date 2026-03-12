@@ -1,5 +1,5 @@
 ---
-title: Nowe przepisy dla aut terenowych w 2026 roku co zmienia się na rynku 4x4
+title: Nowe przepisy dla aut terenowych w 2026 roku - zobacz co zmienia się na rynku 4x4
 description: Rok 2026 przynosi istotne zmiany dla właścicieli i producentów aut terenowych. Sprawdzamy nowe regulacje, homologacje, podatki oraz ich wpływ na rynek 4x4.
 author: Przemek
 date: 2026-03-11T02:30:27.177Z

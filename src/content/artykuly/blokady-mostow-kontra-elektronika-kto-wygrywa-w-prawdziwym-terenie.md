@@ -1,5 +1,5 @@
 ---
-title: Blokady mostów kontra elektronika kto wygrywa w prawdziwym terenie
+title: Blokady mostów kontra elektronika - kto wygrywa w prawdziwym terenie
 description: Mechaniczne blokady mostów czy zaawansowane systemy kontroli trakcji? Analizujemy skuteczność obu rozwiązań w realnym terenie i sprawdzamy, co naprawdę daje przewagę poza asfaltem.
 author: Przemek
 date: 2026-03-10T22:00:30.713Z

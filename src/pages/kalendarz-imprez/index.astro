@@ -1,4 +1,5 @@
 ---
+import { Image } from "astro:assets";
 import { getCollection } from "astro:content";
 import BaseLayout from "../../layouts/BaseLayout.astro";
 import ArchiveHero from "../../layouts/heroes/ArchiveHero.astro";
@@ -51,14 +52,14 @@ const statusClass = {
 ---
 
 <BaseLayout
-  title="Kalendarz imprez"
+  title="Kalendarz imprez offroadowych"
   description="Terminy wydarzen off-roadowych i motorsportowych."
   showHero={false}
 >
 
   <ArchiveHero
-    title="Kalendarz imprez"
-    lead="Terminy wydarzen off-roadowych i motorsportowych."
+    title="Kalendarz imprez offroadowych"
+    lead="Terminy wydarzeń off-roadowych i motorsportowych."
     meta={events.length ? `${events.length} imprez` : "Brak imprez"}
   />
 
@@ -141,16 +142,16 @@ const statusClass = {
                           </div>
                         </div>
 
-                        <div class="overflow-hidden rounded-xl border border-[var(--border)] bg-[var(--surface)]">
+                        <div class="w-full max-w-[500px] overflow-hidden rounded-xl border border-[var(--border)] bg-[var(--surface)] md:justify-self-end">
                           {image ? (
-                            <img
-                              src={image.src}
+                            <Image
+                              src={image}
                               alt={event.title}
-                              width={image.width}
-                              height={image.height}
                               class="h-44 w-full object-cover transition-transform duration-500 group-hover:scale-105 md:h-68"
+                              widths={[320, 500, 800]}
+                              sizes="(max-width: 768px) 100vw, 500px"
                               loading="lazy"
-                              decoding="async"
+                              placeholder="blur"
                             />
                           ) : (
                             <div class="grid h-44 w-full place-items-center text-[10px] uppercase tracking-[0.16em] text-[var(--muted)] md:h-full">

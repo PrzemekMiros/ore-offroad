@@ -1,5 +1,5 @@
 ---
-title: Czytanie terenu jak zawodowiec sekrety wyboru linii przejazdu w offroadzie
+title: Czytanie terenu jak zawodowiec - sekrety wyboru linii przejazdu w terenie
 description: Jak analizować teren, wybierać optymalną linię przejazdu i minimalizować ryzyko w trudnych warunkach terenowych. Praktyczne techniki stosowane przez doświadczonych offroadowców.
 author: Przemek
 date: 2026-03-03T19:44:30.175Z

@@ -1,5 +1,5 @@
 ---
-title: Zimowa wyprawa 4x4 na północ jak jeździć po zamarzniętych szlakach
+title: Zimowa wyprawa 4x4 na północ - jak jeździć po zamarzniętych szlakach
 description: Jak bezpiecznie przygotować i przeprowadzić zimową wyprawę 4x4 w ekstremalnych warunkach północnej Europy. Sprzęt, technika jazdy, planowanie trasy i zarządzanie ryzykiem.
 author: Redakcja Offroad News
 date: 2026-03-03T20:56:49.881Z

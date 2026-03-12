@@ -1,5 +1,5 @@
 ---
-title: Sezon rajdów przeprawowych 2026 jak przygotować się do pierwszego startu
+title: Sezon rajdów przeprawowych 2026 - jak przygotować się do pierwszego startu
 description: Kompleksowy przewodnik dla początkujących zawodników rajdów przeprawowych. Sprzęt, homologacje, strategia jazdy i organizacja zespołu krok po kroku.
 author: Przemek
 date: 2026-02-24T12:06:49.023Z

@@ -1,5 +1,5 @@
 ---
-title: Rajdy terenowe 2026 jak wygląda sezon i czego oczekiwać na trasach
+title: Rajdy terenowe 2026 - jak wygląda sezon i czego oczekiwać na trasach
 description: Sezon rajdów terenowych 2026 zapowiada się wyjątkowo intensywnie. Sprawdzamy kalendarz, klasy pojazdów, zmiany regulaminowe i trendy techniczne w polskim offroadzie.
 author: Przemek
 date: 2026-03-11T07:02:13.381Z

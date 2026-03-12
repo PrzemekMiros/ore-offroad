@@ -1,5 +1,5 @@
 ---
-title: Ineos Grenadier w prawdziwym terenie czy legenda rodzi się na nowo
+title: Ineos Grenadier w prawdziwym terenie - czy legenda rodzi się na nowo
 description: Szczegółowy test Ineos Grenadier w ciężkim terenie. Analiza napędu, zawieszenia i możliwości offroadowych w praktyce, bez marketingowych skrótów.
 author: Przemek
 date: 2026-03-11T03:15:28.815Z

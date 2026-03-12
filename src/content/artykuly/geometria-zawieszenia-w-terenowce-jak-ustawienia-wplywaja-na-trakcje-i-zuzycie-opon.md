@@ -1,5 +1,5 @@
 ---
-title: Geometria zawieszenia w terenówce jak ustawienia wpływają na trakcję i zużycie opon
+title: Geometria zawieszenia w terenówce - jak ustawienia wpływają na trakcję i zużycie opon
 description: Geometria zawieszenia w aucie 4x4 ma kluczowy wpływ na trakcję w terenie, stabilność na asfalcie i zużycie opon. Wyjaśniamy kąty, zależności i praktyczne ustawienia.
 author: Przemek
 date: 2026-03-11T10:45:38.460Z

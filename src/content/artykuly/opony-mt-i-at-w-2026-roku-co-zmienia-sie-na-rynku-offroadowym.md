@@ -1,5 +1,5 @@
 ---
-title: Opony MT i AT w 2026 roku co zmienia sie na rynku offroadowym
+title: Opony MT i AT w 2026 roku - co zmienia sie na rynku offroadowym
 description: Rynek opon MT i AT w 2026 roku przechodzi istotne zmiany. Nowe normy hałasu, dostępność rozmiarów i ceny wpływają na decyzje kierowców 4x4 w Polsce i Europie.
 author: Przemek
 date: 2026-03-11T08:31:01.705Z

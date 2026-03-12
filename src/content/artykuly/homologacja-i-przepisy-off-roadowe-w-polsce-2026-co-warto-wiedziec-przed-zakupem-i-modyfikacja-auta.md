@@ -1,5 +1,5 @@
 ---
-title: Homologacja i przepisy offroadowe w Polsce 2026 co warto wiedzieć przed zakupem i modyfikacją auta
+title: Homologacja i przepisy offroadowe w Polsce 2026 - co warto wiedzieć przed zakupem i modyfikacją auta
 description: Aktualne przepisy dotyczące aut terenowych w 2026 roku. Sprawdź, co wolno modyfikować, jak wygląda homologacja oraz na co uważać przy zakupie i rejestracji.
 author: Przemek
 date: 2026-02-24T13:20:20.900Z

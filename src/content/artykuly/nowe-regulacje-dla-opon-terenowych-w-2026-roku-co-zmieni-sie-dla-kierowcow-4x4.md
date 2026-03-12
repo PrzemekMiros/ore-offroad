@@ -1,5 +1,5 @@
 ---
-title: Nowe regulacje dla opon terenowych w 2026 roku co zmieni się dla kierowców 4x4
+title: Nowe regulacje dla opon terenowych w 2026 roku - co zmieni się dla kierowców 4x4
 description: Rok 2026 przynosi istotne zmiany w homologacji i oznaczeniach opon terenowych. Sprawdzamy, co nowe regulacje oznaczają dla użytkowników aut 4x4 i rynku off-roadu.
 author: Przemek
 date: 2026-03-10T21:15:30.229Z

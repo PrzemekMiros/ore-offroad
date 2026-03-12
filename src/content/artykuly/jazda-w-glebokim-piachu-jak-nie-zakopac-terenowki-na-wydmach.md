@@ -1,5 +1,5 @@
 ---
-title: Jazda w głębokim piachu jak nie zakopać terenówki na wydmach
+title: Jazda w głębokim piachu - jak nie zakopać terenówki na wydmach
 description: Technika jazdy w głębokim piachu wymaga precyzji, wyczucia gazu i odpowiedniego przygotowania auta 4x4. Sprawdź, jak bezpiecznie pokonywać wydmy i uniknąć zakopania.
 author: Przemek
 date: 2026-03-11T05:30:28.169Z

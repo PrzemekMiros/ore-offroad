@@ -1,5 +1,5 @@
 ---
-title: Nowe przepisy dotyczące modyfikacji aut terenowych w 2026 roku co muszą wiedzieć offroadowcy
+title: Nowe przepisy dotyczące modyfikacji aut terenowych w 2026 roku - co muszą wiedzieć offroadowcy
 description: Zmiany w przepisach dotyczących modyfikacji samochodów terenowych w 2026 roku. Sprawdzamy, co wolno zmieniać, jak zalegalizować lift i wyciągarkę oraz jakie grożą kary.
 author: Przemek
 date: 2026-02-24T13:05:19.751Z

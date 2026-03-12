@@ -1,5 +1,5 @@
 ---
-title: Rajdy cross country 2026 jak zmienia się światowy offroad
+title: Rajdy cross country 2026 - jak zmienia się światowy offroad
 description: Sezon 2026 w rajdach cross country pokazuje, jak dynamicznie ewoluuje świat offroadu. Nowe regulaminy, pojazdy i kierunki rozwoju zmieniają oblicze sportu.
 author: Przemek
 date: 2026-02-24T12:05:14.764Z

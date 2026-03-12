@@ -1,5 +1,5 @@
 ---
-title: Sezon rajdów przeprawowych 2026 co zmieni się na polskich trasach
+title: Sezon rajdów przeprawowych 2026 - co zmieni się na polskich trasach
 description: Analiza sezonu rajdów przeprawowych 2026 w Polsce. Zmiany w regulaminach, rosnące wymagania techniczne, nowe technologie i kierunek rozwoju zawodów 4x4.
 author: Przemek
 date: 2026-03-04T02:56:52.359Z

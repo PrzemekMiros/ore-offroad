@@ -1,5 +1,5 @@
 ---
-title: Nawigacja w terenie bez zasięgu jak planować i realizować trasy 4x4
+title: Nawigacja w terenie bez zasięgu - jak planować i realizować trasy 4x4
 description: Jak skutecznie planować i realizować trasy 4x4 bez dostępu do sieci. Mapy offline, GPX, azymut, punkty orientacyjne i procedury bezpieczeństwa w offroadzie.
 author: Przemek
 date: 2026-03-03T20:27:34.122Z

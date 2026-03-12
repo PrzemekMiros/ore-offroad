@@ -1,5 +1,5 @@
 ---
-title: Wyciągarka w terenie montaż dobór i błędy które kończą wyprawę
+title: Wyciągarka w terenie - montaż dobór i błędy które kończą wyprawę
 description: Kompendium wiedzy o wyciągarkach 4x4. Jak dobrać uciąg, linę i osprzęt, jak poprawnie zamontować urządzenie oraz jakich błędów unikać, by nie zakończyć wyprawy lawetą.
 author: Przemek
 date: 2026-03-11T04:00:34.440Z

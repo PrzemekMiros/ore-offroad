@@ -1,5 +1,5 @@
 ---
-title: Toyota Land Cruiser 120 w terenie i na szosie kompleksowy test używanego klasyka 4x4
+title: Toyota Land Cruiser 120 w terenie i na szosie - kompleksowy test używanego klasyka 4x4
 description: Szczegółowy test Toyoty Land Cruiser 120 z rynku wtórnego. Analiza silników, napędu 4x4, zawieszenia, typowych usterek i potencjału terenowego tego kultowego modelu.
 author: Przemek
 date: 2026-03-04T16:35:09.008Z

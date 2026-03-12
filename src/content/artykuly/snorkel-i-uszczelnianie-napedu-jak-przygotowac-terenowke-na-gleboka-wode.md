@@ -1,5 +1,5 @@
 ---
-title: Snorkel i uszczelnianie napędu jak przygotować terenówkę na głęboką wodę
+title: Snorkel i uszczelnianie napędu - jak przygotować terenówkę na głęboką wodę
 description: Jak bezpiecznie przygotować samochód 4x4 do głębokich przepraw wodnych? Montaż snorkela, odpowietrzenia mostów, uszczelnianie instalacji i praktyczne wskazówki warsztatowe.
 author: Przemek
 date: 2026-03-11T04:45:28.203Z

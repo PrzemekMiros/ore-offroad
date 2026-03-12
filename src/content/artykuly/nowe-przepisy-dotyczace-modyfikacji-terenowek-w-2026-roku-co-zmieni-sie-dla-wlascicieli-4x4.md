@@ -1,5 +1,5 @@
 ---
-title: Nowe przepisy dotyczące modyfikacji terenówek w 2026 roku co zmieni się dla właścicieli 4x4
+title: Nowe przepisy dotyczące modyfikacji terenówek w 2026 roku - co zmieni się dla właścicieli 4x4
 description: Analiza zmian prawnych w 2026 roku dotyczących modyfikacji aut 4x4. Sprawdzamy, co wolno, co wymaga homologacji i jakie konsekwencje czekają właścicieli terenówek.
 author: Przemek
 date: 2026-03-04T15:04:50.031Z

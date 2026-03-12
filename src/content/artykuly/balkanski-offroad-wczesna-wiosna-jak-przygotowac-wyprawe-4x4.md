@@ -1,5 +1,5 @@
 ---
-title: Bałkański offroad wczesną wiosną jak przygotować wyprawę 4x4
+title: Bałkański offroad wczesną wiosną - jak przygotować wyprawę 4x4
 description: Jak zaplanować wiosenną wyprawę 4x4 na Bałkany? Trasy, formalności, przygotowanie auta i logistyka biwakowa w praktycznym, eksperckim przewodniku dla overlanderów.
 author: Redakcja Offroad News
 date: 2026-03-03T20:10:44.389Z

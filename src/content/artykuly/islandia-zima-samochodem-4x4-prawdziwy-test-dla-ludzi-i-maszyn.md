@@ -1,5 +1,5 @@
 ---
-title: Islandia zimą samochodem 4x4 prawdziwy test dla ludzi i maszyn
+title: Islandia zimą samochodem 4x4 - prawdziwy test dla ludzi i maszyn
 description: Zimowa wyprawa 4x4 na Islandię to ekstremalny egzamin z planowania, techniki jazdy i przygotowania sprzętu. Sprawdź, jak zaplanować bezpieczną ekspedycję.
 author: Przemek
 date: 2026-03-03T20:33:49.459Z

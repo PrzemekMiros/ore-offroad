@@ -1,5 +1,5 @@
 ---
-title: Skandynawskie szalki lodu jak bezpiecznie planować zimową wyprawę 4x4
+title: Skandynawskie szalki lodu - jak bezpiecznie planować zimową wyprawę 4x4
 description: Zimowa wyprawa 4x4 do Skandynawii wymaga wiedzy o lodzie, sprzęcie i bezpieczeństwie. Sprawdź, jak przygotować auto i załogę na jazdę po zamarzniętych szlakach północy.
 author: Przemek
 date: 2026-03-03T20:50:53.640Z

@@ -1,5 +1,5 @@
 ---
-title: Napęd 4x4 w praktyce jak różne systemy radzą sobie w terenie
+title: Napęd 4x4 w praktyce - jak różne systemy radzą sobie w terenie
 description: Analizujemy typy napędu 4x4 i sprawdzamy, jak radzą sobie w terenie. Porównanie systemów stałych, dołączanych i automatycznych z perspektywy praktyka off-roadu.
 author: Przemek
 date: 2026-03-04T16:42:10.972Z

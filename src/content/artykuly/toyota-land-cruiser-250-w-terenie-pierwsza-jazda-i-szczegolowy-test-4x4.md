@@ -1,5 +1,5 @@
 ---
-title: Toyota Land Cruiser 250 w terenie pierwsza jazda i szczegółowy test 4x4
+title: Toyota Land Cruiser 250 w terenie - pierwsza jazda i szczegółowy test
 description: Nowa Toyota Land Cruiser 250 sprawdzona w wymagającym terenie. Analiza napędu 4x4, zawieszenia, elektroniki i realnych możliwości offroadowych w praktyce.
 author: Przemek
 date: 2026-03-11T09:15:36.871Z

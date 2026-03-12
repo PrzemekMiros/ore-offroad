@@ -1,5 +1,5 @@
 ---
-title: Mapy szlaki i odpowiedzialność jak planować trasę 4x4 w polskich górach
+title: Mapy szlaki i odpowiedzialność czyli jak planować trasę 4x4 w polskich górach
 description: Jak legalnie i bezpiecznie planować trasę 4x4 w polskich górach? Praktyczny przewodnik po mapach, przepisach, sprzęcie i analizie terenu dla świadomych offroadowców.
 author: Przemek
 date: 2026-03-03T20:59:20.856Z

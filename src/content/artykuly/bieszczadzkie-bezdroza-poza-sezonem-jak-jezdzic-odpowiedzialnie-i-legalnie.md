@@ -1,5 +1,5 @@
 ---
-title: Bieszczadzkie bezdroża poza sezonem jak jeździć odpowiedzialnie i legalnie
+title: Bieszczadzkie bezdroża poza sezonem - jak jeździć odpowiedzialnie i legalnie
 description: Jazda 4x4 w Bieszczadach poza sezonem wymaga wiedzy o przepisach, terenie i etyce offroadowej. Sprawdź jak planować trasy, unikać mandatów i chronić przyrodę.
 author: Przemek
 date: 2026-03-11T00:15:28.456Z

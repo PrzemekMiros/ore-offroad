@@ -1,5 +1,5 @@
 ---
-title: Rajdy cross country w Polsce jak zacząć i nie zbankrutować w pierwszym sezonie
+title: Rajdy cross country w Polsce - jak zacząć i nie zbankrutować w pierwszym sezonie
 description: Kompleksowy przewodnik po rajdach cross country w Polsce. Jak wybrać auto, zbudować budżet, zdobyć licencję i przejechać pierwszy sezon bez kosztownej wpadki.
 author: Przemek
 date: 2026-03-11T06:15:28.652Z

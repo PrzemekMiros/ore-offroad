@@ -1,5 +1,5 @@
 ---
-title: Sezon rajdów terenowych 2026 jak wejść w świat winch challenge i cross country
+title: Sezon rajdów terenowych 2026 - jak wejść w świat winch challenge i cross country
 description: Przewodnik po sezonie rajdów terenowych 2026 w Polsce. Klasy, regulaminy, przygotowanie auta i budżet startowy w winch challenge oraz cross country.
 author: Przemek
 date: 2026-03-11T01:45:29.119Z

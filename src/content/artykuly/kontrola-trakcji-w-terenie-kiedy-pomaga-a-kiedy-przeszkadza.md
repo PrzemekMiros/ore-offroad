@@ -1,5 +1,5 @@
 ---
-title: Kontrola trakcji w terenie kiedy pomaga a kiedy przeszkadza
+title: Kontrola trakcji w terenie - kiedy pomaga a kiedy przeszkadza
 description: Elektroniczne systemy kontroli trakcji potrafią uratować podjazd, ale też skutecznie zakopać auto w piachu. Sprawdź, kiedy warto im zaufać, a kiedy bezwzględnie je wyłączyć.
 author: Przemek
 date: 2026-03-10T23:30:27.352Z

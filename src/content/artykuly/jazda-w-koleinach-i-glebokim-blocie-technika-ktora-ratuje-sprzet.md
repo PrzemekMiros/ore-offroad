@@ -1,5 +1,5 @@
 ---
-title: Jazda w koleinach i głębokim błocie technika która ratuje sprzęt
+title: Jazda w koleinach i głębokim błocie - technika która ratuje sprzęt
 description: Jak bezpiecznie i skutecznie pokonywać głębokie koleiny oraz błoto w terenie? Praktyczny poradnik techniki jazdy 4x4, pracy gazem i wyboru linii przejazdu.
 author: Przemek
 date: 2026-03-10T17:27:34.130Z

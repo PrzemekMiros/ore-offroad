@@ -1,5 +1,5 @@
 ---
-title: Sezon rajdów terenowych 2026 jak przygotować zespół do pierwszego startu
+title: Sezon rajdów terenowych 2026 - jak przygotować zespół do pierwszego startu
 description: Kompleksowy przewodnik po przygotowaniach do sezonu rajdów terenowych 2026. Sprawdź jak zbudować zespół, przygotować auto i zaplanować logistykę pierwszego startu.
 author: Przemek
 date: 2026-03-04T14:58:20.821Z

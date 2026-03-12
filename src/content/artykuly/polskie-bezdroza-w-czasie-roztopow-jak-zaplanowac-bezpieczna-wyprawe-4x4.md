@@ -1,5 +1,5 @@
 ---
-title: Polskie bezdroża w czasie roztopów jak zaplanować bezpieczną wyprawę 4x4
+title: Polskie bezdroża w czasie roztopów - jak zaplanować bezpieczną wyprawę 4x4
 description: Wczesna wiosna to najtrudniejszy okres dla kierowców offroadu. Sprawdź, jak legalnie planować trasy, ocenić teren po roztopach i przygotować auto 4x4 na wymagające warunki.
 author: Przemek
 date: 2026-03-10T19:00:57.358Z
