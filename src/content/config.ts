@@ -58,10 +58,43 @@ const imprezy = defineCollection({
   }),
 });
 
+const wyniki = defineCollection({
+  type: 'content',
+  schema: z.object({
+    title: z.string(),
+    event: z.string().optional(),
+    date: z.coerce.date(),
+    location: z.string(),
+    region: z.string().optional(),
+    series: z.string().optional(),
+    round: z.string().optional(),
+    surface: z.string().optional(),
+    link: z.string().url().optional(),
+    thumbnail: z.string().optional(),
+    hero: z.string().optional(),
+    classes: z.array(z.string()).optional(),
+    results: z
+      .array(
+        z.object({
+          position: z.number().optional(),
+          crew: z.string(),
+          vehicle: z.string().optional(),
+          class: z.string().optional(),
+          time: z.string().optional(),
+          notes: z.string().optional(),
+        }),
+      )
+      .optional(),
+    order: z.number().optional(),
+    robots: z.string().optional(),
+  }),
+});
+
 export const collections = {
   realizacje,
   artykuly,
   imprezy,
+  wyniki,
   miasta: defineCollection({
     type: 'content',
     schema: z.object({

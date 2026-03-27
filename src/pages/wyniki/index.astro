@@ -1,0 +1,276 @@
+---
+import { getCollection } from "astro:content";
+import BaseLayout from "../../layouts/BaseLayout.astro";
+import ArchiveHero from "../../layouts/heroes/ArchiveHero.astro";
+
+const imageEntries = import.meta.glob("/src/content/wyniki/img/**/*", { eager: true });
+const resolveImage = (file?: string) => {
+  if (!file) return null;
+  let normalized = file;
+  if (normalized.startsWith("/content/")) normalized = `/src${normalized}`;
+  const entry = imageEntries[normalized];
+  return entry?.default ?? null;
+};
+
+const wyniki = (await getCollection("wyniki"))
+  .map((entry) => ({ slug: entry.slug, ...entry.data }))
+  .sort((a, b) => b.date.getTime() - a.date.getTime());
+
+const featured = wyniki[0];
+const featuredImage = featured ? resolveImage(featured.hero ?? featured.thumbnail) : null;
+const featuredClasses = featured?.results
+  ? Array.from(new Set(featured.results.map((r) => r.class).filter(Boolean)))
+  : [];
+const classOrder = ["NOL", "CHL", "ADV"];
+const groupedFeatured =
+  featured?.results?.reduce((acc, row) => {
+    const key = row.class ?? "Pozostałe";
+    if (!acc[key]) acc[key] = [];
+    acc[key].push(row);
+    return acc;
+  }, {} as Record<string, typeof featured.results>) ?? {};
+const orderedBuckets = [
+  ...classOrder.filter((c) => groupedFeatured[c]),
+  ...Object.keys(groupedFeatured).filter((k) => !classOrder.includes(k)),
+];
+
+const years = Array.from(new Set(wyniki.map((w) => w.date.getFullYear()))).sort((a, b) => b - a);
+const seriesList = Array.from(new Set(wyniki.map((w) => w.series).filter(Boolean))).sort((a, b) =>
+  (a ?? "").localeCompare(b ?? ""),
+);
+
+const dateFormatter = new Intl.DateTimeFormat("pl-PL", { day: "2-digit", month: "short", year: "numeric" });
+const dayFormatter = new Intl.DateTimeFormat("pl-PL", { day: "2-digit" });
+const monthFormatter = new Intl.DateTimeFormat("pl-PL", { month: "short" });
+---
+
+<BaseLayout
+  title="Wyniki rajdów terenowych"
+  description="Aktualne wyniki rajdów cross‑country, baja i rajdów przeprawowych."
+  showHero={false}
+>
+  <ArchiveHero
+    title="Wyniki rajdów terenowych"
+    lead="Aktualne i archiwalne klasyfikacje rajdów cross‑country, baja i imprez przeprawowych."
+  />
+
+  <section class="py-10 md:py-16">
+    <div class="rounded-2xl border border-[var(--border)] bg-[var(--surface)] p-5 md:p-7 shadow-[0_20px_60px_rgba(15,23,42,0.06)]">
+      <div class="flex flex-col gap-4 md:flex-row md:items-end md:justify-between">
+        <div>
+          <p class="text-[10px] font-semibold uppercase tracking-[0.24em] text-[var(--accent)]">Filtry</p>
+          <h2 class="text-xl font-semibold text-[var(--text)]">Przeglądaj wyniki według sezonu, cyklu lub nazwy rajdu</h2>
+        </div>
+        <div class="grid gap-3 md:grid-cols-3">
+          <label class="flex flex-col gap-1 text-[12px] font-semibold uppercase tracking-[0.14em] text-[var(--muted)]">
+            Sezon
+            <select id="filter-year" class="filter-select rounded-xl border border-[var(--border)] bg-[var(--surface-muted)] px-3 py-2 text-sm text-[var(--text)] focus:outline-none focus:ring-2 focus:ring-[var(--accent)]">
+              <option value="">Wszystkie</option>
+              {years.map((year) => (
+                <option value={year}>{year}</option>
+              ))}
+            </select>
+          </label>
+          <label class="flex flex-col gap-1 text-[12px] font-semibold uppercase tracking-[0.14em] text-[var(--muted)]">
+            Cykl / seria
+            <select id="filter-series" class="filter-select rounded-xl border border-[var(--border)] bg-[var(--surface-muted)] px-3 py-2 text-sm text-[var(--text)] focus:outline-none focus:ring-2 focus:ring-[var(--accent)]">
+              <option value="">Wszystkie</option>
+              {seriesList.map((serie) => (
+                <option value={serie}>{serie}</option>
+              ))}
+            </select>
+          </label>
+          <label class="flex flex-col gap-1 text-[12px] font-semibold uppercase tracking-[0.14em] text-[var(--muted)]">
+            Szukaj
+            <input
+              id="filter-search"
+              type="search"
+              placeholder="np. Baja, Breslau, RMPST..."
+              class="rounded-xl border border-[var(--border)] bg-[var(--surface-muted)] px-3 py-2 text-sm text-[var(--text)] focus:outline-none focus:ring-2 focus:ring-[var(--accent)]"
+            />
+          </label>
+        </div>
+      </div>
+      <div class="mt-4 flex flex-wrap gap-2 text-[12px] uppercase tracking-[0.12em] text-[var(--muted)]">
+        <button class="chip active" data-class="all">All</button>
+        <button class="chip" data-class="NOL">NOL</button>
+        <button class="chip" data-class="CHL">CHL</button>
+        <button class="chip" data-class="ADV">ADV</button>
+      </div>
+    </div>
+  </section>
+
+  {featured ? (
+    <section id="tabela-wynikow" class="pb-14">
+      <div class="rounded-2xl border border-[var(--border)] bg-[var(--surface-muted)] shadow-[0_20px_60px_rgba(15,23,42,0.18)]">
+        <div class="flex flex-col gap-3 border-b border-[var(--border)] px-5 pb-4 pt-5 md:flex-row md:items-center md:justify-between">
+          <div>
+            <p class="text-[10px] font-semibold uppercase tracking-[0.2em] text-[var(--accent)]">Tabela</p>
+            <h2 class="text-2xl font-semibold text-[var(--text)]">Wyniki {featured.title}</h2>
+          </div>
+        <div class="flex flex-wrap gap-2 text-[12px] uppercase tracking-[0.12em] text-[var(--muted)]">
+          Podział na kategorie: NOL / CHL / ADV
+        </div>
+        </div>
+
+        {orderedBuckets.length ? (
+          <div class="space-y-6" id="wyniki-table">
+            {orderedBuckets.map((bucket) => (
+              <div
+                class="overflow-hidden rounded-2xl border border-[var(--border)] bg-[var(--surface)] wynik-bucket"
+                data-class={bucket}
+              >
+                <div class="flex items-center justify-between border-b border-[var(--border)] px-5 py-3">
+                  <div class="flex items-center gap-2 text-[12px] uppercase tracking-[0.16em] text-[var(--muted)]">
+                    <span class="badge-ghost">{bucket}</span>
+                    <span>{groupedFeatured[bucket]?.length ?? 0} załóg</span>
+                  </div>
+                </div>
+                <div class="overflow-x-auto">
+                  <table class="min-w-full divide-y divide-[var(--border)] text-sm text-[var(--text)]">
+                    <thead class="bg-[var(--surface-muted)] text-[11px] uppercase tracking-[0.18em] text-[var(--muted)]">
+                      <tr>
+                        <th class="px-4 py-3 text-left">Pos</th>
+                        <th class="px-4 py-3 text-left">Załoga</th>
+                        <th class="px-4 py-3 text-left">Pojazd</th>
+                        <th class="px-4 py-3 text-left">Czas</th>
+                        <th class="px-4 py-3 text-left">Uwagi</th>
+                      </tr>
+                    </thead>
+                    <tbody class="divide-y divide-[var(--border)]">
+                      {groupedFeatured[bucket].map((row) => (
+                        <tr class="transition-colors hover:bg-[var(--surface-muted)]">
+                          <td class="px-4 py-3 font-semibold text-[var(--accent)]">{row.position ?? "–"}</td>
+                          <td class="px-4 py-3 font-medium">{row.crew}</td>
+                          <td class="px-4 py-3 text-[var(--muted)]">{row.vehicle ?? "—"}</td>
+                          <td class="px-4 py-3 text-[var(--text)]">{row.time ?? "—"}</td>
+                          <td class="px-4 py-3 text-[var(--muted)]">{row.notes ?? "—"}</td>
+                        </tr>
+                      ))}
+                    </tbody>
+                  </table>
+                </div>
+              </div>
+            ))}
+          </div>
+        ) : (
+          <p class="px-5 py-6 text-sm text-[var(--muted)]">Brak tabeli wyników dla tego rajdu.</p>
+        )}
+      </div>
+    </section>
+  ) : null}
+
+  <!-- Usunięto listę archiwalną na prośbę użytkownika -->
+</BaseLayout>
+
+<script>
+  // archive filters
+  const yearSelect = document.querySelector("#filter-year");
+  const seriesSelect = document.querySelector("#filter-series");
+  const searchInput = document.querySelector("#filter-search");
+  const cards = Array.from(document.querySelectorAll(".wynik-card"));
+  const bucketWrappers = Array.from(document.querySelectorAll(".wynik-bucket"));
+  const classButtons = Array.from(document.querySelectorAll(".chip[data-class]"));
+
+  const applyFilters = () => {
+    const year = yearSelect?.value ?? "";
+    const series = (seriesSelect?.value ?? "").toLowerCase();
+    const term = (searchInput?.value ?? "").trim().toLowerCase();
+
+    cards.forEach((card) => {
+      const matchYear = !year || card.dataset.year === year;
+      const matchSeries = !series || card.dataset.series?.toLowerCase() === series;
+      const matchText = !term || card.dataset.text?.includes(term);
+      card.classList.toggle("hidden", !(matchYear && matchSeries && matchText));
+    });
+  };
+
+  yearSelect?.addEventListener("change", applyFilters);
+  seriesSelect?.addEventListener("change", applyFilters);
+  searchInput?.addEventListener("input", applyFilters);
+
+  // class buckets filter
+  classButtons.forEach((btn) =>
+    btn.addEventListener("click", () => {
+      classButtons.forEach((b) => b.classList.remove("active"));
+      btn.classList.add("active");
+      const cls = btn.dataset.class;
+      bucketWrappers.forEach((bucket) => {
+        const bClass = bucket.dataset.class || "";
+        bucket.classList.toggle("hidden", cls !== "all" && bClass !== cls);
+      });
+    }),
+  );
+
+</script>
+
+<style>
+  /* Jasny wariant strony wyników */
+  :global(body) {
+    background: radial-gradient(circle at 20% 20%, rgba(255, 90, 0, 0.06), transparent 40%), #f7f5f2;
+    color: var(--text);
+  }
+
+  .badge-ghost {
+    display: inline-flex;
+    align-items: center;
+    gap: 6px;
+    padding: 8px 12px;
+    border-radius: 999px;
+    background: rgba(255, 90, 0, 0.08);
+    border: 1px solid rgba(255, 90, 0, 0.18);
+    color: #d14300;
+  }
+
+  .btn-cta {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    gap: 10px;
+    padding: 12px 18px;
+    border-radius: 12px;
+    background: linear-gradient(135deg, #ff5a00, #ff8c62);
+    color: #fff;
+    text-transform: uppercase;
+    letter-spacing: 0.12em;
+    font-size: 12px;
+    box-shadow: 0 10px 30px rgba(255, 90, 0, 0.35);
+  }
+
+  .btn-ghost {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    padding: 12px 16px;
+    border-radius: 12px;
+    background: #ffffff;
+    border: 1px solid var(--border);
+    color: var(--text);
+    text-transform: uppercase;
+    letter-spacing: 0.12em;
+    font-size: 11px;
+  }
+
+  .chip {
+    padding: 9px 14px;
+    border-radius: 999px;
+    border: 1px solid var(--border);
+    background: #ffffff;
+    color: var(--text);
+    font-size: 12px;
+    font-weight: 600;
+    text-transform: uppercase;
+    letter-spacing: 0.14em;
+    transition: all 150ms ease;
+  }
+
+  .chip.active {
+    background: linear-gradient(135deg, #ff5a00, #ff8c62);
+    color: #fff;
+    border-color: rgba(255, 90, 0, 0.5);
+  }
+
+  .wynik-card {
+    background: #ffffff;
+  }
+</style>

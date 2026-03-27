@@ -8,7 +8,8 @@
     "build": "astro build",
     "preview": "astro preview",
     "astro": "astro",
-    "import:zawody": "node scripts/import-kalendarz4x4-zawody.mjs"
+    "import:zawody": "node scripts/import-kalendarz4x4-zawody.mjs",
+    "import:results4x4": "node scripts/fetch-results4x4.mjs"
   },
   "dependencies": {
     "@astrojs/react": "^4.4.2",
