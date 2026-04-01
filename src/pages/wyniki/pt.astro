@@ -1,0 +1,272 @@
+---
+import BaseLayout from "../../layouts/BaseLayout.astro";
+import ArchiveHero from "../../layouts/heroes/ArchiveHero.astro";
+
+const API_BASE = "https://results4x4.com/api/v1";
+const brand = "PT";
+const year = 2026;
+
+const dashboardRes = await fetch(`${API_BASE}/public/dashboard?brand=${brand}&year=${year}`);
+if (!dashboardRes.ok) {
+  throw new Error(`Nie udało się pobrać wyników (${dashboardRes.status})`);
+}
+const dashboard = await dashboardRes.json();
+
+const teams = new Map(dashboard.teams.map((t) => [t.teamId, t]));
+const leaderboard = dashboard.leaderboard;
+const stageOrder = ["OS1NOC", "OS2NOC", "OS3NOC", "OS1DZIEN", "OS2DZIEN", "OS3DZIEN", "OS4DZIEN", "OS5DZIEN"];
+
+const fmt = (ms?: number | null) => {
+  if (!ms && ms !== 0) return "—";
+  const s = Math.floor(ms / 1000);
+  const hh = String(Math.floor(s / 3600)).padStart(2, "0");
+  const mm = String(Math.floor((s % 3600) / 60)).padStart(2, "0");
+  const ss = String(s % 60).padStart(2, "0");
+  return `${hh}:${mm}:${ss}`;
+};
+
+const rows =
+  leaderboard?.rows?.map((r) => {
+    const team = teams.get(r.teamId) ?? {};
+    const stageMap = Object.fromEntries(r.stages.map((s) => [s.code, s.timeMs]));
+    return {
+      position: r.position,
+      crewNumber: r.crewNumber,
+      teamName: team.teamName ?? "—",
+      class: team.classCode ?? "INNE",
+      stages: stageOrder.map((code) => fmt(stageMap[code] ?? null)),
+      total: fmt(r.totalTimeMs),
+    };
+  }) ?? [];
+
+// pozycje w ramach klasy
+const classCounters = new Map<string, number>();
+rows.forEach((row) => {
+  const c = row.class;
+  const next = (classCounters.get(c) ?? 0) + 1;
+  classCounters.set(c, next);
+  (row as any).classPosition = next;
+});
+
+const classOrder = ["ALL", "ADV", "CHL", "NOL"];
+const grouped = rows.reduce((acc, row) => {
+  const key = row.class;
+  if (!acc[key]) acc[key] = [];
+  acc[key].push(row);
+  return acc;
+}, {} as Record<string, typeof rows>);
+
+const title = "Poland Trophy 2026";
+const roundName = dashboard.nearestRound?.name ?? "";
+const start = dashboard.nearestRound?.startsAt ? new Date(dashboard.nearestRound.startsAt) : null;
+const end = dashboard.nearestRound?.endsAt ? new Date(dashboard.nearestRound.endsAt) : null;
+const dateRange =
+  start && end
+    ? `${start.toLocaleDateString("pl-PL", { day: "2-digit", month: "short", year: "numeric" })} – ${end.toLocaleDateString("pl-PL", { day: "2-digit", month: "short", year: "numeric" })}`
+    : "";
+---
+
+<BaseLayout title={title} description="Aktualne wyniki z results4x4.com" showHero={false}>
+  <ArchiveHero title={title} lead={`${roundName} · ${dateRange}`} />
+
+  <section class="pb-16 px-4 md:px-8 lg:px-12">
+    <div class="panel">
+      <div class="panel__head">
+        <div>
+          <p class="eyebrow">Wyniki PT</p>
+          <h2>Klasyfikacja</h2>
+        </div>
+        <div class="tabs">
+          <button class="tab active" data-class="ALL">ALL</button>
+          <button class="tab" data-class="ADV">ADV</button>
+          <button class="tab" data-class="CHL">CHL</button>
+          <button class="tab" data-class="NOL">NOL</button>
+        </div>
+      </div>
+
+      {rows.length ? (
+        <div class="space-y-6" id="wyniki-table">
+          {classOrder.filter((c) => c === "ALL" || grouped[c]).map((bucket) => (
+            <div class="table-wrap wynik-bucket" data-class={bucket}>
+              <div class="table-head">
+                <div class="badge-ghost">
+                  <span>{bucket}</span>
+                  <span>{bucket === "ALL" ? rows.length : grouped[bucket]?.length ?? 0} załóg</span>
+                </div>
+              </div>
+              <div class="overflow-x-auto">
+                <table class="results">
+                  <thead>
+                    <tr>
+                      <th>Pos</th>
+                      <th>Crew #</th>
+                      <th>Team</th>
+                      <th>Class</th>
+                      {stageOrder.map((code) => (
+                        <th>{code}</th>
+                      ))}
+                      <th>Total</th>
+                    </tr>
+                  </thead>
+                  <tbody>
+                    {(bucket === "ALL" ? rows : grouped[bucket] ?? []).map((row) => (
+                      <tr>
+                        <td class="accent">{bucket === "ALL" ? row.position ?? "–" : (row as any).classPosition ?? "–"}</td>
+                        <td>{row.crewNumber ?? "–"}</td>
+                        <td>{row.teamName ?? "–"}</td>
+                        <td class="muted">{row.class}</td>
+                        {row.stages.map((t) => (
+                          <td>{t}</td>
+                        ))}
+                        <td class="strong">{row.total}</td>
+                      </tr>
+                    ))}
+                  </tbody>
+                </table>
+              </div>
+            </div>
+          ))}
+        </div>
+      ) : (
+        <p class="text-muted px-5 py-6">Brak danych z API results4x4.com</p>
+      )}
+    </div>
+  </section>
+</BaseLayout>
+
+<script>
+  const classButtons = Array.from(document.querySelectorAll(".tab[data-class]"));
+  const bucketWrappers = Array.from(document.querySelectorAll(".wynik-bucket"));
+
+  classButtons.forEach((btn) =>
+    btn.addEventListener("click", () => {
+      classButtons.forEach((b) => b.classList.remove("active"));
+      btn.classList.add("active");
+      const cls = btn.dataset.class;
+      bucketWrappers.forEach((bucket) => {
+        const bClass = bucket.dataset.class || "";
+        bucket.classList.toggle("hidden", cls !== "ALL" && bClass !== cls);
+      });
+    }),
+  );
+</script>
+
+<style>
+  :global(body) {
+    background: #f7f5f2;
+    color: #0f172a;
+  }
+  :global(main) {
+    padding: 0;
+  }
+  .panel {
+    border: 1px solid #e4e6eb;
+    background: #ffffff;
+    border-radius: 18px;
+    box-shadow: 0 18px 50px rgba(15, 23, 42, 0.08);
+    padding: 18px;
+  }
+  .panel__head {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-between;
+    align-items: center;
+    gap: 12px;
+    padding: 10px 6px 14px;
+    border-bottom: 1px solid #e4e6eb;
+  }
+  .eyebrow {
+    text-transform: uppercase;
+    letter-spacing: 0.16em;
+    font-size: 11px;
+    color: #ff5a00;
+    margin: 0 0 4px 0;
+    font-weight: 700;
+  }
+  .panel h2 {
+    margin: 0;
+    color: #0f172a;
+    font-size: 22px;
+    font-weight: 800;
+  }
+  .tabs {
+    display: flex;
+    gap: 8px;
+  }
+  .tab {
+    padding: 9px 14px;
+    border-radius: 999px;
+    border: 1px solid #e4e6eb;
+    background: #ffffff;
+    color: #0f172a;
+    font-size: 12px;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 0.14em;
+    transition: all 150ms ease;
+  }
+  .tab.active {
+    background: linear-gradient(135deg, #ff5a00, #ff8c62);
+    color: #fff;
+    border-color: rgba(255, 90, 0, 0.5);
+  }
+  .table-wrap {
+    border: 1px solid #e4e6eb;
+    border-radius: 16px;
+    overflow: hidden;
+    background: #ffffff;
+  }
+  .table-head {
+    padding: 12px 16px;
+    border-bottom: 1px solid #e4e6eb;
+  }
+  .badge-ghost {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    padding: 10px 14px;
+    border-radius: 999px;
+    background: rgba(255, 90, 0, 0.08);
+    border: 1px solid rgba(255, 90, 0, 0.18);
+    color: #ff5a00;
+    font-weight: 700;
+    letter-spacing: 0.08em;
+  }
+  .results {
+    width: 100%;
+    border-collapse: collapse;
+    color: #0f172a;
+    min-width: 960px;
+  }
+  .results thead {
+    background: #f3f4f6;
+    color: #4b5563;
+    font-size: 11px;
+    letter-spacing: 0.14em;
+    text-transform: uppercase;
+  }
+  .results th,
+  .results td {
+    padding: 10px 12px;
+    border-bottom: 1px solid #e4e6eb;
+    text-align: left;
+    white-space: nowrap;
+    font-size: 13px;
+  }
+  .results tbody tr:hover {
+    background: #f7f7fb;
+  }
+  .accent {
+    color: #ff5a00;
+    font-weight: 700;
+  }
+  .muted {
+    color: #6b7280;
+  }
+  .strong {
+    font-weight: 700;
+  }
+  .text-muted {
+    color: #6b7280;
+  }
+</style>

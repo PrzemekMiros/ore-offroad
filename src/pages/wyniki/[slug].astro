@@ -1,0 +1,95 @@
+---
+import { getCollection } from "astro:content";
+import BaseLayout from "../../layouts/BaseLayout.astro";
+import ArchiveHero from "../../layouts/heroes/ArchiveHero.astro";
+
+export async function getStaticPaths() {
+  const items = await getCollection("wyniki");
+  return items.map((item) => ({
+    params: { slug: item.slug },
+    props: { entry: item },
+  }));
+}
+
+const { entry } = Astro.props;
+const data = entry.data;
+
+const dateLabel = data.date
+  ? data.date.toLocaleDateString("pl-PL", { day: "2-digit", month: "long", year: "numeric" })
+  : "";
+
+const classOrder = ["NOL", "CHL", "ADV"];
+const grouped =
+  data.results?.reduce((acc, row) => {
+    const key = row.class ?? "Pozostałe";
+    if (!acc[key]) acc[key] = [];
+    acc[key].push(row);
+    return acc;
+  }, {} as Record<string, typeof data.results>) ?? {};
+const orderedBuckets = [
+  ...classOrder.filter((c) => grouped[c]),
+  ...Object.keys(grouped).filter((k) => !classOrder.includes(k)),
+];
+---
+
+<BaseLayout title={data.title} description={data.series ?? "Wyniki"} showHero={false}>
+  <ArchiveHero title={data.title} lead={`${dateLabel}${data.location ? ` · ${data.location}` : ""}`} />
+
+  <section class="pb-14">
+    <div class="rounded-2xl border border-[var(--border)] bg-[var(--surface-muted)] shadow-[0_20px_60px_rgba(15,23,42,0.18)]">
+      <div class="flex flex-col gap-3 border-b border-[var(--border)] px-5 pb-4 pt-5 md:flex-row md:items-center md:justify-between">
+        <div>
+          <p class="text-[10px] font-semibold uppercase tracking-[0.2em] text-[var(--accent)]">Tabela</p>
+          <h2 class="text-2xl font-semibold text-[var(--text)]">Wyniki {data.title}</h2>
+        </div>
+        <div class="flex flex-wrap gap-2 text-[12px] uppercase tracking-[0.12em] text-[var(--muted)]">
+          Podział na kategorie: {Object.keys(grouped).join(" / ")}
+        </div>
+      </div>
+
+      {orderedBuckets.length ? (
+        <div class="space-y-6" id="wyniki-table">
+          {orderedBuckets.map((bucket) => (
+            <div
+              class="overflow-hidden rounded-2xl border border-[var(--border)] bg-[var(--surface)] wynik-bucket"
+              data-class={bucket}
+            >
+              <div class="flex items-center justify-between border-b border-[var(--border)] px-5 py-3">
+                <div class="flex items-center gap-2 text-[12px] uppercase tracking-[0.16em] text-[var(--muted)]">
+                  <span class="badge-ghost">{bucket}</span>
+                  <span>{grouped[bucket]?.length ?? 0} załóg</span>
+                </div>
+              </div>
+              <div class="overflow-x-auto">
+                <table class="min-w-full divide-y divide-[var(--border)] text-sm text-[var(--text)]">
+                  <thead class="bg-[var(--surface-muted)] text-[11px] uppercase tracking-[0.18em] text-[var(--muted)]">
+                    <tr>
+                      <th class="px-4 py-3 text-left">Pos</th>
+                      <th class="px-4 py-3 text-left">Załoga</th>
+                      <th class="px-4 py-3 text-left">Pojazd</th>
+                      <th class="px-4 py-3 text-left">Czas</th>
+                      <th class="px-4 py-3 text-left">Uwagi</th>
+                    </tr>
+                  </thead>
+                  <tbody class="divide-y divide-[var(--border)]">
+                    {grouped[bucket].map((row) => (
+                      <tr class="transition-colors hover:bg-[var(--surface-muted)]">
+                        <td class="px-4 py-3 font-semibold text-[var(--accent)]">{row.position ?? "–"}</td>
+                        <td class="px-4 py-3 font-medium">{row.crew}</td>
+                        <td class="px-4 py-3 text-[var(--muted)]">{row.vehicle ?? "—"}</td>
+                        <td class="px-4 py-3 text-[var(--text)]">{row.time ?? "—"}</td>
+                        <td class="px-4 py-3 text-[var(--muted)]">{row.notes ?? "—"}</td>
+                      </tr>
+                    ))}
+                  </tbody>
+                </table>
+              </div>
+            </div>
+          ))}
+        </div>
+      ) : (
+        <p class="px-5 py-6 text-sm text-[var(--muted)]">Brak tabeli wyników dla tego rajdu.</p>
+      )}
+    </div>
+  </section>
+</BaseLayout>

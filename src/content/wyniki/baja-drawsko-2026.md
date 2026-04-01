@@ -1,35 +1,189 @@
-﻿---
+---
 title: "Baja Drawsko Pomorskie 2026"
 event: "Baja Drawsko Pomorskie"
-date: 2026-03-16
+date: 2026-03-14
 location: "Drawsko Pomorskie"
 region: "Zachodniopomorskie"
 series: "RMPST"
 round: "Runda 1"
 surface: "piasek / poligon"
-link: "https://pzm.pl/rmpst"
-classes: ["NOL", "CHL", "ADV"]
+link: "https://results4x4.com/"
+classes: ["NOL", "ADV", "CHL"]
 results:
   - position: 1
-    crew: "Krzysztof Hołowczyc / Łukasz Kurzeja"
-    vehicle: "Mini JCW Rally"
+    crew: "Musz Team"
+    vehicle: ""
     class: "NOL"
-    time: "3:38:11"
+    time: "00:39:29"
+    notes: ""
   - position: 2
-    crew: "Michał Małuszyński / Szymon Gospodarczyk"
-    vehicle: "Toyota Hilux Overdrive"
+    crew: "ATOM"
+    vehicle: ""
     class: "NOL"
-    time: "3:41:09"
-  - position: 1
-    crew: "Jan Wiśniewski / Piotr Nowak"
-    vehicle: "Can-Am Maverick X3"
-    class: "CHL"
-    time: "3:59:40"
-  - position: 1
-    crew: "Anna Kowal / Marek Nowak"
-    vehicle: "Toyota Land Cruiser"
+    time: "00:51:33"
+    notes: ""
+  - position: 3
+    crew: "Alfanet Team"
+    vehicle: ""
+    class: "NOL"
+    time: "00:51:43"
+    notes: ""
+  - position: 4
+    crew: "Tomaszowska Grupa Offroadowa"
+    vehicle: ""
+    class: "NOL"
+    time: "00:55:54"
+    notes: ""
+  - position: 5
+    crew: "MarMot"
+    vehicle: ""
     class: "ADV"
-    time: "4:14:05"
+    time: "00:57:17"
+    notes: ""
+  - position: 6
+    crew: "BOBER TIM EXTREME"
+    vehicle: ""
+    class: "ADV"
+    time: "01:08:01"
+    notes: ""
+  - position: 7
+    crew: "Becki 4x4"
+    vehicle: ""
+    class: "ADV"
+    time: "01:09:35"
+    notes: ""
+  - position: 8
+    crew: "Cesarz Team"
+    vehicle: ""
+    class: "NOL"
+    time: "01:12:49"
+    notes: ""
+  - position: 9
+    crew: "Wikpol 4x4"
+    vehicle: ""
+    class: "NOL"
+    time: "01:15:09"
+    notes: ""
+  - position: 10
+    crew: "Garwolin 4x4"
+    vehicle: ""
+    class: "NOL"
+    time: "01:15:20"
+    notes: ""
+  - position: 11
+    crew: "KLIMAT TEAM"
+    vehicle: ""
+    class: "NOL"
+    time: "01:24:57"
+    notes: ""
+  - position: 12
+    crew: "Team Okey Okey"
+    vehicle: ""
+    class: "CHL"
+    time: "01:27:55"
+    notes: ""
+  - position: 13
+    crew: "ODKRYWCY"
+    vehicle: ""
+    class: "NOL"
+    time: "01:44:29"
+    notes: ""
+  - position: 14
+    crew: "Apex Racing Division"
+    vehicle: ""
+    class: "ADV"
+    time: "01:47:33"
+    notes: ""
+  - position: 15
+    crew: "TARGO TEAM"
+    vehicle: ""
+    class: "CHL"
+    time: "01:49:31"
+    notes: ""
+  - position: 16
+    crew: "Pieczara Offroad Team"
+    vehicle: ""
+    class: "NOL"
+    time: "01:51:36"
+    notes: ""
+  - position: 17
+    crew: "Mickey Maus"
+    vehicle: ""
+    class: "ADV"
+    time: "01:55:02"
+    notes: ""
+  - position: 18
+    crew: "MK team"
+    vehicle: ""
+    class: "NOL"
+    time: "02:10:31"
+    notes: ""
+  - position: 19
+    crew: "WIATA 4X4"
+    vehicle: ""
+    class: "ADV"
+    time: "02:26:57"
+    notes: ""
+  - position: 20
+    crew: "Mudfreaks"
+    vehicle: ""
+    class: "CHL"
+    time: "02:36:59"
+    notes: ""
+  - position: 21
+    crew: "APEX TEAM SLOVAKIA"
+    vehicle: ""
+    class: "ADV"
+    time: "02:41:39"
+    notes: ""
+  - position: 22
+    crew: "Chojnów 4x4"
+    vehicle: ""
+    class: "NOL"
+    time: "02:48:08"
+    notes: ""
+  - position: 23
+    crew: "OFFROAD TEAM NABOOK"
+    vehicle: ""
+    class: "ADV"
+    time: "02:56:50"
+    notes: ""
+  - position: 24
+    crew: "Raptor 4x4"
+    vehicle: ""
+    class: "NOL"
+    time: "03:34:30"
+    notes: ""
+  - position: 25
+    crew: "Raptor4x4 / Zjednoczeni w błocie"
+    vehicle: ""
+    class: "ADV"
+    time: "03:44:39"
+    notes: ""
+  - position: 26
+    crew: "Gawrolin 4x4"
+    vehicle: ""
+    class: "ADV"
+    time: "04:49:38"
+    notes: ""
+  - position: 27
+    crew: "Red Cows"
+    vehicle: ""
+    class: "ADV"
+    time: "05:15:52"
+    notes: ""
+  - position: 28
+    crew: "Kikimora"
+    vehicle: ""
+    class: "NOL"
+    time: "06:02:30"
+    notes: ""
+  - position: 29
+    crew: "Chmielewski Team 4x4"
+    vehicle: ""
+    class: "NOL"
+    time: "06:02:30"
+    notes: ""
 ---
 
-Pierwsza runda RMPST 2026 na poligonie drawskim. Wyniki oficjalne PZM, klasyfikacja łączna i klasowa.
+Automatycznie zeskrapowane z results4x4.com (PT Runda 1, roundId 9c330219-7d2a-4582-ad09-b9491a5fe233).

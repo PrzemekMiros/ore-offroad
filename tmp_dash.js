@@ -1,0 +1,1 @@
+fetch('https://results4x4.com/api/v1/public/dashboard?brand=PT&year=2026').then(r=>r.json()).then(j=>{console.log('teams', j.teams.length); console.log(j.teams.slice(0,5)); console.log('round', j.nearestRound);}).catch(console.error);
