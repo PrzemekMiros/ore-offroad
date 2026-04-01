@@ -97,9 +97,9 @@ const getPostUrl = (post) => `/artykuly/${post.categorySlug}/${post.slug}/`;
                   <div class="h-full w-full bg-neutral-300 dark:bg-neutral-700"></div>
                 )}
                 <div class="absolute inset-0 bg-gradient-to-t from-black/85 via-black/25 to-transparent dark:from-black/90 dark:via-black/35"></div>
-                <div class="absolute bottom-0 left-0 p-8 text-white">
+                <div class="absolute bottom-0 left-0 p-4 md:p-8 text-white">
                   <span class="mb-3 inline-block bg-[var(--accent)] px-2 py-1 text-[10px] font-semibold uppercase text-white">Najnowszy</span>
-                  <h3 class="text-3xl font-semibold !text-white leading-tight mb-2 line-clamp-3">{featured.title ?? featured.slug}</h3>
+                  <h3 class="text-xl md:text-3xl font-semibold !text-white leading-tight mb-2 line-clamp-3">{featured.title ?? featured.slug}</h3>
                   {featured.description ? (
                     <p class="text-sm text-gray-300 opacity-80 group-hover:opacity-100 transition-opacity duration-300 line-clamp-2">
                       {featured.description}
@@ -125,7 +125,7 @@ const getPostUrl = (post) => `/artykuly/${post.categorySlug}/${post.slug}/`;
                     <div class="h-full w-full bg-neutral-300 dark:bg-neutral-700"></div>
                   )}
                   <div class="absolute inset-0 bg-gradient-to-t from-black/80 to-transparent dark:from-black/90"></div>
-                  <div class="absolute bottom-0 left-0 p-8 text-white">
+                  <div class="absolute bottom-0 left-0 p-4 md:p-8 text-white">
                     <h3 class="font-semibold !text-white text-md line-clamp-3">{post.title ?? post.slug}</h3>
                   </div>
                 </a>
@@ -150,7 +150,7 @@ const getPostUrl = (post) => `/artykuly/${post.categorySlug}/${post.slug}/`;
                     <div class="h-full w-full bg-neutral-300 dark:bg-neutral-700"></div>
                   )}
                   <div class="absolute inset-0 bg-gradient-to-t from-black/80 to-transparent dark:from-black/90"></div>
-                  <div class="absolute bottom-0 left-0 p-8">
+                  <div class="absolute bottom-0 left-0 p-4 md:p-8">
                     <h3 class="font-semibold text-md !text-white line-clamp-3">{post.title ?? post.slug}</h3>
                   </div>
                 </a>

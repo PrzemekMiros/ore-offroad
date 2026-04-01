@@ -1,0 +1,52 @@
+---
+import BaseLayout from "../layouts/BaseLayout.astro";
+
+const page = {
+  title: "Współpraca",
+  updated: "01.04.2026",
+  email: "kontakt@offroadnews.pl",
+};
+---
+
+<BaseLayout title={page.title} description="Partnerstwa, treści i projekty specjalne ORE Offroad">
+  <section class="pb-16 pt-12 md:pb-16 md:pt-16">
+    <article class="mx-auto space-y-10 text-[var(--text)]">
+      <header class="space-y-3">
+        <h1 class="text-3xl font-semibold text-[var(--text)]">Współpraca z Offroad News</h1>
+        <p class="max-w-3xl text-[15px] leading-relaxed text-[var(--muted)]">
+          Tworzymy treści i narzędzia dla społeczności offroad. Szukasz partnera do kampanii produktowej, testów
+          terenowych, serii video albo dedykowanego narzędzia dla użytkowników 4x4? Porozmawiajmy.
+        </p>
+      </header>
+
+      <section class="grid gap-4 sm:grid-cols-2">
+        <div class="rounded-2xl border border-[var(--border)] bg-white/70 p-5 shadow-sm">
+          <h2 class="mb-2 text-lg font-semibold">Jak możemy pomóc</h2>
+          <ul class="space-y-2 text-sm text-[var(--muted)]">
+            <li>Testy terenowe (auta, opony, akcesoria) + foto/video</li>
+            <li>Seria artykułów poradnikowych lub wyprawowych</li>
+            <li>Relacje z imprez, patronaty medialne, konkursy</li>
+          </ul>
+        </div>
+        <div class="rounded-2xl border border-[var(--border)] bg-white/70 p-5 shadow-sm">
+          <h2 class="mb-2 text-lg font-semibold">Jak pracujemy</h2>
+          <ul class="space-y-2 text-sm text-[var(--muted)]">
+            <li>Brief → szybki szkic zakresu i harmonogramu</li>
+            <li>Content-first, mobile-first, lekki performance</li>
+            <li>Raportowanie: podsumowanie działań i wyniki</li>
+          </ul>
+        </div>
+      </section>
+
+      <section class="rounded-2xl border border-[var(--border)] bg-[var(--surface)] p-6 shadow-sm">
+        <h2 class="mb-2 text-lg font-semibold text-[var(--text)]">Porozmawiajmy</h2>
+        <p class="text-[15px] leading-relaxed text-[var(--muted)]">
+          Wyślij kilka zdań o marce, produkcie i celu współpracy. Odpowiemy z propozycją form i wyceną.
+        </p>
+        <a class="mt-4 inline-block text-[var(--accent)] font-semibold hover:underline" href={`mailto:${page.email}`}>
+          {page.email}
+        </a>
+      </section>
+    </article>
+  </section>
+</BaseLayout>

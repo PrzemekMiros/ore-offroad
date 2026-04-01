@@ -22,7 +22,7 @@ const formattedDate = date ? new Date(date).toLocaleDateString('pl-PL', {
 ---
 
   
-<section class="relative pt-28 pb-12 md:pt-32 md:pb-8 border-b border-gray-300">
+<section class="relative pt-28 pb-6 md:pt-32 md:pb-8 border-b border-gray-300">
   
   <div class="relative grid gap-10">
       {headerImage ? (
@@ -30,7 +30,7 @@ const formattedDate = date ? new Date(date).toLocaleDateString('pl-PL', {
       <Image
         src={headerImage}
         alt=""
-        class="aspect-[8/2] w-full object-cover rounded-sm"
+        class="aspect-[3/1] w-full object-cover rounded-sm"
         sizes="100vw"
         widths={[640, 960, 1280, 1600, 1920]}
         loading="lazy"
@@ -51,7 +51,7 @@ const formattedDate = date ? new Date(date).toLocaleDateString('pl-PL', {
   ) : null}
     <div class="space-y-2">
 
-    <div class="grid gap-4 grid-cols-[1fr_40px] gap-24 justify-between">
+    <div class="grid gap-4 md:grid-cols-[1fr_40px] gap-8 md:gap-24 justify-between">
       <div>
         <div class="text-[8px] md:text-[10px] uppercase tracking-[0.1em] text-black/70 mb-3 md:mb-6 font-semibold">
         <span>Główna</span>

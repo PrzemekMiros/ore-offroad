@@ -275,8 +275,8 @@ const navItems = [
       },
     ],
     featured: {
-      eyebrow: "Nowe",
-      title: "Narzedzia ORE4x4",
+      eyebrow: "Przydatne",
+      title: "Aplikacje online",
       text: "Aplikacje pomocne przy planowaniu modyfikacji i przygotowaniu auta.",
       href: "/aplikacje/",
       cta: "Zobacz aplikacje",
@@ -343,7 +343,7 @@ const navItemsWithLatest = navItems.map((item) => {
 <header class="fixed left-0 right-0 top-0 z-500 bg-white" data-site-header>
   <div class="top-nav relative h-6">
     <div class="mx-auto max-w-[1420px] px-4 sm:px-10 lg:px-12">
-      <span class="relative text-[12px] text-white tracking-[0.05em]">Największa baza wiedzy dla fanów napędu na obie osie.  </span>
+      <span class="relative text-[12px] text-white tracking-[0.05em]">Baza wiedzy dla fanów 4x4  </span>
       <span class="hidden md:inline relative text-[12px] text-white tracking-[0.05em]">Łączymy pasjonatów, którzy nie boją się porysować lakieru. Nie szukaj drogi. Wyznaczaj ją z nami</span>
     </div>
   </div>
@@ -434,26 +434,39 @@ const navItemsWithLatest = navItems.map((item) => {
                         </section>
                       ))
                     }
-                    <aside
-                      class="mega-featured"
-                    >
-                      {item.featured?.image ? (
-                        <Image
-                          src={item.featured.image}
-                          alt={item.featured.title}
-                          class="mega-featured-image"
-                          widths={[320, 480, 640, 960]}
-                          sizes="(max-width: 1024px) 100vw, 420px"
-                          loading="lazy"
-                        />
-                      ) : null}
-                      <div class="mega-featured-content">
-                        <p class="mega-featured-eyebrow">{item.featured.eyebrow}</p>
-                        <a href={item.featured.href} class="mega-featured-title">
-                          {item.featured.title}
-                        </a>
-                      </div>
-                    </aside>
+                    {item.href === "/sport-i-wydarzenia/" ? (
+                      <aside class="mega-featured mega-featured--links">
+                        <div class="mega-featured-content grid grid-cols-1 gap-2">
+                          <a href="/kalendarz-imprez/" class="mega-featured-title block w-full text-center rounded-lg border border-[var(--border)] bg-[var(--accent)] px-4 py-3 hover:border-[var(--accent)]">
+                            Kalendarz imprez
+                          </a>
+                          <a href="/wyniki" class="mega-featured-title block w-full text-center rounded-lg border border-[var(--border)] bg-[var(--accent)] px-4 py-3 hover:border-[var(--accent)]">
+                            Wyniki
+                          </a>
+                        </div>
+                      </aside>
+                    ) : (
+                      <aside
+                        class="mega-featured"
+                      >
+                        {item.featured?.image ? (
+                          <Image
+                            src={item.featured.image}
+                            alt={item.featured.title}
+                            class="mega-featured-image"
+                            widths={[320, 480, 640, 960]}
+                            sizes="(max-width: 1024px) 100vw, 420px"
+                            loading="lazy"
+                          />
+                        ) : null}
+                        <div class="mega-featured-content">
+                          <p class="mega-featured-eyebrow">{item.featured.eyebrow}</p>
+                          <a href={item.featured.href} class="mega-featured-title">
+                            {item.featured.title}
+                          </a>
+                        </div>
+                      </aside>
+                    )}
                   </div>
                 </div>
               </div>

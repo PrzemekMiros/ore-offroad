@@ -1,0 +1,52 @@
+---
+import BaseLayout from "../layouts/BaseLayout.astro";
+
+const page = {
+  title: "Reklama",
+  updated: "01.04.2026",
+  email: "kontakt@offroadnews.pl",
+};
+---
+
+<BaseLayout title={page.title} description="Oferta reklamowa ORE Offroad">
+  <section class="pb-16 pt-12 md:pb-16 md:pt-16">
+    <article class="mx-auto space-y-10 text-[var(--text)]">
+      <header class="space-y-3">
+        <h1 class="text-3xl font-semibold text-[var(--text)]">Reklama w Offroad News</h1>
+        <p class="max-w-3xl text-[15px] leading-relaxed text-[var(--muted)]">
+          Docieramy do kierowców 4x4, zespołów rajdowych i firm z branży offroad. Oferujemy ekspozycję natywną,
+          display, współpracę przy treściach oraz partnerstwa eventowe.
+        </p>
+      </header>
+
+      <section class="grid gap-4 sm:grid-cols-2">
+        <div class="rounded-2xl border border-[var(--border)] bg-white/70 p-5 shadow-sm">
+          <h2 class="mb-2 text-lg font-semibold text-[var(--text)]">Formaty</h2>
+          <ul class="space-y-2 text-sm text-[var(--muted)]">
+            <li>Banery (desktop/mobile, placement premium)</li>
+            <li>Artykuły sponsorowane i testy sprzętu</li>
+            <li>Partnerstwa przy kalendarzu imprez i wynikach</li>
+          </ul>
+        </div>
+        <div class="rounded-2xl border border-[var(--border)] bg-white/70 p-5 shadow-sm">
+          <h2 class="mb-2 text-lg font-semibold text-[var(--text)]">Dlaczego my</h2>
+          <ul class="space-y-2 text-sm text-[var(--muted)]">
+            <li>Społeczność offroad 4x4 w Polsce</li>
+            <li>Świeże treści: rajdy, wyprawy, poradniki</li>
+            <li>Dane first‑party: kalendarz, wyniki, narzędzia</li>
+          </ul>
+        </div>
+      </section>
+
+      <section class="rounded-2xl border border-[var(--border)] bg-[var(--surface)] p-6 shadow-sm">
+        <h2 class="mb-2 text-lg font-semibold text-[var(--text)]">Kontakt</h2>
+        <p class="text-[15px] leading-relaxed text-[var(--muted)]">
+          Opisz cele kampanii i budżet – przygotujemy propozycję formatów.
+        </p>
+        <a class="mt-4 inline-block text-[var(--accent)] font-semibold hover:underline" href={`mailto:${page.email}`}>
+          {page.email}
+        </a>
+      </section>
+    </article>
+  </section>
+</BaseLayout>

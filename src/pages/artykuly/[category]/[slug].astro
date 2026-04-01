@@ -345,12 +345,13 @@ if (!artykul) {
               <h2 class="text-lg font-semibold text-[var(--text)]">Może Cię zainteresować</h2>
               <a href="/artykuly/" class="text-[11px] uppercase tracking-widest text-[var(--accent)] hover:text-[var(--accent)]">Wszystkie</a>
             </div>
-            <div class="mt-5 grid gap-4">
+            <div class="mt-5 grid gap-6">
               {relatedArticles.map((item) => {
                 const itemImage = resolveArticleImage(item?.tileImage ?? item?.thumbnail);
                 const itemUrl = baseUrl
                   ? `${baseUrl}/artykuly/${item?.categorySlug ?? ""}/${item?.slug ?? ""}/`
                   : `/artykuly/${item?.categorySlug ?? ""}/${item?.slug ?? ""}/`;
+                const categoryLabel = getCategoryLabel(item);
                 return (
                   <a class="group grid grid-cols-1 md:grid-cols-2 gap-3 rounded-xl border border-[var(--border)] bg-white/80 p-3 hover:shadow-sm" href={itemUrl}>
                     <div class="shrink-0 overflow-hidden rounded-lg border border-black/10">
@@ -369,6 +370,11 @@ if (!artykul) {
                       )}
                     </div>
                     <div class="flex flex-col gap-1">
+                      {categoryLabel ? (
+                        <span class="text-[11px] font-semibold uppercase tracking-[0.05em] text-[var(--accent)]">
+                          {categoryLabel}
+                        </span>
+                      ) : null}
                       <span class="text-lg font-semibold leading-snug text-black line-clamp-2">
                         {item?.title ?? item?.slug}
                       </span>

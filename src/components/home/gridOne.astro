@@ -75,7 +75,7 @@ const getCategoryLabel = (post) => {
 const getPostUrl = (post) => `/artykuly/${post.categorySlug}/${post.slug}/`;
 ---
 
-<div class="mx-auto pt-40 font-sans">
+<div class="mx-auto pt-30 md:pt-40 font-sans">
   <div class="grid grid-cols-1 lg:grid-cols-3 gap-6">
     <div class="lg:col-span-2 flex flex-col gap-6">
       {mainPost ? (
@@ -97,7 +97,7 @@ const getPostUrl = (post) => `/artykuly/${post.categorySlug}/${post.slug}/`;
 
             <div class="absolute inset-0 bg-gradient-to-t from-black/90 via-black/20 to-transparent"></div>
 
-            <div class="absolute bottom-0 left-0 p-6 lg:p-10 w-full text-white">
+            <div class="absolute bottom-0 left-0 p-4 lg:p-10 w-full text-white">
               <span class="text-white/90 text-xs font-semibold uppercase tracking-wider mb-4 inline-block">
                 {getCategoryLabel(mainPost)}
               </span>
