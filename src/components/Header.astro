@@ -348,14 +348,14 @@ const navItemsWithLatest = navItems.map((item) => {
     </div>
   </div>
   <div class="mx-auto max-w-[1420px] px-4 sm:px-10 lg:px-12">
-    <div class="flex md:grid md:grid-cols-3 gap-4 space-between items-center border-b border-black/20 pb-1 pt-2">
+    <div class="flex gap-4 justify-between items-center border-b border-black/20 pb-1 pt-2">
       <div>
         <a href="/" class="text-xl font-semibold tracking-tighter text-black no-underline" aria-label="Logo">
           <img src={logo.src} class="w-24" width="294" height="190" alt="Logo Offroad" />
         </a>
       </div>
       <div class="hidden md:flex items-center">
-        <div class="w-full max-w-[420px]">
+        <div class="w-full min-w-[280px] max-w-[420px]">
           <Search
             id="site-search"
             className="pagefind-ui pagefind-ui--header"
@@ -364,6 +364,18 @@ const navItemsWithLatest = navItems.map((item) => {
         </div>
       </div>
       <div class="flex justify-end items-center gap-2">
+        <a
+          href="/wyniki/"
+          class="hidden md:flex h-9 px-3 items-center rounded-full border border-black/70 transition-colors hover:bg-black/5"
+          aria-label="Przejdz do wyników imprez"
+          title="Wyniki imprez"
+        >
+        <span class="mt-0.5 uppercase text-[11px] tracking-[0.1em] leading-0 font-semibold">Wyniki imprez</span>
+          <svg class="h-4 w-4 ml-1 text-[var(--accent)]" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" aria-hidden="true">
+            <rect x="3.5" y="5.5" width="17" height="15" rx="2"></rect>
+            <path d="M7.5 3.5v4M16.5 3.5v4M3.5 9.5h17"></path>
+          </svg>
+        </a>
         <a
           href="/kalendarz-imprez/"
           class="hidden md:flex h-9 px-3 items-center rounded-full border border-black/70 transition-colors hover:bg-black/5"
@@ -440,7 +452,7 @@ const navItemsWithLatest = navItems.map((item) => {
                           <a href="/kalendarz-imprez/" class="mega-featured-title block w-full text-center rounded-lg border border-[var(--border)] bg-[var(--accent)] px-4 py-3 hover:border-[var(--accent)]">
                             Kalendarz imprez
                           </a>
-                          <a href="/wyniki" class="mega-featured-title block w-full text-center rounded-lg border border-[var(--border)] bg-[var(--accent)] px-4 py-3 hover:border-[var(--accent)]">
+                          <a href="/wyniki/" class="mega-featured-title block w-full text-center rounded-lg border border-[var(--border)] bg-[var(--accent)] px-4 py-3 hover:border-[var(--accent)]">
                             Wyniki
                           </a>
                         </div>
@@ -679,6 +691,7 @@ const navItemsWithLatest = navItems.map((item) => {
     grid-template-columns: repeat(3, minmax(0, 1fr));
     gap: 0.85rem;
   }
+
 
   .mega-grid section {
     background: rgba(255, 255, 255, 0.6);
