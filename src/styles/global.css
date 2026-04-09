@@ -88,6 +88,11 @@ html[data-theme="dark"] .text-gray-400 {
   color: #9ca3af !important;
 }
 
+html[data-theme="dark"] .text-black\/80,
+html[data-theme="dark"] .text-black\/70 {
+  color: #9ca3af !important;
+}
+
 html[data-theme="dark"] .border-gray-400,
 html[data-theme="dark"] .border-gray-300,
 html[data-theme="dark"] .border-gray-200,
@@ -95,6 +100,10 @@ html[data-theme="dark"] .border-gray-100,
 html[data-theme="dark"] .border-black\/20,
 html[data-theme="dark"] .border-black\/30 {
   border-color: rgba(148, 163, 184, 0.24) !important;
+}
+
+html[data-theme="dark"] .border-gray-500 {
+  border-color: rgba(148, 163, 184, 0.32) !important;
 }
 
 html[data-theme="dark"] .hover\:text-black:hover,
