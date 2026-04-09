@@ -6,7 +6,7 @@ dateEnd: 2026-04-19
 location: "Jura Krakowsko-Częstochowska"
 region: "Polska"
 organizer: "kalendarz4x4.pl"
-type: "zawody"
+type: "przejazdy"
 status: "zewnetrzne"
 tileImage: "/content/imprezy/img/family4x4-pl-level-1-bushcraft-jurajski.jpg"
 ---

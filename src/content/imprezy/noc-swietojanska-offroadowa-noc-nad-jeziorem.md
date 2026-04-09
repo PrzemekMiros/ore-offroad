@@ -6,7 +6,7 @@ dateEnd: 2026-06-20
 location: "Ogrodzieniec"
 region: "Polska"
 organizer: "kalendarz4x4.pl"
-type: "zawody"
+type: "przejazdy"
 status: "zewnetrzne"
 tileImage: "/content/imprezy/img/noc-swietojanska-offroadowa-noc-nad-jeziorem.jpg"
 ---

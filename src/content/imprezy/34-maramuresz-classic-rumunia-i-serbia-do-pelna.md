@@ -6,7 +6,7 @@ dateEnd: 2026-10-09
 location: "Rtanj Planina"
 region: "Polska"
 organizer: "kalendarz4x4.pl"
-type: "zawody"
+type: "wyprawy"
 status: "zewnetrzne"
 tileImage: "/content/imprezy/img/34-maramuresz-classic-rumunia-i-serbia-do-pelna.jpg"
 ---

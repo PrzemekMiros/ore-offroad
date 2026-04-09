@@ -1,5 +1,5 @@
 ---
-title: Maroko 4x4 logistyka piasku i kamienia
+title: Maroko 4x4 - logistyka piasku i kamienia
 description: Jak zaplanować samodzielną wyprawę 4x4 do Maroka? Sprzęt, nawigacja, paliwo, przepisy i ryzyko jazdy w piasku oraz kamienistym terenie – praktyczny przewodnik krok po kroku.
 author: Przemek
 date: 2026-03-29T06:32:17.893Z

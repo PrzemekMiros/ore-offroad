@@ -6,7 +6,7 @@ dateEnd: 2026-04-18
 location: "Ogrodzieniec"
 region: "Polska"
 organizer: "kalendarz4x4.pl"
-type: "zawody"
+type: "przejazdy"
 status: "zewnetrzne"
 tileImage: "/content/imprezy/img/jura-suv-em-pozytywne-wibracje-18042026.jpg"
 ---

@@ -6,7 +6,7 @@ dateEnd: 2026-05-23
 location: "Ogrodzieniec"
 region: "Polska"
 organizer: "kalendarz4x4.pl"
-type: "zawody"
+type: "przejazdy"
 status: "zewnetrzne"
 tileImage: "/content/imprezy/img/offroadowa-noc-nad-jeziorem-2026-05-23.jpg"
 ---

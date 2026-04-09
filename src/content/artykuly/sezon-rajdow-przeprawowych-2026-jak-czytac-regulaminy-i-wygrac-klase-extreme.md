@@ -1,5 +1,5 @@
 ---
-title: Sezon rajdów przeprawowych 2026 jak czytać regulaminy i wygrać klasę Extreme
+title: Sezon rajdów przeprawowych 2026 - jak czytać regulaminy i wygrać klasę Extreme
 description: Analiza sezonu rajdów przeprawowych 2026. Wyjaśniamy klasy, regulaminy, wymagania techniczne oraz strategie, które realnie zwiększają szanse na podium.
 author: Przemek
 date: 2026-03-28T20:32:18.107Z

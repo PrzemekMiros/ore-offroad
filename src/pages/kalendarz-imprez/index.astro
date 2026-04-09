@@ -15,11 +15,25 @@ const resolveEventImage = (file) => {
   return entry?.default ?? null;
 };
 
+const normalizeType = (value) => (value ? value.toString().trim().toLowerCase() : "inne");
+
+const defaultFilterKey = "zawody";
+
+const filters = [
+  { key: "all", label: "Wszystkie" },
+  { key: "zawody", label: "Zawody", default: true },
+  { key: "szkolenia", label: "Szkolenia" },
+  { key: "spotkania", label: "Spotkania" },
+  { key: "wyprawy", label: "Wyprawy" },
+  { key: "przejazdy", label: "Przejazdy" },
+];
+
 const currentYear = new Date().getFullYear();
 const events = (await getCollection("imprezy"))
   .map((entry) => ({
     slug: entry.slug,
     ...entry.data,
+    normalizedType: normalizeType(entry.data.type),
   }))
   .filter((event) => event.dateStart.getFullYear() === currentYear)
   .sort((a, b) => a.dateStart.getTime() - b.dateStart.getTime());
@@ -64,6 +78,25 @@ const statusClass = {
   />
 
   <section class="py-12 md:pb-24">
+    {events.length ? (
+      <div class="mb-8 flex flex-wrap items-center gap-3 rounded-2xl border border-[var(--border)] bg-[var(--surface-muted)] px-4 py-3 md:px-6">
+        <span class="text-[11px] font-semibold uppercase tracking-[0.2em] text-[var(--muted)]">Filtruj</span>
+        <div class="flex flex-wrap gap-2">
+          {filters.map((filter) => (
+            <button
+              class={`filter-chip cursor-pointer rounded-full border border-[var(--border)] bg-[var(--surface)] px-3 py-1.5 text-xs font-medium text-[var(--muted)] transition-colors hover:border-[var(--accent)] hover:text-[var(--text)] ${filter.key === defaultFilterKey ? "shadow-[0_6px_16px_rgba(15,23,42,0.08)] border-[var(--accent)] text-[var(--text)]" : ""}`}
+              data-filter-btn
+              data-filter-key={filter.key}
+              type="button"
+              data-active={filter.key === defaultFilterKey ? "true" : "false"}
+            >
+              {filter.label}
+            </button>
+          ))}
+        </div>
+      </div>
+    ) : null}
+
     {!events.length ? (
       <div class="rounded-2xl border border-dashed border-[var(--accent)] bg-[var(--surface)] p-7 text-sm text-[var(--muted)]">
         Brak imprez.
@@ -92,7 +125,11 @@ const statusClass = {
 
         <div class="space-y-8">
           {monthSections.map((section) => (
-            <section id={section.key} class="scroll-mt-38 rounded-2xl border border-[var(--border)] bg-[var(--surface-muted)] px-5 md:p-7 md:pb-0">
+            <section
+              id={section.key}
+              class="scroll-mt-38 rounded-2xl border border-[var(--border)] bg-[var(--surface-muted)] px-5 md:p-7 md:pb-0"
+              data-month-section
+            >
               <div class="mb-6 flex items-center justify-between gap-4 border-b border-[var(--border)] pb-4">
                 <h2 class="text-xl font-semibold capitalize text-[var(--text)]">{section.monthName}</h2>
                 <p class="text-md uppercase font-semibold tracking-[0.05em] text-[var(--accent)]">{section.year}</p>
@@ -102,7 +139,11 @@ const statusClass = {
                 {section.events.map((event) => {
                   const image = resolveEventImage(event.tileImage ?? event.thumbnail);
                   return (
-                    <article class="group rounded-2xl border border-[var(--border)] bg-[var(--surface)] p-4 transition-all hover:shadow-[0_10px_25px_rgba(15,23,42,0.05)] md:p-6 mb-8">
+                    <article
+                      class="group rounded-2xl border border-[var(--border)] bg-[var(--surface)] p-4 transition-all hover:shadow-[0_10px_25px_rgba(15,23,42,0.05)] md:p-6 mb-8"
+                      data-event-card
+                      data-event-type={event.normalizedType}
+                    >
                       <div class="grid gap-4 md:grid-cols-2 md:items-start">
 
                         <div>
@@ -183,9 +224,75 @@ const statusClass = {
       background: var(--accent);
       color: var(--surface);
     }
+
+    .filter-chip[data-active="true"] {
+      border-color: var(--accent);
+      color: var(--text);
+      box-shadow: 0 6px 16px rgba(15, 23, 42, 0.08);
+    }
   </style>
 
   <script>
+    const initTypeFilters = () => {
+      const buttons = Array.from(document.querySelectorAll("[data-filter-btn]"));
+      const cards = Array.from(document.querySelectorAll("[data-event-card]"));
+      const sections = Array.from(document.querySelectorAll("[data-month-section]"));
+      const monthLinks = Array.from(document.querySelectorAll("[data-month-link]"));
+      if (!buttons.length || !cards.length) return;
+
+      let active = (typeof window !== "undefined" && window.__defaultFilterKey) ? window.__defaultFilterKey : "all";
+
+      const updateMonthCounts = () => {
+        monthLinks.forEach((link) => {
+          const href = link.getAttribute("href");
+          const id = href?.startsWith("#") ? href.slice(1) : null;
+          if (!id) return;
+          const section = document.getElementById(id);
+          if (!section) return;
+          const visibleCards = Array.from(section.querySelectorAll("[data-event-card]")).filter(
+            (card) => card.style.display !== "none"
+          );
+          const countEl = link.querySelector(".month-count");
+          if (countEl) countEl.textContent = visibleCards.length.toString();
+        });
+      };
+
+      const setActiveButton = (key) => {
+        buttons.forEach((btn) => {
+          btn.dataset.active = btn.dataset.filterKey === key ? "true" : "false";
+        });
+      };
+
+      const apply = (key) => {
+        active = key;
+        setActiveButton(key);
+
+        cards.forEach((card) => {
+          const type = card.dataset.eventType;
+          const match = key === "all" || type === key;
+          card.style.display = match ? "" : "none";
+        });
+
+        sections.forEach((section) => {
+          const visibleCards = Array.from(section.querySelectorAll("[data-event-card]")).filter(
+            (card) => card.style.display !== "none"
+          );
+          section.style.display = visibleCards.length ? "" : "none";
+        });
+
+        updateMonthCounts();
+      };
+
+      buttons.forEach((btn) =>
+        btn.addEventListener("click", () => {
+          const key = btn.dataset.filterKey || "all";
+          apply(key);
+        })
+      );
+
+      apply(active);
+    };
+
     const initSmoothAnchors = () => {
       if (window.__kalendarzSmoothScrollInit) return;
       window.__kalendarzSmoothScrollInit = true;
@@ -297,11 +404,16 @@ const statusClass = {
       }
     };
 
-    initSmoothAnchors();
-    initActiveMonthLinks();
-    document.addEventListener("astro:page-load", initSmoothAnchors);
-    document.addEventListener("astro:after-swap", initSmoothAnchors);
-    document.addEventListener("astro:page-load", initActiveMonthLinks);
-    document.addEventListener("astro:after-swap", initActiveMonthLinks);
+    const boot = () => {
+      // defaultFilterKey is injected server-side in markup; guard for SSR hydration
+      window.__defaultFilterKey = window.__defaultFilterKey || "zawody";
+      initSmoothAnchors();
+      initActiveMonthLinks();
+      initTypeFilters();
+    };
+
+    boot();
+    document.addEventListener("astro:page-load", boot);
+    document.addEventListener("astro:after-swap", boot);
   </script>
 </BaseLayout>

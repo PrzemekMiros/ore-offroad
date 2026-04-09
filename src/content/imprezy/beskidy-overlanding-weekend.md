@@ -6,7 +6,7 @@ dateEnd: 2026-06-13
 location: "Beskidy"
 region: "Polska"
 organizer: "kalendarz4x4.pl"
-type: "zawody"
+type: "przejazdy"
 status: "zewnetrzne"
 tileImage: "/content/imprezy/img/beskidy-overlanding-weekend.jpg"
 ---

@@ -1,5 +1,5 @@
 ---
-title: Toyota Land Cruiser 250 kontra Ford Ranger Raptor które 4x4 lepiej znosi prawdziwy teren
+title: Toyota Land Cruiser 250 kontra Ford Ranger Raptor - które 4x4 lepiej znosi prawdziwy teren
 description: Porównanie Toyoty Land Cruiser 250 i Forda Rangera Raptora w realnych warunkach terenowych. Analiza napędów, zawieszenia, elektroniki i możliwości modyfikacji.
 author: Przemek
 date: 2026-03-26T18:32:17.074Z

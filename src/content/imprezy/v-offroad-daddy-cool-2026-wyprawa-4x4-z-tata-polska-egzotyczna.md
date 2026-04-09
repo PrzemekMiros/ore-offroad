@@ -6,7 +6,7 @@ dateEnd: 2026-07-01
 location: "Siedlisko MAMA VERDE - pole kamperowe, glamping pod Sandomierzem"
 region: "Polska"
 organizer: "kalendarz4x4.pl"
-type: "zawody"
+type: "spotkania"
 status: "zewnetrzne"
 tileImage: "/content/imprezy/img/v-offroad-daddy-cool-2026-wyprawa-4x4-z-tata-polska-egzotyczna.jpg"
 ---

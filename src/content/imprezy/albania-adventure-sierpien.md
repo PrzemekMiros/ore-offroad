@@ -6,7 +6,7 @@ dateEnd: 2026-08-11
 location: "Albania"
 region: "Polska"
 organizer: "kalendarz4x4.pl"
-type: "zawody"
+type: "wyprawy"
 status: "zewnetrzne"
 tileImage: "/content/imprezy/img/albania-adventure-sierpien.jpg"
 ---

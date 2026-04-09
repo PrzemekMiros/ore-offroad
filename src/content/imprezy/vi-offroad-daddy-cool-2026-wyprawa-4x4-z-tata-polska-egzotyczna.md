@@ -6,7 +6,7 @@ dateEnd: 2026-08-05
 location: "Mama Verde, Radomyśl nad Sanem"
 region: "Polska"
 organizer: "kalendarz4x4.pl"
-type: "zawody"
+type: "wyprawy"
 status: "zewnetrzne"
 tileImage: "/content/imprezy/img/vi-offroad-daddy-cool-2026-wyprawa-4x4-z-tata-polska-egzotyczna.jpg"
 ---

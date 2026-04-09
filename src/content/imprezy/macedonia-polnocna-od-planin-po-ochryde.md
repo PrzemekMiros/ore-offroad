@@ -6,7 +6,7 @@ dateEnd: 2026-05-22
 location: "Macedonia Północna"
 region: "Polska"
 organizer: "kalendarz4x4.pl"
-type: "zawody"
+type: "wyprawy"
 status: "zewnetrzne"
 tileImage: "/content/imprezy/img/macedonia-polnocna-od-planin-po-ochryde.jpg"
 ---

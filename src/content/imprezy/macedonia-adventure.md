@@ -6,7 +6,7 @@ dateEnd: 2026-08-07
 location: "Macedonia"
 region: "Polska"
 organizer: "kalendarz4x4.pl"
-type: "zawody"
+type: "wyprawy"
 status: "zewnetrzne"
 tileImage: "/content/imprezy/img/macedonia-adventure.jpg"
 ---

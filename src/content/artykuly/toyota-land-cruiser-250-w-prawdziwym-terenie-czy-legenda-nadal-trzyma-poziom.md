@@ -1,5 +1,5 @@
 ---
-title: Toyota Land Cruiser 250 w prawdziwym terenie czy legenda nadal trzyma poziom
+title: Toyota Land Cruiser 250 w prawdziwym terenie - czy legenda nadal trzyma poziom
 description: Sprawdzamy nową Toyotę Land Cruiser 250 w wymagającym terenie. Analiza konstrukcji, napędu 4x4, reduktora i systemów wsparcia kierowcy w realnych warunkach offroadowych.
 author: Przemek
 date: 2026-03-10T22:45:27.911Z

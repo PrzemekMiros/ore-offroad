@@ -6,7 +6,7 @@ dateEnd: 2026-08-30
 location: "Villa Drawa"
 region: "Polska"
 organizer: "kalendarz4x4.pl"
-type: "zawody"
+type: "spotkania"
 status: "zewnetrzne"
 tileImage: "/content/imprezy/img/team-spiryt-rally-2026-zlot-milosnikow-i-uzytkownikow-land-rover-villa-drawa.jpg"
 ---

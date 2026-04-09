@@ -6,7 +6,7 @@ dateEnd: 2026-04-17
 location: "Ateny, Grecja"
 region: "Polska"
 organizer: "kalendarz4x4.pl"
-type: "zawody"
+type: "wyprawy"
 status: "zewnetrzne"
 tileImage: "/content/imprezy/img/gruzrallygt-akropolis-przygodowy-rajd-polska-grecja.jpg"
 ---

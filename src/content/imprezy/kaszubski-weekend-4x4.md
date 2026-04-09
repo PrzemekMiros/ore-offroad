@@ -6,7 +6,7 @@ dateEnd: 2026-06-07
 location: "Kaszuby"
 region: "Polska"
 organizer: "kalendarz4x4.pl"
-type: "zawody"
+type: "przejazdy"
 status: "zewnetrzne"
 tileImage: "/content/imprezy/img/kaszubski-weekend-4x4.jpg"
 ---

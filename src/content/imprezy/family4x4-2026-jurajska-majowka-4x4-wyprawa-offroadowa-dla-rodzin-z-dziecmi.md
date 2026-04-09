@@ -6,7 +6,7 @@ dateEnd: 2026-04-28
 location: "Kraków"
 region: "Polska"
 organizer: "kalendarz4x4.pl"
-type: "zawody"
+type: "przejazdy"
 status: "zewnetrzne"
 tileImage: "/content/imprezy/img/family4x4-2026-jurajska-majowka-4x4-wyprawa-offroadowa-dla-rodzin-z-dziecmi.jpg"
 ---

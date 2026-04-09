@@ -6,7 +6,7 @@ dateEnd: 2026-05-03
 location: "Przełęcz Knurowska"
 region: "Polska"
 organizer: "kalendarz4x4.pl"
-type: "zawody"
+type: "przejazdy"
 status: "zewnetrzne"
 tileImage: "/content/imprezy/img/majowka-na-podhalu-2026-04-30.jpg"
 ---

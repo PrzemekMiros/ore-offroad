@@ -1,5 +1,5 @@
 ---
-title: Maroko 4x4 przez wydmy Erg Chebbi i góry Atlas
+title: Maroko 4x4 - przez wydmy Erg Chebbi i góry Atlas
 description: Kompleksowy przewodnik po wyprawie 4x4 do Maroka. Trasy przez Atlas Wysoki, kamieniste hamady i wydmy Erg Chebbi, logistyka, sprzęt i praktyczne wskazówki terenowe.
 author: Przemek
 date: 2026-03-27T14:32:18.284Z

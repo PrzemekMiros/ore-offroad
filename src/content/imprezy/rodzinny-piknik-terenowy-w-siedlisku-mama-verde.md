@@ -6,7 +6,7 @@ dateEnd: 2026-08-30
 location: "Mama Verde, Radomyśl nad Sanem"
 region: "Polska"
 organizer: "kalendarz4x4.pl"
-type: "zawody"
+type: "przejazdy"
 status: "zewnetrzne"
 tileImage: "/content/imprezy/img/rodzinny-piknik-terenowy-w-siedlisku-mama-verde.jpg"
 ---

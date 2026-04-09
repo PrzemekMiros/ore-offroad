@@ -6,7 +6,7 @@ dateEnd: 2026-05-03
 location: "Jura Krakowsko-Częstochowska"
 region: "Polska"
 organizer: "kalendarz4x4.pl"
-type: "zawody"
+type: "przejazdy"
 status: "zewnetrzne"
 tileImage: "/content/imprezy/img/jurajska-majowka-weekend-w-otoczeniu-jurajskich-krajobrazow-2026-05-01.jpg"
 ---

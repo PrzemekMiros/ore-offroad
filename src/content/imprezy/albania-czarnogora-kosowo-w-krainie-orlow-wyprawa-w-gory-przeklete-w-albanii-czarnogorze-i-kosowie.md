@@ -6,7 +6,7 @@ dateEnd: 2026-08-14
 location: "Do uzupelnienia"
 region: "Polska"
 organizer: "kalendarz4x4.pl"
-type: "zawody"
+type: "wyprawy"
 status: "zewnetrzne"
 tileImage: "/content/imprezy/img/albania-czarnogora-kosowo-w-krainie-orlow-wyprawa-w-gory-przeklete-w-albanii-czarnogorze-i-kosowie.jpg"
 ---

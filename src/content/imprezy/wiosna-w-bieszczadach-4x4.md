@@ -6,7 +6,7 @@ dateEnd: 2026-04-12
 location: "Domki u Elci Werlas Zawóz"
 region: "Polska"
 organizer: "kalendarz4x4.pl"
-type: "zawody"
+type: "przejazdy"
 status: "zewnetrzne"
 tileImage: "/content/imprezy/img/wiosna-w-bieszczadach-4x4.jpg"
 ---

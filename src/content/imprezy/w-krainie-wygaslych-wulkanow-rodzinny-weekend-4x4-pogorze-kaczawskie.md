@@ -6,7 +6,7 @@ dateEnd: 2026-04-19
 location: "Pogórze Kaczawskie"
 region: "Polska"
 organizer: "kalendarz4x4.pl"
-type: "zawody"
+type: "przejazdy"
 status: "zewnetrzne"
 tileImage: "/content/imprezy/img/w-krainie-wygaslych-wulkanow-rodzinny-weekend-4x4-pogorze-kaczawskie.jpg"
 ---

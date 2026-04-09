@@ -1,5 +1,5 @@
 ---
-title: Jazda w głębokim piasku jak nie zakopać terenówki
+title: Jazda w głębokim piasku - jak nie zakopać terenówki
 description: Techniki jazdy w głębokim piasku krok po kroku. Ciśnienie, tor jazdy, reduktor i praca gazem – sprawdź, jak nie zakopać 4x4 i bezpiecznie wyjechać z piachu.
 author: Przemek
 date: 2026-03-28T00:32:17.539Z

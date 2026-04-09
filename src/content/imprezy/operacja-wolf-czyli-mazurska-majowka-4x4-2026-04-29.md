@@ -6,7 +6,7 @@ dateEnd: 2026-05-03
 location: "Mazury"
 region: "Polska"
 organizer: "kalendarz4x4.pl"
-type: "zawody"
+type: "wyprawy"
 status: "zewnetrzne"
 tileImage: "/content/imprezy/img/operacja-wolf-czyli-mazurska-majowka-4x4-2026-04-29.jpg"
 ---

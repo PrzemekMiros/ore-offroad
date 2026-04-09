@@ -1,5 +1,5 @@
 ---
-title: Podjazdy i zjazdy w terenie bez stresu czyli jak pracować gazem i hamulcem
+title: Podjazdy i zjazdy w terenie bez stresu - czyli jak pracować gazem i hamulcem
 description: Technika pokonywania podjazdów i zjazdów w offroadzie. Jak kontrolować gaz, hamulec i tor jazdy, by bezpiecznie i skutecznie pokonywać strome przeszkody.
 author: Przemek
 date: 2026-03-03T19:52:51.785Z

@@ -6,7 +6,7 @@ dateEnd: 2026-05-10
 location: "Wałbrzych"
 region: "Polska"
 organizer: "kalendarz4x4.pl"
-type: "zawody"
+type: "wyprawy"
 status: "zewnetrzne"
 tileImage: "/content/imprezy/img/sudety-legenda-gor-sowich.jpg"
 ---

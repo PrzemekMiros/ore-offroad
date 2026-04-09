@@ -1,5 +1,5 @@
 ---
-title: Rynek aut terenowych 4x4 w 2026 roku między elektryfikacją a klasyczną mechaniką
+title: Rynek aut terenowych 4x4 w 2026 roku - między elektryfikacją a klasyczną mechaniką
 description: Analiza rynku samochodów terenowych 4x4 w 2026 roku. Trendy sprzedaży, elektryfikacja, ceny, regulacje prawne i przyszłość klasycznych konstrukcji ramowych.
 author: Przemek
 date: 2026-03-27T04:32:16.742Z

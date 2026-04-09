@@ -6,7 +6,7 @@ dateEnd: 2026-05-17
 location: "Albania"
 region: "Polska"
 organizer: "kalendarz4x4.pl"
-type: "zawody"
+type: "wyprawy"
 status: "zewnetrzne"
 tileImage: "/content/imprezy/img/albania-4x4-dzika-ekspedycja-albania.jpg"
 ---

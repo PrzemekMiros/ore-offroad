@@ -6,7 +6,7 @@ dateEnd: 2026-08-17
 location: "Macedonia"
 region: "Polska"
 organizer: "kalendarz4x4.pl"
-type: "zawody"
+type: "wyprawy"
 status: "zewnetrzne"
 tileImage: "/content/imprezy/img/5-macedonia-2026-family4x4-rodzinne-wyprawy-offroadowe.jpg"
 ---

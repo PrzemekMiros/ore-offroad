@@ -6,7 +6,7 @@ dateEnd: 2026-07-19
 location: "Muzeum Obozów Jenieckich / P.O.W. Camps Museum"
 region: "Polska"
 organizer: "kalendarz4x4.pl"
-type: "zawody"
+type: "spotkania"
 status: "zewnetrzne"
 tileImage: "/content/imprezy/img/star-rally-poland-szlakiem-pancernych.jpg"
 ---

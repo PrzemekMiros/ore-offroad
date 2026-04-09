@@ -6,7 +6,7 @@ dateEnd: 2026-04-18
 location: "Jura Krakowsko Częstochowska"
 region: "Polska"
 organizer: "kalendarz4x4.pl"
-type: "zawody"
+type: "przejazdy"
 status: "zewnetrzne"
 tileImage: "/content/imprezy/img/szlakiem-dlubni-z-ekipa-piaskownica-4x4-18042026.jpg"
 ---

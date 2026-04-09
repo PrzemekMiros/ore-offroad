@@ -1,5 +1,5 @@
 ---
-title: Wyciągarka w terenówce montaż dobór i błędy które mogą Cię słono kosztować
+title: Wyciągarka w terenówce - montaż dobór i błędy które mogą Cię słono kosztować
 description: Jak dobrać i poprawnie zamontować wyciągarkę w samochodzie terenowym? Sprawdź różnice między modelami, zasady instalacji oraz błędy, które prowadzą do awarii.
 author: Przemek
 date: 2026-03-03T18:46:09.383Z

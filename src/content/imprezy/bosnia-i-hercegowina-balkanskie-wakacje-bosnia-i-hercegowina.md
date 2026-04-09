@@ -6,7 +6,7 @@ dateEnd: 2026-07-05
 location: "Bośnia i Hercegowina"
 region: "Polska"
 organizer: "kalendarz4x4.pl"
-type: "zawody"
+type: "wyprawy"
 status: "zewnetrzne"
 tileImage: "/content/imprezy/img/bosnia-i-hercegowina-balkanskie-wakacje-bosnia-i-hercegowina.jpg"
 ---

@@ -6,7 +6,7 @@ dateEnd: 2026-04-12
 location: "Sucha beskidzka"
 region: "Polska"
 organizer: "kalendarz4x4.pl"
-type: "zawody"
+type: "wyprawy"
 status: "zewnetrzne"
 tileImage: "/content/imprezy/img/sucha-beskidzka-sucha-beskidzka.jpg"
 ---

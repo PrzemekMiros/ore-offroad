@@ -6,7 +6,7 @@ dateEnd: 2026-06-22
 location: "Mostar, Mostar , Bosnia and Herzegovina"
 region: "Polska"
 organizer: "kalendarz4x4.pl"
-type: "zawody"
+type: "wyprawy"
 status: "zewnetrzne"
 tileImage: "/content/imprezy/img/22062026-egta-bosnia-centralna.jpeg"
 ---

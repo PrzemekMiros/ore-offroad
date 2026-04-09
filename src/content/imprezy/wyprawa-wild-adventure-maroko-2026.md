@@ -6,7 +6,7 @@ dateEnd: 2026-03-27
 location: "Al. Powstańców Warszawy 48 lok. 58, AGADIR, Morocco"
 region: "Polska"
 organizer: "kalendarz4x4.pl"
-type: "zawody"
+type: "wyprawy"
 status: "zewnetrzne"
 tileImage: "/content/imprezy/img/wyprawa-wild-adventure-maroko-2026.jpeg"
 ---

@@ -6,7 +6,7 @@ dateEnd: 2026-06-04
 location: "Ogrodzieniec"
 region: "Polska"
 organizer: "kalendarz4x4.pl"
-type: "zawody"
+type: "przejazdy"
 status: "zewnetrzne"
 tileImage: "/content/imprezy/img/jura-na-lajcie-lekka-wycieczka-dla-poczatkujacych-2026-06-04.jpg"
 ---

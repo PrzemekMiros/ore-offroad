@@ -1,5 +1,5 @@
 ---
-title: Rumunia 4x4 wiosenny trawers Karpat bez asfaltu
+title: Rumunia 4x4 - wiosenny trawers Karpat bez asfaltu
 description: Kompleksowy przewodnik po wiosennej wyprawie 4x4 przez rumuńskie Karpaty. Trasy, formalności, sprzęt, bezpieczeństwo i realne wyzwania terenowe.
 author: Przemek
 date: 2026-03-25T22:32:17.773Z

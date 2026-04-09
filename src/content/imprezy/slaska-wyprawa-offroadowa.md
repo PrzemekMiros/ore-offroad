@@ -6,7 +6,7 @@ dateEnd: 2026-03-22
 location: "Wyleżoła 1, 41-700 Ruda Slaska, Poland"
 region: "Polska"
 organizer: "kalendarz4x4.pl"
-type: "zawody"
+type: "wyprawy"
 status: "zewnetrzne"
 tileImage: "/content/imprezy/img/slaska-wyprawa-offroadowa.jpg"
 ---

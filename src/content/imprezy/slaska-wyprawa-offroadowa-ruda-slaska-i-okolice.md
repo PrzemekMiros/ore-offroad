@@ -6,7 +6,7 @@ dateEnd: 2026-03-22
 location: "Ruda Śląska i okolice"
 region: "Polska"
 organizer: "kalendarz4x4.pl"
-type: "zawody"
+type: "wyprawy"
 status: "zewnetrzne"
 tileImage: "/content/imprezy/img/slaska-wyprawa-offroadowa-ruda-slaska-i-okolice.jpg"
 ---

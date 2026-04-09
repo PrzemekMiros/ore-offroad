@@ -6,7 +6,7 @@ dateEnd: 2026-08-30
 location: "Kaszuby"
 region: "Polska"
 organizer: "kalendarz4x4.pl"
-type: "zawody"
+type: "wyprawy"
 status: "zewnetrzne"
 tileImage: "/content/imprezy/img/kaszubskie-pozegnanie-lata-4x4-kaszuby.jpg"
 ---

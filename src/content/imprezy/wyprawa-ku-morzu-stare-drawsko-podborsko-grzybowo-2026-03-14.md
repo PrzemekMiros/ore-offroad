@@ -6,7 +6,7 @@ dateEnd: 2026-03-15
 location: "Stare Drawsko"
 region: "Polska"
 organizer: "kalendarz4x4.pl"
-type: "zawody"
+type: "wyprawy"
 status: "zewnetrzne"
 tileImage: "/content/imprezy/img/wyprawa-ku-morzu-stare-drawsko-podborsko-grzybowo-2026-03-14.jpg"
 ---

@@ -6,7 +6,7 @@ dateEnd: 2026-05-17
 location: "Czorsztyn"
 region: "Polska"
 organizer: "kalendarz4x4.pl"
-type: "zawody"
+type: "przejazdy"
 status: "zewnetrzne"
 tileImage: "/content/imprezy/img/pieninskie-janoski.jpg"
 ---

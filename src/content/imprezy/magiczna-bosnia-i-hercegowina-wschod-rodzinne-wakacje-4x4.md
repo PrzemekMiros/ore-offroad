@@ -6,7 +6,7 @@ dateEnd: 2026-08-08
 location: "Bośnia i Hercegowina"
 region: "Polska"
 organizer: "kalendarz4x4.pl"
-type: "zawody"
+type: "wyprawy"
 status: "zewnetrzne"
 tileImage: "/content/imprezy/img/magiczna-bosnia-i-hercegowina-wschod-rodzinne-wakacje-4x4.jpg"
 ---

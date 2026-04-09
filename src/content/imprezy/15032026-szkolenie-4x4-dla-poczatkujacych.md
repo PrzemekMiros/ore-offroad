@@ -6,7 +6,7 @@ dateEnd: 2026-03-15
 location: "Roździeńskiego 2b, Piekary Śląskie, Poland"
 region: "Polska"
 organizer: "kalendarz4x4.pl"
-type: "zawody"
+type: "szkolenia"
 status: "zewnetrzne"
 tileImage: "/content/imprezy/img/15032026-szkolenie-4x4-dla-poczatkujacych.jpeg"
 ---

@@ -6,7 +6,7 @@ dateEnd: 2026-09-12
 location: "Serbia"
 region: "Polska"
 organizer: "kalendarz4x4.pl"
-type: "zawody"
+type: "wyprawy"
 status: "zewnetrzne"
 tileImage: "/content/imprezy/img/serbia-tam-gdzie-wschod-spotyka-zachod-serbia.jpg"
 ---

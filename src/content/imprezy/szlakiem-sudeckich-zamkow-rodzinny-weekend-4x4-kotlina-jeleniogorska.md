@@ -6,7 +6,7 @@ dateEnd: 2026-06-21
 location: "Kotlina Jeleniogórska"
 region: "Polska"
 organizer: "kalendarz4x4.pl"
-type: "zawody"
+type: "przejazdy"
 status: "zewnetrzne"
 tileImage: "/content/imprezy/img/szlakiem-sudeckich-zamkow-rodzinny-weekend-4x4-kotlina-jeleniogorska.jpg"
 ---

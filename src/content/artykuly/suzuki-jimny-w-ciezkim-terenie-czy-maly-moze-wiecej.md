@@ -1,5 +1,5 @@
 ---
-title: Suzuki Jimny w ciężkim terenie czy mały może więcej
+title: Suzuki Jimny w ciężkim terenie - czy mały może więcej
 description: Test Suzuki Jimny w wymagającym terenie. Analizujemy napęd 4x4, przełożenia, możliwości zawieszenia oraz realne ograniczenia małej terenówki podczas jazdy w błocie, kamieniach i na stromych podjazdach.
 author: Przemek
 date: 2026-03-28T10:32:17.836Z

@@ -6,7 +6,7 @@ dateEnd: 2026-06-28
 location: "Okolice Spały"
 region: "Polska"
 organizer: "kalendarz4x4.pl"
-type: "zawody"
+type: "przejazdy"
 status: "zewnetrzne"
 tileImage: "/content/imprezy/img/anlage-mitte-powitanie-wakacji-rodzinny-weekend-4x4-okolice-spaly.jpg"
 ---

@@ -6,7 +6,7 @@ dateEnd: 2026-04-11
 location: "JURA"
 region: "Polska"
 organizer: "kalendarz4x4.pl"
-type: "zawody"
+type: "przejazdy"
 status: "zewnetrzne"
 tileImage: "/content/imprezy/img/uwaga-bloto-czyli-to-co-dziki-lubia-najbardziej.jpg"
 ---

@@ -6,7 +6,7 @@ dateEnd: 2026-05-10
 location: "Skwierzyna (Polen)"
 region: "Polska"
 organizer: "kalendarz4x4.pl"
-type: "zawody"
+type: "przejazdy"
 status: "zewnetrzne"
 tileImage: "/content/imprezy/img/wyprawa-szlakiem-fortyfikacji-miedzyrzeckiego-rejonu-umocnionego-skwierzyna-miedzyrzecz-olobok-2026-05-09.jpg"
 ---

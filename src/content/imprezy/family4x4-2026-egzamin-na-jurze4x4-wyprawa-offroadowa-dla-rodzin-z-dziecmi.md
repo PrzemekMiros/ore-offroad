@@ -6,7 +6,7 @@ dateEnd: 2026-05-12
 location: "Kraków, Poland"
 region: "Polska"
 organizer: "kalendarz4x4.pl"
-type: "zawody"
+type: "wyprawy"
 status: "zewnetrzne"
 tileImage: "/content/imprezy/img/family4x4-2026-egzamin-na-jurze4x4-wyprawa-offroadowa-dla-rodzin-z-dziecmi.jpg"
 ---

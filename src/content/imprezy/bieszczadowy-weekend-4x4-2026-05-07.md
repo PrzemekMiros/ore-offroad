@@ -6,7 +6,7 @@ dateEnd: 2026-05-10
 location: "Bieszczady"
 region: "Polska"
 organizer: "kalendarz4x4.pl"
-type: "zawody"
+type: "przejazdy"
 status: "zewnetrzne"
 tileImage: "/content/imprezy/img/bieszczadowy-weekend-4x4-2026-05-07.jpg"
 ---

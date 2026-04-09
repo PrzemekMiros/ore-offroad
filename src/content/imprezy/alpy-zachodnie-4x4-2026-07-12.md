@@ -6,7 +6,7 @@ dateEnd: 2026-07-18
 location: "Szwajcaria"
 region: "Polska"
 organizer: "kalendarz4x4.pl"
-type: "zawody"
+type: "wyprawy"
 status: "zewnetrzne"
 tileImage: "/content/imprezy/img/alpy-zachodnie-4x4-2026-07-12.jpg"
 ---

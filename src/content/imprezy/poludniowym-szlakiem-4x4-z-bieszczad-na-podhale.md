@@ -6,7 +6,7 @@ dateEnd: 2026-06-07
 location: "Werlas, 38-610 Solina, Polska"
 region: "Polska"
 organizer: "kalendarz4x4.pl"
-type: "zawody"
+type: "przejazdy"
 status: "zewnetrzne"
 tileImage: "/content/imprezy/img/poludniowym-szlakiem-4x4-z-bieszczad-na-podhale.jpg"
 ---

@@ -6,7 +6,7 @@ dateEnd: 2026-09-22
 location: "Lipowa 3d, 30-702 Kraków, Poland"
 region: "Polska"
 organizer: "kalendarz4x4.pl"
-type: "zawody"
+type: "wyprawy"
 status: "zewnetrzne"
 tileImage: "/content/imprezy/img/armenia-i-gruzja-przez-bezdroza-miedzy-araratem-a-kaukazem.jpg"
 ---

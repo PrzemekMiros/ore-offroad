@@ -6,7 +6,7 @@ dateEnd: 2026-05-03
 location: "Myczkowce, 38-623 Solina, Polska"
 region: "Polska"
 organizer: "kalendarz4x4.pl"
-type: "zawody"
+type: "wyprawy"
 status: "zewnetrzne"
 tileImage: "/content/imprezy/img/family4x4-pl-bieszczadzko-beskidzka-majowka-rodzinne-wyprawy-offroadowe.jpg"
 ---

@@ -6,7 +6,7 @@ dateEnd: 2026-04-12
 location: "Przemyśl i okolice"
 region: "Polska"
 organizer: "kalendarz4x4.pl"
-type: "zawody"
+type: "przejazdy"
 status: "zewnetrzne"
 tileImage: "/content/imprezy/img/przemyskie-fortowanie-rodzinny-weekend-4x4-10-12042026-przemysl-i-okolice.jpg"
 ---

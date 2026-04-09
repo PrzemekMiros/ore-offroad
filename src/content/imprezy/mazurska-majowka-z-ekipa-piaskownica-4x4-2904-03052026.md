@@ -6,7 +6,7 @@ dateEnd: 2026-05-03
 location: "Miasto Giżycko"
 region: "Polska"
 organizer: "kalendarz4x4.pl"
-type: "zawody"
+type: "przejazdy"
 status: "zewnetrzne"
 tileImage: "/content/imprezy/img/mazurska-majowka-z-ekipa-piaskownica-4x4-2904-03052026.jpg"
 ---

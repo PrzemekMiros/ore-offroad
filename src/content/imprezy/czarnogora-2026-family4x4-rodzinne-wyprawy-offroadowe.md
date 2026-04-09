@@ -6,7 +6,7 @@ dateEnd: 2026-07-16
 location: "Czarnogóra"
 region: "Polska"
 organizer: "kalendarz4x4.pl"
-type: "zawody"
+type: "wyprawy"
 status: "zewnetrzne"
 tileImage: "/content/imprezy/img/czarnogora-2026-family4x4-rodzinne-wyprawy-offroadowe.jpg"
 ---

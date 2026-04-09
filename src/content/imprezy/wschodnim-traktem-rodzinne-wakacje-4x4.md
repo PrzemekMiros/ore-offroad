@@ -6,7 +6,7 @@ dateEnd: 2026-07-11
 location: "Lubaczów"
 region: "Polska"
 organizer: "kalendarz4x4.pl"
-type: "zawody"
+type: "wyprawy"
 status: "zewnetrzne"
 tileImage: "/content/imprezy/img/wschodnim-traktem-rodzinne-wakacje-4x4.jpg"
 ---

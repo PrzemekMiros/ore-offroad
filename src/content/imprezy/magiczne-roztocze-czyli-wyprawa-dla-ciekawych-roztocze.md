@@ -6,7 +6,7 @@ dateEnd: 2026-05-24
 location: "Roztocze"
 region: "Polska"
 organizer: "kalendarz4x4.pl"
-type: "zawody"
+type: "przejazdy"
 status: "zewnetrzne"
 tileImage: "/content/imprezy/img/magiczne-roztocze-czyli-wyprawa-dla-ciekawych-roztocze.jpg"
 ---

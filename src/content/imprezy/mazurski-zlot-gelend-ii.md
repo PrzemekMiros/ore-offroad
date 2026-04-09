@@ -6,7 +6,7 @@ dateEnd: 2026-05-03
 location: "Hotel Ventus Natural Spa ****"
 region: "Polska"
 organizer: "kalendarz4x4.pl"
-type: "zawody"
+type: "spotkania"
 status: "zewnetrzne"
 tileImage: "/content/imprezy/img/mazurski-zlot-gelend-ii.jpg"
 ---

@@ -6,7 +6,7 @@ dateEnd: 2026-04-18
 location: "Legionów, Offroad Park Czestochowa, Poland"
 region: "Polska"
 organizer: "kalendarz4x4.pl"
-type: "zawody"
+type: "przejazdy"
 status: "zewnetrzne"
 tileImage: "/content/imprezy/img/otwarcie-sezonu-terenoffka-2026.jpg"
 ---

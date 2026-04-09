@@ -6,7 +6,7 @@ dateEnd: 2026-05-09
 location: "Korsyka"
 region: "Polska"
 organizer: "kalendarz4x4.pl"
-type: "zawody"
+type: "wyprawy"
 status: "zewnetrzne"
 tileImage: "/content/imprezy/img/korsyka-wyspa-piekna-2026-05-01.jpg"
 ---

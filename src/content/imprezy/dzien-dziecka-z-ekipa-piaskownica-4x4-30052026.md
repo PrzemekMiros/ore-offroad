@@ -6,7 +6,7 @@ dateEnd: 2026-05-30
 location: "Olkusz Srebrne Miasto"
 region: "Polska"
 organizer: "kalendarz4x4.pl"
-type: "zawody"
+type: "przejazdy"
 status: "zewnetrzne"
 tileImage: "/content/imprezy/img/dzien-dziecka-z-ekipa-piaskownica-4x4-30052026.jpg"
 ---

@@ -6,7 +6,7 @@ dateEnd: 2026-04-17
 location: "38-606 Steznica, Poland"
 region: "Polska"
 organizer: "kalendarz4x4.pl"
-type: "zawody"
+type: "przejazdy"
 status: "zewnetrzne"
 tileImage: "/content/imprezy/img/serwis-kop-x-mud-bieszczady-2026-04-17.jpg"
 ---

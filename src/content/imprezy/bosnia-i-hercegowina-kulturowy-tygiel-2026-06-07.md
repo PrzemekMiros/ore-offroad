@@ -6,7 +6,7 @@ dateEnd: 2026-06-13
 location: "Bośnia i Hercegowina"
 region: "Polska"
 organizer: "kalendarz4x4.pl"
-type: "zawody"
+type: "wyprawy"
 status: "zewnetrzne"
 tileImage: "/content/imprezy/img/bosnia-i-hercegowina-kulturowy-tygiel-2026-06-07.jpg"
 ---

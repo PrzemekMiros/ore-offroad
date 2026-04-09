@@ -6,7 +6,7 @@ dateEnd: 2026-08-06
 location: "Grecja"
 region: "Polska"
 organizer: "kalendarz4x4.pl"
-type: "zawody"
+type: "wyprawy"
 status: "zewnetrzne"
 tileImage: "/content/imprezy/img/9-grecja-2026-family4x4-rodzinne-wyprawy-offroadowe.jpg"
 ---
