@@ -1,5 +1,5 @@
 ---
-title: Nowa Toyota Hilux kontra Ford Ranger w terenie który pickup wybrać do wypraw i pracy
+title: Nowa Toyota Hilux kontra Ford Ranger w terenie - który pickup wybrać do wypraw i pracy
 description: Porównanie Toyoty Hilux i Forda Rangera w realnym terenie. Sprawdzamy napędy, zawieszenie, możliwości modyfikacji i opłacalność w pracy oraz podczas wypraw offroadowych.
 author: Przemek
 date: 2026-04-05T21:49:10.717Z
