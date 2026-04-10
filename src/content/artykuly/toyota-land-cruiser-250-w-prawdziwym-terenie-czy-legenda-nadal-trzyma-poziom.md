@@ -5,7 +5,7 @@ author: Przemek
 date: 2026-03-10T22:45:27.911Z
 category:
  - Samochody i testy
-thumbnail: /content/artykuly/img/toyota-land-cruiser-250-w-prawdziwym-terenie-czy-legenda-nadal-trzyma-poziom.png
+thumbnail: /content/artykuly/img/toyota-land-cruiser-250-w-prawdziwym-terenie-czy-legenda-nadal-trzyma-poziom.webp
 ---
 Nowa generacja Land Cruisera budzi ogromne emocje. Dla jednych to powrót do korzeni – rama, reduktor i klasyczna bryła. Dla innych to zbyt duży kompromis między komfortem a surową funkcjonalnością. Sprawdziłem Land Cruisera 250 w warunkach, które nie wybaczają błędów: głębokie koleiny, trawersy na glinie, podjazdy na luźnym kamieniu i wolna, techniczna jazda w lesie. 
 

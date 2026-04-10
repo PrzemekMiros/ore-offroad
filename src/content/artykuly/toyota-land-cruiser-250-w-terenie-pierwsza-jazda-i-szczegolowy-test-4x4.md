@@ -5,7 +5,7 @@ author: Przemek
 date: 2026-03-11T09:15:36.871Z
 category:
  - Samochody i testy
-thumbnail: /content/artykuly/img/toyota-land-cruiser-250-w-terenie-pierwsza-jazda-i-szczegolowy-test-4x4.png
+thumbnail: /content/artykuly/img/toyota-land-cruiser-250-2.jpeg
 ---
 Nowa Toyota Land Cruiser 250 budzi ogromne emocje w świecie offroadu. Powrót do bardziej pudełkowatej sylwetki, klasyczna rama i obietnica zachowania legendarnych zdolności terenowych sprawiają, że expectations są bardzo wysokie. Postanowiłem sprawdzić, ile z tej legendy faktycznie przeniesiono do najnowszej generacji.
 

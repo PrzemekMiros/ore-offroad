@@ -1,0 +1,43 @@
+---
+import BaseLayout from "../layouts/BaseLayout.astro";
+
+const page = {
+  title: "Kontakt",
+  updated: "10.04.2026",
+  email: "kontakt@offroadnews.pl",
+};
+---
+
+<BaseLayout title={page.title} description="Kontakt z redakcją ORE Offroad">
+  <section class="pb-16 pt-12 md:pb-16 md:pt-16">
+    <article class="mx-auto space-y-10 text-[var(--text)]">
+      <header class="space-y-3">
+        <h1 class="text-3xl font-semibold text-[var(--text)]">Kontakt z Offroad News</h1>
+        <p class="max-w-3xl text-[15px] leading-relaxed text-[var(--muted)]">
+          Masz pytanie o treści, chcesz zgłosić błąd lub ustalić współpracę? Napisz kilka zdań – odpowiadamy w dni
+          robocze w ciągu 24h.
+        </p>
+      </header>
+
+      <section class="grid gap-4 sm:grid-cols-2">
+        <div class="rounded-2xl border border-[var(--border)] bg-white/70 p-5 shadow-sm">
+          <h2 class="mb-2 text-lg font-semibold text-[var(--text)]">Dane kontaktowe</h2>
+          <ul class="space-y-2 text-sm text-[var(--muted)]">
+            <li>Email redakcji: <a class="text-[var(--accent)] font-semibold hover:underline" href={`mailto:${page.email}`}>{page.email}</a></li>
+            <li>Godziny odpowiedzi: pon.–pt., 09:00–17:00</li>
+            <li>Sprawy pilne: w temacie wiadomości dopisz „PILNE”</li>
+          </ul>
+        </div>
+        <div class="rounded-2xl border border-[var(--border)] bg-white/70 p-5 shadow-sm">
+          <h2 class="mb-2 text-lg font-semibold text-[var(--text)]">W czym pomagamy</h2>
+          <ul class="space-y-2 text-sm text-[var(--muted)]">
+            <li>Zapytania medialne i współpraca komercyjna</li>
+            <li>Aktualizacje kalendarza imprez i wyników</li>
+            <li>Zgłoszenia błędów na stronie lub sugestii funkcji</li>
+          </ul>
+        </div>
+      </section>
+
+    </article>
+  </section>
+</BaseLayout>

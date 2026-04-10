@@ -117,8 +117,6 @@ Jednak już w seryjnej konfiguracji Jimny zostawia w tyle większość kompaktow
 
 ---
 
-![Suzuki Układ napędowy](img/jimny-w-terenie-zawias.png)
-
 ## Układ napędowy pod lupą
 
 Reduktor w Jimny to jedna z jego największych zalet. Mechaniczne przełączanie 2H – 4H – 4L daje kierowcy pełną kontrolę.
