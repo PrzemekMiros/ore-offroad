@@ -3,7 +3,7 @@ import BaseLayout from "../../../layouts/BaseLayout.astro";
 ---
 
 <BaseLayout
-  title="Przelicznik wymiarów opon"
+  title="Kalkulator / przelicznik wymiarów opon – dobierz odpowiedni rozmiar i sprawdź zamienniki"
   description="Kalkulator wymiarów opon calowych i metrycznych."
   showHero={false}
 >
@@ -11,15 +11,22 @@ import BaseLayout from "../../../layouts/BaseLayout.astro";
     <div class="">
       <div class="rounded-2xl border border-black/10 bg-gradient-to-br from-slate-50 via-white to-orange-50 p-5 md:p-8">
         <header class="mb-6 rounded-xl border border-black/10 bg-white/80 p-5 md:p-7">
-          <h1 class="text-2xl font-semibold text-[var(--text)] md:text-3xl">Kalkulator wymiarów opon</h1>
-          <p class="mt-3 text-sm text-[var(--muted)]">
-            Wybierz wartości w polach szerokości, profilu, średnicy lub obwodu. Kalkulator synchronizuje oba formaty.
+          <h1 class="text-2xl font-semibold text-[var(--text)] md:text-3xl">Kalkulator / przelicznik wymiarów opon</h1>
+          <p class="mt-3 text-md text-[var(--muted)]">
+Kalkulator wymiarów opon to praktyczne narzędzie, które pozwala szybko przeliczyć parametry
+    opon metrycznych oraz calowych. Dzięki niemu możesz sprawdzić szerokość, wysokość profilu,
+    średnicę zewnętrzną oraz obwód opony, a także łatwo porównać różne rozmiary ogumienia.
+          </p>
+          <p class="mt-3 text-[var(--muted)]">
+ Narzędzie automatycznie synchronizuje wartości pomiędzy oznaczeniami metrycznymi i calowymi,
+    co znacznie ułatwia dobór odpowiedniego rozmiaru opony do samochodu terenowego, SUV-a,
+    auta osobowego czy pojazdu użytkowego.
           </p>
         </header>
 
         <div class="grid gap-5 md:grid-cols-3">
           <fieldset class="rounded-xl border border-black/10 bg-white/80 p-4 md:p-6">
-            <legend class="rounded-lg border border-black/10 bg-white px-3 py-1 text-sm font-semibold">Opona calowa</legend>
+            <legend class="rounded-lg border border-black/10 bg-white px-3 py-1 font-semibold">Opona calowa</legend>
 
             <label class="mb-1 mt-4 block text-xs font-semibold uppercase tracking-[0.12em] text-black/70" for="height-in">Wysokość opony [cale]</label>
             <div class="number-input">
@@ -44,7 +51,7 @@ import BaseLayout from "../../../layouts/BaseLayout.astro";
           </fieldset>
 
           <fieldset class="rounded-xl border border-black/10 bg-white/80 p-4 md:p-6">
-            <legend class="rounded-lg border border-black/10 bg-white px-3 py-1 text-sm font-semibold">Opona metryczna</legend>
+            <legend class="rounded-lg border border-black/10 bg-white px-3 py-1 font-semibold">Opona metryczna</legend>
 
             <label class="mb-1 mt-4 block text-xs font-semibold uppercase tracking-[0.12em] text-black/70" for="width-mm">Szerokość opony [mm]</label>
             <div class="number-input">
@@ -69,9 +76,9 @@ import BaseLayout from "../../../layouts/BaseLayout.astro";
           </fieldset>
         </div>
 
-        <div class="grid gap-5 md:grid-cols-3">
+        <div class="grid gap-5 md:grid-cols-3 mb-12">
           <div class="mt-6 rounded-xl border border-black/10 bg-white/80 p-4 md:p-6">
-            <table class="w-full border-collapse text-sm">
+            <table class="w-full border-collapse">
               <tbody>
                 <tr class="border-b border-black/10">
                   <td class="py-2 font-semibold text-[var(--text)]">Szerokość opony [mm]</td>
@@ -93,6 +100,134 @@ import BaseLayout from "../../../layouts/BaseLayout.astro";
             </table>
           </div>
         </div>
+
+          <h2 class="text-xl font-semibold text-[var(--text)] md:text-3xl">Jak działa kalkulator opon?</h2>
+          <p class="mt-3 text-[var(--muted)]">
+Wystarczy uzupełnić dowolne pola dotyczące szerokości, profilu, średnicy lub obwodu opony.
+    Kalkulator automatycznie przeliczy pozostałe parametry i zsynchronizuje oba formaty oznaczeń.
+          </p>
+          <p class="mt-3 text-[var(--muted)]">
+  Możesz korzystać zarówno z:
+          </p>
+          <ul class="mt-3 list-disc space-y-1 pl-5 leading-relaxed text-[var(--muted)]">
+    <li>oznaczeń metrycznych,</li>
+    <li>oznaczeń calowych,</li>
+    <li>średnicy zewnętrznej opony,</li>
+    <li>obwodu opony.</li>
+  </ul>
+            <h2 class="text-xl font-semibold text-[var(--text)] md:text-3xl">Opona metryczna – co oznaczają parametry?</h2>
+          <p class="mt-3 text-[var(--muted)]">
+    Oznaczenia metryczne są najczęściej stosowane w samochodach osobowych i SUV-ach.
+    Przykładowy rozmiar opony:
+          </p>
+          <p class="mt-3 font-semibold text-[var(--text)]">
+    <strong>205/55 R16</strong>
+  </p>
+
+  <ul class="mt-3 list-disc space-y-1 pl-5 leading-relaxed text-[var(--muted)]">
+    <li><strong>205</strong> – szerokość opony w milimetrach,</li>
+    <li><strong>55</strong> – profil opony wyrażony w procentach,</li>
+    <li><strong>R16</strong> – średnica felgi podana w calach.</li>
+  </ul>
+
+  <h2 class="mt-8 text-xl font-semibold text-[var(--text)] md:text-3xl">Opona calowa – jak odczytywać rozmiar?</h2>
+
+  <p class="mt-3 leading-relaxed text-[var(--muted)]">
+    Oznaczenia calowe są popularne przede wszystkim w samochodach terenowych, pick-upach,
+    klasycznych autach 4x4 oraz pojazdach off-roadowych.
+  </p>
+
+  <p class="mt-3 leading-relaxed text-[var(--muted)]">
+    Kalkulator umożliwia szybkie przeliczenie:
+  </p>
+
+  <ul class="mt-3 list-disc space-y-1 pl-5 leading-relaxed text-[var(--muted)]">
+    <li>wysokości opony w calach,</li>
+    <li>szerokości opony w calach,</li>
+    <li>średnicy osadzenia.</li>
+  </ul>
+
+  <p class="mt-3 leading-relaxed text-[var(--muted)]">
+    Dzięki temu łatwo porównasz rozmiary terenowe z klasycznymi oznaczeniami metrycznymi.
+  </p>
+
+  <h2 class="mt-8 text-xl font-semibold text-[var(--text)] md:text-3xl">Jakie parametry oblicza kalkulator?</h2>
+
+  <p class="mt-3 leading-relaxed text-[var(--muted)]">
+    Po wpisaniu danych kalkulator automatycznie wylicza:
+  </p>
+
+  <ul class="mt-3 list-disc space-y-1 pl-5 leading-relaxed text-[var(--muted)]">
+    <li><strong>Szerokość opony [mm]</strong> – rzeczywistą szerokość ogumienia,</li>
+    <li><strong>Wysokość profilu [mm]</strong> – wysokość boku opony,</li>
+    <li><strong>Średnicę zewnętrzną [mm]</strong> – całkowitą średnicę koła,</li>
+    <li><strong>Obwód opony [mm]</strong> – długość pełnego obrotu koła.</li>
+  </ul>
+
+  <h2 class="mt-8 text-xl font-semibold text-[var(--text)] md:text-3xl">Dlaczego średnica i obwód opony są tak ważne?</h2>
+
+  <p class="mt-3 leading-relaxed text-[var(--muted)]">
+    Nawet niewielka zmiana średnicy lub obwodu opony może wpływać na:
+  </p>
+
+  <ul class="mt-3 list-disc space-y-1 pl-5 leading-relaxed text-[var(--muted)]">
+    <li>wskazania prędkościomierza,</li>
+    <li>działanie systemów ABS i ESP,</li>
+    <li>komfort jazdy,</li>
+    <li>zużycie paliwa,</li>
+    <li>pracę skrzyni biegów i napędu 4x4,</li>
+    <li>prześwit pojazdu.</li>
+  </ul>
+
+  <p class="mt-3 leading-relaxed text-[var(--muted)]">
+    Dlatego przed zmianą rozmiaru opon warto dokładnie sprawdzić wszystkie parametry
+    przy pomocy kalkulatora.
+  </p>
+
+  <h2 class="mt-8 text-xl font-semibold text-[var(--text)] md:text-3xl">Kiedy warto korzystać z kalkulatora wymiarów opon?</h2>
+
+  <p class="mt-3 leading-relaxed text-[var(--muted)]">
+    Kalkulator przydaje się szczególnie podczas:
+  </p>
+
+  <ul class="mt-3 list-disc space-y-1 pl-5 leading-relaxed text-[var(--muted)]">
+    <li>zmiany rozmiaru felg,</li>
+    <li>doboru zamienników opon,</li>
+    <li>modyfikacji samochodu terenowego lub SUV-a,</li>
+    <li>podnoszenia zawieszenia,</li>
+    <li>porównywania opon calowych i metrycznych,</li>
+    <li>doboru większych opon off-roadowych.</li>
+  </ul>
+
+  <h2 class="mt-8 text-xl font-semibold text-[var(--text)] md:text-3xl">Najczęstsze błędy przy doborze opon</h2>
+
+  <ul class="mt-3 list-disc space-y-1 pl-5 leading-relaxed text-[var(--muted)]">
+    <li>wybór zbyt dużej średnicy opony,</li>
+    <li>brak sprawdzenia obwodu koła,</li>
+    <li>niedopasowanie szerokości opony do felgi,</li>
+    <li>pomijanie wpływu zmiany rozmiaru na napęd i zawieszenie,</li>
+    <li>kierowanie się wyłącznie wyglądem opony.</li>
+  </ul>
+
+  <p class="mt-3 leading-relaxed text-[var(--muted)]">
+    Nieprawidłowo dobrane ogumienie może powodować ocieranie o nadkola,
+    błędne wskazania licznika oraz szybsze zużycie podzespołów.
+  </p>
+
+
+
+  <p class="mt-3 leading-relaxed text-[var(--muted)]">
+    Kalkulator wymiarów opon to wygodne narzędzie dla każdego kierowcy, który chce szybko
+    sprawdzić parametry opon i porównać różne rozmiary ogumienia. Automatyczne przeliczanie
+    wartości pomiędzy systemem metrycznym i calowym pozwala łatwo dobrać odpowiednie opony
+    zarówno do samochodów osobowych, jak i terenowych.
+  </p>
+
+  <p class="mt-3 leading-relaxed text-[var(--muted)]">
+    Skorzystaj z kalkulatora, aby bezpiecznie dobrać rozmiar opon, uniknąć problemów
+    z montażem oraz sprawdzić wpływ zmian na parametry pojazdu.
+  </p>
+
       </div>
     </div>
   </section>

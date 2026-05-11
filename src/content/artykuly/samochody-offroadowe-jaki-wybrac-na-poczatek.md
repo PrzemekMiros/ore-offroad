@@ -1,5 +1,5 @@
 ---
-title: Samochody offroadowe – jaki wybrać na początek? Kompletny poradnik dla początkujących
+title: Samochody offroadowe - jaki wybrać na początek? Kompletny poradnik dla początkujących
 description: Off-road to coś więcej niż zwykła jazda samochodem. To pasja, przygoda i sposób na oderwanie się od codzienności. Coraz więcej osób marzy o weekendowych wyprawach po błotnistych szlakach, leśnych drogach czy górskich bezdrożach.
 author: Przemek
 date: 2026-05-11T11:31:15.213Z
