@@ -160,3 +160,4 @@ Mamy nadzieję, że ponownie spotkamy się w równie licznym gronie i dostarczym
 ![Raduszczanka 50](img/raduszczanka/1000090787.jpg)
 
 
+[Zobacz wyniki](https://offroadnews.pl/wyniki/raduszanka-16-edycja)

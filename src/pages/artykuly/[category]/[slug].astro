@@ -580,6 +580,11 @@ if (!artykul) {
       if (!articleContent) return () => {};
       let grid = articleContent.querySelector(".rad-gallery-grid");
       let items = [];
+      const normalize = (value) =>
+        (value ?? "")
+          .normalize("NFD")
+          .replace(/[\u0300-\u036f]/g, "")
+          .toLowerCase();
 
       if (grid) {
         items = Array.from(grid.querySelectorAll(".rad-gallery-thumb img"))
@@ -589,9 +594,36 @@ if (!artykul) {
           }))
           .filter((item) => item.src);
       } else {
-        const galleryImages = Array.from(articleContent.querySelectorAll("img")).filter((img) =>
-          (img.currentSrc || img.src || "").toLowerCase().includes("raduszczanka")
-        );
+        const allImages = Array.from(articleContent.querySelectorAll("img"));
+        const galleryHeading = Array.from(articleContent.querySelectorAll("h2, h3")).find((heading) => {
+          const text = normalize(heading.textContent);
+          return text.includes("zdjecia z imprezy") || text.includes("galeria");
+        });
+
+        let galleryImages = [];
+        if (galleryHeading) {
+          const headingLevel = Number(galleryHeading.tagName.replace("H", "")) || 2;
+          const nodes = [];
+          let node = galleryHeading.nextElementSibling;
+          while (node) {
+            if (/^H[1-6]$/i.test(node.tagName)) {
+              const level = Number(node.tagName.replace("H", "")) || 6;
+              if (level <= headingLevel) break;
+            }
+            nodes.push(node);
+            node = node.nextElementSibling;
+          }
+          galleryImages = nodes.flatMap((n) => Array.from(n.querySelectorAll("img")));
+        }
+
+        if (!galleryImages.length) {
+          galleryImages = allImages.filter((img) => {
+            const alt = normalize(img.alt);
+            const src = normalize(img.currentSrc || img.src || "");
+            return alt.includes("raduszczanka") || src.includes("raduszczanka");
+          });
+        }
+
         if (!galleryImages.length) return () => {};
 
         const galleryNodes = Array.from(
