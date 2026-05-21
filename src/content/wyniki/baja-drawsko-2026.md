@@ -186,4 +186,3 @@ results:
     notes: ""
 ---
 
-Automatycznie zeskrapowane z results4x4.com (PT Runda 1, roundId 9c330219-7d2a-4582-ad09-b9491a5fe233).

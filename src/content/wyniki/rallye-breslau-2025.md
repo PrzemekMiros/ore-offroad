@@ -27,4 +27,4 @@ results:
     time: "24:40:12"
 ---
 
-Klasyfikacja generalna na podstawie podsumowania organizatora. Zawodnicy sklasyfikowani według czasu łącznego.
+

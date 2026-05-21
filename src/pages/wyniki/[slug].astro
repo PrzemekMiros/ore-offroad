@@ -1,4 +1,4 @@
----
+﻿---
 import { getCollection } from "astro:content";
 import BaseLayout from "../../layouts/BaseLayout.astro";
 import ArchiveHero from "../../layouts/heroes/ArchiveHero.astro";
@@ -13,12 +13,16 @@ export async function getStaticPaths() {
 
 const { entry } = Astro.props;
 const data = entry.data;
+const isRaduszankaQuadTable = entry.slug === "raduszanka-16-edycja";
 
 const dateLabel = data.date
   ? data.date.toLocaleDateString("pl-PL", { day: "2-digit", month: "long", year: "numeric" })
   : "";
 
-const classOrder = ["NOL", "CHL", "ADV"];
+const classOrder =
+  entry.slug === "raduszanka-16-edycja"
+    ? (data.classes ?? [])
+    : ["NOL", "CHL", "ADV"];
 const grouped =
   data.results?.reduce((acc, row) => {
     const key = row.class ?? "Pozostałe";
@@ -30,6 +34,77 @@ const orderedBuckets = [
   ...classOrder.filter((c) => grouped[c]),
   ...Object.keys(grouped).filter((k) => !classOrder.includes(k)),
 ];
+
+type ParsedMeta = {
+  crewNumber?: string;
+  pilot?: string;
+  kola?: string;
+  iloscOkrazen?: string;
+  k1?: string;
+  k2?: string;
+  k3?: string;
+  extremeTime?: string;
+  wynik?: string;
+  extraNote?: string;
+};
+
+const parseMeta = (notes?: string): ParsedMeta => {
+  if (!notes) return {};
+  const parts = notes.split(";").map((part) => part.trim()).filter(Boolean);
+  const meta: ParsedMeta = {};
+  const extras: string[] = [];
+
+  for (const part of parts) {
+    if (part.startsWith("Nr załogi:")) {
+      meta.crewNumber = part.replace("Nr załogi:", "").trim();
+      continue;
+    }
+    if (part.startsWith("Pilot:")) {
+      meta.pilot = part.replace("Pilot:", "").trim();
+      continue;
+    }
+    if (part.startsWith("Kola:") || part.startsWith("Koła:") || part.startsWith("kola:")) {
+      meta.kola = part.split(":").slice(1).join(":").trim();
+      continue;
+    }
+    if (
+      part.startsWith("Ilosc okrazen:")
+      || part.startsWith("Ilość okrążeń:")
+      || part.startsWith("ILOSC OKRĄŻEŃ:")
+      || part.startsWith("ILOSC OKRAZEN:")
+    ) {
+      meta.iloscOkrazen = part.split(":").slice(1).join(":").trim();
+      continue;
+    }
+    if (part.startsWith("K1:")) {
+      meta.k1 = part.replace("K1:", "").trim();
+      continue;
+    }
+    if (part.startsWith("K2:")) {
+      meta.k2 = part.replace("K2:", "").trim();
+      continue;
+    }
+    if (part.startsWith("K3:")) {
+      meta.k3 = part.replace("K3:", "").trim();
+      continue;
+    }
+    if (part.startsWith("CZAS EXTREME:")) {
+      meta.extremeTime = part.replace("CZAS EXTREME:", "").trim();
+      continue;
+    }
+    if (part.startsWith("Wynik:")) {
+      meta.wynik = part.replace("Wynik:", "").trim();
+      continue;
+    }
+    extras.push(part);
+  }
+
+  if (extras.length) meta.extraNote = extras.join("; ");
+  return meta;
+};
+
+const normalizeClass = (value: string) =>
+  value.normalize("NFD").replace(/[\u0300-\u036f]/g, "").toUpperCase();
 ---
 
 <BaseLayout title={data.title} description={data.series ?? "Wyniki"} showHero={false}>
@@ -49,11 +124,23 @@ const orderedBuckets = [
 
       {orderedBuckets.length ? (
         <div class="space-y-6" id="wyniki-table">
-          {orderedBuckets.map((bucket) => (
-            <div
-              class="overflow-hidden rounded-2xl border border-[var(--border)] bg-[var(--surface)] wynik-bucket"
-              data-class={bucket}
-            >
+          {orderedBuckets.map((bucket) => {
+            const isWinchBucket =
+              isRaduszankaQuadTable && normalizeClass(bucket).includes("WYCZYN Z WYCIAGARKA");
+            const isWyczynBucket =
+              isRaduszankaQuadTable && normalizeClass(bucket) === "WYCZYN";
+            const isTouristBucket =
+              isRaduszankaQuadTable && normalizeClass(bucket).includes("TURYSTYK");
+            const isAdvBucket =
+              isRaduszankaQuadTable && normalizeClass(bucket) === "ADV";
+            const isExtremeBucket =
+              isRaduszankaQuadTable && normalizeClass(bucket) === "EXTREME";
+            const isPilotScoreBucket = isWinchBucket || isWyczynBucket || isTouristBucket;
+            return (
+              <div
+                class="overflow-hidden rounded-2xl border border-[var(--border)] bg-[var(--surface)] wynik-bucket"
+                data-class={bucket}
+              >
               <div class="flex items-center justify-between border-b border-[var(--border)] px-5 py-3">
                 <div class="flex items-center gap-2 text-[12px] uppercase tracking-[0.16em] text-[var(--muted)]">
                   <span class="badge-ghost">{bucket}</span>
@@ -63,29 +150,118 @@ const orderedBuckets = [
               <div class="overflow-x-auto">
                 <table class="min-w-full divide-y divide-[var(--border)] text-sm text-[var(--text)]">
                   <thead class="bg-[var(--surface-muted)] text-[11px] uppercase tracking-[0.18em] text-[var(--muted)]">
-                    <tr>
-                      <th class="px-4 py-3 text-left">Pos</th>
-                      <th class="px-4 py-3 text-left">Załoga</th>
-                      <th class="px-4 py-3 text-left">Pojazd</th>
-                      <th class="px-4 py-3 text-left">Czas</th>
-                      <th class="px-4 py-3 text-left">Uwagi</th>
-                    </tr>
+                    {isPilotScoreBucket ? (
+                      <tr>
+                        <th class="px-4 py-3 text-left">Lp.</th>
+                        <th class="px-4 py-3 text-left">Numer załogi</th>
+                        <th class="px-4 py-3 text-left">Imię i nazwisko kierowcy</th>
+                        <th class="px-4 py-3 text-left">Imię i nazwisko pilota</th>
+                        <th class="px-4 py-3 text-left">K1</th>
+                        <th class="px-4 py-3 text-left">K2</th>
+                        <th class="px-4 py-3 text-left">K3</th>
+                        <th class="px-4 py-3 text-left">Wynik</th>
+                        <th class="px-4 py-3 text-left">Czas</th>
+                      </tr>
+                    ) : isAdvBucket ? (
+                      <tr>
+                        <th class="px-4 py-3 text-left">Lp.</th>
+                        <th class="px-4 py-3 text-left">Numer załogi</th>
+                        <th class="px-4 py-3 text-left">Imię i nazwisko kierowcy</th>
+                        <th class="px-4 py-3 text-left">Imię i nazwisko pilota</th>
+                        <th class="px-4 py-3 text-left">kola</th>
+                      </tr>
+                    ) : isExtremeBucket ? (
+                      <tr>
+                        <th class="px-4 py-3 text-left">Lp.</th>
+                        <th class="px-4 py-3 text-left">Numer załogi</th>
+                        <th class="px-4 py-3 text-left">Imię i nazwisko kierowcy</th>
+                        <th class="px-4 py-3 text-left">Imię i nazwisko pilota</th>
+                        <th class="px-4 py-3 text-left">ILOSC OKRĄŻEŃ</th>
+                      </tr>
+                    ) : isRaduszankaQuadTable ? (
+                      <tr>
+                        <th class="px-4 py-3 text-left">Lp.</th>
+                        <th class="px-4 py-3 text-left">Nmer załogi</th>
+                        <th class="px-4 py-3 text-left">Imię i nazwisko kierowcy</th>
+                        <th class="px-4 py-3 text-left">K1</th>
+                        <th class="px-4 py-3 text-left">K2</th>
+                        <th class="px-4 py-3 text-left">K3</th>
+                        <th class="px-4 py-3 text-left">CZAS EXTREME</th>
+                        <th class="px-4 py-3 text-left">Wynik</th>
+                        <th class="px-4 py-3 text-left">czas</th>
+                      </tr>
+                    ) : (
+                      <tr>
+                        <th class="px-4 py-3 text-left">Pos</th>
+                        <th class="px-4 py-3 text-left">Załoga</th>
+                        <th class="px-4 py-3 text-left">Pojazd</th>
+                        <th class="px-4 py-3 text-left">Czas</th>
+                        <th class="px-4 py-3 text-left">Uwagi</th>
+                      </tr>
+                    )}
                   </thead>
                   <tbody class="divide-y divide-[var(--border)]">
-                    {grouped[bucket].map((row) => (
-                      <tr class="transition-colors hover:bg-[var(--surface-muted)]">
-                        <td class="px-4 py-3 font-semibold text-[var(--accent)]">{row.position ?? "–"}</td>
-                        <td class="px-4 py-3 font-medium">{row.crew}</td>
-                        <td class="px-4 py-3 text-[var(--muted)]">{row.vehicle ?? "—"}</td>
-                        <td class="px-4 py-3 text-[var(--text)]">{row.time ?? "—"}</td>
-                        <td class="px-4 py-3 text-[var(--muted)]">{row.notes ?? "—"}</td>
-                      </tr>
-                    ))}
+                    {grouped[bucket].map((row) => {
+                      const meta = parseMeta(row.notes);
+                      return isPilotScoreBucket ? (
+                        <tr class="transition-colors hover:bg-[var(--surface-muted)]">
+                          <td class="px-4 py-3 font-semibold text-[var(--accent)]">{row.position ?? ""}</td>
+                          <td class="px-4 py-3">{meta.crewNumber ?? ""}</td>
+                          <td class="px-4 py-3 font-medium">{row.crew}</td>
+                          <td class="px-4 py-3">{meta.pilot ?? ""}</td>
+                          <td class="px-4 py-3">{meta.k1 ?? ""}</td>
+                          <td class="px-4 py-3">{meta.k2 ?? ""}</td>
+                          <td class="px-4 py-3">{meta.k3 ?? ""}</td>
+                          <td class="px-4 py-3">{meta.wynik ?? ""}</td>
+                          <td class="px-4 py-3">{row.time ?? ""}</td>
+                        </tr>
+                      ) : isAdvBucket ? (
+                        <tr class="transition-colors hover:bg-[var(--surface-muted)]">
+                          <td class="px-4 py-3 font-semibold text-[var(--accent)]">{row.position ?? ""}</td>
+                          <td class="px-4 py-3">{meta.crewNumber ?? ""}</td>
+                          <td class="px-4 py-3 font-medium">{row.crew}</td>
+                          <td class="px-4 py-3">{meta.pilot ?? ""}</td>
+                          <td class="px-4 py-3">{meta.kola ?? ""}</td>
+                        </tr>
+                      ) : isExtremeBucket ? (
+                        <tr class="transition-colors hover:bg-[var(--surface-muted)]">
+                          <td class="px-4 py-3 font-semibold text-[var(--accent)]">{row.position ?? ""}</td>
+                          <td class="px-4 py-3">{meta.crewNumber ?? ""}</td>
+                          <td class="px-4 py-3 font-medium">{row.crew}</td>
+                          <td class="px-4 py-3">{meta.pilot ?? ""}</td>
+                          <td class="px-4 py-3">{meta.iloscOkrazen ?? ""}</td>
+                        </tr>
+                      ) : isRaduszankaQuadTable ? (
+                        <tr class="transition-colors hover:bg-[var(--surface-muted)]">
+                          <td class="px-4 py-3 font-semibold text-[var(--accent)]">{row.position ?? ""}</td>
+                          <td class="px-4 py-3">{meta.crewNumber ?? ""}</td>
+                          <td class="px-4 py-3 font-medium">{row.crew}</td>
+                          <td class="px-4 py-3">{meta.k1 ?? ""}</td>
+                          <td class="px-4 py-3">{meta.k2 ?? ""}</td>
+                          <td class="px-4 py-3">{meta.k3 ?? ""}</td>
+                          <td class="px-4 py-3">{meta.extremeTime ?? ""}</td>
+                          <td class="px-4 py-3">{meta.wynik ?? ""}</td>
+                          <td class="px-4 py-3 text-[var(--text)]">
+                            {row.time ?? ""}
+                            {meta.extraNote ? <span class="ml-2 text-xs text-[var(--muted)]">{meta.extraNote}</span> : null}
+                          </td>
+                        </tr>
+                      ) : (
+                        <tr class="transition-colors hover:bg-[var(--surface-muted)]">
+                          <td class="px-4 py-3 font-semibold text-[var(--accent)]">{row.position ?? "–"}</td>
+                          <td class="px-4 py-3 font-medium">{row.crew}</td>
+                          <td class="px-4 py-3 text-[var(--muted)]">{row.vehicle ?? "—"}</td>
+                          <td class="px-4 py-3 text-[var(--text)]">{row.time ?? "—"}</td>
+                          <td class="px-4 py-3 text-[var(--muted)]">{row.notes ?? "—"}</td>
+                        </tr>
+                      );
+                    })}
                   </tbody>
                 </table>
               </div>
-            </div>
-          ))}
+              </div>
+            );
+          })}
         </div>
       ) : (
         <p class="px-5 py-6 text-sm text-[var(--muted)]">Brak tabeli wyników dla tego rajdu.</p>

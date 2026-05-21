@@ -1,0 +1,3 @@
+User-agent: *
+Allow: /
+Sitemap: https://offroadnews.pl/sitemap-index.xml

@@ -575,8 +575,265 @@ if (!artykul) {
       window.__tocCleanup = initToc();
     };
 
+    const initRadGalleryLightbox = () => {
+      const articleContent = document.querySelector("#article-content");
+      if (!articleContent) return () => {};
+      let grid = articleContent.querySelector(".rad-gallery-grid");
+      let items = [];
+
+      if (grid) {
+        items = Array.from(grid.querySelectorAll(".rad-gallery-thumb img"))
+          .map((img, index) => ({
+            src: img.currentSrc || img.src,
+            alt: img.alt || `Raduszczanka ${index + 1}`,
+          }))
+          .filter((item) => item.src);
+      } else {
+        const galleryImages = Array.from(articleContent.querySelectorAll("img")).filter((img) =>
+          (img.currentSrc || img.src || "").toLowerCase().includes("raduszczanka")
+        );
+        if (!galleryImages.length) return () => {};
+
+        const galleryNodes = Array.from(
+          new Set(
+            galleryImages.map((img) => img.closest("p, figure") ?? img.parentElement).filter(Boolean)
+          )
+        );
+        if (!galleryNodes.length) return () => {};
+
+        items = galleryImages
+          .map((img, index) => ({
+            src: img.currentSrc || img.src,
+            alt: img.alt || `Raduszczanka ${index + 1}`,
+          }))
+          .filter((item) => item.src);
+        if (!items.length) return () => {};
+
+        grid = document.createElement("div");
+        grid.className = "rad-gallery-grid";
+
+        items.forEach((item, index) => {
+          const button = document.createElement("button");
+          button.type = "button";
+          button.className = "rad-gallery-thumb";
+          button.dataset.index = String(index);
+          button.setAttribute("aria-label", `Otworz zdjecie ${index + 1}`);
+
+          const thumb = document.createElement("img");
+          thumb.src = item.src;
+          thumb.alt = item.alt;
+          thumb.loading = "lazy";
+          thumb.decoding = "async";
+
+          button.appendChild(thumb);
+          grid.appendChild(button);
+        });
+
+        const firstNode = galleryNodes[0];
+        const previous = firstNode.previousElementSibling;
+        const headingBeforeGallery =
+          previous && /^H[2-4]$/i.test(previous.tagName) ? previous : null;
+
+        if (headingBeforeGallery) {
+          headingBeforeGallery.insertAdjacentElement("afterend", grid);
+        } else {
+          firstNode.insertAdjacentElement("beforebegin", grid);
+        }
+        galleryNodes.forEach((node) => node.remove());
+      }
+      if (!items.length || !grid) return () => {};
+
+      const overlay = document.createElement("div");
+      overlay.className = "rad-lightbox";
+      overlay.hidden = true;
+      overlay.innerHTML = `
+        <button class="rad-lightbox-close" type="button" aria-label="Zamknij">&times;</button>
+        <button class="rad-lightbox-prev" type="button" aria-label="Poprzednie">&#10094;</button>
+        <figure class="rad-lightbox-figure">
+          <img class="rad-lightbox-image" alt="" />
+          <figcaption class="rad-lightbox-caption"></figcaption>
+        </figure>
+        <button class="rad-lightbox-next" type="button" aria-label="Nastepne">&#10095;</button>
+      `;
+      document.body.appendChild(overlay);
+
+      const imageEl = overlay.querySelector(".rad-lightbox-image");
+      const captionEl = overlay.querySelector(".rad-lightbox-caption");
+      const closeButton = overlay.querySelector(".rad-lightbox-close");
+      const prevButton = overlay.querySelector(".rad-lightbox-prev");
+      const nextButton = overlay.querySelector(".rad-lightbox-next");
+      let activeIndex = 0;
+
+      const render = () => {
+        const item = items[activeIndex];
+        imageEl.src = item.src;
+        imageEl.alt = item.alt;
+        captionEl.textContent = `${activeIndex + 1} / ${items.length}`;
+      };
+
+      const open = (index) => {
+        activeIndex = index;
+        render();
+        overlay.hidden = false;
+        document.body.classList.add("rad-lightbox-open");
+      };
+
+      const close = () => {
+        overlay.hidden = true;
+        document.body.classList.remove("rad-lightbox-open");
+      };
+
+      const move = (step) => {
+        activeIndex = (activeIndex + step + items.length) % items.length;
+        render();
+      };
+
+      const onThumbClick = (event) => {
+        const thumb = event.target.closest(".rad-gallery-thumb");
+        if (!thumb) return;
+        open(Number(thumb.dataset.index ?? 0));
+      };
+      const onOverlayClick = (event) => {
+        if (event.target === overlay) close();
+      };
+      const onKeyDown = (event) => {
+        if (overlay.hidden) return;
+        if (event.key === "Escape") close();
+        if (event.key === "ArrowLeft") move(-1);
+        if (event.key === "ArrowRight") move(1);
+      };
+
+      grid.addEventListener("click", onThumbClick);
+      closeButton.addEventListener("click", close);
+      prevButton.addEventListener("click", () => move(-1));
+      nextButton.addEventListener("click", () => move(1));
+      overlay.addEventListener("click", onOverlayClick);
+      window.addEventListener("keydown", onKeyDown);
+
+      return () => {
+        grid.removeEventListener("click", onThumbClick);
+        closeButton.removeEventListener("click", close);
+        overlay.removeEventListener("click", onOverlayClick);
+        window.removeEventListener("keydown", onKeyDown);
+        overlay.remove();
+      };
+    };
+
+    const runRadGalleryLightboxInit = () => {
+      if (window.__radGalleryLightboxCleanup) {
+        window.__radGalleryLightboxCleanup();
+        window.__radGalleryLightboxCleanup = null;
+      }
+      window.__radGalleryLightboxCleanup = initRadGalleryLightbox();
+    };
+
     runTocInit();
+    runRadGalleryLightboxInit();
     document.addEventListener("astro:page-load", runTocInit);
+    document.addEventListener("astro:page-load", runRadGalleryLightboxInit);
     document.addEventListener("astro:after-swap", runTocInit);
+    document.addEventListener("astro:after-swap", runRadGalleryLightboxInit);
   </script>
+  <style is:global>
+    .rad-gallery-grid {
+      margin-top: 1.25rem;
+      display: grid;
+      grid-template-columns: repeat(3, minmax(0, 1fr));
+      gap: 0.75rem;
+    }
+    .rad-gallery-thumb {
+      display: block;
+      border: 0;
+      padding: 0;
+      background: transparent;
+      cursor: zoom-in;
+      border-radius: 0.75rem;
+      overflow: hidden;
+    }
+    .rad-gallery-thumb img {
+      width: 100%;
+      aspect-ratio: 4 / 3;
+      object-fit: cover;
+      transition: transform 180ms ease;
+    }
+    .rad-gallery-thumb:hover img {
+      transform: scale(1.03);
+    }
+    .rad-lightbox-open {
+      overflow: hidden;
+    }
+    .rad-lightbox {
+      position: fixed;
+      inset: 0;
+      z-index: 9999;
+      display: grid;
+      grid-template-columns: auto 1fr auto;
+      align-items: center;
+      gap: 1rem;
+      padding: 1.25rem;
+      background: rgba(0, 0, 0, 0.92);
+    }
+    .rad-lightbox[hidden] {
+      display: none;
+    }
+    .rad-lightbox-figure {
+      margin: 0;
+      display: grid;
+      gap: 0.75rem;
+      justify-items: center;
+    }
+    .rad-lightbox-image {
+      max-width: min(92vw, 1200px);
+      max-height: 82vh;
+      border-radius: 0.5rem;
+      object-fit: contain;
+    }
+    .rad-lightbox-caption {
+      color: #f1f5f9;
+      font-size: 0.875rem;
+      letter-spacing: 0.02em;
+    }
+    .rad-lightbox-close,
+    .rad-lightbox-prev,
+    .rad-lightbox-next {
+      border: 0;
+      background: rgba(255, 255, 255, 0.14);
+      color: #fff;
+      width: 44px;
+      height: 44px;
+      border-radius: 9999px;
+      cursor: pointer;
+      line-height: 1;
+      display: grid;
+      place-items: center;
+      font-size: 1.2rem;
+    }
+    .rad-lightbox-close {
+      position: absolute;
+      top: 1rem;
+      right: 1rem;
+      font-size: 1.5rem;
+    }
+    @media (max-width: 640px) {
+      .rad-gallery-grid {
+        grid-template-columns: repeat(3, minmax(0, 1fr));
+      }
+      .rad-lightbox {
+        grid-template-columns: 1fr;
+        justify-items: center;
+        gap: 0.75rem;
+      }
+      .rad-lightbox-prev,
+      .rad-lightbox-next {
+        position: fixed;
+        bottom: 1rem;
+      }
+      .rad-lightbox-prev {
+        left: 1rem;
+      }
+      .rad-lightbox-next {
+        right: 1rem;
+      }
+    }
+  </style>
 </BaseLayout>
