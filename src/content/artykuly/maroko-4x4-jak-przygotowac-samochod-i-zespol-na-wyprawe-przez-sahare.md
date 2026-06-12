@@ -1,7 +1,7 @@
 ---
-title: Maroko 4x4 jak przygotować samochód i zespół na wyprawę przez Saharę
+title: Maroko 4x4 - jak przygotować samochód i zespół na wyprawę przez Saharę
 description: Kompleksowy przewodnik po przygotowaniach do wyprawy 4x4 do Maroka. Sprzęt, logistyka, nawigacja, paliwo, bezpieczeństwo i realia jazdy po saharyjskich bezdrożach.
-author: Przemek
+author: Redakcja
 date: 2026-05-06T05:52:12.021Z
 category:
  - Turystyka i wyprawy
@@ -10,6 +10,8 @@ thumbnail: /content/artykuly/img/maroko-4x4-jak-przygotowac-samochod-i-zespol-na
 Maroko od lat pozostaje jednym z najbardziej dostępnych kierunków pustynnych dla europejskich miłośników offroadu. Zróżnicowany teren – od kamienistych hamad po rozległe pola wydmowe Erg Chebbi i Erg Chigaga – sprawia, że to idealne poligon doświadczalne przed poważniejszymi ekspedycjami afrykańskimi.
 
 Jednak Sahara nie wybacza błędów. Wysoka temperatura, ogromne dystanse i brak infrastruktury wymagają zupełnie innego podejścia niż typowa wyprawa po Bałkanach czy w Alpach. Poniżej znajdziesz kompleksowe, praktyczne opracowanie przygotowań – zarówno technicznych, jak i organizacyjnych.
+
+Praktycznym uzupełnieniem tego tematu są materiały [Maroko 4x4 - logistyka piasku i kamienia](/artykuly/turystyka-i-wyprawy/maroko-4x4-logistyka-piasku-i-kamienia/) oraz [Albania 4x4 - jak zaplanować pierwszą wyprawę w góry Prokletije](/artykuly/turystyka-i-wyprawy/albania-4x4-jak-zaplanowac-pierwsza-wyprawe-w-gory-prokletije/).
 
 ## Dlaczego Maroko to dobry pierwszy kierunek pustynny
 

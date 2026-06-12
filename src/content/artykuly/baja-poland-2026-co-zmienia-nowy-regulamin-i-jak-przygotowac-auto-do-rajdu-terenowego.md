@@ -1,7 +1,7 @@
 ---
-title: Baja Poland 2026 co zmienia nowy regulamin i jak przygotować auto do rajdu terenowego
+title: Baja Poland 2026 - co zmienia nowy regulamin i jak przygotować auto do rajdu terenowego
 description: Analiza zmian w regulaminie Baja Poland 2026, wymagania techniczne dla aut T1 i T2 oraz praktyczne wskazówki, jak przygotować samochód i zespół do startu w rajdzie terenowym.
-author: Przemek
+author: Redakcja
 date: 2026-06-07T17:38:49.672Z
 category:
  - Sport i wydarzenia
@@ -10,6 +10,8 @@ thumbnail: /content/artykuly/img/baja-poland-2026-co-zmienia-nowy-regulamin-i-ja
 Baja Poland od lat jest jednym z kluczowych punktów w kalendarzu rajdów terenowych w Europie Środkowej. Dla jednych to przystanek w drodze po tytuł mistrzowski, dla innych – pierwszy poważny sprawdzian w tempie cross-country. Sezon 2026 przynosi jednak kilka istotnych zmian regulaminowych oraz technicznych, które realnie wpływają na sposób przygotowania samochodu i strategię zespołu.
 
 Poniżej znajdziesz eksperckie omówienie tego, co w praktyce oznaczają nowe zapisy regulaminu oraz jak podejść do budowy i konfiguracji auta, aby nie tylko spełnić wymogi formalne, ale przede wszystkim zwiększyć swoje szanse na mecie.
+
+W szerszym kontekście warto zestawić ten temat z tekstami [Sezon rajdów terenowych 2026 rusza z impetem](/artykuly/sport-i-wydarzenia/sezon-rajdow-terenowych-2026-rusza-z-impetem/) oraz [Jak przygotować auto do rajdu terenowego - sezon 2026 od kontroli technicznej po logistykę zespołu](/artykuly/sport-i-wydarzenia/jak-przygotowac-auto-do-rajdu-terenowego-sezon-2026-od-kontroli-technicznej-po-logistyke-zespolu/).
 
 ## Najważniejsze zmiany w regulaminie na sezon 2026
 

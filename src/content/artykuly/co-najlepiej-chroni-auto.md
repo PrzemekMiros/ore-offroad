@@ -1,7 +1,7 @@
 ---
 title: Zderzak, progi, osłony - co chroni najlepiej?
 description: W terenie auto najczęściej obrywa w trzech miejscach z przodu, od spodu i po bokach. Kamienie, koleiny, skarpy, pnie, błoto i strome podjazdy szybko pokazują, które elementy są naprawdę narażone.
-author: Przemek
+author: Redakcja
 date: 2026-05-20T17:24:45.336Z
 category:
  - Poradniki i technika jazdy
@@ -12,9 +12,10 @@ W terenie auto najczęściej obrywa w trzech miejscach: **z przodu, od spodu i p
 
 Dlatego jeśli jeździsz 4x4, pickupem albo SUV-em poza asfaltem, warto wiedzieć, co daje największą ochronę: **zderzak, progi czy osłony podwozia**.
 
+Dodatkowe przykłady i wskazówki znajdziesz w artykułach [Przygotowanie terenówki do brodzenia - bezpieczne modyfikacje i najczęstsze błędy](/artykuly/warsztat-i-tuning/przygotowanie-terenowki-do-brodzenia-bezpieczne-modyfikacje-i-najczestsze-bledy/) oraz [Zawieszenie terenówki pod lupą - jak dobrać sprężyny amortyzatory i lift bez psucia trakcji](/artykuly/warsztat-i-tuning/zawieszenie-terenowki-pod-lupa-jak-dobrac-sprezyny-amortyzatory-i-lift-bez-psucia-trakcji/).
+
 Nie chodzi tylko o wygląd. Dobrze dobrane elementy ochronne mogą uratować auto przed kosztowną naprawą, a czasem po prostu pozwalają wrócić z wyjazdu o własnych siłach.
 
----
 
 ## Zderzak terenowy - ochrona przodu i baza pod wyciągarkę
 

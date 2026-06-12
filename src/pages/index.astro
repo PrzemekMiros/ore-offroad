@@ -9,27 +9,48 @@ import GridSix from "../components/home/GridSix.astro";
 import LoopText from "../components/home/LoopText.astro";
 import BanerSix from "../components/home/BanerSix.astro";
 import settings from "../content/ustawienia.json";
+import siteLogoAsset from "../assets/images/global/logo.png";
 
 const { site } = Astro;
 const baseUrl = site ? site.toString().replace(/\/$/, "") : "";
 const siteUrl = baseUrl ? `${baseUrl}/` : "/";
-const siteLogo = settings.logo ? (baseUrl ? `${baseUrl}${settings.logo}` : settings.logo) : "";
+const siteLogo = site
+  ? new URL(siteLogoAsset.src, site).toString()
+  : siteLogoAsset.src;
+const homeStructuredData = {
+  "@context": "https://schema.org",
+  "@graph": [
+    {
+      "@type": "WebSite",
+      "@id": `${siteUrl}#website`,
+      url: siteUrl,
+      name: settings.siteTitle,
+      description: settings.metaDescription,
+      publisher: {
+        "@id": `${siteUrl}#organization`,
+      },
+      inLanguage: "pl-PL",
+    },
+    {
+      "@type": "Organization",
+      "@id": `${siteUrl}#organization`,
+      url: siteUrl,
+      name: settings.siteTitle,
+      logo: {
+        "@type": "ImageObject",
+        url: siteLogo,
+      },
+    },
+  ],
+};
 ---
 
 <BaseLayout
   title="Wszystko o offroadzie"
   description="Praktyczne porady i informacje o jeździe w terenie"
   showHero={false}
+  structuredData={homeStructuredData}
 >
-  <div itemscope itemtype="https://schema.org/WebSite">
-    <meta itemprop="name" content={settings.siteTitle} />
-    <meta itemprop="url" content={siteUrl} />
-    <div itemprop="publisher" itemscope itemtype="https://schema.org/Organization">
-      <meta itemprop="name" content={settings.siteTitle} />
-      {siteLogo ? <meta itemprop="logo" content={siteLogo} /> : null}
-    </div>
-  </div>
-
   <GridOne />
   <GridTwo />
   <GridThree />

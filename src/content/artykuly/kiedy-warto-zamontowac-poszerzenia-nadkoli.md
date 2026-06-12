@@ -1,7 +1,7 @@
 ---
 title: Kiedy warto zamontować poszerzenia nadkoli?
 description: W świecie motoryzacji modyfikacje samochodów to nie tylko kwestia wyglądu, ale bardzo często również funkcjonalności i bezpieczeństwa.
-author: Przemek
+author: Redakcja
 date: 2026-04-08T23:30:27.352Z
 category:
  - Poradniki i technika jazdy
@@ -12,7 +12,8 @@ W świecie motoryzacji modyfikacje samochodów to nie tylko kwestia wyglądu, al
 
 Kiedy więc naprawdę warto zamontować poszerzenia nadkoli? Jakie pełnią funkcje i dlaczego coraz więcej kierowców decyduje się na ich montaż?
 
----
+W szerszym kontekście warto zestawić ten temat z tekstami [Jak odpowiednio dobrać dystanse do kół w aucie terenowym ?](/artykuly/poradniki-i-technika-jazdy/jak-dobrac-dystanse-kol-w-aucie-terenowym/) oraz [Homologacja i przepisy offroadowe w Polsce 2026 - co warto wiedzieć przed zakupem i modyfikacją auta](/artykuly/aktualnosci-i-rynek/homologacja-i-przepisy-off-roadowe-w-polsce-2026-co-warto-wiedziec-przed-zakupem-i-modyfikacja-auta/).
+
 
 ## Czym są poszerzenia nadkoli?
 

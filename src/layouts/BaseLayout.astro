@@ -8,7 +8,7 @@ import Footer from "../components/Footer.astro";
 import PageHero from "./heroes/PageHero.astro";
 import "../styles/global.css";
 import { getImage } from "astro:assets";
-import ogImage from "../assets/images/opengraph/opengraph.png";
+import defaultOgImage from "../assets/images/opengraph/opengraph.png";
 import faviconSvg from "../assets/images/global/favicon.svg";
 import faviconPng from "../assets/images/global/favicon.png";
 
@@ -19,13 +19,24 @@ const resolveAsset = (path) => {
   return entry?.default ?? null;
 };
 
-const { title, description, showHero = true, robots, heroMeta } = Astro.props;
+const {
+  title,
+  description,
+  showHero = true,
+  robots,
+  heroMeta,
+  structuredData,
+  ogImage,
+  ogType = "website",
+} = Astro.props;
 const { site, url } = Astro;
 const pageTitle = title ? ` ${title} - ${settings.siteTitle}` : settings.siteTitle;
 const metaDescription = description ?? settings.metaDescription;
 const logoAsset = resolveAsset(settings.logo);
-const processedOgImage = await getImage({ src: ogImage, format: 'png' });
-const ogImageUrl = site ? new URL(processedOgImage.src, site).toString() : processedOgImage.src;
+const processedDefaultOgImage = await getImage({ src: defaultOgImage, format: "png" });
+const ogImagePath = typeof ogImage === "string" ? ogImage : ogImage?.src;
+const resolvedOgImagePath = ogImagePath ?? processedDefaultOgImage.src;
+const ogImageUrl = site ? new URL(resolvedOgImagePath, site).toString() : resolvedOgImagePath;
 const normalizedPath = url.pathname.replace(/^\/|\/$/g, "");
 const pathClass = normalizedPath
   ? `page-${normalizedPath.replace(/\/+/g, "-").replace(/[^a-zA-Z0-9-_]/g, "-").toLowerCase()}`
@@ -46,7 +57,7 @@ const pathClass = normalizedPath
     <meta name="description" content={metaDescription} />
     <meta property="og:title" content={pageTitle} />
     <meta property="og:description" content={metaDescription} />
-    <meta property="og:type" content="website" />
+    <meta property="og:type" content={ogType} />
     <meta property="og:image" content={ogImageUrl} />
     {site ? <meta property="og:url" content={new URL(url.pathname, site).toString()} /> : null}
     {site ? <link rel="canonical" href={new URL(url.pathname, site).toString()} /> : null}
@@ -55,6 +66,12 @@ const pathClass = normalizedPath
     <meta name="twitter:description" content={metaDescription} />
     <meta name="twitter:image" content={ogImageUrl} />
     <meta name="google-site-verification" content="74nANXgFmzyftfpmXh13Tbxhi0aVN7g0n5D-VjxjBqk" />
+    {structuredData ? (
+      <script
+        type="application/ld+json"
+        set:html={JSON.stringify(structuredData).replace(/</g, "\\u003c")}
+      />
+    ) : null}
 
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>

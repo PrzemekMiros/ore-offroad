@@ -1,7 +1,7 @@
 ---
 title: Suzuki Jimny w ciężkim terenie - czy mały może więcej?
 description: Test Suzuki Jimny w wymagającym terenie. Analizujemy napęd 4x4, przełożenia, możliwości zawieszenia oraz realne ograniczenia małej terenówki podczas jazdy w błocie, kamieniach i na stromych podjazdach.
-author: Przemek
+author: Redakcja
 date: 2026-03-28T10:32:17.836Z
 category:
  - Samochody i testy
@@ -11,7 +11,8 @@ Małe nadwozie, krótki rozstaw osi i rama nośna – w czasach rosnących SUV-�
 
 Ten test nie jest katalogową prezentacją. To praktyczna weryfikacja, czy niewielka terenówka rzeczywiście może konkurować z większymi konstrukcjami opartymi na ramie.
 
----
+Praktycznym uzupełnieniem tego tematu są materiały [Samochody offroadowe - jaki wybrać na początek? Kompletny poradnik dla początkujących](/artykuly/samochody-i-testy/samochody-offroadowe-jaki-wybrac-na-poczatek/) oraz [Napęd 4x4 w praktyce - jak różne systemy radzą sobie w terenie](/artykuly/samochody-i-testy/naped-4x4-w-praktyce-jak-rozne-systemy-radza-sobie-w-terenie/).
+
 
 ## Konstrukcja, która dziś jest rzadkością
 
@@ -37,7 +38,9 @@ Krótki rozstaw osi (225 cm) jest tutaj kluczowy. Na stromych załamaniach teren
 
 ---
 
-![Ptrome podjazdy na luźnym podłożu](img/jimny-w-terenie-podjazd.png)
+![Suzuki Jimny - Strome podjazdy na luźnym podłożu](img/jimny-w-terenie-podjazd.png)
+
+---
 
 ## Strome podjazdy na luźnym podłożu
 
@@ -63,6 +66,8 @@ Wniosek: seryjna elektronika wystarcza do turystycznego i średnio trudnego offr
 
 ![Suzuki Jimny trawers i poprzeczne koleiny](img/jimny-w-terenie-koleiny.png)
 
+---
+
 ## Trawers i poprzeczne koleiny
 
 Sztywne mosty mają jedną zasadniczą zaletę: przewidywalność pracy zawieszenia. W przeciwieństwie do wielu aut z niezależnym zawieszeniem, Jimny utrzymuje kontakt kół z podłożem nawet przy dużych wychyleniach.
@@ -78,6 +83,8 @@ Rekomendacja: w takich warunkach utrzymywać stałą prędkość, unikać nagłe
 ---
 
 ![Suzuki Jimny sekcja kamienista](img/jimny-w-terenie-kamienie.png)
+
+---
 
 ## Sekcja kamienista
 
@@ -98,6 +105,8 @@ Rama jest solidna, jednak elementy pomocnicze wymagają dodatkowej ochrony.
 ---
 
 ![Suzuki Jimny w błocie](img/jimny-w-terenie-bloto.png)
+
+---
 
 ## Błoto - masa ma znaczenie
 
@@ -132,6 +141,8 @@ Minusem jest brak fabrycznej blokady mechanicznej w większości wersji. Przy bu
 ---
 
 ![Suzuki Układ napędowy](img/jimny-w-terenie-komfort.png)
+
+---
 
 ## Komfort poza asfaltem
 

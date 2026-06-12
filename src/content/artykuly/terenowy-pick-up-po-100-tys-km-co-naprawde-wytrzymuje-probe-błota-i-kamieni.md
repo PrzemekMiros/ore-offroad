@@ -1,7 +1,7 @@
 ---
 title: Terenowy pick-up po 100 tys. km - co naprawdę wytrzymuje próbę błota i kamieni
 description: Długodystansowy test pick-upa 4x4 po 100 tys. km w terenie. Sprawdzamy napęd, zawieszenie, ramę, elektronikę i realne koszty eksploatacji w offroadzie.
-author: Przemek
+author: Redakcja
 date: 2026-03-04T16:39:46.209Z
 category:
  - Samochody i testy
@@ -10,6 +10,8 @@ thumbnail: /content/artykuly/img/terenowy-pick-up.png
 Pick-up 4x4 to dla wielu kierowców synonim uniwersalności. W tygodniu narzędzie pracy, w weekend – samochód wyprawowy. Producenci kuszą hasłami o legendarnej trwałości i „niezniszczalnej” konstrukcji ramowej. Ale jak wygląda rzeczywistość po 100 tysiącach kilometrów, z czego znaczną część stanowi jazda w terenie – błoto, kamienie, brody wodne i odcinki z pełnym obciążeniem?
 
 Sprawdzamy, które podzespoły faktycznie wytrzymują próbę czasu, a które wymagają uwagi szybciej, niż sugerują foldery reklamowe.
+
+Praktycznym uzupełnieniem tego tematu są materiały [Toyota Land Cruiser 150 po 200 tysiącach kilometrów w terenie](/artykuly/samochody-i-testy/toyota-land-cruiser-150-po-200-tysiacach-kilometrow-w-terenie/) oraz [Nowa Toyota Hilux kontra Ford Ranger w terenie - który pickup wybrać do wypraw i pracy](/artykuly/samochody-i-testy/nowa-toyota-hilux-kontra-ford-ranger-w-terenie-ktory-pickup-wybrac-do-wypraw-i-pracy/).
 
 ## Założenia testu długodystansowego
 

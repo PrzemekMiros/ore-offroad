@@ -1,7 +1,7 @@
 ---
 title: XVI edycja rajdu terenowego Raduszczanka 4x4 za nami
 description: W sobotę, 16 maja, odbyła się XVI edycja rajdu terenowego Raduszczanka 4x4, który organizujemy nieprzerwanie od 2016 roku na terenie województwa lubuskiego.
-author: Przemek
+author: Redakcja
 date: 2026-05-21T19:00:57.358Z
 category:
  - Sport i wydarzenia
@@ -11,6 +11,8 @@ thumbnail: /content/artykuly/img/raduszczanka/1000090431.jpg
 W sobotę, **16 maja**, odbyła się **XVI edycja rajdu terenowego Raduszczanka 4x4**, który organizujemy nieprzerwanie od **2016 roku** na terenie województwa lubuskiego.
 
 Tegoroczna edycja była dla nas wyjątkowa, ponieważ obchodziliśmy nasze **X-lecie**. Na starcie pojawiło się aż **87 załóg**, co jest ogromnym powodem do dumy i potwierdzeniem, że nasz rajd z roku na rok rozwija się coraz bardziej.
+
+Praktycznym uzupełnieniem tego tematu są materiały [Rajdy terenowe 2026 - jak wygląda sezon i czego oczekiwać na trasach](/artykuly/sport-i-wydarzenia/rajdy-terenowe-2026-jak-wyglada-sezon-i-czego-oczekiwac-na-trasach/) oraz [Od amatora do linii startu - jak przygotować się do rajdu terenowego](/artykuly/sport-i-wydarzenia/od-amatora-do-linii-startu-jak-przygotowac-sie-do-rajdu-terenowego/).
 
 ## Trasy i klasy rajdowe
 
@@ -31,6 +33,8 @@ Jak zawsze postawiliśmy na wymagające i zróżnicowane tereny. Na trasach nie 
 
 Było dokładnie tak, jak powinno być na prawdziwym rajdzie off-roadowym. Czyli dużo błota, dużo emocji i sprzęt wystawiony na próbę, bo przecież asfalt zostawiamy ludziom bez wyobraźni.
 
+---
+
 ## Nowa formuła klas Extreme i ADV
 
 Największą nowością tej edycji była zmieniona formuła dla klas **Extreme** oraz **ADV**.
@@ -39,11 +43,15 @@ Po raz pierwszy zawodnicy rywalizowali na pętli o długości **1,7 km**, jadąc
 
 Nowa formuła spotkała się z bardzo pozytywnym odbiorem i dostarczyła wielu emocji zarówno uczestnikom, jak i kibicom.
 
+---
+
 ## Świetna atmosfera i duże zaangażowanie
 
 Cieszymy się, że kolejna edycja **Raduszczanki 4x4** przebiegła w świetnej atmosferze, przy dużej frekwencji i ogromnym zaangażowaniu uczestników.
 
 Otrzymaliśmy wiele pozytywnych opinii od załóg, które były bardzo zadowolone zarówno z przygotowanych tras, jak i z nagród ufundowanych przez naszych sponsorów i partnerów.
+
+---
 
 ## Podziękowania dla sponsorów i partnerów
 
@@ -51,11 +59,15 @@ Serdecznie dziękujemy wszystkim sponsorom i partnerom za okazaną pomoc.
 
 Dzięki Waszemu wsparciu możemy rozwijać rajd i tworzyć wydarzenie na coraz wyższym poziomie. Liczymy na dalszą współpracę przy kolejnych edycjach i wspólne budowanie jednej z najbardziej rozpoznawalnych imprez off-roadowych w regionie.
 
+---
+
 ## Kolejna edycja już 3 października
 
 Już teraz rozpoczynamy przygotowania do kolejnego rajdu, który planujemy na **3 października**.
 
 Mamy nadzieję, że ponownie spotkamy się w równie licznym gronie i dostarczymy uczestnikom jeszcze więcej emocji oraz terenowych wyzwań.
+
+---
 
 ## Zdjęcia z imprezy
 

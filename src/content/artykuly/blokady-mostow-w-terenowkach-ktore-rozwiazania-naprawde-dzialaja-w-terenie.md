@@ -1,7 +1,7 @@
 ---
 title: Blokady mostów w terenówkach - które rozwiązania naprawdę działają w terenie
 description: Porównanie fabrycznych i aftermarketowych blokad mostów w autach 4x4. Sprawdzamy skuteczność, trwałość i realne zastosowanie w wymagającym terenie.
-author: Przemek
+author: Redakcja
 date: 2026-03-04T16:59:41.863Z
 category:
  - Samochody i testy
@@ -10,6 +10,8 @@ thumbnail: /content/artykuly/img/blokady-mostow-w-terenowkach-ktore-rozwiazania-
 Napęd 4x4 to dopiero początek. O prawdziwej zdolności terenowej samochodu decyduje to, czy moment obrotowy faktycznie trafia tam, gdzie jest potrzebny. W praktyce – na koło z przyczepnością. I właśnie w tym miejscu zaczyna się temat blokad mostów.
 
 Producenci terenówek od lat prześcigają się w rozwiązaniach: elektroniczne symulacje, mechaniczne szpery, blokady wiskotyczne, sprzęgła wielotarczowe czy klasyczne 100% blokady spięte na sztywno. W katalogach brzmi to imponująco. W terenie bywa różnie.
+
+Praktycznym uzupełnieniem tego tematu są materiały [Blokady mechanizmów różnicowych w terenówce - jak dobrać i poprawnie zamontować](/artykuly/warsztat-i-tuning/blokady-mechanizmow-roznicowych-w-terenowce-jak-dobrac-i-poprawnie-zamontowac/) oraz [Blokady mostów kontra elektronika - kto wygrywa w prawdziwym terenie](/artykuly/samochody-i-testy/blokady-mostow-kontra-elektronika-kto-wygrywa-w-prawdziwym-terenie/).
 
 Ten artykuł to techniczne i praktyczne porównanie rozwiązań stosowanych w seryjnych autach oraz w modyfikacjach aftermarketowych – bez marketingu, z perspektywy realnej jazdy w błocie, piachu i na kamieniach.
 

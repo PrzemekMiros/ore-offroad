@@ -1,7 +1,7 @@
 ---
 title: Jak odpowiednio dobrać dystanse do kół w aucie terenowym ?
 description: Dystanse do kół to jedna z najpopularniejszych modyfikacji stosowanych w samochodach terenowych, SUV-ach oraz autach 4x4.
-author: Przemek
+author: Redakcja
 date: 2026-05-09T23:30:27.352Z
 category:
  - Poradniki i technika jazdy
@@ -12,7 +12,8 @@ Dystanse do kół to jedna z najpopularniejszych modyfikacji stosowanych w samoc
 
 Jednak źle dobrane dystanse mogą powodować problemy z prowadzeniem auta, przyspieszone zużycie zawieszenia, a nawet ocieranie kół o nadkola. Dlatego przed zakupem warto dokładnie wiedzieć, jak dobrać dystanse do auta off-road, SUV-a lub 4x4.
 
----
+Praktycznym uzupełnieniem tego tematu jest materiał [Homologacja i przepisy offroadowe w Polsce 2026 - co warto wiedzieć przed zakupem i modyfikacją auta](/artykuly/aktualnosci-i-rynek/homologacja-i-przepisy-off-roadowe-w-polsce-2026-co-warto-wiedziec-przed-zakupem-i-modyfikacja-auta/).
+
 
 ## Czym są dystanse do kół?
 
@@ -136,7 +137,7 @@ Najczęściej używane w autach off-road:
 - przy bardzo szerokich oponach,
 - w projektach terenowych.
 
-Wymagają jednak dokładnego sprawdzenia geometrii i często montażu poszerzeń nadkoli.
+Wymagają jednak dokładnego sprawdzenia geometrii i często montażu [poszerzeń nadkoli](/artykuly/poradniki-i-technika-jazdy/kiedy-warto-zamontowac-poszerzenia-nadkoli/).
 
 ---
 

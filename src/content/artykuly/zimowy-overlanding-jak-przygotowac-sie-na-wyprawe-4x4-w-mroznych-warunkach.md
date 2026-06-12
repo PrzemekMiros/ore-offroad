@@ -12,6 +12,8 @@ Zima w terenie nie wybacza improwizacji. Mróz obnaża słabe punkty samochodu, 
 
 W tym artykule omawiam kompleksowo, jak przygotować samochód terenowy i załogę do zimowej ekspedycji – od kwestii technicznych, przez logistykę, po taktykę jazdy i procedury bezpieczeństwa.
 
+Praktycznym uzupełnieniem tego tematu są materiały [Zimowa wyprawa offroad w górach - jak przygotować się na śnieg i mróz](/artykuly/turystyka-i-wyprawy/zimowa-wyprawa-offroad-w-gorach-jak-przygotowac-sie-na-snieg-i-mroz/) oraz [Zimowa wyprawa 4x4 na północ - jak jeździć po zamarzniętych szlakach](/artykuly/turystyka-i-wyprawy/zimowa-wyprawa-4x4-na-polnoc-jak-jezdzic-po-zamarznietych-szlakach/).
+
 ## Charakterystyka zimowej wyprawy 4x4
 
 Zimowy overlanding różni się od letniego w trzech kluczowych aspektach:

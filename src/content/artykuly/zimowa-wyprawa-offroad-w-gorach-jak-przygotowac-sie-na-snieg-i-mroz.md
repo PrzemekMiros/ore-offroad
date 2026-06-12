@@ -1,7 +1,7 @@
 ---
 title: Zimowa wyprawa offroad w górach - jak przygotować się na śnieg i mróz
 description: Kompleksowy przewodnik po organizacji zimowej wyprawy offroadowej w górach. Sprzęt, technika jazdy, bezpieczeństwo i logistyka w ekstremalnych warunkach.
-author: Przemek
+author: Redakcja
 date: 2026-02-24T11:28:30.683Z
 category:
  - Turystyka i wyprawy
@@ -10,6 +10,8 @@ thumbnail: /content/artykuly/img/overlanding.png
 Góry zimą nie wybaczają błędów. Śnieg maskuje koleiny, lód przykrywa kamienie, a mróz bezlitośnie weryfikuje stan techniczny auta i przygotowanie załogi. Zimowa wyprawa offroadowa to jednak jedno z najbardziej satysfakcjonujących doświadczeń w świecie jazdy terenowej – pod warunkiem, że jest przemyślana i zaplanowana z militarną precyzją.
 
 Poniżej znajdziesz kompleksowe opracowanie obejmujące sprzęt, technikę, logistykę i zarządzanie ryzykiem w warunkach zimowych.
+
+Dodatkowe przykłady i wskazówki znajdziesz w artykułach [Zimowy overlanding jak - przygotować się na wyprawę 4x4 w mroźnych warunkach](/artykuly/turystyka-i-wyprawy/zimowy-overlanding-jak-przygotowac-sie-na-wyprawe-4x4-w-mroznych-warunkach/) oraz [Zimowa wyprawa 4x4 na północ - jak jeździć po zamarzniętych szlakach](/artykuly/turystyka-i-wyprawy/zimowa-wyprawa-4x4-na-polnoc-jak-jezdzic-po-zamarznietych-szlakach/).
 
 ## Specyfika zimowego offroadu w górach
 
