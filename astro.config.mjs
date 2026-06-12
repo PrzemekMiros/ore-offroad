@@ -4,6 +4,7 @@ import tailwindcss from '@tailwindcss/vite';
 import robots from 'astro-robots-txt';
 import sitemap from 'astro-sitemap';
 import pagefind from 'astro-pagefind';
+import addLinkTitles from './scripts/add-link-titles.mjs';
 
 const siteUrl = process.env.SITE_URL || 'https://offroadnews.pl';
 
@@ -16,6 +17,7 @@ export default defineConfig({
     },
   },
   integrations: [
+    addLinkTitles(),
     react(),
     sitemap(),
     robots({

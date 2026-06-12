@@ -229,6 +229,7 @@ const articleUrl = baseUrl
 const siteName = settings.siteTitle ?? "Strona";
 const siteLogo = settings.logo ? (baseUrl ? `${baseUrl}${settings.logo}` : settings.logo) : "";
 const authorName = artykul?.author ?? "Redakcja";
+const authorUrl = baseUrl ? `${baseUrl}/` : "/";
 const datePublished = artykul?.date ? new Date(artykul.date) : null;
 const dateModified = artykul?.updated ? new Date(artykul.updated) : datePublished;
 
@@ -265,8 +266,9 @@ if (!artykul) {
     {datePublished ? <meta itemprop="datePublished" content={datePublished.toISOString()} /> : null}
     {dateModified ? <meta itemprop="dateModified" content={dateModified.toISOString()} /> : null}
     {headerImageUrl ? <meta itemprop="image" content={headerImageUrl} /> : null}
-    <div itemprop="author" itemscope itemtype="https://schema.org/Person">
+    <div itemprop="author" itemscope itemtype="https://schema.org/Organization">
       <meta itemprop="name" content={authorName} />
+      <meta itemprop="url" content={authorUrl} />
     </div>
     <div itemprop="publisher" itemscope itemtype="https://schema.org/Organization">
       <meta itemprop="name" content={siteName} />
