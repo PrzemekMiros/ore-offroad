@@ -4,7 +4,7 @@ import BaseLayout from "../../layouts/BaseLayout.astro";
 import { slugifyTitle } from "../../lib/slugifyTitle";
 import settings from "../../content/ustawienia.json";
 
-const imageEntries = import.meta.glob("/src/content/artykuly/img/**/*", { eager: true });
+const imageEntries = import.meta.glob("/src/content/artykuly/**/*.{png,jpg,jpeg,webp,avif,gif}", { eager: true });
 const resolveArticleImage = (path) => {
   if (!path) return null;
   let normalized = path;

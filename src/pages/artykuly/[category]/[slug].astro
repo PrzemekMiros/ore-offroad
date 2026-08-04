@@ -44,7 +44,7 @@ const formatReadingTime = (words, wpm = 200) => {
   return `${minutes} ${label} czytania`;
 };
 
-const imageEntries = import.meta.glob("/src/content/artykuly/img/**/*", { eager: true });
+const imageEntries = import.meta.glob("/src/content/artykuly/**/*.{png,jpg,jpeg,webp,avif,gif}", { eager: true });
 const resolveArticleImage = (path) => {
   if (!path) return null;
   let normalized = path;
@@ -601,7 +601,7 @@ if (!artykul) {
         const allImages = Array.from(articleContent.querySelectorAll("img"));
         const galleryHeading = Array.from(articleContent.querySelectorAll("h2, h3")).find((heading) => {
           const text = normalize(heading.textContent);
-          return text.includes("zdjecia z imprezy") || text.includes("galeria");
+          return text.includes("zdjecia z imprezy") || text.includes("zdjecia z rajdu") || text.includes("galeria");
         });
 
         let galleryImages = [];

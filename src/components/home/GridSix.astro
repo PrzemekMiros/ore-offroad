@@ -2,7 +2,7 @@
 import { Image } from "astro:assets";
 import { slugifyTitle } from "../../lib/slugifyTitle";
 
-const imageEntries = import.meta.glob("/src/content/artykuly/img/**/*", { eager: true });
+const imageEntries = import.meta.glob("/src/content/artykuly/**/*.{png,jpg,jpeg,webp,avif,gif}", { eager: true });
 const resolveArticleImage = (path) => {
   if (!path) return null;
   let normalized = path;

@@ -4,7 +4,7 @@ import { slugifyTitle } from "../../lib/slugifyTitle";
 import adBanner from "../../assets/images/advertise/ad-desert-vertical2.png";
 import BanerTwo from "./BanerTwo.astro";
 
-const imageEntries = import.meta.glob("/src/content/artykuly/img/**/*", { eager: true });
+const imageEntries = import.meta.glob("/src/content/artykuly/**/*.{png,jpg,jpeg,webp,avif,gif}", { eager: true });
 const resolveArticleImage = (path) => {
   if (!path) return null;
   let normalized = path;

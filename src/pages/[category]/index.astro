@@ -93,7 +93,7 @@ const filteredLabel =
   filteredCount === 1 ? "artykuł" : filteredCount >= 2 && filteredCount <= 4 ? "artykuły" : "artykułów";
 const heroMeta = `${filteredCount} ${filteredLabel}`;
 
-const imageEntries = import.meta.glob("/src/content/artykuly/img/**/*", { eager: true });
+const imageEntries = import.meta.glob("/src/content/artykuly/**/*.{png,jpg,jpeg,webp,avif,gif}", { eager: true });
 const resolveArticleImage = (path) => {
   if (!path) return null;
   let normalized = path;

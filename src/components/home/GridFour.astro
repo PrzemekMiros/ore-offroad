@@ -5,7 +5,7 @@ import { slugifyTitle } from "../../lib/slugifyTitle";
 
 const TARGET_CATEGORY = "Turystyka i wyprawy";
 const TARGET_CATEGORY_SLUGS = ["turystyka-i-wyprawy"];
-const imageEntries = import.meta.glob("/src/content/artykuly/img/**/*", { eager: true });
+const imageEntries = import.meta.glob("/src/content/artykuly/**/*.{png,jpg,jpeg,webp,avif,gif}", { eager: true });
 
 const resolveArticleImage = (path) => {
   if (!path) return null;
