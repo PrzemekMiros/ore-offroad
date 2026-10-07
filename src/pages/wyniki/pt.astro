@@ -6,11 +6,20 @@ const API_BASE = "https://results4x4.com/api/v1";
 const brand = "PT";
 const year = 2026;
 
-const dashboardRes = await fetch(`${API_BASE}/public/dashboard?brand=${brand}&year=${year}`);
-if (!dashboardRes.ok) {
+let dashboardRes: Response | undefined;
+try {
+  dashboardRes = await fetch(`${API_BASE}/public/dashboard?brand=${brand}&year=${year}`);
+} catch (error) {
+  console.error("Nie udało się połączyć z API results4x4.com podczas budowania strony wyników.", error);
+}
+
+if (dashboardRes && !dashboardRes.ok) {
   throw new Error(`Nie udało się pobrać wyników (${dashboardRes.status})`);
 }
-const dashboard = await dashboardRes.json();
+
+const dashboard = dashboardRes
+  ? await dashboardRes.json()
+  : { teams: [], leaderboard: {}, nearestRound: null };
 
 const teams = new Map(dashboard.teams.map((t) => [t.teamId, t]));
 const leaderboard = dashboard.leaderboard;
@@ -128,7 +137,11 @@ const dateRange =
           ))}
         </div>
       ) : (
-        <p class="text-muted px-5 py-6">Brak danych z API results4x4.com</p>
+        <p class="text-muted px-5 py-6">
+          {dashboardRes
+            ? "Brak danych z API results4x4.com"
+            : "Nie udało się połączyć z API results4x4.com. Wyniki są chwilowo niedostępne."}
+        </p>
       )}
     </div>
   </section>
