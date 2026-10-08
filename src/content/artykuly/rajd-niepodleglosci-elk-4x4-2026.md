@@ -4,7 +4,7 @@ description: 11 listopada 2026 w powiecie ełckim odbędzie się Rajd Niepodleg�
 author: Redakcja
 date: 2026-10-07T09:00:00+02:00
 category:
-  - Sport i wydarzenia
+ - Sport i wydarzenia
 thumbnail: /content/artykuly/img/rajd-niepodleglosci-elk-4x4-2026.png
 ---
 
